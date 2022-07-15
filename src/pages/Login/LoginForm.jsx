@@ -6,14 +6,15 @@ import isEmpty from 'validator/lib/isEmpty';
 import { faUser, faKey, faL } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { loginUser } from '../../services/userServices';
 
+
 function Login() {
-    const navigate = useNavigate();
+    const history = useHistory();
     const [idNhanVien, setID] = useHookStateName();
     const [password, setPassword] = useHookStatePassword();
 
@@ -71,16 +72,21 @@ function Login() {
                     token: 'fake token'
                 }
                 sessionStorage.setItem('account', JSON.stringify(data));
-                navigate('/user')
+                history.push('/user');
             }
             if (response && response.data && response.data.EC === 1) {
-                navigate('/admin')
+                history.push('/admin');
             }
             toast.error(response.data.EM);
 
         }
     }
 
+    const handlePressEnter = (event) => {
+        if (event.charCode === 13 && event.code === "Enter") {
+            onSubmitLogin();
+        }
+    }
 
     return (
         <div className='loginPage'>
@@ -117,6 +123,7 @@ function Login() {
                                 placeholder='Mật khẩu'
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
+                                onKeyPress={(event) => handlePressEnter(event)}
                             />
                         </div>
                         <p className="errInput2">Vui lòng nhập mật khẩu</p>
@@ -134,9 +141,8 @@ function Login() {
                     </div>
                 </form>
             </div>
-        
         </div>
     );
 }
 
-export default Login;
+export default Login

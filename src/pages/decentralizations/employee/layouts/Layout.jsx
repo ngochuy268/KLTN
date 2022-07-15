@@ -8,7 +8,7 @@ import Header from '../../../../components/header/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouseUser } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
-import ContentEmployee from '../../../../routes/ContentEmployee';
+import ContentEmployee from '../../../../routes/UserRoute';
 
 function LayoutEmployee() {
 
@@ -56,7 +56,7 @@ function LayoutEmployee() {
 
             <div className={styles.gridColumn10}>
                 <Header />
-                <ContentEmployee />
+                {/* <ContentEmployee /> */}
             </div>
         </div>
     );

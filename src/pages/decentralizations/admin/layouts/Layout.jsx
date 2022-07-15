@@ -6,7 +6,7 @@ import { SidebarData } from '../../../../components/sidebar/SidebarData';
 import Header from '../../../../components/header/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartColumn, faNewspaper, faHistory } from '@fortawesome/free-solid-svg-icons';
-import ContentAdmin from '../../../../routes/ContentAdmin';
+import ContentAdmin from '../../../../routes/AdminRoute';
 import $ from 'jquery';
 
 import { TreeView } from '@mui/lab';
@@ -32,13 +32,10 @@ function LayoutAdmin() {
         body.stop().animate({ scrollTop: 0 }, 300, 'swing')
     }
 
-    const ref = useRef(null);
-
     const [username, setUsername] = useState("");
     const [room, setRoom] = useState("");
     const [showChat, setShowChat] = useState(false);
     const [hovered, setHovered] = useState(false);
-
     const socket = io.connect("http://localhost:3001");
 
     const joinRoom = () => {
@@ -47,18 +44,6 @@ function LayoutAdmin() {
           setShowChat(true);
         }
       };
-
-    // useEffect(() => {
-    //     function handleClickOutSite(e) {
-    //         if (ref.current && !ref.current.contains(e.target)) {
-    //             setVisible(false)
-    //         }
-    //     }
-    //     document.addEventListener('mousedown', handleClickOutSite);
-    //     return () => {
-    //         document.removeEventListener('mousedown', handleClickOutSite)
-    //     }
-    // }, [ref])
 
      useEffect(() => {
       document.querySelector('.transition-3').onclick = function() {
@@ -90,6 +75,7 @@ function LayoutAdmin() {
                         </div>
                     </div>
 
+                    {/* Sidebar */}
                     <TreeView
                         aria-label="file system navigator"
                         defaultCollapseIcon={<ArrowDropdownIcon />}
@@ -151,7 +137,7 @@ function LayoutAdmin() {
             </div>
 
             {/* ChatBox */}
-            <div ref={ref}>
+            <div>
                 <div className="chat transition-5" style={{...style.supportWindow}}>
 
                     {!showChat ? (
@@ -174,7 +160,7 @@ function LayoutAdmin() {
                         <button onClick={joinRoom}>Join A Room</button>
                     </div>
                     ) : (
-                    <Chat socket={socket} username={username} room={room} />
+                        <Chat socket={socket} username={username} room={room} />
                     )}
                 </div>
 

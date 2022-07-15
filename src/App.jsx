@@ -11,6 +11,7 @@ import LayoutAdmin from './pages/decentralizations/admin/layouts/Layout';
 // import LayoutEmployee from './pages/decentralizations/employee/layouts/Layout';
 import "./styles.css";
 import { ToastContainer } from 'react-toastify';
+import AppRoutes from './routes/AppRoute';
 
 export default function App() {
 
@@ -28,23 +29,11 @@ export default function App() {
           {/* {
               account && !_.isEmpty(account) && account.isAuthenticated && <CaNhan />
           } */}
-          {/* <Routes>
-              <Route path="/" element={<Login />}></Route>
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/user" element={<NavCaNhan />}></Route>
-              <Route path="/admin" element={<LayoutAdmin />}></Route>
-          </Routes> */}
-
-          {/* <Routes>
-                  <Route path='/' element={<Login />}></Route>
-                  <Route path='/forgotPassword_info' element={<ForgotPasswordInFo />}> </Route>
-                  <Route path='/changePassword' element={<ChangePassword />}></Route>
-                  <Route path='/tongquan' element={<TongQuan />}></Route>
-              </Routes> */}
-          <LayoutAdmin />
-          {/* <LayoutEmployee /> */}
-          <ToastContainer
-                position="top-right"
+        
+            <AppRoutes />
+          
+            <ToastContainer
+                position="top-center"
                 autoClose={5000}
                 hideProgressBar={false}
                 newestOnTop={false}
@@ -55,7 +44,6 @@ export default function App() {
                 pauseOnHover
             />
             {/* Same as */}
-            <ToastContainer />
     </div>
 
   );
