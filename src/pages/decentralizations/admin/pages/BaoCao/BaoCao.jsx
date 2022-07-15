@@ -1,7 +1,7 @@
 function BaoCao() {
     return (
         <>
-            <h2>Báo cáo</h2>
+            <h2>Báo cáo ahihi</h2>
         </>
     );
 }
