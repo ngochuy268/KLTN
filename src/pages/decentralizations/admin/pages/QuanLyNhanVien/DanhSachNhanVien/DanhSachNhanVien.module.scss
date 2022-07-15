@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$font: 'Roboto', sans-serif;
+$text-color: rgb(204,255,204);
+$mgRightMenuName: 10px;
+$fontSize: 16px;
+$borderColor: 1px solid #ced4da;
+
+
+
+.wrapperTitle {
+    background-color: #007bff;
+   border-radius: 8px;
+    color: white;
+    p {
+        margin: 0;
+        padding: 15px;
+        font-family: $font;
+        font-weight: 300;
+        font-size: 18px;
+    }
+}
+
+.employeeListWrapper {
+
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .employeeListItem {
+        z-index: 1;
+        margin: 10px;
+        padding: 15px;
+        font-family: $font;
+        border: 1px groove;
+        border-radius: 7px;
+        width: 32%;
+
+        .backGround {
+            background-image: url(../../../../../../assets/layoutImg/opacitylogo.png) ;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            // filter: opacity(20%);   
+            width: 100%;
+            height: 100%;
+        }
+ 
+        .employeeBasicInfo {
+            display: flex;
+
+            .employeeImgWrapper{
+                 flex-grow: 1;
+                 width: 40%;
+
+                 .employeeImg {
+                     width: 40%;
+                    
+                 }
+             }
+
+             .employeeNameAndID {
+                 flex-grow: 2;
+                 text-align: center;
+                 .employeeName, .employeeYearsOld {
+                     font-weight: 700;   
+                 }
+                 .employeeID {
+                     span {
+                         font-weight: 700;
+                     }
+                 }
+             }
+        }
+        .employeeInfo {
+                 
+             .employeeInfoTitle {
+                 font-weight: 700;
+             }
+        }
+        
+        .employeeStatusWrapper {
+            position: relative;
+
+            .employeeStatus{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 90px;
+    
+                .employeeStatusContent{
+                    margin: 0;
+                    padding: 5px 30px;
+                    color: white;
+                    background-color: #00a65a;
+                    border-radius: 10px;
+                }
+                
+                .employeeStatusContent.employeeStatusContentOff{
+                    background-color: red;
+                }
+    
+            }
+            .employeeStatusEditIcon{
+                position: absolute;
+                right: 0;
+                top: 0;
+             }
+        }
+    
+    }
+    
+}
+

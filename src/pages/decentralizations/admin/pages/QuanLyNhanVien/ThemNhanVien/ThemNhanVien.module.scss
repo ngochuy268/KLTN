@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$font: 'Roboto', sans-serif;
+$text-color: rgb(204,255,204);
+$mgRightMenuName: 10px;
+$fontSize: 16px;
+$borderColor: 1px solid #ced4da;
+$innerShadow:  inset 0px 4px 12px -4px #ABABAB;
+
+.wrapper {
+    &:nth-child(2) {
+        margin-top: 30px;
+    }
+}
+
+.wrapperTitle {
+    background-color: #007bff;
+    border-radius: 8px;
+    display: flex;
+    color: white;
+
+    p {
+        margin: 0;
+        padding: 15px;
+        font-family: $font;
+        font-weight: 300;
+        font-size: 18px;
+    }
+}
+
+.addEmployeesWrapper {
+    margin-top: 24px;
+    font-family: $font;
+
+    .addEmployeesItems {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .addEmployeesItem {
+            width: 100%;
+            padding: 20px;
+
+            #addEmployeeNote{
+                width: 100%;
+                border-radius: 5px;
+                border: $borderColor;
+                box-shadow: $innerShadow;
+            }
+
+            p {
+                font-weight: 700;
+            }
+
+            .addEmployeesInputRadioWrapper {
+                display: flex;
+
+                .addEmployeesInputRadio {
+                    display: flex;
+                    align-items: center;
+                    margin: 0 20px;
+
+                    input[type='radio'] {
+                        width: fit-content;
+                        box-shadow: none;
+                    }
+                }
+
+              
+            }
+
+            input[type='file']{
+                font-size: 18px;
+                padding: 15px;
+                border: $borderColor;
+                box-shadow: $innerShadow;
+                height: auto;
+            }
+
+            .addEmployeesInput{
+                width: 100%;
+                border-radius: 5px;
+                border: $borderColor;
+                height: 40px;
+                box-shadow: $innerShadow;
+            }
+        }
+    }
+    
+
+    .saveButtonWrapper {
+        display: flex;
+        justify-content: center;
+        padding: 50px;
+
+        .saveButton {
+            padding: 10px 30px;
+            border-radius: 5px;
+            background-color: #007bff;
+            border: transparent;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+                background: rgb(4,66,135);
+                background: linear-gradient(180deg, rgba(4,66,135,1) 0%, rgba(12,29,180,1) 82%);
+            }
+        }
+    }
+}
+

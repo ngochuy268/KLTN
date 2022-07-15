@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$font: 'Roboto', sans-serif;
+$text-color: rgb(204,255,204);
+$mgRightMenuName: 10px;
+$fontSize: 16px;
+$borderColor: 1px solid #ced4da;
+$innerShadow:  inset 0px 4px 12px -4px #ABABAB;
+
+
+.wrapper {
+    font-family: $font;
+
+    table, th, td {
+        border-collapse: collapse;
+    }
+    
+    th {
+        text-align: left;
+    }
+    
+    table {
+        border-collapse: collapse;
+        border-radius: 7px;
+        overflow: hidden;
+        -webkit-box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23); 
+        box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
+    }
+      
+    th, td {
+        border: $borderColor;
+        padding: 1em;
+        background: transparent;
+    }
+    
+    tr:nth-child(odd) {
+        background-color: #D6EEEE;
+    }
+        
+}
+
+.wrapperTitle {
+    background-color: #007bff;
+    border-radius: 8px;
+    color: white;
+    p {
+        color: white;
+        margin: 0;
+        padding: 15px;
+        font-family: $font;
+        font-weight: 300;
+        font-size: 18px;
+    }
+}
+
+.lineChartWrapper {
+    display: flex;
+    width: 100%;
+
+    .lineChart {
+        width: 200%;
+        border: $borderColor;
+        border-radius: 8px;
+        display: none;
+        margin-left: 15px;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    .lineChartExpa {
+        width: 100%;
+        border: $borderColor;
+        border-radius: 8px;
+    }
+}
+
+.lineChartWrapper, .lineChartInfoWrapper {
+    margin-top: 24px;
+    padding: 15px;
+}
+
+.lineChartInfoWrapper {
+    padding: 15px;
+
+    .lineChartInfoTablewrapper {
+        display: flex;
+        justify-content: space-between;
+
+        .lineChartInfoTable {
+            width: 100%;
+
+           
+        }
+        .lineChartInfoTableAddAndFavourite {
+            width: 100%;
+            margin-left: 25px;
+
+            .lineChartInfoTableFavourite{
+                margin-bottom: 40px;
+            }
+
+            table {
+                width: 100%;
+            }
+        }
+    }
+}
+
+

@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$font: 'Roboto', sans-serif;
+$mgRightMenuName: 10px;
+$fontSize: 16px;
+$borderColor: 1px solid #ced4da;
+
+.wrapper {
+    font-family: $font;
+}
+
+.wrapperTitle {
+    background-color: #007bff;
+    border-radius: 8px;
+    color: white;
+    p {
+        margin: 0;
+        padding: 15px;
+        font-family: $font;
+        font-weight: 300;
+        font-size: 18px;
+    }
+}
+
+
+.listAndChartGoodsWrapper {
+    margin-top: 24px;
+    border: 1px groove;
+    border-radius: 5px;
+
+    .goodsTitle {
+        position: relative;
+        font-family: $font;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 5px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            border-bottom: 1px groove;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+        }
+    }
+
+    .listAndChartGoods{
+        display: flex;
+        width: 100%;
+        padding: 20px;
+
+        .pieChart {
+            flex-grow: 2;
+            width: 100%;
+            border: $borderColor;
+            display: flex;
+            justify-content: center;
+            padding: 30px;
+            border-radius: 5px;
+            margin-right: 15px;
+            -webkit-box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23); 
+            box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
+
+           #chart {
+            width: 60%;
+           }
+        }
+
+        .listGoods {
+            font-family: $font;
+            width: 100%;
+            flex-grow: 1;
+
+            table, th, td {
+                border-collapse: collapse;
+            }
+            
+            th {
+                text-align: left;
+            }
+            
+            table {
+                border-collapse: collapse;
+                border-radius: 7px;
+                overflow: hidden;
+                -webkit-box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23); 
+                box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
+            }
+              
+            th, td {
+                border: $borderColor;
+                padding: 1em;
+                background: transparent;
+            }
+            
+            tr:nth-child(odd) {
+                background-color: #D6EEEE;
+            }
+            
+        }
+    }
+
+    .goodsTableDetailWrapper{
+        width: 100%;
+
+        .goodsTableDetails {
+            border: $borderColor;
+            border-collapse: collapse;
+            border-radius: 7px;
+            // display: none;
+            -webkit-box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23); 
+            box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
+            
+            &.active {
+                display: block;
+            }
+
+
+            
+            table {
+                table-layout: auto;
+                width: 100%;  
+                border-collapse: collapse;
+                border-radius: 7px;
+                overflow: hidden;
+                -webkit-box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23); 
+                box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
+            }
+              
+            th, td {
+                border: $borderColor;
+                padding: 1em;
+                background: transparent;
+            }
+            
+            tr:nth-child(odd) {
+                background-color: #D6EEEE;
+            } 
+        }
+    }
+}
+
+
+

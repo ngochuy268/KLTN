@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$font: 'Roboto', sans-serif;
+$text-color: rgb(204,255,204);
+$mgRightMenuName: 10px;
+$fontSize: 16px;
+$borderColor: 1px solid #ced4da;
+
+
+.wrapperTitle {
+    background-color: #007bff;
+    border-radius: 8px;
+    color: white;
+    p {
+        margin: 0;
+        padding: 15px;
+        font-family: $font;
+        font-weight: 300;
+        font-size: 18px;
+    }
+}
+
+.listGoodsInfoWrapper {
+    margin-top: 24px;
+    border: 1px groove;
+    border-radius: 5px;
+
+    .goodsTitle {
+        position: relative;
+        font-family: $font;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 5px;
+        font-size: 20px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            border-bottom: 1px groove;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+        }   
+    }
+
+    .listGoods {
+        font-family: $font;
+        width: 100%;
+        padding: 20px;
+    
+        table {
+            border-collapse: collapse;
+            border-radius: 7px;
+            // overflow: hidden;
+            -webkit-box-shadow: 3px 5px 11px -4px rgba(0,0,0,0.61); 
+            box-shadow: 3px 5px 11px -4px rgba(0,0,0,0.61);
+
+            #note {
+                width: 100%;
+                border: $borderColor;
+                outline: none;
+            }
+
+            .editIcon {
+                text-align: center;
+                
+                button {
+                    background-color: #007bff;
+                    color: white;
+                    border: transparent;
+                    padding: 9px;
+                    font-size: 18px;
+                }
+            }
+
+            .subGoodsTable {
+                width: 100%;
+                padding: 20px;
+                border-collapse: collapse;
+                
+                .editIcon {
+                    text-align: center;
+                    
+                    button {
+                        background-color: #007bff;
+                        color: white;
+                        border: transparent;
+                        padding: 9px;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+          
+        th, td {
+            text-align: left;
+            padding: 1em;
+            background: transparent;
+            border: $borderColor; 
+        }
+
+        tr:nth-child(odd) {
+            background-color: #fff;
+        }
+        
+    }
+    
+    
+
+}
+
+

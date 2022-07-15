@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$font: 'Roboto', sans-serif;
+$text-color: rgb(204,255,204);
+$mgRightMenuName: 10px;
+$fontSize: 16px;
+$borderColor: 1px solid #ced4da;
+
+
+.wrapperTitle {
+    background-color: #007bff;
+    border-radius: 8px;
+    color: white;
+    p {
+        margin: 0;
+        padding: 15px;
+        font-family: $font;
+        font-weight: 300;
+        font-size: 18px;
+    }
+}
+
+.listGoodsInfoWrapper {
+    margin-top: 24px;
+    border: 1px groove;
+    border-radius: 5px;
+
+    .goodsTitle {
+        position: relative;
+        font-family: $font;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 5px;
+        font-size: 20px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            border-bottom: $borderColor;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+        }   
+    }
+
+    .listGoods {
+        font-family: $font;
+        // width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .listGoodsWrapper {
+            margin: 8px;
+            width: 32.2222%;
+            border: $borderColor;
+            border-radius: 7px;
+            border-top: 3px solid #28a745;
+            -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61); 
+box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
+
+            .listGoodsHeader {
+                position: relative;
+                padding: 12px 20px;
+                font-size: 18px;
+
+                p {
+                    margin: 0;
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    border-bottom: $borderColor;
+                    width: 100%;
+                    left: 0;
+                    bottom: 0;
+                }   
+
+                .ribbonWrapper {
+                    position: absolute;
+                    width: 100px;
+                    height: 100px;
+                    right: 0;
+                    top: 0;
+                    overflow: hidden;
+
+                    .ribbon.on {
+                        right: 22px;
+                        top: 26px;
+                        width: 160px;
+                        box-shadow: 0 0 3px rgb(0 0 0 / 30%);
+                        font-size: 12px;
+                        color: white;
+                        line-height: 100%;
+                        padding: .375rem 0;
+                        position: relative;
+                        text-align: center;
+                        text-shadow: 0 -1px 0 rgb(0 0 0 / 40%);
+                        text-transform: uppercase;
+                        -webkit-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                        background-color: #28a745!important;
+                        z-index: 1;
+                    }
+
+                    .ribbon {
+                        right: 22px;
+                        top: 26px;
+                        width: 160px;
+                        box-shadow: 0 0 3px rgb(0 0 0 / 30%);
+                        font-size: 12px;
+                        line-height: 100%;
+                        padding: .375rem 0;
+                        position: relative;
+                        text-align: center;
+                        text-shadow: 0 -1px 0 rgb(0 0 0 / 40%);
+                        text-transform: uppercase;
+                        -webkit-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                        background-color: #ffc107!important;
+                        z-index: 1;
+                    }
+                }
+
+            }
+
+            .listGoodsBody {
+                margin: 16px 0;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 50%;
+                }
+
+                span {
+                    margin: 16px 0 0 0;
+                }
+            }
+
+            .listGoodsFunctionButton {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                background-color: rgba(0,0,0,.03);
+
+                button {
+                    margin: 4px 8px;
+                    border: transparent;
+                    background-color: transparent;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

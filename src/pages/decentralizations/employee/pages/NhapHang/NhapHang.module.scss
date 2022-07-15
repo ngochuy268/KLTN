@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$font: 'Roboto', sans-serif;
+$text-color: rgb(204,255,204);
+$mgRightMenuName: 10px;
+$fontSize: 16px;
+$borderColor: 1px solid #ced4da;
+$innerShadow:  inset 0px 4px 12px -4px #ABABAB;
+
+.wrapper {
+    border-radius: 8px;
+    border: 1px groove;
+    &:nth-child(2) {
+        margin-top: 30px;
+    }
+}
+
+.wrapperTitle {
+    background-color: #007bff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    color: white;
+
+    p {
+        margin: 0;
+        padding: 15px;
+        font-family: $font;
+        font-weight: 300;
+        font-size: 18px;
+    }
+
+    .scanWrapper {
+        display: flex;
+        margin-left: 30px;
+
+        button {
+            background-color: transparent;
+            border: transparent;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+}
+
+.addGoodsWrapper:nth-child(1) {
+
+box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
+
+}
+
+.addGoodsWrapper {
+    margin-top: 24px;
+    border: 1px groove;
+    border-radius: 5px;
+    position: relative;
+    
+
+    .goodsTitle {
+        position: relative;
+        font-family: $font;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 5px;
+        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            width: 10%;
+            background-color: #28a745;
+            color: white;
+            border: transparent;
+            border-radius: 7px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            border-bottom: 1px groove;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+        }   
+    }
+
+    .addGoods{
+        display: flex;
+        justify-content: space-between;
+        padding: 30px;
+        position: relative;
+
+
+        .addGoodsItems, .addGoodsDateItems{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 0 30px;
+            font-size: 18px;
+            font-family: $font;
+            font-weight: 700;
+            color: black;
+
+            .inputItems {
+                margin: 15px 0;
+                height: 40px;
+                border: $borderColor;
+                border-radius: 5px;
+                outline: none;
+                box-shadow: $innerShadow;
+            }
+        }
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        border-bottom: 3px groove;
+        width: 100%;
+        left: 0;
+        bottom: 140px;
+    }
+
+    .saveButtonWrapper {
+        display: flex;
+        justify-content: center;
+        padding: 50px;
+
+        .saveButton {
+            padding: 10px 30px;
+            border-radius: 5px;
+            background-color: #007bff;
+            border: transparent;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+                background: rgb(4,66,135);
+                background: linear-gradient(180deg, rgba(4,66,135,1) 0%, rgba(12,29,180,1) 82%);
+            }
+        }
+    }
+
+    .addButtonWrapper {
+        display: flex;
+        justify-content: flex-end;
+        padding: 30px 50px;
+
+        .addButton {
+            padding: 10px 30px;
+            border-radius: 5px;
+            background: rgb(37,135,4);
+            background: linear-gradient(180deg, rgba(37,135,4,1) 0%, rgba(21,180,12,1) 0%);
+            border: transparent;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+                background: rgb(59,199,11);
+                background: linear-gradient(180deg, rgba(59,199,11,1) 0%, rgba(26,228,14,1) 91%);
+            }
+        }
+    }
+}
+
+
+.addGoodsContent {
+    display: flex;
+    padding: 10px;
+    font-family: $font;
+
+    .addGoodsNote {
+        margin-top: 24px;
+        border: 1px groove;
+        border-radius: 5px;
+        position: relative;
+        width: 100%;
+        box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
+
+        margin-left: 15px;
+
+
+        .addGoodsNoteTitle {
+            position: relative;
+            padding: 15px ;
+            
+            p {
+                margin: 0;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                border-bottom: 1px groove;
+                width: 100%;
+                left: 0;
+                bottom: 0;
+            }
+        }
+
+        .addGoodsNoteItemsWrapper {
+            padding: 30px;
+
+            p {
+                font-weight: 700;
+                margin: 8px 0;
+            }
+
+            .addGoodsNoteItems {
+                display: flex;
+                justify-content: space-between;
+
+                .addGoodsNoteItem {
+                    width: 100%;
+                }
+            }
+        }
+
+        .addGoodsIDNoteItemsWrapper {
+            padding: 30px;
+
+
+            p {
+                margin: 10px 0;
+                font-weight: 700;
+            }
+
+            #goodID {
+                width: 100%;
+                height: 40px;
+                border: $borderColor;
+                border-radius: 7px;
+                font-family: $font;
+                outline: none;
+                margin: 15px 0;
+            }
+            
+            .addGoodsnoteTableItem {
+                width: 70%;
+            }
+        }
+    }
+}
