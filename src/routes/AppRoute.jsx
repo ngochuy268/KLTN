@@ -5,6 +5,7 @@ import XuatHang from "../pages/decentralizations/admin/pages/NhapXuatKho/XuatHan
 import CaNhan from "../pages/decentralizations/employee/layouts/Layout";
 import Login from '../pages/Login/LoginForm';
 import NavCaNhan from '../pages/decentralizations/employee/layouts/Layout';
+
 import ForgotPasswordInFo from '../pages/Login/ForgotPassword';
 import ChangePassword from '../pages/Login/ResetPassword';
 import PrivateRoute from "./PrivateRoute";

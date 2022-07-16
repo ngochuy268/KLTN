@@ -5,7 +5,7 @@ import { faBarcode, faPlus } from '@fortawesome/free-solid-svg-icons';
 import avatar from '../../../../../assets/layoutImg/avatar.png';
 import { Link } from "react-router-dom";
 
-function CaNhan() {
+function UserHome() {
     return (
         <>
         <div className={styles.container}>
@@ -91,4 +91,4 @@ function CaNhan() {
     )
 }
 
-export default CaNhan;
+export default UserHome;

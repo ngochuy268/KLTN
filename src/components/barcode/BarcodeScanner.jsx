@@ -4,7 +4,7 @@ import styles from '../../components/header/Header.module.scss';
 
 
 export default function BarcodeScanner(props) {
-  const [scan, setScan] = useState(false);
+  const [scan, setScan] = useState(true);
   const [logs, setLog] = useState([]);
 
   useEffect(() => {
