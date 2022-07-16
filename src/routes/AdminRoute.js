@@ -16,24 +16,22 @@ import ThemNhanVien from "../pages/decentralizations/admin/pages/QuanLyNhanVien/
 function ContentAdmin() {
     return (
         <div className={styles.content}>
-            <Switch>
 
-                {/* Menu Routes */}
-                <Route path='/tongquan' element={<TongQuan />} />
-                <Route path='/congviec' element={<CongViec />} />
-                <Route path='/baocao' element={<BaoCao />} />
+            {/* Menu Routes */}
+            <Route path='/tongquan' component={TongQuan} />
+            <Route path='/congviec' component={<CongViec />} />
+            <Route path='/baocao' component={<BaoCao />} />
 
-                {/* Quản lý kho Routes */}
-                <Route path='/quanlykho/danhsachsanpham' element={<DanhSachSanPham />} />
-                <Route path='/quanlykho/themsanpham' element={<ThemSanPham />} />
-                <Route path='/quanlykho/tongquan' element={<TongQuan1 />} />
-                <Route path='/quanlykho/xuatnhap' element={<XuatNhap />} />
+            {/* Quản lý kho Routes */}
+            <Route path='/quanlykho/danhsachsanpham' component={<DanhSachSanPham />} />
+            <Route path='/quanlykho/themsanpham' component={<ThemSanPham />} />
+            <Route path='/quanlykho/tongquan' component={TongQuan1} />
+            <Route path='/quanlykho/xuatnhap' component={<XuatNhap />} />
 
-                {/* Quản lý nhân viên Routes */}
-                <Route path="/quanlynhanvien/danhsachnhanvien" element={<DanhSachNhanVien />} />
-                <Route path="/quanlynhanvien/themnhanvien" element={<ThemNhanVien />} />
+            {/* Quản lý nhân viên Routes */}
+            <Route path="/quanlynhanvien/danhsachnhanvien" component={<DanhSachNhanVien />} />
+            <Route path="/quanlynhanvien/themnhanvien" component={<ThemNhanVien />} />
 
-            </Switch>
         </div>
     );
 }

@@ -12,6 +12,7 @@ $borderColor: 1px solid #ced4da;
     background-color: #007bff;
     border-radius: 8px;
     color: white;
+
     p {
         margin: 0;
         padding: 15px;
@@ -44,7 +45,7 @@ $borderColor: 1px solid #ced4da;
         }
     }
 
-    .listAndChartGoods{
+    .listAndChartGoods {
         display: flex;
         width: 100%;
         padding: 20px;
@@ -58,12 +59,16 @@ $borderColor: 1px solid #ced4da;
             padding: 30px;
             border-radius: 5px;
             margin-right: 15px;
-            -webkit-box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23); 
-            box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
+            -webkit-box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
+            box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
 
-           #chart {
-            width: 60%;
-           }
+            #chart {
+                width: 80%;
+            }
+        }
+
+        .huy {
+            text-align: right;
         }
 
         .listGoods {
@@ -71,74 +76,74 @@ $borderColor: 1px solid #ced4da;
             width: 100%;
             flex-grow: 1;
 
-            table, th, td {
+            .table-fixed tbody {
+                height: 300px;
+                overflow-y: auto;
+            }
+
+            table,
+            th,
+            td {
                 border-collapse: collapse;
             }
-            
+
             th {
-                text-align: left;
+                text-align: center;
             }
-            
+
             table {
                 border-collapse: collapse;
                 border-radius: 7px;
                 overflow: hidden;
-                -webkit-box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23); 
-                box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
+                -webkit-box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
+                box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
             }
-              
-            th, td {
+
+            th,
+            td {
                 border: $borderColor;
                 padding: 1em;
                 background: transparent;
             }
-            
+
             tr:nth-child(odd) {
                 background-color: #D6EEEE;
             }
-            
+
         }
     }
 
-    .goodsTableDetailWrapper{
+    .goodsTableDetailWrapper {
         width: 100%;
+        padding: 20px;
 
         .goodsTableDetails {
             border: $borderColor;
             border-collapse: collapse;
-            border-radius: 7px;
-            // display: none;
-            -webkit-box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23); 
-            box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
-            
+            display: none;
+            -webkit-box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
+            box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
+
             &.active {
                 display: block;
             }
 
-
-            
             table {
-                table-layout: auto;
-                width: 100%;  
                 border-collapse: collapse;
-                border-radius: 7px;
-                overflow: hidden;
-                -webkit-box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23); 
-                box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
+                -webkit-box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
+                box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
             }
-              
-            th, td {
+
+            th,
+            td {
                 border: $borderColor;
                 padding: 1em;
                 background: transparent;
             }
-            
+
             tr:nth-child(odd) {
                 background-color: #D6EEEE;
-            } 
+            }
         }
     }
 }
-
-
-

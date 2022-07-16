@@ -75,7 +75,7 @@ function Login() {
                 history.push('/user');
             }
             if (response && response.data && response.data.EC === 1) {
-                history.push('/admin');
+                history.push('/admin/tongquan');
             }
             toast.error(response.data.EM);
 

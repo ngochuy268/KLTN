@@ -10,10 +10,9 @@ const PrivateRoute = (props) => {
             history.push("/login");
         }
     }, [])
-
     return (
         <>
-            <Route path={props.path} element={props.element} />
+            <Route path={props.path} component={props.component} />
         </>
     )
 }
