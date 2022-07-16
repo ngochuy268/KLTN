@@ -23,6 +23,7 @@ export default function BarcodeScanner(props) {
 
   return (
     <div className={styles.barcodeWrapper}>
+<<<<<<< HEAD
       <div className={styles.buttonScannerWrapper}>
         <button className={styles.scanButton} onClick={() => setScan(true)}>Quét</button>
         <button className={styles.cancelButton} onClick={() => setScan(false)}>Dừng quét</button>
@@ -34,6 +35,20 @@ export default function BarcodeScanner(props) {
             <BarcodeScannerComponent
               onUpdate={barcodeScannerComponentHandleUpdate}
             />
+=======
+        <div className={styles.buttonScannerWrapper}>
+            <button className={styles.scanButton} onClick={() => setScan(true)}>Quét</button>
+            <button className={styles.cancelButton} onClick={() => setScan(false)}>Dừng quét</button>
+            <button className={styles.clearButton} onClick={() => setLog([])}>Bỏ mã</button>
+        </div>
+        {scan && (
+          <div className={styles.scanScreenWrapper}>
+              <div className={styles.scanScreen}>
+                <BarcodeScannerComponent
+                  onUpdate={barcodeScannerComponentHandleUpdate}
+                />
+            </div>
+>>>>>>> 871b815b71c8e316616f3afe640dc87b270bdcd3
           </div>
         </div>
       )}
