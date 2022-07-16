@@ -13,7 +13,7 @@ const PrivateRoute = (props) => {
 
     return (
         <>
-            <Route path={props.path} element={props.element} />
+            <Route path={props.path} component={props.component} />
         </>
     )
 }

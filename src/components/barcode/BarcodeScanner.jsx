@@ -32,7 +32,7 @@ export default function BarcodeScanner(props) {
           <div className={styles.scanScreenWrapper}>
               <div className={styles.scanScreen}>
                 <BarcodeScannerComponent
-                    onUpdate={barcodeScannerComponentHandleUpdate}
+                  onUpdate={barcodeScannerComponentHandleUpdate}
                 />
             </div>
           </div>
