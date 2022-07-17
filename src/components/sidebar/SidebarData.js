@@ -82,14 +82,14 @@ export const SidebarData =  [
                 subNav : [
                     {
                         title: 'Danh sách nhân viên',
-                        path: 'quanlynhanvien/danhsachnhanvien',
+                        path: '/quanlynhanvien/danhsachnhanvien',
                         icon: <FontAwesomeIcon icon={faUserTie}/>,
                         id: 11,
         
                     },
                     {
                         title: 'Thêm nhân viên',
-                        path: 'quanlynhanvien/themnhanvien',
+                        path: '/quanlynhanvien/themnhanvien',
                         icon: <FontAwesomeIcon icon={faFileExport}/>,
                         id: 12,
         

@@ -52,7 +52,7 @@ $borderColor: 1px solid #ced4da;
 
         .pieChart {
             flex-grow: 2;
-            width: 100%;
+            width: 50%;
             border: $borderColor;
             display: flex;
             justify-content: center;
@@ -73,42 +73,42 @@ $borderColor: 1px solid #ced4da;
 
         .listGoods {
             font-family: $font;
-            width: 100%;
+            width: 50%;
             flex-grow: 1;
-
-            .table-fixed tbody {
-                height: 300px;
-                overflow-y: auto;
-            }
-
-            table,
-            th,
-            td {
-                border-collapse: collapse;
-            }
 
             th {
                 text-align: center;
             }
 
-            table {
+            .goodsTable {
                 border-collapse: collapse;
                 border-radius: 7px;
-                overflow: hidden;
+                display: block;
                 -webkit-box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
                 box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
+
+                th,
+                td {
+                    border-collapse: collapse;
+                    border: $borderColor;
+                    padding: 1em;
+                    background: transparent;
+                }
+                
+                thead tr {
+                    background-color: #D6EEEE;
+                }
+
+                tbody tr:nth-child(even) {
+                    background-color: #D6EEEE;
+
+                }
+                tr {
+                    display: block;
+                }
             }
 
-            th,
-            td {
-                border: $borderColor;
-                padding: 1em;
-                background: transparent;
-            }
-
-            tr:nth-child(odd) {
-                background-color: #D6EEEE;
-            }
+           
 
         }
     }

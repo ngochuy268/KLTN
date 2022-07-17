@@ -12,6 +12,8 @@ import XuatNhap from "../pages/decentralizations/admin/pages/QuanLyKho/XuatNhap/
 
 import DanhSachNhanVien from "../pages/decentralizations/admin/pages/QuanLyNhanVien/DanhSachNhanVien/DanhSachNhanVien";
 import ThemNhanVien from "../pages/decentralizations/admin/pages/QuanLyNhanVien/ThemNhanVien/ThemNhanVIen";
+import NhapHang from "../pages/decentralizations/admin/pages/NhapXuatKho/NhapHang/NhapHang";
+import XuatHang from "../pages/decentralizations/admin/pages/NhapXuatKho/XuatHang/XuatHang";
 
 function ContentAdmin() {
     return (
@@ -19,18 +21,21 @@ function ContentAdmin() {
 
             {/* Menu Routes */}
             <Route path='/tongquan' component={TongQuan} />
-            <Route path='/congviec' component={<CongViec />} />
-            <Route path='/baocao' component={<BaoCao />} />
+            <Route path='/congviec' component={CongViec} />
+            <Route path='/baocao' component={BaoCao} />
 
             {/* Quản lý kho Routes */}
-            <Route path='/quanlykho/danhsachsanpham' component={<DanhSachSanPham />} />
-            <Route path='/quanlykho/themsanpham' component={<ThemSanPham />} />
+            <Route path='/quanlykho/danhsachsanpham' component={DanhSachSanPham} />
+            <Route path='/quanlykho/themsanpham' component={ThemSanPham} />
             <Route path='/quanlykho/tongquan' component={TongQuan1} />
-            <Route path='/quanlykho/xuatnhap' component={<XuatNhap />} />
+            <Route path='/quanlykho/xuatnhap' component={XuatNhap} />
+
+            <Route path='/nhapxuatkho/nhaphang' component={NhapHang} />
+            <Route path='/nhapxuatkho/xuathang' component={XuatHang} />
 
             {/* Quản lý nhân viên Routes */}
-            <Route path="/quanlynhanvien/danhsachnhanvien" component={<DanhSachNhanVien />} />
-            <Route path="/quanlynhanvien/themnhanvien" component={<ThemNhanVien />} />
+            <Route path="/quanlynhanvien/danhsachnhanvien" component={DanhSachNhanVien} />
+            <Route path="/quanlynhanvien/themnhanvien" component={ThemNhanVien } />
 
         </div>
     );

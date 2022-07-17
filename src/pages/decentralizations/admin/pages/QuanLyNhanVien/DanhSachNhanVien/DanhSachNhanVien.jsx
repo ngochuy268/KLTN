@@ -3,8 +3,6 @@ import avatar from '../../../../../../assets/layoutImg/employee_avatar.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
-
-
 function DanhSachNhanVien() {
     return(
         <>
@@ -17,13 +15,12 @@ function DanhSachNhanVien() {
                   
                     <div className={styles.employeeListWrapper}>
                       {/* -----------------BE--------------------- */}
-
                         <div className={styles.employeeListItem} >
                            <div className={styles.backGround}>
                                 <div className={styles.employeeContent}>
                                     <div className={styles.employeeBasicInfo}>
                                         <div className={styles.employeeImgWrapper}>
-                                            <img src={avatar} alt="employee-avatar" className={styles.employeeImg} />
+                                            <img src={require('../../../../../../assets/layoutImg/employee_avatar.png').default} alt="employee-avatar" className={styles.employeeImg} />
                                         </div>
                                         <div className={styles.employeeNameAndID}>
                                             <p className={styles.employeeName}>Nguyễn Văn A</p>

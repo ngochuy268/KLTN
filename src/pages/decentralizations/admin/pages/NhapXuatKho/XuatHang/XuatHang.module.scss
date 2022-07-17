@@ -43,6 +43,31 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
     }
 }
 
+.exportGoodsInputBillItemsWrapper{
+    width: 45%;
+    margin-right: 30px;
+
+    .addButtonWrapper{
+        text-align: right;
+
+        .addButton {
+            padding: 10px 30px;
+            border-radius: 5px;
+            background: rgb(37,135,4);
+            background: linear-gradient(180deg, rgba(37,135,4,1) 0%, rgba(21,180,12,1) 0%);
+            border: transparent;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+                background: rgb(59,199,11);
+                background: linear-gradient(180deg, rgba(59,199,11,1) 0%, rgba(26,228,14,1) 91%);
+            }
+        }
+    }
+}
+
 .exportGoodsAutoWrapper {
     margin-top: 24px;
     padding: 10px;
@@ -55,6 +80,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
         text-align: left;
         flex-grow: 4;
         margin-right: 20px;
+        width: 100%;
 
         .exportGoodsInput {
             height: 40px;
@@ -94,12 +120,13 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
         border: $borderColor;
         border-radius: 8px;
         padding: 12px;
+        height: fit-content;
         -webkit-box-shadow: 2px 3px 6px -1px rgba(0,0,0,0.61); 
         box-shadow: 2px 3px 6px -1px rgba(0,0,0,0.61);
         background: url(../../../../../../assets/layoutImg/opacitylogo.png);
         
         .exportGoodsInputBillTitle {
-            font-size: 18px;
+            font-size: 30px;
             font-weight: 700;
             text-align: center;
             margin: 0px;

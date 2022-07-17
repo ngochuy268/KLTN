@@ -15,7 +15,6 @@ function TongQuan1() {
 
         goodName.forEach((item, index) => {
             const goodsTableDetailsIndex = goodsTableDetails[index];
-            console.log((`.${styles.goodsTableDetails}.${styles.active}`))
             item.onclick = function () {
                 // if ((`.${styles.goodsTableDetails}.${styles.active}`) !== undefined) {
                 //     (`.${styles.goodsTableDetails}.${styles.active}`).classList.remove(`${styles.active}`);
@@ -42,8 +41,8 @@ function TongQuan1() {
                         <div className={styles.pieChart}>
                             <PieChart />
                         </div>
-                        <div className={`huy ${styles.listGoods}`}>
-                            <table className={`table-striped table-fixed table-condensed ${styles.goodsTable}`} style={{ width: '100%' }}>
+                        <div className={styles.listGoods}>
+                            <table className={styles.goodsTable} style={{ width: '100%' }}>
                                 <thead>
                                     <tr>
                                         <th style={{ width: '25%' }}>Mã sản phẩm</th>
@@ -51,10 +50,10 @@ function TongQuan1() {
                                         <th style={{ width: '25%' }}>Số lượng</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody style={{height: '200px', overflowY: 'auto',display: 'block'}}>
                                     <tr>
                                         <td style={{ textAlign: 'center' }}> 55g</td>
-                                        <td classNameBánh Flan='goodName'>Bánh Flan 55g</td>
+                                        <td className='goodName'>Bánh Flan 55g</td>
                                         <td style={{ textAlign: 'right', paddingRight: '30px' }}>1000</td>
                                     </tr>
                                     <tr>
@@ -66,6 +65,26 @@ function TongQuan1() {
                                         <td>Bánh Flan 55g</td>
                                         <td className='goodName'>Bánh Flan 75g</td>
                                         <td style={{ textAlign: 'right', paddingRight: '30px' }}>500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bánh Flan 55g</td>
+                                        <td className='goodName'>Bánh Flan 100g</td>
+                                        <td style={{ textAlign: 'right', paddingRight: '30px' }}>250</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bánh Flan 55g</td>
+                                        <td className='goodName'>Bánh Flan 100g</td>
+                                        <td style={{ textAlign: 'right', paddingRight: '30px' }}>250</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bánh Flan 55g</td>
+                                        <td className='goodName'>Bánh Flan 100g</td>
+                                        <td style={{ textAlign: 'right', paddingRight: '30px' }}>250</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bánh Flan 55g</td>
+                                        <td className='goodName'>Bánh Flan 100g</td>
+                                        <td style={{ textAlign: 'right', paddingRight: '30px' }}>250</td>
                                     </tr>
                                     <tr>
                                         <td>Bánh Flan 55g</td>

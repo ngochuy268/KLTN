@@ -35,15 +35,7 @@ html, body{
         position: absolute;
         border-bottom: 1px groove #e5e5e5 ;
         width: 95%;
-        top: 89px;
-        left: 8px;
-    }
-    &::before {
-        content: '';
-        position: absolute;
-        border-bottom: 1px groove #e5e5e5 ;
-        width: 95%;
-        top: 163px;
+        top: 70px;
         left: 8px;
     }
 }
@@ -54,17 +46,9 @@ html, body{
     min-height: 100vh;
 }
 
-
-.pageLogo {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 8px 20px;
-
-    .logoIcon {
-        width: 70px;
-        margin-right: $mgRightMenuName;
+@media screen and (max-width: 1636px) {
+    .treeViewComponent {
+        padding: 0;
     }
 }
 
@@ -73,7 +57,7 @@ html, body{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 8px 20px;
+    padding: 9px;
 
     .userIcon {
         width: 55px;
@@ -90,7 +74,7 @@ html, body{
 }
 
 .pageNameUser {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: $text-color;
     font-family: $font;

@@ -6,6 +6,8 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import BarcodeScanner from '../barcode/BarcodeScanner';
 import { Dialog, DialogTitle } from '@mui/material';
+import logo from '../../assets/layoutImg/logo.png';
+
 
 function Header() {
 
@@ -22,6 +24,7 @@ function Header() {
 
         // Notification toggle appearance
         const $ = document.querySelector.bind(document);
+        const $$ = document.querySelectorAll.bind(document);
         const headerNotification = $(`.${styles.headerNotification}`);
         const height = window.getComputedStyle(headerNotification, null).getPropertyValue('height');
         
@@ -31,6 +34,12 @@ function Header() {
                 e.stopPropagation();
             }
         }
+
+        $$(`.${styles.headerNotificationItem}`).forEach(item => {
+            item.onclick = function() {
+                this.classList.add(`${styles.seen}`);
+            }
+        })
 
         // Notification style edit
         const x = parseInt(height.slice(0,-2));
@@ -47,6 +56,15 @@ function Header() {
     return (
         <>
             <header className={styles.pageHeader}>
+                <div className={styles.pageLogo}>
+                    <div style={{ width: "80px" }} align="center">
+                        <img src={logo} alt="page-logo" className={styles.logoIcon}/>
+                    </div>
+
+                    <div className={styles.pageNameWrapper} style={{ textAlign: 'center' }}>
+                        <p className={styles.pageName}>Hoàng Ngọc Food</p>
+                    </div>
+                </div>
                 <ul className={styles.headerComponent}>
                     <li className={styles.headerItem}>
                         <button className={styles.barcodeButton} onClick={handleClickOpen}><FontAwesomeIcon icon={faBarcode} /></button> 

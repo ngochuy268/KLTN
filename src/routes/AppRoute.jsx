@@ -9,9 +9,6 @@ import NavCaNhan from '../pages/decentralizations/employee/layouts/Layout';
 import ForgotPasswordInFo from '../pages/Login/ForgotPassword';
 import ChangePassword from '../pages/Login/ResetPassword';
 import PrivateRoute from "./PrivateRoute";
-import CaNhan from "../pages/decentralizations/employee/pages/CaNhan/CaNhan";
-import ContentAdmin from "./AdminRoute";
-import LayoutAdmin from "../pages/decentralizations/admin/layouts/Layout";
 import AdminRoute from './AdminRoute';
 import LayoutAdmin from "../pages/decentralizations/admin/layouts/Layout";
 
@@ -21,6 +18,8 @@ const AppRoutes = (props) => {
             <Switch>
 
                 {/* <Route path="/" component={Login}></Route> */}
+                <LayoutAdmin />
+                <AdminRoute/>
                 <Route path="/login" component={Login}></Route>
                 <Route path='/forgotPassword_info' component={ForgotPasswordInFo}> </Route>
                 <Route path='/changePassword' component={ChangePassword}></Route>

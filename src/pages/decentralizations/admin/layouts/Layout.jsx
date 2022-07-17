@@ -1,5 +1,4 @@
 import styles from './css/Layout.module.scss';
-import logo from '../../../../assets/layoutImg/logo.png';
 import avatar from '../../../../assets/layoutImg/avatar.png';
 import { Link } from 'react-router-dom';
 import { SidebarData } from '../../../../components/sidebar/SidebarData';
@@ -13,9 +12,7 @@ import { TreeView } from '@mui/lab';
 import ArrowDropdownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import TreeItem from '@mui/lab/TreeItem';
-
-import Icon from '../../../../components/chatbox/client/icon';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 
 import { style } from "../../../../components/chatbox/client/styles.jsx";
@@ -56,15 +53,6 @@ function LayoutAdmin() {
             <div className={styles.container}>
                 <div className={styles.gridColumn2}>
                     <div className="pageHeadWrapper">
-                        <div className={styles.pageLogo}>
-                            <div style={{ width: "80px" }} align="center">
-                                <img src={logo} alt="page-logo" style={{ width: "70px" }} />
-                            </div>
-
-                            <div className={styles.pageNameWrapper} style={{ textAlign: 'center' }}>
-                                <p className={styles.pageName}>Hoàng Ngọc Food</p>
-                            </div>
-                        </div>
                         <div className={styles.userAdmin}>
                             <div style={{ width: '80px' }} align="center">
                                 <img src={avatar} alt="user-logo" style={{ width: "50px", borderRadius: '50%' }} />
@@ -80,6 +68,7 @@ function LayoutAdmin() {
                         aria-label="file system navigator"
                         defaultCollapseIcon={<ArrowDropdownIcon />}
                         defaultExpandIcon={<ArrowRightIcon />}
+                        className = {styles.treeViewComponent}
                         sx={{ flexGrow: 1, maxWidth: 400, overflowY: 'auto', textAlign: 'left', padding: '30px 20px', color: 'white' }}
                     >
                         <TreeItem nodeId='1'

@@ -3,13 +3,34 @@ $font: 'Roboto', sans-serif;
 $text-color: #9dbecf;
 $border-color: #9a9a9a;
 $borderColor: 1px solid #ced4da;
+$mgRightMenuName: 10px;
 
 
 
 header {
     padding: 3px;
-    border-bottom: 1px groove;
+    border-bottom: $borderColor;
     font-family: $font;
+    background-color: #ccf9bf;
+    font-weight: 600;
+}
+
+.pageHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pageLogo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 20px;
+
+    .logoIcon {
+        width: 55px;
+        margin-right: $mgRightMenuName;
+    }
 }
 
 .headerComponent {
@@ -101,6 +122,7 @@ header {
             align-items: center;
             margin: 1.5px 9px;
             padding: 6px;
+            cursor: pointer;
 
             .headerNotificationHeader{
                 display: flex;
@@ -129,6 +151,12 @@ header {
             &:hover {
                 background-color: #9a9a9a;
                 border-radius: 5px;
+            }
+
+            &.seen{
+                background-color: #9a9a9a;
+                border-radius: 5px;
+
             }
         }
 
