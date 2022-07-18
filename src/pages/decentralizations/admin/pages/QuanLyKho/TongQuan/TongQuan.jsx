@@ -50,7 +50,7 @@ function TongQuan1() {
                                         <th style={{ width: '25%' }}>Số lượng</th>
                                     </tr>
                                 </thead>
-                                <tbody style={{height: '200px', overflowY: 'auto',display: 'block'}}>
+                                <tbody style={{height: '200px', overflowY: 'auto',display: 'flex', flexDirection:  'column', flex: 1}}>
                                     <tr>
                                         <td style={{ textAlign: 'center' }}> 55g</td>
                                         <td className='goodName'>Bánh Flan 55g</td>

@@ -5,11 +5,9 @@ import { useHookStatePassword, useHookStateName } from '../../hooks/loginHooks';
 import isEmpty from 'validator/lib/isEmpty';
 import { faUser, faKey, faL } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
-
 import { loginUser } from '../../services/userServices';
 
 
@@ -17,9 +15,9 @@ function Login() {
     const history = useHistory();
     const [idNhanVien, setID] = useHookStateName();
     const [password, setPassword] = useHookStatePassword();
-
     const $ = document.querySelector.bind(document);
 
+    // Validate the sign-in form
     const validateAll = () => {
         const msg = {};
         $('.errInput1').classList.remove('active');
@@ -57,6 +55,7 @@ function Login() {
         return true;
     }
 
+    // Login function
     const onSubmitLogin = async () => {
 
         const isValid = validateAll();
@@ -65,7 +64,7 @@ function Login() {
             let response = await loginUser(idNhanVien, password);
 
             if (response && response.data && response.data.EC === 0) {
-                toast.success('Nhan vien dawng nhap!')
+                toast.success('Nhân viên đăng nhập!')
                 let data = {
                     // User authentication
                     isAuthenticated: true,
@@ -82,6 +81,7 @@ function Login() {
         }
     }
 
+    // Keypress function
     const handlePressEnter = (event) => {
         if (event.charCode === 13 && event.code === "Enter") {
             onSubmitLogin();

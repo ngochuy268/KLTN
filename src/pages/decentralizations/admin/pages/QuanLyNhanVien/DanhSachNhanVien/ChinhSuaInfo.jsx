@@ -1,34 +1,9 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useHookStatePassword } from '../../../../../../hooks/loginHooks';
-import styles from './ThemNhanVien.module.scss';
+import styles from './ChinhSuaInfo.module.scss';
 import isEmpty from 'validator/lib/isEmpty';
 
-function  ThemNhanVien() {
-    const [password, setPassword] = useHookStatePassword();
-    const [retypePassword, setRetypePassword] = useState('');
-
-    const validateAll = () => {
-
-        // Check password empty
-        if (isEmpty(password)) {
-            toast.error('Mật khẩu không được để trống!')
-            return false;
-        }
-        var decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-        if (!(password.match(decimal))) {
-            toast.error('Mật khẩu phải bao gồm chữ thường, chữ in hoa và ít nhất một chữ số')
-            return false;
-        }
-
-        // Check retype password
-        if (retypePassword !== password) {
-            toast.error('Mật khẩu nhập lại không khớp!');
-            return false
-        }
-        return true;
-
-    }
+function  ChinhSuaInfo() {
 
     const onSubmit = async () => {
 
@@ -41,10 +16,6 @@ function  ThemNhanVien() {
     return(
         <>
              <div className={styles.wrapper}>
-                    <div className={styles.wrapperTitle}>
-                        <p>Thêm nhân viên mới</p>
-                    </div>
-
                   {/* -----------------BE------------------------------- */}
                     <div className={styles.addEmployeesWrapper}>
                         <div className={styles.addEmployees}>
@@ -102,20 +73,6 @@ function  ThemNhanVien() {
                                     <p>Chức vụ</p>
                                     <input type="text" className={styles.addEmployeesInput} />
                                 </div>
-                                <div className={styles.addEmployeesItem}>
-                                    <p>Mật khẩu</p>
-                                    <input  type="password"  
-                                            value={password}
-                                            onChange={e => setPassword(e.target.value)} 
-                                            className={styles.addEmployeesInput} />
-                                </div>
-                                <div className={styles.addEmployeesItem}>
-                                    <p>Nhập lại mật khẩu</p>
-                                    <input  type="password" 
-                                            value={retypePassword}
-                                            onChange={e => setRetypePassword(e.target.value)} 
-                                            className={styles.addEmployeesInput} />
-                                </div>
                             </div>
                             <div className={styles.addEmployeesItems}>
                                 <div className={styles.addEmployeesItem}>
@@ -125,7 +82,7 @@ function  ThemNhanVien() {
                             </div>
                         </div>
                         <div className={styles.saveButtonWrapper}>
-                                <button className={styles.saveButton} onClick={onSubmit}>Thêm mới</button>
+                                <button className={styles.saveButton} onClick={onSubmit}>Lưu lại</button>
                         </div>
                     </div>
 
@@ -136,4 +93,4 @@ function  ThemNhanVien() {
     );
 }
 
-export default ThemNhanVien;
+export default ChinhSuaInfo;

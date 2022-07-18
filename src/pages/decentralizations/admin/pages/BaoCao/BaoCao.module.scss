@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$font: 'Roboto', sans-serif;
+$text-color: rgb(204,255,204);
+$mgRightMenuName: 10px;
+$fontSize: 16px;
+$borderColor: 1px solid #ced4da;
+
+
+
+.wrapperTitle {
+    display: flex;
+    justify-content: space-between;
+    background-color: #007bff;
+    border-radius: 8px;
+    color: white;
+    p {
+        width: fit-content;
+        margin: 0;
+        padding: 15px;
+        font-family: $font;
+        font-weight: 300;
+        font-size: 18px;
+    }
+
+    .reportSelection {
+        margin: 8px;
+        border: $borderColor;
+        border-radius: 8px;
+        width: 180px;
+        font-size: 16px;
+    }
+}
+
+.employeeListWrapper {
+
+    margin-top: 24px;
+
+    @media screen and (max-width: 1023px) {
+      
+    }
+    @media screen and (min-width: 1024px) and (max-width: 1560px){
+      
+    }
+    @media screen and (min-width: 1561px) and (max-width: 1839px) {
+
+    }
+    
+}
+
+

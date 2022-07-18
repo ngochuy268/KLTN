@@ -105,6 +105,9 @@ $borderColor: 1px solid #ced4da;
                 position: absolute;
                 right: 0;
                 top: 0;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
              }
         }
     
@@ -127,5 +130,27 @@ $borderColor: 1px solid #ced4da;
         }
     }
     
+}
+
+
+.closeButtonWrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px;
+
+    .closeButton{
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: rgb(237,2,2);
+        background: linear-gradient(180deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+
+        &:hover {
+            cursor: pointer;
+            background: rgb(237,2,2);
+            background: linear-gradient(0deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+        }
+    }
 }
 

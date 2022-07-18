@@ -8,11 +8,16 @@ $mgRightMenuName: 10px;
 
 
 header {
+    position: fixed;
+    right: 0;
+    top: 0;
     padding: 3px;
     border-bottom: $borderColor;
     font-family: $font;
     background-color: #ccf9bf;
     font-weight: 600;
+    z-index: 100;
+    width: 83.3333%;
 }
 
 .pageHeader {

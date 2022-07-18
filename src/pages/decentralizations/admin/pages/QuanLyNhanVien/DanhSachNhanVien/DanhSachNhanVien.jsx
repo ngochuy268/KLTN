@@ -1,12 +1,27 @@
 import styles from './DanhSachNhanVien.module.scss';
 import avatar from '../../../../../../assets/layoutImg/employee_avatar.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faXmark } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
+import { useState } from 'react';
+import { Dialog, DialogTitle } from '@mui/material';
+import ChinhSuaInfo from './ChinhSuaInfo';
+
+
 function DanhSachNhanVien() {
+
+    const [open, setOpen] = useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
     return(
         <>
-             <div className={styles.container}>
+            <div className={styles.container}>
                 <div className={styles.wrapper}>
                     <div className={styles.wrapperTitle}>
                         <p>Danh sách nhân viên</p> 
@@ -20,7 +35,8 @@ function DanhSachNhanVien() {
                                 <div className={styles.employeeContent}>
                                     <div className={styles.employeeBasicInfo}>
                                         <div className={styles.employeeImgWrapper}>
-                                            <img src={require('../../../../../../assets/layoutImg/employee_avatar.png').default} alt="employee-avatar" className={styles.employeeImg} />
+                                            <img src={require('../../../../../../assets/layoutImg/employee_avatar.png').default} 
+                                                alt="employee-avatar" className={styles.employeeImg} />
                                         </div>
                                         <div className={styles.employeeNameAndID}>
                                             <p className={styles.employeeName}>Nguyễn Văn A</p>
@@ -62,7 +78,9 @@ function DanhSachNhanVien() {
                                     <div className={styles.employeeStatus}>
                                         <p className={styles.employeeStatusContent}>Đang làm</p>
                                     </div>
-                                    <FontAwesomeIcon icon={faEdit} className={styles.employeeStatusEditIcon}/>
+                                    <button className={styles.employeeStatusEditIcon} onClick={handleClickOpen}>
+                                        <FontAwesomeIcon icon={faEdit} />
+                                    </button>
                                 </div>
                               </div>
                            </div>
@@ -226,6 +244,15 @@ function DanhSachNhanVien() {
                     </div>
                 </div>         
             </div>
+            <Dialog  open={open} onClose={handleClose} maxWidth='xl' fullWidth={true}>
+                <div className={styles.closeButtonWrapper}>
+                    <button className={styles.closeButton}><FontAwesomeIcon icon={faXmark} /></button>
+                </div>
+                <DialogTitle id="alert-dialog-title" style={{textAlign: 'center', fontWeight: '700', fontSize: '30px'}}>
+                    {"Chỉnh sửa thông tin"}
+                </DialogTitle>
+                <ChinhSuaInfo />
+            </Dialog>
         </>
     );
 }
