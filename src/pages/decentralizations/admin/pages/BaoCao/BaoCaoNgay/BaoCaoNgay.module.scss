@@ -1,0 +1,59 @@
+.dailyReportTitleWrapper, .dailyReportDate{
+    text-align: center;
+}
+
+
+.dailyReportTable {
+    margin: 0 35px;
+}
+
+
+.signatureWrapper{
+    display: flex;
+    justify-content: flex-end;
+
+    .signature {
+        text-align: center;
+    }
+}
+
+.printButtonWrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
+    .printButton {
+        padding: 10px 30px;
+        border-radius: 5px;
+        background-color: #007bff;
+        border: transparent;
+        font-size: 18px;
+        color: white;
+        cursor: pointer;
+
+        &:hover {
+            background: rgb(4,66,135);
+            background: linear-gradient(180deg, rgba(4,66,135,1) 0%, rgba(12,29,180,1) 82%);
+        }
+    }
+}
+
+@media print {
+    .dailyReportTitleWrapper, .dailyReportDate{
+        text-align: center;
+    }
+    
+    .dailyReportTable {
+        margin: 0 35px;
+    }
+    
+    
+    .signatureWrapper{
+        display: flex;
+        justify-content: flex-end;
+    
+        .signature {
+            text-align: center;
+        }
+    }
+} 

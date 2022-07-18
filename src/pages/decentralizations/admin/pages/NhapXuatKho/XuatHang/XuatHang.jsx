@@ -35,6 +35,8 @@ function XuatHang() {
         documentTitle: 'Biên lai xuất kho',
         onAfterPrint : () => handleClose()
     })
+    console.log(componentRef.current)
+
 
     // Get value from input
     const onChangeFunction = (e) => {
@@ -123,7 +125,6 @@ function XuatHang() {
                                     <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodInput2' /></td>
                                     <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} onChange={onChangeFunction} name='goodInput3' /></td>
                                     <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
-                                    {console.log(value)}
                                 </tr>
                             </table>  
                        </div>
@@ -194,7 +195,8 @@ function XuatHang() {
                 </DialogActions>
             </Dialog>
 
-          
+            
+
         </>
     );
 }
