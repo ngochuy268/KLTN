@@ -11,6 +11,7 @@ function BaoCaoNgay() {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
         documentTitle: 'Báo cáo ngày',
+        copyStyles:  false
     })
     
      // Get current date
