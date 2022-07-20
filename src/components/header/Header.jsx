@@ -1,7 +1,7 @@
 import styles from './Header.module.scss';
 import barcode from '../../assets/layoutImg/barcode.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBarcode, faSearch, faBell, faExclamation, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBarcode, faSearch, faBell, faExclamation, faXmark, faBox } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import BarcodeScanner from '../barcode/BarcodeScanner';
@@ -31,6 +31,13 @@ function Header() {
         $(`.${styles.headerNotificationWrapper}`).onclick = function() {
             $(`.${styles.headerNotification}`).classList.toggle(`${styles.active}`);
             $(`.${styles.headerNotification}`).onclick = function(e) {
+                e.stopPropagation();
+            }
+        }
+
+        $(`.${styles.headerStoreWrapper}`).onclick = function() {
+            $(`.${styles.headerStore}`).classList.toggle(`${styles.active}`);
+            $(`.${styles.headerStore}`).onclick = function(e) {
                 e.stopPropagation();
             }
         }
@@ -193,6 +200,12 @@ function Header() {
                                 </div>
                             </div>
 
+                        </div>
+                    </li>
+                    <li className={styles.headerStoreWrapper}>
+                        <FontAwesomeIcon icon={faBox} className={styles.storeIcon} />
+                        <div className={styles.headerStore}>
+                            <img src={require('../../assets/layoutImg/Kho.drawio.png').default} alt="" className={styles.storeImg}/>
                         </div>
                     </li>
                 </ul>

@@ -45,6 +45,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
                 border-radius: 5px;
                 border: $borderColor;
                 box-shadow: $innerShadow;
+                outline: none;
             }
 
             p {
@@ -82,6 +83,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
                 border: $borderColor;
                 height: 40px;
                 box-shadow: $innerShadow;
+                outline: none;
             }
         }
     }
@@ -108,4 +110,5 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
         }
     }
 }
+
 

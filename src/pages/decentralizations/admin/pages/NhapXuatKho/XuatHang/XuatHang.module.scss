@@ -31,15 +31,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
         margin-left: 30px;
         align-items: center;
 
-        .goodCodeInput {
-            background-color: white;
-            border: $borderColor;
-            font-size: 20px;
-            outline: none;
-            border-radius: 8px;
-            height: 50%;
-
-        }
+      
     }
 }
 
@@ -109,6 +101,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
             border: $borderColor;
             border-radius: 8px;
             box-shadow: $innerShadow;
+            outline: none;
         }
         tr:nth-child(odd) {
             background-color: #fff;
@@ -116,6 +109,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
     }
 
     .exportGoodsInputBillWrapper{
+        
         flex-grow: 2;
         border: $borderColor;
         border-radius: 8px;
@@ -124,6 +118,16 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
         -webkit-box-shadow: 2px 3px 6px -1px rgba(0,0,0,0.61); 
         box-shadow: 2px 3px 6px -1px rgba(0,0,0,0.61);
         background: url(../../../../../../assets/layoutImg/opacitylogo.png);
+
+        .signatureWrapper{
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 25px;
+        
+            .signature {
+                text-align: center;
+            }
+        }
         
         .exportGoodsInputBillTitle {
             font-size: 30px;
@@ -164,6 +168,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
                 border: $borderColor;
                 border-radius: 7px;
                 box-shadow: $innerShadow;
+                outline: none;
             }
         }
 
@@ -313,6 +318,52 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
                     background: linear-gradient(180deg, rgba(4,66,135,1) 0%, rgba(12,29,180,1) 82%);
                 }
             }
+        }
+        .signatureWrapper{
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 25px;
+
+            .signature {
+                text-align: center;
+            }
+        }
+    }
+}
+
+.closeButtonWrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px;
+
+    .closeButton{
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: rgb(237,2,2);
+        background: linear-gradient(180deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+
+        &:hover {
+            cursor: pointer;
+            background: rgb(237,2,2);
+            background: linear-gradient(0deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+        }
+    }
+}
+
+.scanWrapper {
+    display: flex;
+    margin-left: 30px;
+
+    .scanButton {
+        background-color: transparent;
+        border: transparent;
+        font-size: 25px;
+    
+        &:hover {
+            color: #fff;
+            cursor: pointer;
         }
     }
 }

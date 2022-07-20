@@ -4,6 +4,7 @@ $text-color: rgb(204,255,204);
 $mgRightMenuName: 10px;
 $fontSize: 16px;
 $borderColor: 1px solid #ced4da;
+$innerShadow:  inset 0px 4px 12px -4px #ABABAB;
 
 
 .wrapperTitle {
@@ -46,66 +47,75 @@ $borderColor: 1px solid #ced4da;
         font-family: $font;
         width: 100%;
         padding: 20px;
-    
-        table {
-            border-collapse: collapse;
-            border-radius: 7px;
-            // overflow: hidden;
-            -webkit-box-shadow: 3px 5px 11px -4px rgba(0,0,0,0.61); 
-            box-shadow: 3px 5px 11px -4px rgba(0,0,0,0.61);
-
-            #note {
-                width: 100%;
-                border: $borderColor;
-                outline: none;
-            }
-
-            .editIcon {
-                text-align: center;
-                
-                button {
-                    background-color: #007bff;
-                    color: white;
-                    border: transparent;
-                    padding: 9px;
-                    font-size: 18px;
-                }
-            }
-
-            .subGoodsTable {
-                width: 100%;
-                padding: 20px;
-                border-collapse: collapse;
-                
-                .editIcon {
-                    text-align: center;
-                    
-                    button {
-                        background-color: #007bff;
-                        color: white;
-                        border: transparent;
-                        padding: 9px;
-                        font-size: 18px;
-                    }
-                }
-            }
-        }
-          
-        th, td {
-            text-align: left;
-            padding: 1em;
-            background: transparent;
-            border: $borderColor; 
-        }
-
-        tr:nth-child(odd) {
-            background-color: #fff;
-        }
+        border-radius: 8px;
         
     }
-    
-    
-
 }
 
+.goodEditContainer {
+    padding: 20px;
+
+    .goodEditWrapper {
+        margin: 25px 0;
+
+        h3 {
+            margin: 3px 0 0 0;
+        }
+        
+        .goodEditInputWrapper {
+            display: flex;
+            justify-content: space-between;
+
+            .goodEditInputItem {
+                width: 70%;
+                
+                p {
+                    margin: 7px 0 3px 0;
+                    font-weight: 600;
+                }
+
+                input {
+                    width: 70%;
+                    height: 30px;
+                    border: $borderColor;
+                    border-radius: 8px;
+                    box-shadow: $innerShadow;
+                    outline: none;
+
+                }
+            }
+        }
+
+        .goodEditDesc{
+            margin-top: 10px;
+            width: 100%;
+            height: 70px;
+            border-radius: 8px;
+            border: $borderColor;
+            box-shadow: $innerShadow;
+            outline: none;
+        }
+       
+    }
+    .saveButtonWrapper {
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+
+        .saveButton {
+            padding: 10px 30px;
+            border-radius: 5px;
+            background-color: #007bff;
+            border: transparent;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+                background: rgb(4,66,135);
+                background: linear-gradient(180deg, rgba(4,66,135,1) 0%, rgba(12,29,180,1) 82%);
+            }
+        }
+    }
+}
 

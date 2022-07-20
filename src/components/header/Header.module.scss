@@ -187,6 +187,60 @@ header {
    
 }
 
+.headerStoreWrapper {
+    position: relative;
+
+    .storeIcon:hover {
+        color: #007bff;
+        cursor: pointer;
+    }
+
+    .headerStore{
+        position: absolute;
+        padding: 30px;
+        top: 118%;
+        right: 0;
+        width: 700px;
+        height: fit-content;
+        background-color: white;
+        border: $border-color;
+        will-change: opacity, transform;
+        opacity: 0;
+        transform: scale(0);
+        transform-origin: calc(100% - 0px) top;
+        transition: all .2s ease-in-out;
+        border-radius: 7px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        z-index: 12;
+        font-size: 16px;
+        box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
+
+        .storeImg {
+            width: 100%;        
+        }
+       
+        &.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+       
+    }
+    
+   
+    .headerNotification::after{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: -18px;
+        width: 100%;
+        height: 20px;
+        display: block;
+
+    }
+
+   
+}
+
 // Modal barcode
 .modal {
     position: fixed;
