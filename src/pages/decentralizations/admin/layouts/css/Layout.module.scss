@@ -26,7 +26,7 @@ html, body{
 .gridColumn2{
     position: fixed;
     width: 16.6667%;
-    min-height: 100%;
+    height: 100%;
     background-color: #343a40;
     text-align: center;
 
@@ -40,6 +40,14 @@ html, body{
         left: 8px;
     }
 }
+
+@media screen and (max-height: 920px) {
+    .treeViewComponent {
+        overflow-y: auto;
+        height: 800px;
+    }
+}
+
 
 .gridColumn10{
     position: absolute;

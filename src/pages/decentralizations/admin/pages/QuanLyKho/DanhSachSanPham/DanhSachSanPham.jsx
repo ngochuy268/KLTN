@@ -1,10 +1,24 @@
 import styles from './DanhSachSanPham.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import img from '../../../../../../assets/layoutImg/logo.png';
 import clsx from 'clsx';
+import { Dialog, DialogTitle } from '@mui/material';
+import { useState } from 'react';
 
 function DanhSachSanPham() {
+
+    // Open and close
+    const [open, setOpen] = useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+
+    };
+
     return (
         <>
              <div className={styles.container}>
@@ -21,7 +35,7 @@ function DanhSachSanPham() {
                         <div className={styles.listGoods}>
                             <div className={styles.listGoodsWrapper}>
                                 <div className={styles.listGoodsHeader}>
-                                    <p>Bánh Flan 55g</p>
+                                    <b>ID sản phẩm</b>
 
                                     <div className={styles.ribbonWrapper}>
                                         <div className={clsx(styles.ribbon, styles.on)}>
@@ -30,17 +44,67 @@ function DanhSachSanPham() {
                                     </div>
                                 </div>
                                 <div className={styles.listGoodsBody}>
-                                    <img src={img} alt="banh Flan" className={styles.listGoodsImg} />
-                                    <span>Mã sản phẩm : F55</span>
+                                   <div className={styles.listGoodInfoWrapper}>
+                                        <img src={img} alt="banh Flan" className={styles.listGoodsImg} />
+                                        <div className={styles.listGoodInfoItem}>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tên sản phẩm: </span> <p>Bánh Flan</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Hạn sử dụng: </span> <p>90 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Báo trước ngày hết hạn: </span> <p>5 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối thiểu: </span> <p>1500</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối đa: </span> <p>10000</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Quy cách kho</h3>
+                                       <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Lóc: </span><p>6</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Thùng: </span><p>24 lóc</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Khay: </span><p>48 lóc</p>
+                                            </div>
+                                       </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Giá sản phẩm</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá bán: </span> <p>5000 đ</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá mua: </span> <p>3200 đ</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Mô tả</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <p style={{margin: 0}}>sogsốiídfjsđóiiiiìóidjfsiodfjsdfi</p>
+                                        </div>
+                                   </div>
                                 </div>
+
                                 <div className={styles.listGoodsFunctionButton}>
-                                    <button className={styles.listGoodsEditButton}><FontAwesomeIcon icon={faEdit} /></button>
-                                    <button className={styles.listGoodsDelButton}><FontAwesomeIcon icon={faTrash} /></button>
+                                    <button className={styles.listGoodsEditButton} onClick={handleClickOpen}><FontAwesomeIcon icon={faEdit} /></button>
                                 </div>
                             </div>
                             <div className={styles.listGoodsWrapper}>
                                 <div className={styles.listGoodsHeader}>
-                                    <p>Bánh Flan 55g</p>
+                                    <b>ID sản phẩm</b>
+
                                     <div className={styles.ribbonWrapper}>
                                         <div className={clsx(styles.ribbon, styles.on)}>
                                             Đang sản xuất
@@ -48,17 +112,67 @@ function DanhSachSanPham() {
                                     </div>
                                 </div>
                                 <div className={styles.listGoodsBody}>
-                                    <img src={img} alt="banh Flan" className={styles.listGoodsImg} />
-                                    <span>Mã sản phẩm : F55</span>
+                                   <div className={styles.listGoodInfoWrapper}>
+                                        <img src={img} alt="banh Flan" className={styles.listGoodsImg} />
+                                        <div className={styles.listGoodInfoItem}>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tên sản phẩm: </span> <p>Bánh Flan</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Hạn sử dụng: </span> <p>90 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Báo trước ngày hết hạn: </span> <p>5 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối thiểu: </span> <p>1500</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối đa: </span> <p>10000</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Quy cách kho</h3>
+                                       <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Lóc: </span><p>6</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Thùng: </span><p>24 lóc</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Khay: </span><p>48 lóc</p>
+                                            </div>
+                                       </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Giá sản phẩm</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá bán: </span> <p>5000 đ</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá mua: </span> <p>3200 đ</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Mô tả</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <p style={{margin: 0}}>sogsốiídfjsđóiiiiìóidjfsiodfjsdfi</p>
+                                        </div>
+                                   </div>
                                 </div>
+
                                 <div className={styles.listGoodsFunctionButton}>
-                                    <button className={styles.listGoodsEditButton}><FontAwesomeIcon icon={faEdit} /></button>
-                                    <button className={styles.listGoodsDelButton}><FontAwesomeIcon icon={faTrash} /></button>
+                                    <button className={styles.listGoodsEditButton} onClick={handleClickOpen}><FontAwesomeIcon icon={faEdit} /></button>
                                 </div>
                             </div>
                             <div className={styles.listGoodsWrapper}>
                                 <div className={styles.listGoodsHeader}>
-                                    <p>Bánh Flan 55g</p>
+                                    <b>ID sản phẩm</b>
+
                                     <div className={styles.ribbonWrapper}>
                                         <div className={clsx(styles.ribbon, styles.on)}>
                                             Đang sản xuất
@@ -66,30 +180,401 @@ function DanhSachSanPham() {
                                     </div>
                                 </div>
                                 <div className={styles.listGoodsBody}>
-                                    <img src={img} alt="banh Flan" className={styles.listGoodsImg} />
-                                    <span>Mã sản phẩm : F55</span>
+                                   <div className={styles.listGoodInfoWrapper}>
+                                        <img src={img} alt="banh Flan" className={styles.listGoodsImg} />
+                                        <div className={styles.listGoodInfoItem}>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tên sản phẩm: </span> <p>Bánh Flan</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Hạn sử dụng: </span> <p>90 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Báo trước ngày hết hạn: </span> <p>5 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối thiểu: </span> <p>1500</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối đa: </span> <p>10000</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Quy cách kho</h3>
+                                       <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Lóc: </span><p>6</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Thùng: </span><p>24 lóc</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Khay: </span><p>48 lóc</p>
+                                            </div>
+                                       </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Giá sản phẩm</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá bán: </span> <p>5000 đ</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá mua: </span> <p>3200 đ</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Mô tả</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <p style={{margin: 0}}>sogsốiídfjsđóiiiiìóidjfsiodfjsdfi</p>
+                                        </div>
+                                   </div>
                                 </div>
+
                                 <div className={styles.listGoodsFunctionButton}>
-                                    <button className={styles.listGoodsEditButton}><FontAwesomeIcon icon={faEdit} /></button>
-                                    <button className={styles.listGoodsDelButton}><FontAwesomeIcon icon={faTrash} /></button>
+                                    <button className={styles.listGoodsEditButton} onClick={handleClickOpen}><FontAwesomeIcon icon={faEdit} /></button>
                                 </div>
                             </div>
                             <div className={styles.listGoodsWrapper}>
                                 <div className={styles.listGoodsHeader}>
-                                    <p>Bánh Flan 55g</p>
+                                    <b>ID sản phẩm</b>
+
                                     <div className={styles.ribbonWrapper}>
-                                        <div className={styles.ribbon}>
-                                            Tạm ngưng
+                                        <div className={clsx(styles.ribbon, styles.on)}>
+                                            Đang sản xuất
                                         </div>
                                     </div>
                                 </div>
                                 <div className={styles.listGoodsBody}>
-                                    <img src={img} alt="banh Flan" className={styles.listGoodsImg} />
-                                    <span>Mã sản phẩm : F55</span>
+                                   <div className={styles.listGoodInfoWrapper}>
+                                        <img src={img} alt="banh Flan" className={styles.listGoodsImg} />
+                                        <div className={styles.listGoodInfoItem}>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tên sản phẩm: </span> <p>Bánh Flan</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Hạn sử dụng: </span> <p>90 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Báo trước ngày hết hạn: </span> <p>5 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối thiểu: </span> <p>1500</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối đa: </span> <p>10000</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Quy cách kho</h3>
+                                       <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Lóc: </span><p>6</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Thùng: </span><p>24 lóc</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Khay: </span><p>48 lóc</p>
+                                            </div>
+                                       </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Giá sản phẩm</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá bán: </span> <p>5000 đ</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá mua: </span> <p>3200 đ</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Mô tả</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <p style={{margin: 0}}>sogsốiídfjsđóiiiiìóidjfsiodfjsdfi</p>
+                                        </div>
+                                   </div>
                                 </div>
+
                                 <div className={styles.listGoodsFunctionButton}>
-                                    <button className={styles.listGoodsEditButton}><FontAwesomeIcon icon={faEdit} /></button>
-                                    <button className={styles.listGoodsDelButton}><FontAwesomeIcon icon={faTrash} /></button>
+                                    <button className={styles.listGoodsEditButton} onClick={handleClickOpen}><FontAwesomeIcon icon={faEdit} /></button>
+                                </div>
+                            </div>
+                            <div className={styles.listGoodsWrapper}>
+                                <div className={styles.listGoodsHeader}>
+                                    <b>ID sản phẩm</b>
+
+                                    <div className={styles.ribbonWrapper}>
+                                        <div className={clsx(styles.ribbon, styles.on)}>
+                                            Đang sản xuất
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={styles.listGoodsBody}>
+                                   <div className={styles.listGoodInfoWrapper}>
+                                        <img src={img} alt="banh Flan" className={styles.listGoodsImg} />
+                                        <div className={styles.listGoodInfoItem}>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tên sản phẩm: </span> <p>Bánh Flan</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Hạn sử dụng: </span> <p>90 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Báo trước ngày hết hạn: </span> <p>5 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối thiểu: </span> <p>1500</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối đa: </span> <p>10000</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Quy cách kho</h3>
+                                       <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Lóc: </span><p>6</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Thùng: </span><p>24 lóc</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Khay: </span><p>48 lóc</p>
+                                            </div>
+                                       </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Giá sản phẩm</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá bán: </span> <p>5000 đ</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá mua: </span> <p>3200 đ</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Mô tả</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <p style={{margin: 0}}>sogsốiídfjsđóiiiiìóidjfsiodfjsdfi</p>
+                                        </div>
+                                   </div>
+                                </div>
+
+                                <div className={styles.listGoodsFunctionButton}>
+                                    <button className={styles.listGoodsEditButton} onClick={handleClickOpen}><FontAwesomeIcon icon={faEdit} /></button>
+                                </div>
+                            </div>
+                            <div className={styles.listGoodsWrapper}>
+                                <div className={styles.listGoodsHeader}>
+                                    <b>ID sản phẩm</b>
+
+                                    <div className={styles.ribbonWrapper}>
+                                        <div className={clsx(styles.ribbon, styles.on)}>
+                                            Đang sản xuất
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={styles.listGoodsBody}>
+                                   <div className={styles.listGoodInfoWrapper}>
+                                        <img src={img} alt="banh Flan" className={styles.listGoodsImg} />
+                                        <div className={styles.listGoodInfoItem}>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tên sản phẩm: </span> <p>Bánh Flan</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Hạn sử dụng: </span> <p>90 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Báo trước ngày hết hạn: </span> <p>5 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối thiểu: </span> <p>1500</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối đa: </span> <p>10000</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Quy cách kho</h3>
+                                       <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Lóc: </span><p>6</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Thùng: </span><p>24 lóc</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Khay: </span><p>48 lóc</p>
+                                            </div>
+                                       </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Giá sản phẩm</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá bán: </span> <p>5000 đ</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá mua: </span> <p>3200 đ</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Mô tả</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <p style={{margin: 0}}>sogsốiídfjsđóiiiiìóidjfsiodfjsdfi</p>
+                                        </div>
+                                   </div>
+                                </div>
+
+                                <div className={styles.listGoodsFunctionButton}>
+                                    <button className={styles.listGoodsEditButton} onClick={handleClickOpen}><FontAwesomeIcon icon={faEdit} /></button>
+                                </div>
+                            </div>
+                            <div className={styles.listGoodsWrapper}>
+                                <div className={styles.listGoodsHeader}>
+                                    <b>ID sản phẩm</b>
+
+                                    <div className={styles.ribbonWrapper}>
+                                        <div className={clsx(styles.ribbon, styles.on)}>
+                                            Đang sản xuất
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={styles.listGoodsBody}>
+                                   <div className={styles.listGoodInfoWrapper}>
+                                        <img src={img} alt="banh Flan" className={styles.listGoodsImg} />
+                                        <div className={styles.listGoodInfoItem}>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tên sản phẩm: </span> <p>Bánh Flan</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Hạn sử dụng: </span> <p>90 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Báo trước ngày hết hạn: </span> <p>5 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối thiểu: </span> <p>1500</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối đa: </span> <p>10000</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Quy cách kho</h3>
+                                       <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Lóc: </span><p>6</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Thùng: </span><p>24 lóc</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Khay: </span><p>48 lóc</p>
+                                            </div>
+                                       </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Giá sản phẩm</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá bán: </span> <p>5000 đ</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá mua: </span> <p>3200 đ</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Mô tả</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <p style={{margin: 0}}>sogsốiídfjsđóiiiiìóidjfsiodfjsdfi</p>
+                                        </div>
+                                   </div>
+                                </div>
+
+                                <div className={styles.listGoodsFunctionButton}>
+                                    <button className={styles.listGoodsEditButton} onClick={handleClickOpen}><FontAwesomeIcon icon={faEdit} /></button>
+                                </div>
+                            </div>
+                            <div className={styles.listGoodsWrapper}>
+                                <div className={styles.listGoodsHeader}>
+                                    <b>ID sản phẩm</b>
+
+                                    <div className={styles.ribbonWrapper}>
+                                        <div className={clsx(styles.ribbon, styles.on)}>
+                                            Đang sản xuất
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={styles.listGoodsBody}>
+                                   <div className={styles.listGoodInfoWrapper}>
+                                        <img src={img} alt="banh Flan" className={styles.listGoodsImg} />
+                                        <div className={styles.listGoodInfoItem}>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tên sản phẩm: </span> <p>Bánh Flan</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Hạn sử dụng: </span> <p>90 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Báo trước ngày hết hạn: </span> <p>5 ngày</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối thiểu: </span> <p>1500</p>
+                                            </div>
+                                            <div className={styles.listGoodInfo}>
+                                                <span>Tồn tối đa: </span> <p>10000</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Quy cách kho</h3>
+                                       <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Lóc: </span><p>6</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Thùng: </span><p>24 lóc</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Khay: </span><p>48 lóc</p>
+                                            </div>
+                                       </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Giá sản phẩm</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá bán: </span> <p>5000 đ</p>
+                                            </div>
+                                            <div className={styles.listGoodSpecification}>
+                                                <span>Giá mua: </span> <p>3200 đ</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div className={styles.listGoodSpecificationWrapper}>
+                                        <h3>Mô tả</h3>
+                                        <div className={styles.listGoodSpecificationItem}>
+                                            <p style={{margin: 0}}>sogsốiídfjsđóiiiiìóidjfsiodfjsdfi</p>
+                                        </div>
+                                   </div>
+                                </div>
+
+                                <div className={styles.listGoodsFunctionButton}>
+                                    <button className={styles.listGoodsEditButton} onClick={handleClickOpen}><FontAwesomeIcon icon={faEdit} /></button>
                                 </div>
                             </div>
                         </div>
@@ -101,6 +586,86 @@ function DanhSachSanPham() {
 
             
             </div>
+            <Dialog open={open} onClose={handleClose} className={styles.dialogWrapper} maxWidth='xl' fullWidth={true}>
+                <div className={styles.closeButtonWrapper} onClick={handleClose}>
+                    <button className={styles.closeButton}><FontAwesomeIcon icon={faXmark} /></button>
+                </div>
+                <DialogTitle align='center' sx={{fontWeight: 600, fontSize: 30}}>
+                     Chỉnh sửa thông tin sản phẩm
+                </DialogTitle>
+                <div className={styles.goodEditContainer}>
+                    <div className={styles.goodEditWrapper}>
+                        <h3>Loại sản phẩm</h3>
+                        <div className={styles.goodEditInputWrapper}>
+                            <div className={styles.goodEditInputItem}>
+                                <p>Tên loại</p>
+                                <input type="text" className={styles.goodEditInput} />         
+                            </div>
+                            <div className={styles.goodEditInputItem}>
+                                <p>Hạn sử dụng</p>
+                                <input type="text" className={styles.goodEditInput} />         
+                            </div> 
+                            <div className={styles.goodEditInputItem}>
+                                <p>Báo trước khi hết hạn</p>
+                                <input type="text" className={styles.goodEditInput} />         
+                            </div> 
+                            <div className={styles.goodEditInputItem}>
+                                <p>Trạng thái</p>
+                                <input type="text" className={styles.goodEditInput} />         
+                            </div>            
+                        </div>                           
+                    </div>
+                    <div className={styles.goodEditWrapper}>
+                        <h3>Sản phẩm</h3>
+                        <div className={styles.goodEditInputWrapper}>
+                            <div className={styles.goodEditInputItem}>
+                                <p>Tên sản phẩm</p>
+                                <input type="text" className={styles.goodEditInput} />         
+                            </div>
+                            <div className={styles.goodEditInputItem}>
+                                <p>Giá mua</p>
+                                <input type="text" className={styles.goodEditInput} />         
+                            </div> 
+                            <div className={styles.goodEditInputItem}>
+                                <p>Giá bán</p>
+                                <input type="text" className={styles.goodEditInput} />         
+                            </div> 
+                        </div>
+                    </div>
+                    <div className={styles.goodEditWrapper}>
+                        <h3>Quy cách sản phẩm</h3>
+                        <div className={styles.goodEditInputWrapper}>
+                            <div className={styles.goodEditInputItem}>
+                                <p>Quy cách lóc</p>
+                                <input type="text" className={styles.goodEditInput} />         
+                            </div>
+                            <div className={styles.goodEditInputItem}>
+                                <p>Quy cách thùng</p>
+                                <input type="text" className={styles.goodEditInput} />         
+                            </div> 
+                            <div className={styles.goodEditInputItem}>
+                                <p>Quy cách khay</p>
+                                <input type="text" className={styles.goodEditInput} />         
+                            </div> 
+                            <div className={styles.goodEditInputItem}>
+                                <p>Tồn tối đa</p>
+                                <input type="text" className={styles.goodEditInput} />         
+                            </div> 
+                            <div className={styles.goodEditInputItem}>
+                                <p>Tồn tối thiểu</p>
+                                <input type="text" className={styles.goodEditInput} />         
+                            </div>           
+                        </div>
+                    </div>
+                    <div className={styles.goodEditWrapper}>
+                        <h3>Mô tả</h3>
+                        <textarea className={styles.goodEditDesc} />
+                    </div>
+                    <div className={styles.saveButtonWrapper}>
+                        <button className={styles.saveButton}>Cập nhật</button>
+                    </div>
+                </div>
+            </Dialog>
         </>
     )
 }

@@ -1,12 +1,38 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from './BaoCaoThang.module.scss';
 import { useReactToPrint } from 'react-to-print';
 import ApexChart from "../../TongQuan/lineChart";
 import ApexChartExpand from "../../TongQuan/lineChartExpand";
+import { fetchAllSPS, fetchAllLoaiSPS } from '../../../../../../services/khoHangServices';
 
 
 function BaoCaoThang() {
+
+    const [listLoaiSP, setListLoaiSP] = useState([]);
+    const [listSP, setListSP] = useState([]);
+    const title = 'Biểu đồ xuất kho trong 1 tháng';
+
+    useEffect(() => {
+        fetchLoaiSP();
+        fetchSP();
+        console.log('......................................................')
+    }, [])
+
+    const fetchLoaiSP = async () => {
+        let response = await fetchAllLoaiSPS();
+        if (response && response.data && response.data.EC === 0) {
+            setListLoaiSP(response.data.DT);
+        }
+    }
+
+
+    const fetchSP = async () => {
+        let response = await fetchAllSPS();
+        if (response && response.data && response.data.EC === 0) {
+            setListSP(response.data.DT);
+        }
+    }
 
     // Print
     let componentRef = useRef();
@@ -140,11 +166,24 @@ function BaoCaoThang() {
                     <h2>III. Tỉ lệ giữa các sản phẩm trong kho</h2>
                     <h3>Tổng quan:</h3>
                     <div className={styles.lineChart}>
-                        <ApexChart />
+                            {listLoaiSP && listLoaiSP.length > 0 ?
+                                <>
+
+                                    {ApexChart(listLoaiSP, title)}
+                                </>
+                                :
+                                <><span>Not found data</span></>
+                            }
                     </div>
                     <h3>Biểu đồ chi tiết:</h3>
                     <div className={styles.lineChart}>
-                        <ApexChartExpand />
+                            {listSP && listSP.length > 0 ?
+                                <>
+                                    {ApexChartExpand(listSP, title)}
+                                </>
+                                :
+                                <><span>Not found data</span></>
+                            }
                     </div>
                 </div>
                 <div className={styles.moreWrapper}>

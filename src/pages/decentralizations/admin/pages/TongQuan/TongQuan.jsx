@@ -5,8 +5,12 @@ import clsx from 'clsx';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP } from '../../../../../services/khoHangServices';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 
 function TongQuan() {
+
 
     const [listLoaiSP, setListLoaiSP] = useState([]);
     const [listSP, setListSP] = useState([]);
@@ -44,7 +48,7 @@ function TongQuan() {
         const $ = document.querySelector.bind(document);
         const $$ = document.querySelectorAll.bind(document);
 
-        $$('.goodName').forEach((item, index) => {
+        $$(`.${styles.goodName}`).forEach((item, index) => {
             item.onclick = function () {
                 $(`.${styles.lineChart}`).classList.toggle(`${styles.active}`)
             }
@@ -91,15 +95,16 @@ function TongQuan() {
                             <table className={styles.lineChartInfoTable}>
                                 <thead>
                                     <tr>
-                                        <th colSpan='4' style={{ fontSize: '20px', textAlign: 'center', height: '20px' }}>
+                                        <th colSpan='5' style={{ fontSize: '20px', textAlign: 'center', height: '20px' }}>
                                             {titlechart}
                                         </th>
                                     </tr>
                                     <tr>
                                         <th style={{ width: '5%' }}>STT</th>
                                         <th style={{ width: '20%' }}>Mã loại</th>
-                                        <th style={{ width: '50%' }}>Tên loại</th>
+                                        <th style={{ width: '40%' }}>Tên loại</th>
                                         <th style={{ width: '25%' }}>Số lượng</th>
+                                        <th style={{width: '10%'}}></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -109,9 +114,10 @@ function TongQuan() {
                                                 return (
                                                     <tr>
                                                         <td style={{ textAlign: 'center' }}>{index + 1}</td>
-                                                        <td className='goodName'>{item.LoaiSanPhamId}</td>
+                                                        <td >{item.LoaiSanPhamId}</td>
                                                         <td>{item.LoaiSanPham.TenLoai}</td>
                                                         <td>{item.SoLuong}</td>
+                                                        <td style={{textAlign: 'center'}}>{<FontAwesomeIcon  icon={faEye} className={styles.goodName}/>}</td>
                                                     </tr>
                                                 )
                                             })}

@@ -107,4 +107,12 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
     }
 }
 
+.goodName {
+    color: #9a9a9a;
+
+    &:hover {
+        cursor: pointer;
+        color: #007bff;
+    }
+}
 
