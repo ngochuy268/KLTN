@@ -21,7 +21,7 @@ function ContentAdmin() {
     return (
         <div className={styles.content}>
 
-            <LayoutAdmin/>
+           
 
             {/* Menu Routes */}
             <Route path='/tongquan' component={TongQuan} />

@@ -55,7 +55,7 @@ function Login() {
         return true;
     }
 
-    let flat = null;
+    
     // Login function
     const onSubmitLogin = async () => {
 
@@ -72,9 +72,8 @@ function Login() {
                     token: 'fake token'
                 }
                 sessionStorage.setItem('account', JSON.stringify(data));
-                flat = response.DT.user.GroupId;
                 if(+ response.DT.user.GroupId == 0){
-                    history.push('/admin/tongquan');
+                    history.push('/tongquan');
                     
                 }else{
                     history.push('/user');
@@ -86,7 +85,6 @@ function Login() {
         }
     }
 
-    const checkRoleLogin =()=>{return flat}
 
     // Keypress function
     const handlePressEnter = (event) => {
@@ -151,5 +149,4 @@ function Login() {
         </div>
     );
 }
-
-export default Login
+export default Login;

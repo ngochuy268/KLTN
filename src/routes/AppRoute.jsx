@@ -26,6 +26,8 @@ const AppRoutes = (props) => {
                 <Route path="/login" component={Login}></Route>
                 <Route path='/forgotPassword_info' component={ForgotPasswordInFo}> </Route>
                 <Route path='/changePassword' component={ChangePassword}></Route>
+                <LayoutAdmin/>
+                <AdminRoute/>
                 {/* {+ response.DT.user.GroupId == 0 ?
                 <><AdminRoute/></>
                 :
