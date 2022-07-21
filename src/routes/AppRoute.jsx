@@ -10,24 +10,29 @@ import ForgotPasswordInFo from '../pages/Login/ForgotPassword';
 import ChangePassword from '../pages/Login/ResetPassword';
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from './AdminRoute';
+import UserRoute from './UserRoute';
 import LayoutAdmin from "../pages/decentralizations/admin/layouts/Layout";
+import { loginUser } from"../services/userServices";
 
 const AppRoutes = (props) => {
+    // let response = await loginUser(idNhanVien, password);
+
+
     return (
         <>
             <Switch>
 
                 {/* <Route path="/" component={Login}></Route> */}
-                <LayoutAdmin />
-                <AdminRoute/>
                 <Route path="/login" component={Login}></Route>
                 <Route path='/forgotPassword_info' component={ForgotPasswordInFo}> </Route>
                 <Route path='/changePassword' component={ChangePassword}></Route>
-                <PrivateRoute path="/user" component={CaNhan}></PrivateRoute>
-                <PrivateRoute path="/admin" component={LayoutAdmin}></PrivateRoute>
-
-                <Route path='/nhapxuatkho/nhaphang' component={NhapHang} />
-                <Route path='/nhapxuatkho/xuathang' component={XuatHang} />
+                {/* {+ response.DT.user.GroupId == 0 ?
+                <><AdminRoute/></>
+                :
+                <><UserRoute/></>}
+         */}
+                {/* <Route path='/nhapxuatkho/nhaphang' component={NhapHang} />
+                <Route path='/nhapxuatkho/xuathang' component={XuatHang} /> */}
                 <Route path="*"> 404 not found !</Route>
 
             </Switch>

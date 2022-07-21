@@ -55,6 +55,7 @@ function Login() {
         return true;
     }
 
+    let flat = null;
     // Login function
     const onSubmitLogin = async () => {
 
@@ -71,15 +72,21 @@ function Login() {
                     token: 'fake token'
                 }
                 sessionStorage.setItem('account', JSON.stringify(data));
-                history.push('/user');
-            }
-            if (response && response.EC === 1) {
-                history.push('/admin/tongquan');
+                flat = response.DT.user.GroupId;
+                if(+ response.DT.user.GroupId == 0){
+                    history.push('/admin/tongquan');
+                    
+                }else{
+                    history.push('/user');
+                }
+                
             }
             toast.error(response.EM);
 
         }
     }
+
+    const checkRoleLogin =()=>{return flat}
 
     // Keypress function
     const handlePressEnter = (event) => {

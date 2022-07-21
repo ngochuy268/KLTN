@@ -11,6 +11,7 @@ function ContentEmployee() {
                 <Routes>
                   
                     <Route path='/congviec' element={<CongViec />} />
+                    <Route path="*"> 404 not found !</Route>
                 </Routes>
             </BrowserRouter> */}
         </div>

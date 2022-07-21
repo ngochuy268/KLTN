@@ -1,6 +1,8 @@
 import { Route, Switch } from "react-router-dom";
 import styles from '../pages/decentralizations/admin/layouts/css/Content.module.scss';
 
+import LayoutAdmin from "../pages/decentralizations/admin/layouts/Layout";
+
 import TongQuan from "../pages/decentralizations/admin/pages/TongQuan/TongQuan";
 import CongViec from "../pages/decentralizations/admin/pages/CongViec/CongViec";
 import BaoCao from "../pages/decentralizations/admin/pages/BaoCao/BaoCao";
@@ -19,6 +21,8 @@ function ContentAdmin() {
     return (
         <div className={styles.content}>
 
+            <LayoutAdmin/>
+
             {/* Menu Routes */}
             <Route path='/tongquan' component={TongQuan} />
             <Route path='/congviec' component={CongViec} />
@@ -36,6 +40,8 @@ function ContentAdmin() {
             {/* Quản lý nhân viên Routes */}
             <Route path="/quanlynhanvien/danhsachnhanvien" component={DanhSachNhanVien} />
             <Route path="/quanlynhanvien/themnhanvien" component={ThemNhanVien } />
+
+            <Route path="*"> 404 not found !</Route>
 
         </div>
     );
