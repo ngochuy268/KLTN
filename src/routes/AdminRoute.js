@@ -16,12 +16,13 @@ import DanhSachNhanVien from "../pages/decentralizations/admin/pages/QuanLyNhanV
 import ThemNhanVien from "../pages/decentralizations/admin/pages/QuanLyNhanVien/ThemNhanVien/ThemNhanVIen";
 import NhapHang from "../pages/decentralizations/admin/pages/NhapXuatKho/NhapHang/NhapHang";
 import XuatHang from "../pages/decentralizations/admin/pages/NhapXuatKho/XuatHang/XuatHang";
+import CaNhan from "../pages/decentralizations/admin/pages/CaNhan/CaNhan";
 
 function ContentAdmin() {
     return (
         <div className={styles.content}>
 
-           
+            <Route path='/canhan' component={CaNhan} />
 
             {/* Menu Routes */}
             <Route path='/tongquan' component={TongQuan} />
@@ -39,7 +40,7 @@ function ContentAdmin() {
 
             {/* Quản lý nhân viên Routes */}
             <Route path="/quanlynhanvien/danhsachnhanvien" component={DanhSachNhanVien} />
-            <Route path="/quanlynhanvien/themnhanvien" component={ThemNhanVien } />
+            <Route path="/quanlynhanvien/themnhanvien" component={ThemNhanVien} />
 
             <Route path="*"> 404 not found !</Route>
 

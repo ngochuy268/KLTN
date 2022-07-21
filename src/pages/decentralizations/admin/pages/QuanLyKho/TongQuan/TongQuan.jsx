@@ -32,17 +32,17 @@ function TongQuan1() {
         { id: 'id', label: 'Mã sản phẩm', minWidth: 170 },
         { id: 'name', label: 'Tên sản phẩm', minWidth: 100 },
         {
-          id: 'count',
-          label: 'Số lượng',
-          minWidth: 170,
-          align: 'right',
-          format: (value) => value.toLocaleString('en-US'),
+            id: 'count',
+            label: 'Số lượng',
+            minWidth: 170,
+            align: 'right',
+            format: (value) => value.toLocaleString('en-US'),
         },
     ];
 
     function createData(
         id, name, count
-    ){
+    ) {
         return { id, name, count };
     }
     const rows = [
@@ -79,36 +79,36 @@ function TongQuan1() {
     // Table detail data
     const StyledTableCell = styled(TableCell)(() => ({
         [`&.${tableCellClasses.head}`]: {
-          backgroundColor: '#007bff' ,
-          color: 'white',
+            backgroundColor: '#007bff',
+            color: 'white',
         },
         [`&.${tableCellClasses.body}`]: {
-          fontSize: 14,
+            fontSize: 14,
         },
-      }));
-      
-      const StyledTableRow = styled(TableRow)(() => ({
+    }));
+
+    const StyledTableRow = styled(TableRow)(() => ({
         '&:nth-of-type(odd)': {
-          backgroundColor: '#f5f5f5',
+            backgroundColor: '#f5f5f5',
         },
         '&:last-child td, &:last-child th': {
-          border: 0,
+            border: 0,
         },
-      }));
-      
-      function createDataI(
+    }));
+
+    function createDataI(
         id, name, date, expiredDate, count, note
-      ) {
+    ) {
         return { id, name, date, expiredDate, count, note };
-      }
-      
-      const rowsII = [
-        createDataI('F55','Bánh Flan 55g','12/03/2022','12/05/2022',2000,'Bánh ngon vl'),
-        createDataI('F55','Bánh Flan 55g','12/03/2022','12/05/2022',2000,'Bánh ngon vl'),
-        createDataI('F55','Bánh Flan 55g','12/03/2022','12/05/2022',2000,'Bánh ngon vl'),
-        createDataI('F55','Bánh Flan 55g','12/03/2022','12/05/2022',2000,'Bánh ngon vl'),
-        createDataI('F55','Bánh Flan 55g','12/03/2022','12/05/2022',2000,'Bánh ngon vl')
-      ];
+    }
+
+    const rowsII = [
+        createDataI('F55', 'Bánh Flan 55g', '12/03/2022', '12/05/2022', 2000, 'Bánh ngon vl'),
+        createDataI('F55', 'Bánh Flan 55g', '12/03/2022', '12/05/2022', 2000, 'Bánh ngon vl'),
+        createDataI('F55', 'Bánh Flan 55g', '12/03/2022', '12/05/2022', 2000, 'Bánh ngon vl'),
+        createDataI('F55', 'Bánh Flan 55g', '12/03/2022', '12/05/2022', 2000, 'Bánh ngon vl'),
+        createDataI('F55', 'Bánh Flan 55g', '12/03/2022', '12/05/2022', 2000, 'Bánh ngon vl')
+    ];
 
 
     return (
@@ -127,40 +127,40 @@ function TongQuan1() {
                             <PieChart />
                         </div>
                         <div className={styles.listGoods}>
-                            <TableContainer sx={{ maxHeight: 440 }}>
+                            <TableContainer sx={{ maxHeight: 330 }}>
                                 <Table stickyHeader aria-label="sticky table">
                                     <TableHead>
                                         <TableRow>
-                                        {columns.map((column) => (
-                                            <TableCell 
-                                            key={column.id}
-                                            align={column.align}
-                                            style={{ minWidth: column.minWidth }}
-                                            >
-                                            <b>{column.label}</b>
-                                            </TableCell>
-                                        ))}
+                                            {columns.map((column) => (
+                                                <TableCell
+                                                    key={column.id}
+                                                    align={column.align}
+                                                    style={{ minWidth: column.minWidth }}
+                                                >
+                                                    <b>{column.label}</b>
+                                                </TableCell>
+                                            ))}
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
                                         {rows
-                                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                        .map((row) => {
-                                            return (
-                                            <TableRow hover role="checkbox" tabIndex={-1} key={row.code} className='goodName'>
-                                                {columns.map((column) => {
-                                                const value = row[column.id];
+                                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                            .map((row) => {
                                                 return (
-                                                    <TableCell key={column.id} align={column.align} >
-                                                    {column.format && typeof value === 'number'
-                                                        ? column.format(value)
-                                                        : value}
-                                                    </TableCell>
+                                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code} className='goodName'>
+                                                        {columns.map((column) => {
+                                                            const value = row[column.id];
+                                                            return (
+                                                                <TableCell key={column.id} align={column.align} >
+                                                                    {column.format && typeof value === 'number'
+                                                                        ? column.format(value)
+                                                                        : value}
+                                                                </TableCell>
+                                                            );
+                                                        })}
+                                                    </TableRow>
                                                 );
-                                                })}
-                                            </TableRow>
-                                            );
-                                        })}
+                                            })}
                                     </TableBody>
                                 </Table>
                             </TableContainer>

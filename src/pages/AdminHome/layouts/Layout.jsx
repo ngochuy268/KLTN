@@ -39,16 +39,16 @@ function LayoutAdmin() {
 
     const joinRoom = () => {
         if (username !== "" && room !== "") {
-          socket.emit("join_room", room);
-          setShowChat(true);
+            socket.emit("join_room", room);
+            setShowChat(true);
         }
-      };
+    };
 
-     useEffect(() => {
-      document.querySelector('.transition-3').onclick = function() {
-        document.querySelector('.chat').classList.toggle('active');
-      }
-    },[])
+    useEffect(() => {
+        document.querySelector('.transition-3').onclick = function () {
+            document.querySelector('.chat').classList.toggle('active');
+        }
+    }, [])
 
     return (
         <>
@@ -131,47 +131,47 @@ function LayoutAdmin() {
 
                 <div className={styles.gridColumn10}>
                     <Header />
-                    <ContentAdmin />
+                    <Content Admin />
                 </div>
             </div>
 
             {/* ChatBox */}
             <div>
-                <div className="chat transition-5" style={{...style.supportWindow}}>
+                <div className="chat transition-5" style={{ ...style.supportWindow }}>
 
                     {!showChat ? (
-                    <div className="joinChatContainer">
-                        <h3>Join A Chat</h3>
-                        <input
-                        type="text"
-                        placeholder="John..."
-                        onChange={(event) => {
-                            setUsername(event.target.value);
-                        }}
-                        />
-                        <input
-                        type="text"
-                        placeholder="Room ID..."
-                        onChange={(event) => {
-                            setRoom(event.target.value);
-                        }}
-                        />
-                        <button onClick={joinRoom}>Join A Room</button>
-                    </div>
+                        <div className="joinChatContainer">
+                            <h3>Join A Chat</h3>
+                            <input
+                                type="text"
+                                placeholder="John..."
+                                onChange={(event) => {
+                                    setUsername(event.target.value);
+                                }}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Room ID..."
+                                onChange={(event) => {
+                                    setRoom(event.target.value);
+                                }}
+                            />
+                            <button onClick={joinRoom}>Join A Room</button>
+                        </div>
                     ) : (
                         <Chat socket={socket} username={username} room={room} />
                     )}
                 </div>
 
-                <div style={{position: 'fixed', bottom: '24px', right: '24px'}}>
+                <div style={{ position: 'fixed', bottom: '24px', right: '24px' }}>
 
                     <div className="transition-3"
                         onMouseEnter={() => setHovered(true)}
                         onMouseLeave={() => setHovered(false)}
-                        style={{...style.chatWithMeButton,...{border: hovered ? '1px solid #f9f0ff' : '4px solid #7a39e0'}}}
+                        style={{ ...style.chatWithMeButton, ...{ border: hovered ? '1px solid #f9f0ff' : '4px solid #7a39e0' } }}
                     >
                     </div>
-            
+
                 </div>
             </div>
         </>

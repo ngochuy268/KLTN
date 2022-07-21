@@ -1,47 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 $font: 'Roboto', sans-serif;
-$text-color: rgb(204,255,204);
+$text-color: rgb(204, 255, 204);
 $mgRightMenuName: 10px;
 $fontSize: 16px;
 $borderColor: 1px solid #ced4da;
-$innerShadow:  inset 0px 4px 12px -4px #ABABAB;
+$innerShadow: inset 0px 4px 12px -4px #ABABAB;
 
 
 .wrapper {
     font-family: $font;
 
-    table, th, td {
+    table,
+    th,
+    td {
         border-collapse: collapse;
     }
-    
+
     th {
         text-align: left;
     }
-    
+
     table {
         border-collapse: collapse;
         border-radius: 7px;
         overflow: hidden;
-        -webkit-box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23); 
-        box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
+        -webkit-box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
+        box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
     }
-      
-    th, td {
+
+    th,
+    td {
         border: $borderColor;
         padding: 1em;
         background: transparent;
     }
-    
+
     tr:nth-child(odd) {
         background-color: #D6EEEE;
     }
-        
+
 }
 
 .wrapperTitle {
     background-color: #007bff;
     border-radius: 8px;
     color: white;
+    display: flex;
+    justify-content: space-between;
+
     p {
         color: white;
         margin: 0;
@@ -49,6 +55,14 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
         font-family: $font;
         font-weight: 300;
         font-size: 18px;
+    }
+
+    .reportSelection {
+        margin: 8px;
+        border: $borderColor;
+        border-radius: 8px;
+        width: 180px;
+        font-size: 16px;
     }
 }
 
@@ -75,7 +89,8 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
     }
 }
 
-.lineChartWrapper, .lineChartInfoWrapper {
+.lineChartWrapper,
+.lineChartInfoWrapper {
     margin-top: 24px;
     padding: 15px;
 }
@@ -90,13 +105,14 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
         .lineChartInfoTable {
             width: 100%;
 
-           
+
         }
+
         .lineChartInfoTableAddAndFavourite {
             width: 100%;
             margin-left: 25px;
 
-            .lineChartInfoTableFavourite{
+            .lineChartInfoTableFavourite {
                 margin-bottom: 40px;
             }
 
@@ -115,4 +131,3 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
         color: #007bff;
     }
 }
-
