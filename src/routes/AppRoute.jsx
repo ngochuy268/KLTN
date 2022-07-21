@@ -18,8 +18,8 @@ const AppRoutes = (props) => {
             <Switch>
 
                 {/* <Route path="/" component={Login}></Route> */}
-                {/* <LayoutAdmin /> */}
-                {/* <AdminRoute/> */}
+                <LayoutAdmin />
+                <AdminRoute/>
                 <Route path="/login" component={Login}></Route>
                 <Route path='/forgotPassword_info' component={ForgotPasswordInFo}> </Route>
                 <Route path='/changePassword' component={ChangePassword}></Route>

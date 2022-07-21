@@ -61,7 +61,10 @@ function TongQuan() {
                 <div className={styles.wrapper}>
                     <div className={styles.wrapperTitle}>
                         <p>Tổng quan</p>
-
+                        <select className={styles.reportSelection}>
+                            <option value='trong 2 tuần'>Trong 2 tuần</option>
+                            <option value='trong 1 tháng'>Trong 1 tháng</option>
+                        </select> 
                     </div>
 
                     <div className={styles.lineChartWrapper}>
