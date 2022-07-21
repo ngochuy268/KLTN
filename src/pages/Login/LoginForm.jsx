@@ -63,7 +63,7 @@ function Login() {
 
             let response = await loginUser(idNhanVien, password);
 
-            if (response && response.data && response.data.EC === 0) {
+            if (response && response.EC === 0) {
                 toast.success('Nhân viên đăng nhập!')
                 let data = {
                     // User authentication
@@ -73,10 +73,10 @@ function Login() {
                 sessionStorage.setItem('account', JSON.stringify(data));
                 history.push('/user');
             }
-            if (response && response.data && response.data.EC === 1) {
+            if (response && response.EC === 1) {
                 history.push('/admin/tongquan');
             }
-            toast.error(response.data.EM);
+            toast.error(response.EM);
 
         }
     }

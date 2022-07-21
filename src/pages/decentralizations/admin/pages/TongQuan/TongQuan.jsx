@@ -11,7 +11,6 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function TongQuan() {
 
-
     const [listLoaiSP, setListLoaiSP] = useState([]);
     const [listSP, setListSP] = useState([]);
     const [dataTableLoaiSP, setDataTableLoaiSP] = useState([]);
@@ -25,22 +24,22 @@ function TongQuan() {
 
     const fetchLoaiSP = async () => {
         let response = await fetchAllLoaiSP();
-        if (response && response.data && response.data.EC === 0) {
-            setListLoaiSP(response.data.DT);
+        if (response && response.EC === 0) {
+            setListLoaiSP(response.DT);
         }
     }
 
     const tableDataLoaiSP = async () => {
         let response = await fetchDataLoaiSP();
-        if (response && response.data && response.data.EC === 0) {
-            setDataTableLoaiSP(response.data.DT);
+        if (response && response.EC === 0) {
+            setDataTableLoaiSP(response.DT);
         }
     }
 
     const fetchSP = async () => {
         let response = await fetchAllSP();
-        if (response && response.data && response.data.EC === 0) {
-            setListSP(response.data.DT);
+        if (response && response.EC === 0) {
+            setListSP(response.DT);
         }
     }
 
@@ -48,7 +47,7 @@ function TongQuan() {
         const $ = document.querySelector.bind(document);
         const $$ = document.querySelectorAll.bind(document);
 
-        $$(`.${styles.goodName}`).forEach((item, index) => {
+        $$('.goodName').forEach((item, index) => {
             item.onclick = function () {
                 $(`.${styles.lineChart}`).classList.toggle(`${styles.active}`)
             }
@@ -95,16 +94,15 @@ function TongQuan() {
                             <table className={styles.lineChartInfoTable}>
                                 <thead>
                                     <tr>
-                                        <th colSpan='5' style={{ fontSize: '20px', textAlign: 'center', height: '20px' }}>
+                                        <th colSpan='4' style={{ fontSize: '20px', textAlign: 'center', height: '20px' }}>
                                             {titlechart}
                                         </th>
                                     </tr>
                                     <tr>
                                         <th style={{ width: '5%' }}>STT</th>
                                         <th style={{ width: '20%' }}>Mã loại</th>
-                                        <th style={{ width: '40%' }}>Tên loại</th>
+                                        <th style={{ width: '50%' }}>Tên loại</th>
                                         <th style={{ width: '25%' }}>Số lượng</th>
-                                        <th style={{width: '10%'}}></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -114,10 +112,9 @@ function TongQuan() {
                                                 return (
                                                     <tr>
                                                         <td style={{ textAlign: 'center' }}>{index + 1}</td>
-                                                        <td >{item.LoaiSanPhamId}</td>
+                                                        <td className='goodName'>{item.LoaiSanPhamId}</td>
                                                         <td>{item.LoaiSanPham.TenLoai}</td>
                                                         <td>{item.SoLuong}</td>
-                                                        <td style={{textAlign: 'center'}}>{<FontAwesomeIcon  icon={faEye} className={styles.goodName}/>}</td>
                                                     </tr>
                                                 )
                                             })}

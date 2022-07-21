@@ -1,29 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 $font: 'Roboto', sans-serif;
-$text-color: rgb(204,255,204);
+$text-color: rgb(204, 255, 204);
 $mgRightMenuName: 10px;
 $fontSize: 16px;
 
 
-html, body{
-    width:100%;
+html,
+body {
+    width: 100%;
     height: 100%;
     margin: 0px;
     padding: 0px;
-    border:none;
+    border: none;
 }
 
 * {
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
-.container{
+.container {
     width: 100%;
     display: flex;
 
 }
 
-.gridColumn2{
+.gridColumn2 {
     position: fixed;
     width: 16.6667%;
     height: 100%;
@@ -34,22 +35,22 @@ html, body{
     &::after {
         content: '';
         position: absolute;
-        border-bottom: 1px groove #e5e5e5 ;
+        border-bottom: 1px groove #e5e5e5;
         width: 95%;
         top: 70px;
         left: 8px;
     }
 }
 
-@media screen and (max-height: 920px) {
+@media screen and (max-height: 700px) {
     .treeViewComponent {
         overflow-y: auto;
-        height: 800px;
+        height: 600px;
     }
 }
 
 
-.gridColumn10{
+.gridColumn10 {
     position: absolute;
     top: 72px;
     right: 0;
@@ -98,17 +99,16 @@ html, body{
     display: flex;
     align-items: center;
     color: white;
-     p {
-        margin-left: 10px;
-     }
 
-    .pageMenuItemsName{
+    p {
+        margin-left: 10px;
+    }
+
+    .pageMenuItemsName {
         display: flex;
         align-items: center;
         color: white;
         text-decoration: none;
     }
-    
+
 }
-
-

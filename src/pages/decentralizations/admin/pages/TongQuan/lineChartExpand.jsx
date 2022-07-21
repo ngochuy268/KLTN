@@ -11,6 +11,7 @@ const ApexChartExpand = (listSP, title) => {
 
   const chartData = {
     series: listSP,
+    series: listSP,
     options: {
       chart: {
         height: 350,
