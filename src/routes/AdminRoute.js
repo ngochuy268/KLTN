@@ -16,16 +16,18 @@ import DanhSachNhanVien from "../pages/decentralizations/admin/pages/QuanLyNhanV
 import ThemNhanVien from "../pages/decentralizations/admin/pages/QuanLyNhanVien/ThemNhanVien/ThemNhanVIen";
 import NhapHang from "../pages/decentralizations/admin/pages/NhapXuatKho/NhapHang/NhapHang";
 import XuatHang from "../pages/decentralizations/admin/pages/NhapXuatKho/XuatHang/XuatHang";
-import CaNhan from "../pages/decentralizations/admin/pages/CaNhan/CaNhan";
+
+import PrivateRoute from "./PrivateRoute";
 
 function ContentAdmin() {
+    console.log("check admin route")
     return (
         <div className={styles.content}>
 
-            <Route path='/canhan' component={CaNhan} />
+
 
             {/* Menu Routes */}
-            <Route path='/tongquan' component={TongQuan} />
+            <PrivateRoute path='/tongquan' component={TongQuan} />
             <Route path='/congviec' component={CongViec} />
             <Route path='/baocao' component={BaoCao} />
 
@@ -42,7 +44,7 @@ function ContentAdmin() {
             <Route path="/quanlynhanvien/danhsachnhanvien" component={DanhSachNhanVien} />
             <Route path="/quanlynhanvien/themnhanvien" component={ThemNhanVien} />
 
-            <Route path="*"> 404 not found !</Route>
+            {/* <Route path="*"> 404 not found !</Route> */}
 
         </div>
     );

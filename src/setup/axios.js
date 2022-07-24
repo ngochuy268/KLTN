@@ -36,12 +36,13 @@ instance.interceptors.response.use(function (response) {
         // authentication (token related issues)
         case 401: {
             toast.error("Unauthorized the user. Please login . . .");
-            // window.location.href = '/login';
+            window.location.href = '/login';
             return Promise.reject(error);
         }
 
         // forbidden (permission related issues)
         case 403: {
+            toast.error(`You don't permission to access this resource . . .`);
             return Promise.reject(error);
         }
 
@@ -70,8 +71,6 @@ instance.interceptors.response.use(function (response) {
             return Promise.reject(error);
         }
     }
-
-    // return Promise.reject(error);
 });
 
 export default instance;

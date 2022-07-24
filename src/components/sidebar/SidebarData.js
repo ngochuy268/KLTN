@@ -102,17 +102,20 @@ export const SidebarData =  [
 export const SidebarDataEmployee = [
 
     {
+        id: 1,
         title: 'Nhập hàng',
         path: '/nhaphang',
         icon: <FontAwesomeIcon icon={faCartPlus}/>
     },
     {
+        id: 2,
         title: 'Xuất hàng',
         path: '/xuathang',
         icon: <FontAwesomeIcon icon={faFileExport}/>
 
     },
     {
+        id: 3,
         title: 'Công việc',
         path: '/congviec',
         icon: <FontAwesomeIcon icon={faBriefcase}/>

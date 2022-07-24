@@ -31,9 +31,12 @@ $borderColor: 1px solid #ced4da;
         margin: 10px;
         padding: 15px;
         font-family: $font;
-        border: 1px groove;
+        border: $borderColor;
         border-radius: 7px;
-        width: 32%;
+        width: 24.8888%;
+        border-top: 3px solid #28a745;
+        box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
+
 
         .backGround {
             background-image: url(../../../../../../assets/layoutImg/opacitylogo.png) ;
@@ -47,68 +50,70 @@ $borderColor: 1px solid #ced4da;
  
         .employeeBasicInfo {
             display: flex;
+            justify-content: space-around;
+            align-items: center;
 
-            .employeeImgWrapper{
-                 flex-grow: 1;
-                 width: 40%;
+            .employeeImg {
+                border-radius: 50%;
+                width: 40%;
+            }
 
-                 .employeeImg {
-                     width: 40%;
-                    
-                 }
-             }
+        }
+        .employeeInfoWrapper {
+            .employeeInfoContent {
+                display: flex;
+                align-items: center;
+                margin: 18px 0;
 
-             .employeeNameAndID {
-                 flex-grow: 2;
-                 text-align: center;
-                 .employeeName, .employeeYearsOld {
-                     font-weight: 700;   
-                 }
-                 .employeeID {
-                     span {
-                         font-weight: 700;
-                     }
-                 }
-             }
+                span {
+                    font-weight: 700;
+                    margin-right: 8px;
+                }
+                p {
+                    margin: 0;
+                }
+            }
         }
         .employeeInfo {
                  
-             .employeeInfoTitle {
-                 font-weight: 700;
-             }
-        }
-        
-        .employeeStatusWrapper {
-            position: relative;
-
-            .employeeStatus{
-                width: 100%;
+            .employeeInfoContent {
                 display: flex;
                 align-items: center;
-                justify-content: center;
-                margin-top: 90px;
-    
-                .employeeStatusContent{
+                margin: 9px 0;
+
+                span {
+                    font-weight: 700;
+                    margin-right: 8px;
+                }
+
+                p {
                     margin: 0;
-                    padding: 5px 30px;
-                    color: white;
-                    background-color: #00a65a;
-                    border-radius: 10px;
                 }
-                
-                .employeeStatusContent.employeeStatusContentOff{
-                    background-color: red;
-                }
-    
             }
-            .employeeStatusEditIcon{
-                position: absolute;
-                right: 0;
-                top: 0;
-                border: none;
-                background-color: transparent;
-                cursor: pointer;
-             }
+        }
+
+        .employeeInfoFeedBack{
+            span {
+                font-weight: 700;
+            }
+            ul {
+                margin: 9px 0;
+            }
+            li {
+                margin: 5px 0;
+            }
+            margin: 20px 0 8px 0;
+        }
+        
+        .employeeStatusEditIcon{
+            float: right;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+
+            &:hover {
+                color: #007bff;
+            }
         }
     
     }

@@ -20,4 +20,22 @@ const fetchAllLoaiSPS = () => {
     return axios.get('/api/v1/xuatnhap/xuatkho/tongquan/loaisanphamlinechart')
 }
 
-export { fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS, fetchAllLoaiSPS }
+const fetchDataDSXuatKho = () => {
+    return axios.get('/api/v1/xuatnhap/xuatkho/admin');
+}
+
+const fetchDataDSNhapKho = () => {
+    return axios.get('/api/v1/xuatnhap/nhapkho/admin');
+}
+
+const fetchDataPieChart = () => {
+    return axios.get('/api/v1/khohang/tongquan/piechartdata');
+}
+
+const fetchDataPieChartTable = () => {
+    return axios.get('/api/v1/khohang/tongquan/danhsachsanpham');
+}
+
+export { fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS, 
+    fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
+    fetchDataPieChart,fetchDataPieChartTable }

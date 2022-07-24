@@ -2,7 +2,9 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 import styles from './TongQuan.module.scss'
 
-function PieChart() {
+function PieChart(pieChartData) {
+
+console.log(pieChartData)
 
 const chartData = {
   series: [1000,2500,500,250],

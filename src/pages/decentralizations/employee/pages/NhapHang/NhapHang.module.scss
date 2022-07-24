@@ -7,8 +7,6 @@ $borderColor: 1px solid #ced4da;
 $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
 
 .wrapper {
-    border-radius: 8px;
-    border: 1px groove;
     &:nth-child(2) {
         margin-top: 30px;
     }
@@ -16,8 +14,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
 
 .wrapperTitle {
     background-color: #007bff;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-radius: 8px;
     display: flex;
     color: white;
 
@@ -33,11 +30,15 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
         display: flex;
         margin-left: 30px;
 
-        button {
+        .scanButton {
             background-color: transparent;
             border: transparent;
-            font-size: 20px;
-            cursor: pointer;
+            font-size: 25px;
+        
+            &:hover {
+                color: #fff;
+                cursor: pointer;
+            }
         }
     }
 }
@@ -91,24 +92,43 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
         padding: 30px;
         position: relative;
 
-
-        .addGoodsItems, .addGoodsDateItems{
-            display: flex;
-            flex-direction: column;
+        .exportGoodsInputItems {
+            text-align: left;
+            flex-grow: 4;
+            margin-right: 20px;
             width: 100%;
-            padding: 0 30px;
-            font-size: 18px;
-            font-family: $font;
-            font-weight: 700;
-            color: black;
-
-            .inputItems {
-                margin: 15px 0;
+    
+            .exportGoodsInput {
                 height: 40px;
+                width: 90%;
+            }
+    
+            .delButton {
+                background: transparent;
+                border: transparent;
+                cursor: pointer;
+                color: red;
+                font-size: 18px;
+    
+                &:hover {
+                  color: #F84B24;
+                }
+            }
+        }
+    
+        .exportGoodsInputItems, th, td {
+            height: 60px;
+            font-size: 17px;
+            border: transparent;
+    
+            .exportGoodsInput {
                 border: $borderColor;
-                border-radius: 5px;
-                outline: none;
+                border-radius: 8px;
                 box-shadow: $innerShadow;
+                outline: none;
+            }
+            tr:nth-child(odd) {
+                background-color: #fff;
             }
         }
     }
@@ -241,6 +261,27 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
             .addGoodsnoteTableItem {
                 width: 70%;
             }
+        }
+    }
+}
+
+.closeButtonWrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px;
+
+    .closeButton{
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: rgb(237,2,2);
+        background: linear-gradient(180deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+
+        &:hover {
+            cursor: pointer;
+            background: rgb(237,2,2);
+            background: linear-gradient(0deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
         }
     }
 }

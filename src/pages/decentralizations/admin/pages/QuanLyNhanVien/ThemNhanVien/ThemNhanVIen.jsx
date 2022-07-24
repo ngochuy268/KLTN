@@ -3,11 +3,16 @@ import { toast } from 'react-toastify';
 import { useHookStatePassword } from '../../../../../../hooks/loginHooks';
 import styles from './ThemNhanVien.module.scss';
 import isEmpty from 'validator/lib/isEmpty';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import axios, { post }from 'axios';
 
 function  ThemNhanVien() {
+
     const [password, setPassword] = useHookStatePassword();
     const [retypePassword, setRetypePassword] = useState('');
 
+    // Validate form
     const validateAll = () => {
 
         // Check password empty
@@ -30,6 +35,7 @@ function  ThemNhanVien() {
 
     }
 
+    // Submit 
     const onSubmit = async () => {
 
         const isValid = validateAll();
@@ -38,6 +44,11 @@ function  ThemNhanVien() {
         }
     }
 
+   
+    const uploadImg = (files) => {
+        console.log(files[0])
+    }
+    
     return(
         <>
              <div className={styles.wrapper}>
@@ -94,7 +105,24 @@ function  ThemNhanVien() {
                             <div className={styles.addEmployeesItems}>
                                 <div className={styles.addEmployeesItem}>
                                     <p>Ghi chú</p>
-                                    <textarea name="note" id={styles.addEmployeeNote} rows="4"></textarea>
+                                    <CKEditor
+                                        editor={ ClassicEditor }
+                                        data=""
+                                        onReady={ editor => {
+                                            // You can store the "editor" and use when it is needed.
+                                            console.log( 'Editor is ready to use!', editor );
+                                        } }
+                                        onChange={ ( event, editor ) => {
+                                            const data = editor.getData();
+                                            console.log( { event, editor, data } );
+                                        } }
+                                        onBlur={ ( event, editor ) => {
+                                            console.log( 'Blur.', editor );
+                                        } }
+                                        onFocus={ ( event, editor ) => {
+                                            console.log( 'Focus.', editor );
+                                        } }
+                                    />
                                 </div>
                             </div>
                             <div className={styles.addEmployeesItems}>
@@ -120,7 +148,7 @@ function  ThemNhanVien() {
                             <div className={styles.addEmployeesItems}>
                                 <div className={styles.addEmployeesItem}>
                                     <p>Ảnh chân dung</p>
-                                    <input type="file" className={styles.addEmployeesInput} />
+                                    <input type="file" name='file' onChange={e => uploadImg(e.target.files)} className={styles.addEmployeesInput} />
                                 </div>
                             </div>
                         </div>

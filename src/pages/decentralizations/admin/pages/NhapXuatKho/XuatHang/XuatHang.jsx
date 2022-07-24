@@ -11,6 +11,7 @@ import BarcodeScanner from '../../../../../../components/barcode/BarcodeScanner'
 
 function XuatHang() {
 
+    const [openBarcode, setOpenBarcode] = useState(false);
     const [open, setOpen] = useState(false);
     const [openPrint, setOpenPrint] = useState(false);
     const [value, setValue] = useState('');
@@ -42,6 +43,15 @@ function XuatHang() {
         handleClosePrint();
         handleClose();
     }
+    
+    const handleClickOpenBarCode = () => {
+        setOpenBarcode(true);
+    };
+    const handleCloseBarCode = () => {
+        setOpenBarcode(false);
+
+    };
+
 
     // Print
     const handlePrint = useReactToPrint({
@@ -110,7 +120,7 @@ function XuatHang() {
                         <p>Xuất kho</p> 
                         <div className={styles.scanWrapper}>
                             <p>Quét mã sản phẩm</p>
-                            <button className={styles.scanButton}><FontAwesomeIcon icon={faBarcode} onClick={handleClickOpen}/></button>
+                            <button className={styles.scanButton}><FontAwesomeIcon icon={faBarcode} onClick={handleClickOpenBarCode}/></button>
                         </div>
                     </div>
 
@@ -273,7 +283,7 @@ function XuatHang() {
             </Dialog>
 
             {/* BarcodeScanner */}
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog open={openBarcode} onClose={handleCloseBarCode}>
                 <div className={styles.closeButtonWrapper} onClick={handleClose}>
                     <button className={styles.closeButton}><FontAwesomeIcon icon={faXmark} /></button>
                 </div>

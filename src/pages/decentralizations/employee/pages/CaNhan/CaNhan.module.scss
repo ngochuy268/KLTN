@@ -16,8 +16,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
 
 .wrapperTitle {
     background-color: #007bff;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-radius: 7px;
     display: flex;
     color: white;
 
@@ -51,7 +50,6 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
         font-size: 20px;
         display: flex;
         justify-content: space-between;
-
     }
 
     .employeeInfoWrapper{
@@ -60,9 +58,16 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
 
         .employeeBasicInfoWrapper{
             text-align: center;
+            height: 80vh;
+            width: 60%;
+            border-radius: 20px;
+            background: rgb(250,245,148);
+            background: linear-gradient(0deg, rgba(250,245,148,0.9360119047619048) 0%, rgba(241,241,209,0.9047355758709734) 53%);
+
 
             .employeeAvatar {
-                width: 30%;
+                margin-top: 15px;
+                width: 50%;
                 border-radius: 50%;
             }
 
@@ -91,6 +96,7 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
         }
 
         .employeeInfoContentWrapper{
+            width: 50%;
 
             .employeeContentWrapper{
 
@@ -107,23 +113,14 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
 
                     .employeeNoteWrapper{
                         display: flex;
-                        align-items: flex-start;
-                        margin: 8px 0;
+                        align-items: center;
+                        margin: 0;
 
                         .employeeInfoTitle {
                             margin-right: 8px;
                             font-weight: 700;
                         }
-                    
-                        .employeeInfoParagraph{
-                            margin: 10px 0;
-                        }
-
-                        #employeeNote{
-                            margin: 8px 0;
-                            border-radius: 8px;
-                            border: $borderColor;
-                        }
+                        
                     }
                 }
             }
@@ -148,4 +145,10 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
         margin: 10px 0;
     }
 
+}
+
+.backgroundImg{
+    display: flex;
+    justify-content: center;
+    width: 60%;
 }

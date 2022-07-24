@@ -7,13 +7,30 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TablePagination
 import styled from '@emotion/styled';
 import Paper from '@mui/material/Paper';
 import { tableCellClasses } from '@mui/material/TableCell';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { fetchDataPieChart, fetchDataPieChartTable } from '../../../../../../services/khoHangServices';
 
 function TongQuan1() {
+    
+    const [pieChartData, setPieChartData] = useState([]);
+    const [tableGood, setTablegood] = useState([]);
 
+    useEffect(() => {
+        fetchPC();
+        fetchTableGood();
+    },[])
+
+    // Pie-chart data 
+    const fetchPC = async () => {
+        let response = await fetchDataPieChart();
+        if (response && response.EC === 0) {
+            setPieChartData(response.DT);
+        } 
+    }
+    
     // Set table appearance
     useEffect(() => {
-        const $ = document.querySelector.bind(document);
         const $$ = document.querySelectorAll.bind(document);
 
         const goodName = $$(`.goodName`);
@@ -25,9 +42,17 @@ function TongQuan1() {
                 goodsTableDetailsIndex.classList.toggle(`${styles.active}`);
             }
         })
-    })
+    },[])
 
     // Table goods data
+    const fetchTableGood = async () => {
+        let response = await fetchDataPieChartTable();
+        if (response && response.EC === 0) {
+            setTablegood(response.DT);
+        } 
+    }
+
+
     const columns = [
         { id: 'id', label: 'Mã sản phẩm', minWidth: 170 },
         { id: 'name', label: 'Tên sản phẩm', minWidth: 100 },
@@ -45,24 +70,9 @@ function TongQuan1() {
     ) {
         return { id, name, count };
     }
-    const rows = [
-        createData('India', 'IN', 1324171354),
-        createData('China', 'CN', 1403500365),
-        createData('Italy', 'IT', 60483973),
-        createData('United States', 'US', 327167434),
-        createData('Canada', 'CA', 37602103),
-        createData('Australia', 'AU', 25475400),
-        createData('Germany', 'DE', 83019200),
-        createData('Ireland', 'IE', 4857000),
-        createData('Mexico', 'MX', 126577691),
-        createData('Japan', 'JP', 126317000),
-        createData('France', 'FR', 67022000),
-        createData('United Kingdom', 'GB', 67545757),
-        createData('Russia', 'RU', 146793744),
-        createData('Nigeria', 'NG', 200962417),
-        createData('Brazil', 'BR', 210147125),
-        createData('Brazil', 'BR', 210147125),
-    ];
+    const rows = tableGood.map(item => (
+        createData(item.SanPhamId, item.SanPham.TenSanPham, item.SoLuong)
+    ))
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -110,6 +120,7 @@ function TongQuan1() {
         createDataI('F55', 'Bánh Flan 55g', '12/03/2022', '12/05/2022', 2000, 'Bánh ngon vl')
     ];
 
+   
 
     return (
         <div className={styles.container}>
@@ -124,7 +135,12 @@ function TongQuan1() {
                     </div>
                     <div className={styles.listAndChartGoods}>
                         <div className={styles.pieChart}>
-                            <PieChart />
+                            
+                               
+                                {console.log(pieChartData)}
+                                <PieChart pieChartData={pieChartData} />
+                              
+                            
                         </div>
                         <div className={styles.listGoods}>
                             <TableContainer sx={{ maxHeight: 330 }}>
@@ -134,12 +150,12 @@ function TongQuan1() {
                                             {columns.map((column) => (
                                                 <TableCell
                                                     key={column.id}
-                                                    align={column.align}
                                                     style={{ minWidth: column.minWidth }}
                                                 >
                                                     <b>{column.label}</b>
                                                 </TableCell>
                                             ))}
+                                            <TableCell></TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -151,13 +167,14 @@ function TongQuan1() {
                                                         {columns.map((column) => {
                                                             const value = row[column.id];
                                                             return (
-                                                                <TableCell key={column.id} align={column.align} >
+                                                                <TableCell key={column.id} >
                                                                     {column.format && typeof value === 'number'
                                                                         ? column.format(value)
                                                                         : value}
                                                                 </TableCell>
                                                             );
                                                         })}
+                                                        <TableCell align='center'><FontAwesomeIcon icon={faEye} /></TableCell>
                                                     </TableRow>
                                                 );
                                             })}

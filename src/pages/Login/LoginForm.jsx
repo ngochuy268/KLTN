@@ -9,9 +9,14 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
 import { loginUser } from '../../services/userServices';
+import React from 'react';
+import { UserContext } from "../../context/userContext";
 
 
 function Login() {
+
+    const { loginContex } = React.useContext(UserContext);
+
     const history = useHistory();
     const [idNhanVien, setID] = useHookStateName();
     const [password, setPassword] = useHookStatePassword();
@@ -55,7 +60,7 @@ function Login() {
         return true;
     }
 
-    
+    let flat = null;
     // Login function
     const onSubmitLogin = async () => {
 
@@ -64,27 +69,38 @@ function Login() {
 
             let response = await loginUser(idNhanVien, password);
 
-            if (response && response.EC === 0) {
-                toast.success('Nhân viên đăng nhập!')
+            if (response && +response.EC === 0) {
+
+                let groupRole = response.DT.groupRole;
+                let email = response.DT.email;
+                let username = response.DT.username;
+                let id = response.DT.id;
+                let token = response.DT.access_token;
+                let level = response.DT.level;
                 let data = {
                     // User authentication
                     isAuthenticated: true,
-                    token: 'fake token'
+                    token: token,
+                    account: { groupRole, email, username, id, level }
                 }
                 sessionStorage.setItem('account', JSON.stringify(data));
-                if(+ response.DT.user.GroupId == 0){
+                loginContex(data);
+                if (+ level == 2) {
                     history.push('/tongquan');
-                    
-                }else{
-                    history.push('/user');
+
                 }
-                
+                if (+ level == 1) {
+                    history.push('/user/canhan');
+
+                }
+
             }
             toast.error(response.EM);
 
         }
     }
 
+    const checkRoleLogin = () => { return flat }
 
     // Keypress function
     const handlePressEnter = (event) => {
@@ -149,4 +165,5 @@ function Login() {
         </div>
     );
 }
-export default Login;
+
+export default Login

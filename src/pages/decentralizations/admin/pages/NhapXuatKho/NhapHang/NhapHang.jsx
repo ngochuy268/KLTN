@@ -5,6 +5,7 @@ import $ from 'jquery';
 import { useEffect, useState } from 'react';
 import { Dialog, DialogTitle } from '@mui/material';
 import BarcodeScanner from '../../../../../../components/barcode/BarcodeScanner';
+import { fetchDataPieChartTable } from '../../../../../../services/khoHangServices';
 
 function NhapHang() {
 
@@ -42,7 +43,7 @@ function NhapHang() {
                 $(this).parent().parent().remove();
             })
         })
-    },[]) 
+    },[])
 
     // Open and close
     const [open, setOpen] = useState(false);
