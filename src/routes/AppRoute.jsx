@@ -17,11 +17,11 @@ const AppRoutes = (props) => {
             <Switch>
 
                 {/* <Route path="/" component={Login}></Route> */}
-                <Route path="/login" component={Login}></Route>
+                {/* <Route path="/login" component={Login}></Route> */}
                 <Route path='/forgotPassword_info' component={ForgotPasswordInFo}> </Route>
                 <Route path='/changePassword' component={ChangePassword}></Route>
-
-                {user && user.isAuthenticated === true && +user.account.level === 2 ?
+                <LayoutAdmin />
+                {/* {user && user.isAuthenticated === true && +user.account.level === 2 ?
                     <>
                         <LayoutAdmin />
                     </>
@@ -29,7 +29,7 @@ const AppRoutes = (props) => {
                         <>
                             <LayoutEmployee />
                         </>
-                        : <></>}</>}
+                        : <></>}</>} */}
 
                 <Route path="*"> 404 not found !</Route>
 
