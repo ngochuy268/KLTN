@@ -32,8 +32,8 @@ const fetchDataPieChart = () => {
     return axios.get('/api/v1/khohang/tongquan/piechartdata');
 }
 
-const fetchDataPieChartTable = () => {
-    return axios.get('/api/v1/khohang/tongquan/danhsachsanpham');
+const fetchDataPieChartTable = (MaLoai) => {
+    return axios.post('/api/v1/khohang/tongquan/danhsachsanpham', { MaLoai });
 }
 
 const fetchDataShowSP = () => {
@@ -49,7 +49,15 @@ const fetchDataSelectSP = () => {
     return axios.get('/api/v1/select/loaisanpham')
 }
 
-export { fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS, 
+const getLoaiSPTQ = () => {
+    return axios.get('/api/v1/khohang/tongquan/loaisanpham')
+}
+
+
+
+export {
+    fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS,
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
-    fetchDataPieChart,fetchDataPieChartTable, fetchDataShowSP, fetchDataShowNV,
-    fetchDataSelectSP }
+    fetchDataPieChart, fetchDataPieChartTable, getLoaiSPTQ,
+    fetchDataShowSP,fetchDataShowNV,fetchDataSelectSP
+}
