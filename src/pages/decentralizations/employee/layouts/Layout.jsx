@@ -90,7 +90,7 @@ function LayoutAdmin() {
 
             {/* ChatBox */}
             <div>
-                <div className="chat transition-5" style={{ ...style.supportWindow }}>
+                <div className="chat transition-5" style={{ ...style.supportWindow, zIndex: 200 }}>
 
                     {!showChat ? (
                         <div className="joinChatContainer">
@@ -116,7 +116,7 @@ function LayoutAdmin() {
                     )}
                 </div>
 
-                <div style={{ position: 'fixed', bottom: '24px', right: '24px' }}>
+                <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 200 }}>
 
                     <div className="transition-3"
                         onMouseEnter={() => setHovered(true)}

@@ -27,7 +27,7 @@ function ContentAdmin() {
 
 
             {/* Menu Routes */}
-            <PrivateRoute path='/tongquan' component={TongQuan} />
+            <Route path='/tongquan' component={TongQuan} />
             <Route path='/congviec' component={CongViec} />
             <Route path='/baocao' component={BaoCao} />
 

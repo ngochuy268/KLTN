@@ -5,10 +5,25 @@ import $ from 'jquery';
 import { useEffect, useState } from 'react';
 import { Dialog, DialogTitle } from '@mui/material';
 import BarcodeScanner from '../../../../../../components/barcode/BarcodeScanner';
-import { fetchDataPieChartTable } from '../../../../../../services/khoHangServices';
+import { fetchDataPieChartTable, fetchDataSelectSP } from '../../../../../../services/khoHangServices';
 
 function NhapHang() {
 
+    useEffect(() => {
+        fetchShowSPSelect();
+    },[]);
+    
+    
+    // Data select good
+    const [showGoodSelect, setShowGoodSelect] = useState([]);
+    const fetchShowSPSelect = async () => {
+        let response = await fetchDataSelectSP();
+        if (response && response.EC === 0) {
+            setShowGoodSelect(response.DT);
+        }
+    }
+
+    // Append and delete
     useEffect(() => {
         $(`.${styles.delButton}`).on('click', function() {
             $(this).parent().parent().remove();
@@ -45,6 +60,7 @@ function NhapHang() {
         })
     },[])
 
+
     // Open and close
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
@@ -56,9 +72,15 @@ function NhapHang() {
 
 
     // Get value from input
+    const [value, setValue] = useState('');
+    const [valueArr, setValueArr] = useState([]);
     const onChangeFunction = (e) => {
         setValue(e.target.value)
+        console.log(value)
+        setValueArr(prev => [...prev, value])
     }
+    console.log(valueArr)
+
 
     // Keypress function
     const handlePressEnter = (event) => {
@@ -93,104 +115,108 @@ function NhapHang() {
                         </div>
                         <div className={styles.addGoods}>
                         <table className={styles.exportGoodsInputItems}>
-                                <tr>
-                                    <th style={{width: '5%'}} >Mã loại</th>
-                                    <th style={{width: '10%'}}>Mã sản phẩm</th>
-                                    <th style={{width: '20%'}}>Tên sản phẩm</th>
-                                    <th style={{width: '10%'}}>Số lượng</th>
-                                    <th style={{width: '10%'}}>Ngày sản xuất</th>
-                                    <th style={{width: '20%'}}>Vị trí</th>
-                                    <th style={{width: '25%'}}>Ghi chú</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodTypeId'>
-                                            <option value=""></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodId'>
-                                            <option value=""></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodname' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='count' /></td>
-                                    <td><input type="date" className={styles.exportGoodsInput} onChange={onChangeFunction} name='productDate' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='location' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} onChange={onChangeFunction} name='note' /></td>
-                                    <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodTypeId'>
-                                            <option value=""></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodId'>
-                                            <option value=""></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodname' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='count' /></td>
-                                    <td><input type="date" className={styles.exportGoodsInput} onChange={onChangeFunction} name='productDate' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='location' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} onChange={onChangeFunction} name='note' /></td>
-                                    <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodTypeId'>
-                                            <option value=""></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodId'>
-                                            <option value=""></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodname' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='count' /></td>
-                                    <td><input type="date" className={styles.exportGoodsInput} onChange={onChangeFunction} name='productDate' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='location' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} onChange={onChangeFunction} name='note' /></td>
-                                    <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodTypeId'>
-                                            <option value=""></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodId'>
-                                            <option value=""></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodname' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='count' /></td>
-                                    <td><input type="date" className={styles.exportGoodsInput} onChange={onChangeFunction} name='productDate' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='location' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} onChange={onChangeFunction} name='note' /></td>
-                                    <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
-                                </tr>
-                              
+                               <thead>
+                                    <tr>
+                                        <th style={{width: '5%'}} >Mã loại</th>
+                                        <th style={{width: '10%'}}>Mã sản phẩm</th>
+                                        <th style={{width: '20%'}}>Tên sản phẩm</th>
+                                        <th style={{width: '10%'}}>Số lượng</th>
+                                        <th style={{width: '10%'}}>Ngày sản xuất</th>
+                                        <th style={{width: '20%'}}>Vị trí</th>
+                                        <th style={{width: '25%'}}>Ghi chú</th>
+                                    </tr>
+                               </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <select className={styles.exportGoodsInput} onChange={onChangeFunction}  name='goodTypeId'>
+                                                <option value=''>Chọn mã</option>
+                                                {showGoodSelect.map((item,index) => (
+                                                    <option key={index} value={item.id}>{item.id}</option>
+                                                ))}
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select className={styles.exportGoodsInput}  name='goodId'>
+                                                <option value=""></option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname' /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='count' /></td>
+                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate' /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='location' /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} name='note' /></td>
+                                        <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <select className={styles.exportGoodsInput} name='goodTypeId'>
+                                                <option value=""></option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select className={styles.exportGoodsInput} name='goodId'>
+                                                <option value=""></option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname' /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='count' /></td>
+                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate' /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='location' /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} name='note' /></td>
+                                        <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <select className={styles.exportGoodsInput} name='goodTypeId'>
+                                                <option value=""></option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select className={styles.exportGoodsInput} name='goodId'>
+                                                <option value=""></option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname' /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='count' /></td>
+                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate' /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='location' /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} name='note' /></td>
+                                        <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <select className={styles.exportGoodsInput} name='goodTypeId'>
+                                                <option value=""></option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select className={styles.exportGoodsInput} name='goodId'>
+                                                <option value=""></option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname' /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='count' /></td>
+                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate' /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='location' /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} name='note' /></td>
+                                        <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
+                                    </tr>
+                                </tbody>
                             </table> 
                         </div>
                         <div className={styles.addButtonWrapper}>

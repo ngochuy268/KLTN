@@ -36,6 +36,20 @@ const fetchDataPieChartTable = () => {
     return axios.get('/api/v1/khohang/tongquan/danhsachsanpham');
 }
 
+const fetchDataShowSP = () => {
+    return axios.get('/api/v1/sanpham/show')
+}
+
+const fetchDataShowNV = () => {
+    return axios.get('/api/v1/user/show')
+
+}
+
+const fetchDataSelectSP = () => {
+    return axios.get('/api/v1/select/loaisanpham')
+}
+
 export { fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS, 
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
-    fetchDataPieChart,fetchDataPieChartTable }
+    fetchDataPieChart,fetchDataPieChartTable, fetchDataShowSP, fetchDataShowNV,
+    fetchDataSelectSP }
