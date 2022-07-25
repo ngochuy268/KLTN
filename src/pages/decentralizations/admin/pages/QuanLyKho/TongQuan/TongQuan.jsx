@@ -1,7 +1,5 @@
-import React from 'react';
 import styles from './TongQuan.module.scss';
 import PieChart from './piechart';
-import $ from 'jquery';
 import { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material';
 import styled from '@emotion/styled';
@@ -47,6 +45,7 @@ function TongQuan1() {
 
     // Table goods data
     const fetchTableGood = async (MaLoai) => {
+        // console.log(">> check fetch data ")
         let response = await fetchDataPieChartTable(MaLoai);
         if (response && response.EC === 0) {
             setTablegood(response.DT);
@@ -65,28 +64,6 @@ function TongQuan1() {
             format: (value) => value.toLocaleString('en-US'),
         },
     ];
-
-    function createData(
-        id, name, count
-    ) {
-        return { id, name, count };
-    }
-
-    const rows = tableGood.map(item => (
-        createData(item.SanPhamId, item.SanPham.TenSanPham, item.SoLuong)
-    ))
-
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
-
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
 
     // Table detail data
     const StyledTableCell = styled(TableCell)(() => ({
@@ -133,7 +110,8 @@ function TongQuan1() {
 
                 {pieChartData && pieChartData.length > 0 ?
                     pieChartData.map((item, index) => {
-                        fetchTableGood(item.loaisp.LoaiSanPhamId);
+                        console.log(" checl item: ", item.loaisp.LoaiSanPhamId)
+                        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>");
                         return (
                             <>
                                 <div className={styles.listAndChartGoodsWrapper}>
@@ -142,7 +120,6 @@ function TongQuan1() {
                                     </div>
                                     <div className={styles.listAndChartGoods}>
                                         <div className={styles.pieChart}>
-
                                             {PieChart(item.tensp, item.soluong)}
 
                                         </div>
@@ -163,37 +140,19 @@ function TongQuan1() {
                                                         </TableRow>
                                                     </TableHead>
                                                     <TableBody>
-                                                        {rows
-                                                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                                            .map((row) => {
-                                                                return (
-                                                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                                                                        {columns.map((column) => {
-                                                                            const value = row[column.id];
-                                                                            return (
-                                                                                <TableCell key={column.id} >
-                                                                                    {column.format && typeof value === 'number'
-                                                                                        ? column.format(value)
-                                                                                        : value}
-                                                                                </TableCell>
-                                                                            );
-                                                                        })}
-                                                                        <TableCell align='center'><FontAwesomeIcon icon={faEye} className='goodName' /></TableCell>
-                                                                    </TableRow>
-                                                                );
-                                                            })}
+                                                        {item.tablesp.map((item, index) => {
+                                                            return (
+                                                                <TableRow>
+                                                                    <TableCell>{item.masp}</TableCell>
+                                                                    <TableCell>{item.tensp}</TableCell>
+                                                                    <TableCell>{item.soluong}</TableCell>
+                                                                </TableRow>
+                                                            )
+                                                        })}
                                                     </TableBody>
                                                 </Table>
                                             </TableContainer>
-                                            <TablePagination
-                                                rowsPerPageOptions={[10, 25, 100]}
-                                                component="div"
-                                                count={rows.length}
-                                                rowsPerPage={rowsPerPage}
-                                                page={page}
-                                                onPageChange={handleChangePage}
-                                                onRowsPerPageChange={handleChangeRowsPerPage}
-                                            />
+
                                         </div>
                                     </div>
                                     {/* hidden table */}
