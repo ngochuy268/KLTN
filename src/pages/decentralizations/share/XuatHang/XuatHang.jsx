@@ -5,7 +5,7 @@ import $ from 'jquery';
 import { useEffect, useRef, useState } from 'react';
 import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { useReactToPrint } from 'react-to-print';
-import BarcodeScanner from '../../../../../../components/barcode/BarcodeScanner';
+import BarcodeScanner from '../../../../components/barcode/BarcodeScanner';
 
 
 
@@ -39,11 +39,11 @@ function XuatHang() {
         setOpenPrint(false);
 
     };
-    const closeAllDialog  = () => {
+    const closeAllDialog = () => {
         handleClosePrint();
         handleClose();
     }
-    
+
     const handleClickOpenBarCode = () => {
         setOpenBarcode(true);
     };
@@ -57,7 +57,7 @@ function XuatHang() {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
         documentTitle: 'Biên lai xuất kho',
-        onAfterPrint : () => closeAllDialog()
+        onAfterPrint: () => closeAllDialog()
     })
     console.log(componentRef.current)
 
@@ -85,12 +85,12 @@ function XuatHang() {
 
     // Remove and append
     useEffect(() => {
-        $(`.${styles.delButton}`).on('click', function() {
+        $(`.${styles.delButton}`).on('click', function () {
             $(this).parent().parent().remove();
         })
 
-        $(`.${styles.addButton}`).on('click', function() {
-            $(`.${styles.exportGoodsInputItems}`).append( 
+        $(`.${styles.addButton}`).on('click', function () {
+            $(`.${styles.exportGoodsInputItems}`).append(
                 `<tr>
                     <td>   
                         <select class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='goodInput1'>
@@ -103,32 +103,32 @@ function XuatHang() {
                     <td><input type="text" class=${styles.exportGoodsInput} onkeydown=${(event) => handlePressEnter(event)} onchange=${onChangeFunction} /></td>
                     <td><button class=${styles.delButton}><i class="fas fa-trash"></i></button></td>
                 </tr>`)
-                
-            $(`.${styles.delButton}`).on('click', function() {
+
+            $(`.${styles.delButton}`).on('click', function () {
                 $(this).parent().parent().remove();
             })
         })
-    },[]) 
-   
- 
-    
-    return(
+    }, [])
+
+
+
+    return (
         <>
             <div className={styles.container}>
                 <div className={styles.wrapper}>
                     <div className={styles.wrapperTitle}>
-                        <p>Xuất kho</p> 
+                        <p>Xuất kho</p>
                         <div className={styles.scanWrapper}>
                             <p>Quét mã sản phẩm</p>
-                            <button className={styles.scanButton}><FontAwesomeIcon icon={faBarcode} onClick={handleClickOpenBarCode}/></button>
+                            <button className={styles.scanButton}><FontAwesomeIcon icon={faBarcode} onClick={handleClickOpenBarCode} /></button>
                         </div>
                     </div>
 
-                  
+
                     <div className={styles.exportGoodsAutoWrapper}>
-                       <div className={styles.exportGoodsInputBillItemsWrapper}>
+                        <div className={styles.exportGoodsInputBillItemsWrapper}>
                             <div className={styles.addButtonWrapper}>
-                                <button className={styles.addButton}><FontAwesomeIcon icon={faPlus}/></button>
+                                <button className={styles.addButton}><FontAwesomeIcon icon={faPlus} /></button>
                             </div>
                             <table className={styles.exportGoodsInputItems}>
                                 <tr>
@@ -136,19 +136,6 @@ function XuatHang() {
                                     <th>Tên sản phẩm</th>
                                     <th>Số lượng</th>
                                 </tr>
-                          
-                                <tr>
-                                    <td>
-                                        <select className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodId'>
-                                            <option value=""></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodName' /></td>
-                                    <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} onChange={onChangeFunction} name='count' /></td>
-                                    <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
-                                </tr>
 
                                 <tr>
                                     <td>
@@ -188,9 +175,22 @@ function XuatHang() {
                                     <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} onChange={onChangeFunction} name='count' /></td>
                                     <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
                                 </tr>
-                             
-                            </table>  
-                       </div>
+
+                                <tr>
+                                    <td>
+                                        <select className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodId'>
+                                            <option value=""></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" className={styles.exportGoodsInput} onChange={onChangeFunction} name='goodName' /></td>
+                                    <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} onChange={onChangeFunction} name='count' /></td>
+                                    <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
+                                </tr>
+
+                            </table>
+                        </div>
                         <div className={styles.billWrapper}>
                             <div className={styles.exportGoodsInputBillWrapper} ref={componentRef}>
                                 <p className={styles.exportGoodsInputBillTitle}>Biên lai xuất kho</p>
@@ -222,7 +222,7 @@ function XuatHang() {
                                     <input type="text" className={styles.exportGoodsInputBillItemInput} name='order' />
                                 </div>
                                 <table className={styles.exportGoodsInputBillTable}>
-                                <thead>
+                                    <thead>
                                         <tr>
                                             <th>Mã sản phẩm</th>
                                             <th>Tên sản phẩm</th>
@@ -231,16 +231,16 @@ function XuatHang() {
                                             <th>Hạn sử dụng</th>
                                             <th>Giá</th>
                                         </tr>
-                                </thead>
-                                <tbody>
+                                    </thead>
+                                    <tbody>
 
-                                </tbody>
+                                    </tbody>
                                 </table>
                                 <div className={styles.exportGoodsInputBillItem}>
                                     <p className={styles.exportGoodsInputBillItemTitle}>
                                         Ghi chú
                                     </p>
-                                    <textarea rows={4} style={{height: 'auto'}} className={styles.exportGoodsInputBillItemInput} name='note' />
+                                    <textarea rows={4} style={{ height: 'auto' }} className={styles.exportGoodsInputBillItemInput} name='note' />
                                 </div>
                                 <div className={styles.signatureWrapper}>
                                     <div className={styles.signature}>
@@ -254,30 +254,30 @@ function XuatHang() {
                             </div>
                         </div>
                     </div>
-                 
-                </div>      
-                 
+
+                </div>
+
             </div>
             <Dialog open={open} onClose={handleClose} className={styles.dialogWrapper}>
                 <DialogTitle>
-                    <FontAwesomeIcon style={{color: '#ebca69', fontSize: '22px', marginRight: '7px'}} icon={faTriangleExclamation}/> Xác nhận xuất kho ?
+                    <FontAwesomeIcon style={{ color: '#ebca69', fontSize: '22px', marginRight: '7px' }} icon={faTriangleExclamation} /> Xác nhận xuất kho ?
                 </DialogTitle>
                 <DialogActions>
-                    <Button onClick={handleClose} sx={{fontWeight: '700'}}>Không</Button>
-                    <Button onClick={handleClickOpenPrint} autoFocus sx={{fontWeight: '700'}}>
-                       Có
+                    <Button onClick={handleClose} sx={{ fontWeight: '700' }}>Không</Button>
+                    <Button onClick={handleClickOpenPrint} autoFocus sx={{ fontWeight: '700' }}>
+                        Có
                     </Button>
                 </DialogActions>
             </Dialog>
 
             <Dialog open={openPrint} onClose={closeAllDialog} className={styles.dialogWrapper}>
                 <DialogTitle>
-                    <FontAwesomeIcon style={{color: '#ebca69', fontSize: '22px', marginRight: '7px'}} icon={faTriangleExclamation}/> Xác nhận in ?
+                    <FontAwesomeIcon style={{ color: '#ebca69', fontSize: '22px', marginRight: '7px' }} icon={faTriangleExclamation} /> Xác nhận in ?
                 </DialogTitle>
                 <DialogActions>
-                    <Button onClick={closeAllDialog} sx={{fontWeight: '700'}}>Không</Button>
-                    <Button onClick={handlePrint} autoFocus sx={{fontWeight: '700'}}>
-                       Có
+                    <Button onClick={closeAllDialog} sx={{ fontWeight: '700' }}>Không</Button>
+                    <Button onClick={handlePrint} autoFocus sx={{ fontWeight: '700' }}>
+                        Có
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -287,7 +287,7 @@ function XuatHang() {
                 <div className={styles.closeButtonWrapper} onClick={handleClose}>
                     <button className={styles.closeButton}><FontAwesomeIcon icon={faXmark} /></button>
                 </div>
-                <DialogTitle id="alert-dialog-title" style={{textAlign: 'center', fontWeight: '700', fontSize: '30px'}}>
+                <DialogTitle id="alert-dialog-title" style={{ textAlign: 'center', fontWeight: '700', fontSize: '30px' }}>
                     {"Đưa mã vạch vào khung hình"}
                 </DialogTitle>
                 <BarcodeScanner />

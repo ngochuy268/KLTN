@@ -100,8 +100,6 @@ function Login() {
         }
     }
 
-    const checkRoleLogin = () => { return flat }
-
     // Keypress function
     const handlePressEnter = (event) => {
         if (event.charCode === 13 && event.code === "Enter") {

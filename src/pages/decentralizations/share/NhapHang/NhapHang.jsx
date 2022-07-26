@@ -4,17 +4,17 @@ import { faBarcode, faPlus, faTrash, faXmark } from '@fortawesome/free-solid-svg
 import $ from 'jquery';
 import { useEffect, useState } from 'react';
 import { Dialog, DialogTitle } from '@mui/material';
-import BarcodeScanner from '../../../../../components/barcode/BarcodeScanner';
+import BarcodeScanner from '../../../../components/barcode/BarcodeScanner';
 
 function NhapHang() {
 
     useEffect(() => {
-        $(`.${styles.delButton}`).on('click', function() {
+        $(`.${styles.delButton}`).on('click', function () {
             $(this).parent().parent().remove();
         })
 
-        $(`.${styles.addButton}`).on('click', function() {
-            $(`.${styles.exportGoodsInputItems}`).append( 
+        $(`.${styles.addButton}`).on('click', function () {
+            $(`.${styles.exportGoodsInputItems}`).append(
                 ` <tr>
                     <td>
                         <select class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='goodTypeId'>
@@ -37,18 +37,18 @@ function NhapHang() {
                     <td><input type="text" class=${styles.exportGoodsInput} onkeydown=${(event) => handlePressEnter(event)} onchange=${onChangeFunction} name='note' /></td>
                     <td><button class=${styles.delButton}><i class="fas fa-trash"></i></button></td>
                 </tr>`)
-                
-            $(`.${styles.delButton}`).on('click', function() {
+
+            $(`.${styles.delButton}`).on('click', function () {
                 $(this).parent().parent().remove();
             })
         })
-    },[]) 
+    }, [])
 
     // Open and close
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
         setOpen(true);
-      };
+    };
     const handleClose = () => {
         setOpen(false);
     };
@@ -74,7 +74,7 @@ function NhapHang() {
             )
         }
     }
-    return(
+    return (
         <>
             <div className={styles.container}>
                 <div className={styles.wrapper}>
@@ -82,7 +82,7 @@ function NhapHang() {
                         <p>Nhập hàng vào kho</p>
                         <div className={styles.scanWrapper}>
                             <p>Quét mã sản phẩm</p>
-                            <button className={styles.scanButton}><FontAwesomeIcon icon={faBarcode} onClick={handleClickOpen}/></button>
+                            <button className={styles.scanButton}><FontAwesomeIcon icon={faBarcode} onClick={handleClickOpen} /></button>
                         </div>
                     </div>
 
@@ -91,15 +91,15 @@ function NhapHang() {
                             <span>Danh sách sản phẩm</span>
                         </div>
                         <div className={styles.addGoods}>
-                        <table className={styles.exportGoodsInputItems}>
+                            <table className={styles.exportGoodsInputItems}>
                                 <tr>
-                                    <th style={{width: '5%'}} >Mã loại</th>
-                                    <th style={{width: '10%'}}>Mã sản phẩm</th>
-                                    <th style={{width: '20%'}}>Tên sản phẩm</th>
-                                    <th style={{width: '10%'}}>Số lượng</th>
-                                    <th style={{width: '10%'}}>Ngày sản xuất</th>
-                                    <th style={{width: '20%'}}>Vị trí</th>
-                                    <th style={{width: '25%'}}>Ghi chú</th>
+                                    <th style={{ width: '5%' }} >Mã loại</th>
+                                    <th style={{ width: '10%' }}>Mã sản phẩm</th>
+                                    <th style={{ width: '20%' }}>Tên sản phẩm</th>
+                                    <th style={{ width: '10%' }}>Số lượng</th>
+                                    <th style={{ width: '10%' }}>Ngày sản xuất</th>
+                                    <th style={{ width: '20%' }}>Vị trí</th>
+                                    <th style={{ width: '25%' }}>Ghi chú</th>
                                 </tr>
                                 <tr>
                                     <td>
@@ -189,24 +189,24 @@ function NhapHang() {
                                     <td><input type="text" className={styles.exportGoodsInput} onKeyDown={(event) => handlePressEnter(event)} onChange={onChangeFunction} name='note' /></td>
                                     <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
                                 </tr>
-                              
-                            </table> 
+
+                            </table>
                         </div>
                         <div className={styles.addButtonWrapper}>
-                            <button className={styles.addButton}><FontAwesomeIcon icon={faPlus}/></button>
+                            <button className={styles.addButton}><FontAwesomeIcon icon={faPlus} /></button>
                         </div>
                         <div className={styles.saveButtonWrapper}>
                             <button className={styles.saveButton}>Cập nhật</button>
                         </div>
                     </div>
-                </div>         
+                </div>
             </div>
-              {/* BarcodeScanner */}
-              <Dialog open={open} onClose={handleClose}>
+            {/* BarcodeScanner */}
+            <Dialog open={open} onClose={handleClose}>
                 <div className={styles.closeButtonWrapper} onClick={handleClose}>
                     <button className={styles.closeButton}><FontAwesomeIcon icon={faXmark} /></button>
                 </div>
-                <DialogTitle id="alert-dialog-title" style={{textAlign: 'center', fontWeight: '700', fontSize: '30px'}}>
+                <DialogTitle id="alert-dialog-title" style={{ textAlign: 'center', fontWeight: '700', fontSize: '30px' }}>
                     {"Đưa mã vạch vào khung hình"}
                 </DialogTitle>
                 <BarcodeScanner />

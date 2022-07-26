@@ -1,21 +1,20 @@
 import { Route, Switch } from "react-router-dom";
 import styles from '../pages/decentralizations/admin/layouts/css/Content.module.scss';
 
-import LayoutAdmin from "../pages/decentralizations/admin/layouts/Layout";
-
 import TongQuan from "../pages/decentralizations/admin/pages/TongQuan/TongQuan";
-import CongViec from "../pages/decentralizations/admin/pages/CongViec/CongViec";
 import BaoCao from "../pages/decentralizations/admin/pages/BaoCao/BaoCao";
 
 import DanhSachSanPham from "../pages/decentralizations/admin/pages/QuanLyKho/DanhSachSanPham/DanhSachSanPham";
 import ThemSanPham from "../pages/decentralizations/admin/pages/QuanLyKho/ThemSanPham/ThemSanPham";
 import TongQuan1 from "../pages/decentralizations/admin/pages/QuanLyKho/TongQuan/TongQuan";
 import XuatNhap from "../pages/decentralizations/admin/pages/QuanLyKho/XuatNhap/XuatNhap";
-
 import DanhSachNhanVien from "../pages/decentralizations/admin/pages/QuanLyNhanVien/DanhSachNhanVien/DanhSachNhanVien";
 import ThemNhanVien from "../pages/decentralizations/admin/pages/QuanLyNhanVien/ThemNhanVien/ThemNhanVIen";
-import NhapHang from "../pages/decentralizations/admin/pages/NhapXuatKho/NhapHang/NhapHang";
-import XuatHang from "../pages/decentralizations/admin/pages/NhapXuatKho/XuatHang/XuatHang";
+
+import CaNhan from "../pages/decentralizations/share/CaNhan/CaNhan";
+import NhapHang from "../pages/decentralizations/share/NhapHang/NhapHang";
+import XuatHang from "../pages/decentralizations/share/XuatHang/XuatHang";
+import CongViec from "../pages/decentralizations/share/CongViec/CongViec";
 
 import PrivateRoute from "./PrivateRoute";
 
@@ -23,10 +22,7 @@ function ContentAdmin() {
     console.log("check admin route")
     return (
         <div className={styles.content}>
-
-
-
-            {/* Menu Routes */}
+            <Route path='/canhan' component={CaNhan} />
             <Route path='/tongquan' component={TongQuan} />
             <Route path='/congviec' component={CongViec} />
             <Route path='/baocao' component={BaoCao} />

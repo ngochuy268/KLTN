@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 $font: 'Roboto', sans-serif;
-$text-color: rgb(204,255,204);
+$text-color: rgb(204, 255, 204);
 $mgRightMenuName: 10px;
 $fontSize: 16px;
 $borderColor: 1px solid #ced4da;
-$innerShadow:  inset 0px 4px 12px -4px #ABABAB;
+$innerShadow: inset 0px 4px 12px -4px #ABABAB;
 
 .wrapper {
     &:nth-child(2) {
@@ -31,30 +31,30 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
         margin-left: 30px;
         align-items: center;
 
-      
+
     }
 }
 
-.exportGoodsInputBillItemsWrapper{
+.exportGoodsInputBillItemsWrapper {
     width: 45%;
     margin-right: 30px;
 
-    .addButtonWrapper{
+    .addButtonWrapper {
         text-align: right;
 
         .addButton {
             padding: 10px 30px;
             border-radius: 5px;
-            background: rgb(37,135,4);
-            background: linear-gradient(180deg, rgba(37,135,4,1) 0%, rgba(21,180,12,1) 0%);
+            background: rgb(37, 135, 4);
+            background: linear-gradient(180deg, rgba(37, 135, 4, 1) 0%, rgba(21, 180, 12, 1) 0%);
             border: transparent;
             font-size: 18px;
             color: white;
             cursor: pointer;
 
             &:hover {
-                background: rgb(59,199,11);
-                background: linear-gradient(180deg, rgba(59,199,11,1) 0%, rgba(26,228,14,1) 91%);
+                background: rgb(59, 199, 11);
+                background: linear-gradient(180deg, rgba(59, 199, 11, 1) 0%, rgba(26, 228, 14, 1) 91%);
             }
         }
     }
@@ -87,12 +87,14 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
             font-size: 18px;
 
             &:hover {
-              color: #F84B24;
+                color: #F84B24;
             }
         }
     }
 
-    .exportGoodsInputItems, th, td {
+    .exportGoodsInputItems,
+    th,
+    td {
         height: 60px;
         font-size: 17px;
         border: transparent;
@@ -103,39 +105,41 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
             box-shadow: $innerShadow;
             outline: none;
         }
+
         tr:nth-child(odd) {
             background-color: #fff;
         }
     }
 
-    .exportGoodsInputBillWrapper{
-        
+    .exportGoodsInputBillWrapper {
+
         flex-grow: 2;
         border: $borderColor;
         border-radius: 8px;
         padding: 12px;
         height: fit-content;
-        -webkit-box-shadow: 2px 3px 6px -1px rgba(0,0,0,0.61); 
-        box-shadow: 2px 3px 6px -1px rgba(0,0,0,0.61);
-        background: url(../../../../../../assets/layoutImg/opacitylogo.png);
+        -webkit-box-shadow: 2px 3px 6px -1px rgba(0, 0, 0, 0.61);
+        box-shadow: 2px 3px 6px -1px rgba(0, 0, 0, 0.61);
+        background: url(../../../../assets/layoutImg/opacitylogo.png);
 
-        .signatureWrapper{
+        .signatureWrapper {
             display: flex;
             justify-content: flex-end;
             margin-bottom: 25px;
-        
+
             .signature {
                 text-align: center;
             }
         }
-        
+
         .exportGoodsInputBillTitle {
             font-size: 30px;
             font-weight: 700;
             text-align: center;
             margin: 0px;
         }
-        .exportGoodsInputBillDate{
+
+        .exportGoodsInputBillDate {
             text-align: right;
 
             span {
@@ -149,7 +153,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
             margin: 15px 0 0 0;
         }
 
-        .exportGoodsInputBillItem{
+        .exportGoodsInputBillItem {
             width: 100%;
             padding: 10px 5px;
             display: flex;
@@ -178,19 +182,23 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
             border-collapse: collapse;
             border-radius: 7px;
 
-            th,td {
+            th,
+            td {
                 border-bottom: $borderColor;
                 background-color: white;
             }
 
         }
 
-        .exportGoodsInputBillTable,th,td {
+        .exportGoodsInputBillTable,
+        th,
+        td {
             height: 40px;
             margin: 15px 5px;
         }
     }
 }
+
 .saveButtonWrapper {
     display: flex;
     justify-content: center;
@@ -206,8 +214,8 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
         cursor: pointer;
 
         &:hover {
-            background: rgb(4,66,135);
-            background: linear-gradient(180deg, rgba(4,66,135,1) 0%, rgba(12,29,180,1) 82%);
+            background: rgb(4, 66, 135);
+            background: linear-gradient(180deg, rgba(4, 66, 135, 1) 0%, rgba(12, 29, 180, 1) 82%);
         }
     }
 }
@@ -217,35 +225,38 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
 }
 
 .dialogWrapper {
-    box-shadow: 0px 0px 19px -1px rgba(255,0,0,0.69);
+    box-shadow: 0px 0px 19px -1px rgba(255, 0, 0, 0.69);
 }
 
 @media print {
     body * {
         visibility: hidden;
     }
-    .exportGoodsInputBillWrapper, .exportGoodsInputBillWrapper * {
+
+    .exportGoodsInputBillWrapper,
+    .exportGoodsInputBillWrapper * {
         visibility: visible;
     }
-    
-    .exportGoodsInputBillWrapper{
+
+    .exportGoodsInputBillWrapper {
         margin: 12px;
         border: $borderColor;
         border-radius: 8px;
         padding: 12px;
         margin-top: 100px;
         height: fit-content;
-        -webkit-box-shadow: 2px 3px 6px -1px rgba(0,0,0,0.61); 
-        box-shadow: 2px 3px 6px -1px rgba(0,0,0,0.61);
-        background: url(../../../../../../assets/layoutImg/opacitylogo.png);
-        
+        -webkit-box-shadow: 2px 3px 6px -1px rgba(0, 0, 0, 0.61);
+        box-shadow: 2px 3px 6px -1px rgba(0, 0, 0, 0.61);
+        background: url(../../../../assets//layoutImg/opacitylogo.png);
+
         .exportGoodsInputBillTitle {
             font-size: 30px;
             font-weight: 700;
             text-align: center;
             margin: 0px;
         }
-        .exportGoodsInputBillDate{
+
+        .exportGoodsInputBillDate {
             text-align: right;
 
             span {
@@ -259,7 +270,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
             margin: 15px 0 0 0;
         }
 
-        .exportGoodsInputBillItem{
+        .exportGoodsInputBillItem {
             width: 100%;
             padding: 10px 5px;
             display: flex;
@@ -287,14 +298,17 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
             border-collapse: collapse;
             border-radius: 7px;
 
-            th,td {
+            th,
+            td {
                 border-bottom: $borderColor;
                 background-color: white;
             }
 
         }
 
-        .exportGoodsInputBillTable,th,td {
+        .exportGoodsInputBillTable,
+        th,
+        td {
             height: 40px;
             margin: 15px 5px;
         }
@@ -303,7 +317,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
             display: flex;
             justify-content: center;
             padding: 20px;
-    
+
             .saveButton {
                 padding: 10px 30px;
                 border-radius: 5px;
@@ -314,12 +328,13 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
                 cursor: pointer;
 
                 &:hover {
-                    background: rgb(4,66,135);
-                    background: linear-gradient(180deg, rgba(4,66,135,1) 0%, rgba(12,29,180,1) 82%);
+                    background: rgb(4, 66, 135);
+                    background: linear-gradient(180deg, rgba(4, 66, 135, 1) 0%, rgba(12, 29, 180, 1) 82%);
                 }
             }
         }
-        .signatureWrapper{
+
+        .signatureWrapper {
             display: flex;
             justify-content: flex-end;
             margin-bottom: 25px;
@@ -336,18 +351,18 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
     justify-content: flex-end;
     padding: 8px;
 
-    .closeButton{
+    .closeButton {
         color: white;
         border: none;
         padding: 8px 12px;
         border-radius: 6px;
-        background: rgb(237,2,2);
-        background: linear-gradient(180deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+        background: rgb(237, 2, 2);
+        background: linear-gradient(180deg, rgba(237, 2, 2, 1) 0%, rgba(249, 45, 0, 0.9047355758709734) 79%);
 
         &:hover {
             cursor: pointer;
-            background: rgb(237,2,2);
-            background: linear-gradient(0deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+            background: rgb(237, 2, 2);
+            background: linear-gradient(0deg, rgba(237, 2, 2, 1) 0%, rgba(249, 45, 0, 0.9047355758709734) 79%);
         }
     }
 }
@@ -360,7 +375,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
         background-color: transparent;
         border: transparent;
         font-size: 25px;
-    
+
         &:hover {
             color: #fff;
             cursor: pointer;

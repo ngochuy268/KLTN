@@ -1,5 +1,4 @@
 import styles from './css/Layout.module.scss';
-import avatar from '../../../../assets/layoutImg/avatar.png';
 import { Link } from 'react-router-dom';
 import { SidebarData } from '../../../../components/sidebar/SidebarData';
 import Header from '../../../../components/header/Header';
@@ -14,14 +13,32 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import TreeItem from '@mui/lab/TreeItem';
 import { useState, useEffect } from 'react';
 
-
 import { style } from "../../../../components/chatbox/client/styles.jsx";
 import '../../../../components/chatbox/client/index.scss';
 import io from "socket.io-client";
 import Chat from '../../../../components/chatbox/client/chatwindow/chat';
 
+import React from "react";
+import { UserContext } from "../../../../context/userContext";
+import { getUser } from "../../../../services/userServices";
+
 
 function LayoutAdmin() {
+
+    // get user data from database
+    const { user } = React.useContext(UserContext);
+    const [userData, setUserData] = useState({});
+
+    useEffect(() => {
+        fetchUserData(user.account.id);
+    }, [])
+
+    const fetchUserData = async (id) => {
+        let response = await getUser(id);
+        if (response && response.EC === 0) {
+            setUserData(response.DT);
+        }
+    }
 
     // Scroll top function
     const topFunction = () => {
@@ -53,14 +70,21 @@ function LayoutAdmin() {
             <div className={styles.container}>
                 <div className={styles.gridColumn2}>
                     <div className="pageHeadWrapper">
-                        <div className={styles.userAdmin}>
-                            <div style={{ width: '80px' }} align="center">
-                                <img src={avatar} alt="user-logo" style={{ width: "50px", borderRadius: '50%' }} />
-                            </div>
-                            <div className={styles.pageNameWrapper}>
-                                <Link to='/canhan' className={styles.pageNameUser}>Nguyễn Văn A</Link>
-                            </div>
-                        </div>
+                        {userData ?
+                            <>
+                                <div className={styles.userAdmin}>
+                                    <div style={{ width: '80px' }} align="center">
+                                        <img src={userData.Avata ? require(`../../../../assets/layoutImg/Avatar/${userData.Avata}`).default : require(`../../../../assets/layoutImg/avatar.png`).default}
+                                            alt="user-logo" style={{ width: "50px", borderRadius: '50%' }} />
+                                    </div>
+                                    <div className={styles.pageNameWrapper}>
+                                        <Link to='/canhan' className={styles.pageNameUser}>{userData.HoTen}</Link>
+                                    </div>
+                                </div>
+                            </>
+                            :
+                            <><span>Not found data</span></>
+                        }
                     </div>
 
                     {/* Sidebar */}
@@ -68,7 +92,7 @@ function LayoutAdmin() {
                         aria-label="file system navigator"
                         defaultCollapseIcon={<ArrowDropdownIcon />}
                         defaultExpandIcon={<ArrowRightIcon />}
-                        className = {styles.treeViewComponent}
+                        className={styles.treeViewComponent}
                         sx={{ flexGrow: 1, maxWidth: 400, overflowY: 'auto', textAlign: 'left', padding: '30px 20px', color: 'white' }}
                     >
                         <TreeItem nodeId='1'
@@ -79,7 +103,7 @@ function LayoutAdmin() {
                                 </div>
                             </Link>}
                         />
-                        {SidebarData.map((item,index) => (
+                        {SidebarData.map((item, index) => (
                             <TreeItem
                                 key={index}
                                 nodeId={item.id}
@@ -88,7 +112,7 @@ function LayoutAdmin() {
                                     <p>{item.title}</p>
                                 </div>}
                             >
-                                {item.subNav.map((item,index) => (
+                                {item.subNav.map((item, index) => (
                                     <TreeItem
                                         key={index}
                                         nodeId={item.id}

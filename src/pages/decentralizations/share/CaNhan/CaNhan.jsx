@@ -2,11 +2,11 @@ import React from "react";
 import styles from './CaNhan.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCakeCandles, faVenusMars, faPhone, faEnvelope, faLocationDot, faCalendarDays, faWindowRestore, faNoteSticky, faFileSignature } from '@fortawesome/free-solid-svg-icons';
-import avatar from '../../../../../assets/layoutImg/avatar.png';
+import avatar from '../../../../assets/layoutImg/avatar.png';
 import { Link } from "react-router-dom";
 
-import { UserContext } from "../../../../../context/userContext";
-import { getUser } from "../../../../../services/userServices";
+import { UserContext } from "../../../../context/userContext";
+import { getUser } from "../../../../services/userServices";
 import { useState, useEffect } from 'react';
 
 
