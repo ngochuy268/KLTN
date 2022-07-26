@@ -90,7 +90,7 @@ function Login() {
 
                 }
                 if (+ level == 1) {
-                    history.push('/user/canhan');
+                    history.push('/canhan');
 
                 }
 
