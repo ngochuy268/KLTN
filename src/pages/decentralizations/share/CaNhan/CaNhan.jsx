@@ -44,7 +44,8 @@ function CaNhan() {
                                 <>
                                     <div className={styles.backgroundImg}>
                                         <div className={styles.employeeBasicInfoWrapper}>
-                                            <img src={avatar} alt='avatar' className={styles.employeeAvatar} />
+                                            <img src={userData.Avata ? require(`../../../../assets/layoutImg/Avatar/${userData.Avata}`).default : avatar}
+                                                alt='avatar' className={styles.employeeAvatar} />
                                             <div className={styles.employeeBasic} style={{ textAlign: 'center', marginTop: '20px' }}>
                                                 <span style={{ fontWeight: '700' }}>Mã nhân viên: {userData.id}</span>
                                                 <p className={styles.employeeInfoParagraph}></p>
@@ -73,16 +74,16 @@ function CaNhan() {
                                                 <div className={styles.employeeContentInfoExpandWrapper}>
                                                     <div className={styles.employeeInfoContent}>
                                                         <span className={styles.employeeInfoTitle}><FontAwesomeIcon icon={faPhone} /> Số điện thoại: </span>
-                                                        <p className={styles.employeeInfoParagraph}>0{userData.Tel}</p>
+                                                        <p className={styles.employeeInfoParagraph}>{userData.Tel}</p>
                                                     </div>
                                                     <div className={styles.employeeInfoContent}>
                                                         <span className={styles.employeeInfoTitle}>Zalo: </span>
-                                                        <p className={styles.employeeInfoParagraph}>0{userData.Tel}</p>
+                                                        <p className={styles.employeeInfoParagraph}>{userData.Zalo}</p>
                                                     </div>
                                                 </div>
                                                 <div className={styles.employeeInfoContent}>
                                                     <span className={styles.employeeInfoTitle}><FontAwesomeIcon icon="fa-brands fa-facebook" /> Facebook: </span>
-                                                    <p className={styles.employeeInfoParagraph}>https://www.facebook.com/</p>
+                                                    <p className={styles.employeeInfoParagraph}>{userData.Facebook}</p>
                                                 </div>
                                                 <div className={styles.employeeInfoContent}>
                                                     <span className={styles.employeeInfoTitle}><FontAwesomeIcon icon={faEnvelope} /> Email: </span>

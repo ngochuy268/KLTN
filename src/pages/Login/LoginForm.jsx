@@ -95,8 +95,7 @@ function Login() {
                 }
 
             }
-            toast.success(response.EM);
-
+            toast.success("Chúc bạn có một ngày làm việc vui vẻ !");
         }
     }
 
