@@ -95,7 +95,7 @@ function Login() {
                 }
 
             }
-            toast.error(response.EM);
+            toast.success(response.EM);
 
         }
     }
@@ -156,7 +156,7 @@ function Login() {
                         <button type='button' className='loginButton' onClick={onSubmitLogin}>Đăng nhập</button>
                     </div>
                     <div className='formForgotPassword'>
-                        <Link to='/forgotPassword_info' className='link'>Quên mật khẩu</Link>
+                        <Link to='/forgotPasswordinfo' className='link'>Quên mật khẩu</Link>
                     </div>
                 </form>
             </div>

@@ -43,15 +43,6 @@ function TongQuan1() {
         })
     }, [])
 
-    // Table goods data
-    const fetchTableGood = async (MaLoai) => {
-        // console.log(">> check fetch data ")
-        let response = await fetchDataPieChartTable(MaLoai);
-        if (response && response.EC === 0) {
-            setTablegood(response.DT);
-        }
-    }
-
 
     const columns = [
         { id: 'id', label: 'Mã sản phẩm', minWidth: 170 },
@@ -142,7 +133,7 @@ function TongQuan1() {
                                                     <TableBody>
                                                         {item.tablesp.map((item, index) => {
                                                             return (
-                                                                <TableRow>
+                                                                <TableRow key={index}>
                                                                     <TableCell>{item.masp}</TableCell>
                                                                     <TableCell>{item.tensp}</TableCell>
                                                                     <TableCell>{item.soluong}</TableCell>

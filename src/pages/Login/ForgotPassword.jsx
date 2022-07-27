@@ -1,6 +1,5 @@
-﻿import logo from '../../assets/layoutImg/logo.png';
+﻿import logo from '../../assets/loginImg/logo.jpg';
 import styles from '../Login/css/ForgotPassword.module.scss';
-import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { firebase, auth } from '../Login/js/firebase';
@@ -8,7 +7,6 @@ import { useHookID, useHookOtp, useHookPhone, useHookResult, useHookStateValidat
 import isEmpty from 'validator/lib/isEmpty';
 
 function ForgotPasswordInFo() {
-    let history = useHistory();
     const [phoneNumber, setPhoneNumber] = useHookPhone();
     const [iD, setID] = useHookID();
     const [otp, setOtp] = useHookOtp();
@@ -136,7 +134,7 @@ function ForgotPasswordInFo() {
 
                     {step === 'VERIFY_SUCCESS' && 
                         <> 
-                            history.push('/changePassword')
+                            {/* history.push('/changePassword') */}
                             {/* <Navigate to='/changePassword' replace={true} /> */}
                         </>
                     }
@@ -162,4 +160,4 @@ function ForgotPasswordInFo() {
     );
 }
 
-export default ForgotPasswordInFo
+export default ForgotPasswordInFo;

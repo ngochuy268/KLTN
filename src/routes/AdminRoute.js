@@ -16,8 +16,6 @@ import NhapHang from "../pages/decentralizations/share/NhapHang/NhapHang";
 import XuatHang from "../pages/decentralizations/share/XuatHang/XuatHang";
 import CongViec from "../pages/decentralizations/share/CongViec/CongViec";
 
-import PrivateRoute from "./PrivateRoute";
-
 function ContentAdmin() {
     console.log("check admin route")
     return (

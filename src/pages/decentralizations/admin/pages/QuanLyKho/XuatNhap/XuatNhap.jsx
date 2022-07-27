@@ -241,9 +241,9 @@ function XuatNhap() {
                                     <Table stickyHeader aria-label="sticky table">
                                         <TableHead>
                                             <TableRow>
-                                            {columns.map((column) => (
+                                            {columns.map((column,index) => (
                                                 <StyledTableCell 
-                                                key={column.id}
+                                                key={index}
                                                 align={column.align}
                                                 style={{ minWidth: column.minWidth }}
                                                 >
@@ -256,13 +256,13 @@ function XuatNhap() {
                                         <TableBody>
                                             {rows
                                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                            .map((row) => {
+                                            .map((row,index) => {
                                                 return (
-                                                <TableRow hover role="checkbox" tabIndex={-1} key={row.code} className='goodName'>
-                                                    {columns.map((column) => {
+                                                <TableRow hover role="checkbox" tabIndex={-1} key={index} className='goodName'>
+                                                    {columns.map((column,indexI) => {
                                                     const value = row[column.id];
                                                     return (
-                                                        <TableCell key={column.id} align={column.align} >
+                                                        <TableCell key={index} align={column.align} >
                                                         {column.format && typeof value === 'number'
                                                             ? column.format(value)
                                                             : value}
@@ -296,9 +296,9 @@ function XuatNhap() {
                                         <Table stickyHeader aria-label="sticky table">
                                             <TableHead>
                                                 <TableRow>
-                                                {columnsI.map((column) => (
+                                                {columnsI.map((column,index) => (
                                                     <StyledTableCell 
-                                                        key={column.id}
+                                                        key={index}
                                                         align={column.align}
                                                         style={{ minWidth: column.minWidth }}
                                                         >
@@ -312,13 +312,13 @@ function XuatNhap() {
                                             <TableBody>
                                                 {rowsI
                                                 .slice(pageI * rowsPerPageI, pageI * rowsPerPageI + rowsPerPageI)
-                                                .map((row) => {
+                                                .map((row,index) => {
                                                     return (
-                                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code} className='goodName'>
-                                                        {columnsI.map((column) => {
+                                                    <TableRow hover role="checkbox" tabIndex={-1} key={index} className='goodName'>
+                                                        {columnsI.map((column,indexI) => {
                                                         const value = row[column.id];
                                                         return (
-                                                            <TableCell key={column.id} align={column.align} >
+                                                            <TableCell key={indexI} align={column.align} >
                                                             {column.format && typeof value === 'number'
                                                                 ? column.format(value)
                                                                 : value}

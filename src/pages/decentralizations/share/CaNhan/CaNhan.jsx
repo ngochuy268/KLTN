@@ -73,11 +73,11 @@ function CaNhan() {
                                                 <div className={styles.employeeContentInfoExpandWrapper}>
                                                     <div className={styles.employeeInfoContent}>
                                                         <span className={styles.employeeInfoTitle}><FontAwesomeIcon icon={faPhone} /> Số điện thoại: </span>
-                                                        <p className={styles.employeeInfoParagraph}>{userData.Tel}</p>
+                                                        <p className={styles.employeeInfoParagraph}>0{userData.Tel}</p>
                                                     </div>
                                                     <div className={styles.employeeInfoContent}>
                                                         <span className={styles.employeeInfoTitle}>Zalo: </span>
-                                                        <p className={styles.employeeInfoParagraph}>{userData.Tel}</p>
+                                                        <p className={styles.employeeInfoParagraph}>0{userData.Tel}</p>
                                                     </div>
                                                 </div>
                                                 <div className={styles.employeeInfoContent}>

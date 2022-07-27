@@ -18,7 +18,7 @@ const AppRoutes = (props) => {
 
                 {/* <Route path="/" component={Login}></Route> */}
                 <Route path="/login" component={Login}></Route>
-                <Route path='/forgotPassword_info' component={ForgotPasswordInFo}> </Route>
+                <Route path='/forgotPasswordinfo' component={ForgotPasswordInFo} /> 
                 <Route path='/changePassword' component={ChangePassword}></Route>
                 {/* <LayoutAdmin /> */}
 

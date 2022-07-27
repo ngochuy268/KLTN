@@ -45,9 +45,15 @@ const fetchDataShowNV = () => {
 
 }
 
-const fetchDataSelectSP = () => {
+const fetchDataSelectLoaiSP = () => {
     return axios.get('/api/v1/select/loaisanpham')
 }
+
+const fetchDataSelectSP = (MaLoai) => {
+    return axios.post('/api/v1/select/sanpham',{MaLoai})
+}
+
+
 
 const getLoaiSPTQ = () => {
     return axios.get('/api/v1/khohang/tongquan/loaisanpham')
@@ -59,5 +65,5 @@ export {
     fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS,
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
     fetchDataPieChart, fetchDataPieChartTable, getLoaiSPTQ,
-    fetchDataShowSP,fetchDataShowNV,fetchDataSelectSP
+    fetchDataShowSP,fetchDataShowNV,fetchDataSelectSP,fetchDataSelectLoaiSP
 }
