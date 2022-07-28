@@ -8,6 +8,7 @@ import { tableCellClasses } from '@mui/material/TableCell';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { fetchDataPieChart, fetchDataPieChartTable } from '../../../../../../services/khoHangServices';
+import clsx from 'clsx';
 
 function TongQuan1() {
 
@@ -32,25 +33,33 @@ function TongQuan1() {
     useEffect(() => {
         const $$ = document.querySelectorAll.bind(document);
 
-        const goodName = $$(`.goodName`);
-        const goodsTableDetails = $$(`.${styles.goodsTableDetails}`);
-
+        const goodName = $$(`.${styles.showIcon}`);
+        const goodsTableDetails = $$(`.${styles.goodsTableDetailWrapper}`);
         goodName.forEach((item, index) => {
             const goodsTableDetailsIndex = goodsTableDetails[index];
-            item.onclick = function () {
+            item.onclick = function() {
+                console.log(goodsTableDetailsIndex)
                 goodsTableDetailsIndex.classList.toggle(`${styles.active}`);
             }
         })
-    }, [])
+    })
+
 
 
     const columns = [
-        { id: 'id', label: 'Mã sản phẩm', minWidth: 170 },
-        { id: 'name', label: 'Tên sản phẩm', minWidth: 100 },
+        { id: 'Mã loại', label: 'Mã sản phẩm', minWidth: 100 },
+        { id: 'name', label: 'Tên sản phẩm', minWidth: 180 },
         {
             id: 'count',
             label: 'Số lượng',
-            minWidth: 170,
+            minWidth: 100,
+            align: 'right',
+            format: (value) => value.toLocaleString('en-US'),
+        },
+        {
+            id: 'view',
+            label: '',
+            minWidth: 30,
             align: 'right',
             format: (value) => value.toLocaleString('en-US'),
         },
@@ -101,8 +110,6 @@ function TongQuan1() {
 
                 {pieChartData && pieChartData.length > 0 ?
                     pieChartData.map((item, index) => {
-                        console.log(" checl item: ", item.loaisp.LoaiSanPhamId)
-                        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>");
                         return (
                             <>
                                 <div className={styles.listAndChartGoodsWrapper}>
@@ -114,20 +121,19 @@ function TongQuan1() {
                                             {PieChart(item.tensp, item.soluong)}
 
                                         </div>
-                                        <div className={styles.listGoods}>
+                                        <div className={clsx(styles.listGoods,styles.showTable)}>
                                             <TableContainer sx={{ maxHeight: 330 }}>
                                                 <Table stickyHeader aria-label="sticky table">
                                                     <TableHead>
                                                         <TableRow>
-                                                            {columns.map((column) => (
+                                                            {columns.map((column,index) => (
                                                                 <TableCell
-                                                                    key={column.id}
+                                                                    key={index}
                                                                     style={{ minWidth: column.minWidth }}
                                                                 >
                                                                     <b>{column.label}</b>
                                                                 </TableCell>
-                                                            ))}
-                                                            <TableCell></TableCell>
+                                                            ))}                                                          
                                                         </TableRow>
                                                     </TableHead>
                                                     <TableBody>
@@ -137,6 +143,7 @@ function TongQuan1() {
                                                                     <TableCell>{item.masp}</TableCell>
                                                                     <TableCell>{item.tensp}</TableCell>
                                                                     <TableCell>{item.soluong}</TableCell>
+                                                                    <TableCell ><FontAwesomeIcon icon={faEye} className={styles.showIcon} /></TableCell>
                                                                 </TableRow>
                                                             )
                                                         })}
@@ -148,8 +155,8 @@ function TongQuan1() {
                                     </div>
                                     {/* hidden table */}
                                     <div className={styles.goodsTableDetailWrapper}>
-                                        <TableContainer component={Paper} className={styles.goodsTableDetails}>
-                                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                                        <TableContainer component={Paper} >
+                                            <Table sx={{ minWidth: 700 }} aria-label="customized table" className={styles.goodsTableDetails} >
                                                 <TableHead>
                                                     <TableRow>
                                                         <StyledTableCell><b>Mã sản phẩm</b></StyledTableCell>
@@ -161,8 +168,8 @@ function TongQuan1() {
                                                     </TableRow>
                                                 </TableHead>
                                                 <TableBody>
-                                                    {rowsII.map((row) => (
-                                                        <StyledTableRow key={row.id}>
+                                                    {rowsII.map((row,index) => (
+                                                        <StyledTableRow key={index}>
                                                             <StyledTableCell component="th" scope="row">{row.id}</StyledTableCell>
                                                             <StyledTableCell align="right">{row.name}</StyledTableCell>
                                                             <StyledTableCell align="right">{row.date}</StyledTableCell>

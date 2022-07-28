@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { fetchDataDSNhapKho, fetchDataDSXuatKho } from '../../../../../../services/khoHangServices';
+import { toast } from 'react-toastify';
 
 
 function XuatNhap() {
@@ -17,7 +18,7 @@ function XuatNhap() {
     useEffect(() => {
         fetchDSXK();
         fetchDSNK();
-    })
+    },[])
 
     // Table goods export data
     const fetchDSXK = async () => {
@@ -224,6 +225,61 @@ function XuatNhap() {
         },
       }));
 
+    //   Get value from input
+    const [valueObj, setValueObj] = useState({
+        HoTen: '',
+        NVGiaoHang: '',
+        BenNhan:  '',
+        SanPham: {
+            TenSanPham: ''
+        },
+        SoLuong: '',
+        HSD: '',
+        ThanhTien: '',
+        GhiChu: ''
+    });
+    const handleUpdate = () => {
+        if (valueObj.HoTen === "" || valueObj.NVGiaoHang === "" 
+            || valueObj.BenNhan === "" || valueObj.SanPham.TenSanPham === "" 
+            || valueObj.SoLuong === "" || valueObj.HSD === "" || valueObj.ThanhTien === "" ) {
+            toast.error("Vui lòng điền đầy đủ thông tin!");
+            return false;
+        } else {
+            const newArr=[]; 
+            newArr.push(valueObj); 
+            console.log(newArr);
+            /* 
+                Code update lên db
+            */
+            toast.success('Cập nhật thông tin thành công!');
+        }
+    }
+
+    const [valueObj1, setValueObj1] = useState({
+        HoTen: '',
+        SanPham: {
+            TenSanPham: ''
+        },
+        SoLuong: '',
+        HSD: '',
+        ThanhTien: '',
+        GhiChu: ''
+    });
+    const handleUpdate1 = () => {
+        if (valueObj1.HoTen === "" || valueObj1.SanPham.TenSanPham === "" 
+            || valueObj1.SoLuong === "" || valueObj1.HSD === "" || valueObj1.ThanhTien === "" ) {
+            toast.error("Vui lòng điền đầy đủ thông tin!");
+            return false;
+        } else {
+            const newArr=[]; 
+            newArr.push(valueObj1); 
+            console.log(newArr);
+            /* 
+                Code update lên db
+            */
+            toast.success('Cập nhật thông tin thành công!');
+        }
+    }
     return (
         <>
             <div className={styles.container}>
@@ -262,14 +318,14 @@ function XuatNhap() {
                                                     {columns.map((column,indexI) => {
                                                     const value = row[column.id];
                                                     return (
-                                                        <TableCell key={index} align={column.align} >
+                                                        <TableCell key={indexI} align={column.align} >
                                                         {column.format && typeof value === 'number'
                                                             ? column.format(value)
                                                             : value}
                                                         </TableCell>
                                                     );
                                                     })}
-                                                    <TableCell align='center'><FontAwesomeIcon icon={faEdit} onClick={handleClickOpen}/></TableCell>
+                                                    <TableCell align='center'><FontAwesomeIcon icon={faEdit} onClick={handleClickOpen} className={styles.editIcon}/></TableCell>
                                                 </TableRow>
                                                 );
                                             })}
@@ -359,15 +415,15 @@ function XuatNhap() {
                         <div className={styles.goodEditInputWrapper}>
                             <div className={styles.goodEditInputItem}>
                                 <p>Tên nhân viên</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, HoTen: e.target.value})}/>         
                             </div>
                             <div className={styles.goodEditInputItem}>
                                 <p>Nhân viên giao hàng</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, NVGiaoHang: e.target.value})}/>         
                             </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Bên nhận</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, BenNhan: e.target.value})}/>         
                             </div>         
                         </div>                           
                     </div>
@@ -376,19 +432,19 @@ function XuatNhap() {
                         <div className={styles.goodEditInputWrapper}>
                             <div className={styles.goodEditInputItem}>
                                 <p>Tên sản phẩm</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, SanPham: {TenSanPham: e.target.value}})}/>         
                             </div>
                             <div className={styles.goodEditInputItem}>
                                 <p>Số lượng</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, SoLuong: parseInt(e.target.value)})}/>         
                             </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Hạn sử dụng</p>
-                                <input type="date" className={styles.goodEditInput} />         
+                                <input type="date" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, HSD: e.target.value})}/>         
                             </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Giá tiền</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, ThanhTien: parseInt(e.target.value)})}/>         
                             </div> 
                         </div>
                     </div>
@@ -403,7 +459,7 @@ function XuatNhap() {
                             } }
                             onChange={ ( event, editor ) => {
                                 const data = editor.getData();
-                                console.log( { event, editor, data } );
+                                setValueObj({...valueObj, GhiChu: data});
                             } }
                             onBlur={ ( event, editor ) => {
                                 console.log( 'Blur.', editor );
@@ -414,7 +470,7 @@ function XuatNhap() {
                         />
                     </div>
                     <div className={styles.saveButtonWrapper}>
-                        <button className={styles.saveButton}>Cập nhật</button>
+                        <button className={styles.saveButton} onClick={handleUpdate}>Cập nhật</button>
                     </div>
                 </div>
             </Dialog>
@@ -431,23 +487,23 @@ function XuatNhap() {
                         <div className={styles.goodEditInputWrapper}>
                             <div className={styles.goodEditInputItem}>
                                 <p>Tên nhân viên</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj1({...valueObj1, HoTen: e.target.value})}/>         
                             </div>
                             <div className={styles.goodEditInputItem}>
                                 <p>Tên sản phẩm</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj1({...valueObj1, SanPham: {TenSanPham: e.target.value}})}/>         
                             </div>
                             <div className={styles.goodEditInputItem}>
                                 <p>Số lượng</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj1({...valueObj1, SoLuong: parseInt(e.target.value)})}/>         
                             </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Hạn sử dụng</p>
-                                <input type="date" className={styles.goodEditInput} />         
+                                <input type="date" className={styles.goodEditInput} onChange={e => setValueObj1({...valueObj1, HSD: e.target.value})}/>         
                             </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Giá tiền</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj1({...valueObj1, ThanhTien: parseInt(e.target.value)})}/>         
                             </div> 
                         </div>                           
                     </div>
@@ -462,7 +518,7 @@ function XuatNhap() {
                             } }
                             onChange={ ( event, editor ) => {
                                 const data = editor.getData();
-                                console.log( { event, editor, data } );
+                                setValueObj1({...valueObj, GhiChu: data});
                             } }
                             onBlur={ ( event, editor ) => {
                                 console.log( 'Blur.', editor );
@@ -473,7 +529,7 @@ function XuatNhap() {
                         />
                     </div>
                     <div className={styles.saveButtonWrapper}>
-                        <button className={styles.saveButton}>Cập nhật</button>
+                        <button className={styles.saveButton} onClick={handleUpdate1}>Cập nhật</button>
                     </div>
                 </div>
             </Dialog>
