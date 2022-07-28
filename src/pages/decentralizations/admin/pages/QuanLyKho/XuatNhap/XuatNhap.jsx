@@ -11,13 +11,14 @@ import { toast } from 'react-toastify';
 
 
 function XuatNhap() {
-    
+
     const [dataDSXK, setDataDSXK] = useState([]);
     const [dataDSNK, setDataDSNK] = useState([]);
 
     useEffect(() => {
         fetchDSXK();
         fetchDSNK();
+
     },[])
 
     // Table goods export data
@@ -26,35 +27,35 @@ function XuatNhap() {
         if (response && response.EC === 0) {
             setDataDSXK(response.DT);
         }
-    } 
-
-    function createData(
-        exportDate, employeeName,deliverName,receiver, goodName, count, expiredDate, cost, note
-    ){
-        return {exportDate, employeeName,deliverName,receiver, goodName, count, expiredDate, cost, note };
     }
 
-    const rows = 
+    function createData(
+        exportDate, employeeName, deliverName, receiver, goodName, count, expiredDate, cost, note
+    ) {
+        return { exportDate, employeeName, deliverName, receiver, goodName, count, expiredDate, cost, note };
+    }
+
+    const rows =
         dataDSXK.map(item => (
             createData(item.NgayXuat,
-                        item.NhanVien.HoTen,
-                        item.NVGiaoHang,
-                        item.BenNhan,
-                        item.SanPham.TenSanPham,
-                        item.SoLuong,
-                        item.HSD,
-                        item.ThanhTien,
-                        item.GhiChu)
-    ));
+                item.NhanVien.HoTen,
+                item.NVGiaoHang,
+                item.BenNhan,
+                item.SanPham.TenSanPham,
+                item.SoLuong,
+                item.HSD,
+                item.ThanhTien,
+                item.GhiChu)
+        ));
     const columns = [
         { id: 'exportDate', label: 'Ngày xuất', minWidth: 60 },
         { id: 'employeeName', label: 'Tên nhân viên', minWidth: 100 },
         {
-          id: 'deliverName',
-          label: 'Nhân viên giao hàng',
-          minWidth: 100,
-          align: 'left',
-          format: (value) => value.toLocaleString('en-US'),
+            id: 'deliverName',
+            label: 'Nhân viên giao hàng',
+            minWidth: 100,
+            align: 'left',
+            format: (value) => value.toLocaleString('en-US'),
         },
         {
             id: 'receiver',
@@ -167,19 +168,19 @@ function XuatNhap() {
 
     function createDataI(
         importDate, employeeName, goodName, count, expiredDate, cost, note
-    ){
+    ) {
         return { importDate, employeeName, goodName, count, expiredDate, cost, note };
     }
 
-    
+
     const rowsI = dataDSNK.map(item => (
         createDataI(item.createdAt,
-                    item.NhanVien.HoTen,
-                    item.SanPham.TenSanPham,
-                    item.SoLuong,
-                    item.HSD,
-                    item.ThanhTien,
-                    item.updatedAt)
+            item.NhanVien.HoTen,
+            item.SanPham.TenSanPham,
+            item.SoLuong,
+            item.HSD,
+            item.ThanhTien,
+            item.updatedAt)
     ))
 
     const [pageI, setPageI] = useState(0);
@@ -194,7 +195,7 @@ function XuatNhap() {
         setPageI(0);
     };
 
-  // Open and close
+    // Open and close
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
         setOpen(true);
@@ -217,13 +218,13 @@ function XuatNhap() {
 
     const StyledTableCell = styled(TableCell)(() => ({
         [`&.${tableCellClasses.head}`]: {
-          backgroundColor: '#007bff' ,
-          color: 'white',
+            backgroundColor: '#007bff',
+            color: 'white',
         },
         [`&.${tableCellClasses.body}`]: {
-          fontSize: 14,
+            fontSize: 14,
         },
-      }));
+    }));
 
     //   Get value from input
     const [valueObj, setValueObj] = useState({
@@ -285,34 +286,34 @@ function XuatNhap() {
             <div className={styles.container}>
                 <div className={styles.wrapper}>
                     <div className={styles.wrapperTitle}>
-                        <p>Danh sách xuất nhập kho</p> 
+                        <p>Danh sách xuất nhập kho</p>
                     </div>
 
                     <div className={styles.listGoodsInfoWrapper}>
                         <div className={styles.goodsTitle}>
                             <span>Danh sách xuất kho</span>
                         </div>
-                            <div className={styles.listGoods}>
-                                <TableContainer sx={{ maxHeight: 440 }}>
-                                    <Table stickyHeader aria-label="sticky table">
-                                        <TableHead>
-                                            <TableRow>
-                                            {columns.map((column,index) => (
-                                                <StyledTableCell 
-                                                key={index}
-                                                align={column.align}
-                                                style={{ minWidth: column.minWidth }}
+                        <div className={styles.listGoods}>
+                            <TableContainer sx={{ maxHeight: 440 }}>
+                                <Table stickyHeader aria-label="sticky table">
+                                    <TableHead>
+                                        <TableRow>
+                                            {columns.map((column, index) => (
+                                                <StyledTableCell
+                                                    key={index}
+                                                    align={column.align}
+                                                    style={{ minWidth: column.minWidth }}
                                                 >
-                                                <b>{column.label}</b>
+                                                    <b>{column.label}</b>
                                                 </StyledTableCell>
                                             ))}
-                                             <StyledTableCell style={{minWidth: 50}}></StyledTableCell>  
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {rows
+                                            <StyledTableCell style={{ minWidth: 50 }}></StyledTableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {rows
                                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                            .map((row,index) => {
+                                            .map((row, index) => {
                                                 return (
                                                 <TableRow hover role="checkbox" tabIndex={-1} key={index} className='goodName'>
                                                     {columns.map((column,indexI) => {
@@ -329,85 +330,85 @@ function XuatNhap() {
                                                 </TableRow>
                                                 );
                                             })}
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-                                <TablePagination
-                                    rowsPerPageOptions={[10, 25, 100]}
-                                    component="div"
-                                    count={rows.length}
-                                    rowsPerPage={rowsPerPage}
-                                    page={page}
-                                    onPageChange={handleChangePage}
-                                    onRowsPerPageChange={handleChangeRowsPerPage}
-                                />  
-                            </div>
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                            <TablePagination
+                                rowsPerPageOptions={[10, 25, 100]}
+                                component="div"
+                                count={rows.length}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                            />
+                        </div>
                     </div>
                     <div className={styles.listGoodsInfoWrapper}>
                         <div className={styles.goodsTitle}>
                             <span>Danh sách nhập kho</span>
                         </div>
-                            <div className={styles.listGoods}>
-                                <TableContainer sx={{ maxHeight: 440 }}>
-                                        <Table stickyHeader aria-label="sticky table">
-                                            <TableHead>
-                                                <TableRow>
-                                                {columnsI.map((column,index) => (
-                                                    <StyledTableCell 
-                                                        key={index}
-                                                        align={column.align}
-                                                        style={{ minWidth: column.minWidth }}
-                                                        >
-                                                        <b>{column.label}</b>
-                                                    </StyledTableCell>
-                                                ))}  
-                                                <StyledTableCell style={{minWidth: 70}}></StyledTableCell>   
-                                                </TableRow>
-                                                
-                                            </TableHead>
-                                            <TableBody>
-                                                {rowsI
-                                                .slice(pageI * rowsPerPageI, pageI * rowsPerPageI + rowsPerPageI)
-                                                .map((row,index) => {
-                                                    return (
+                        <div className={styles.listGoods}>
+                            <TableContainer sx={{ maxHeight: 440 }}>
+                                <Table stickyHeader aria-label="sticky table">
+                                    <TableHead>
+                                        <TableRow>
+                                            {columnsI.map((column, index) => (
+                                                <StyledTableCell
+                                                    key={index}
+                                                    align={column.align}
+                                                    style={{ minWidth: column.minWidth }}
+                                                >
+                                                    <b>{column.label}</b>
+                                                </StyledTableCell>
+                                            ))}
+                                            <StyledTableCell style={{ minWidth: 70 }}></StyledTableCell>
+                                        </TableRow>
+
+                                    </TableHead>
+                                    <TableBody>
+                                        {rowsI
+                                            .slice(pageI * rowsPerPageI, pageI * rowsPerPageI + rowsPerPageI)
+                                            .map((row, index) => {
+                                                return (
                                                     <TableRow hover role="checkbox" tabIndex={-1} key={index} className='goodName'>
-                                                        {columnsI.map((column,indexI) => {
-                                                        const value = row[column.id];
-                                                        return (
-                                                            <TableCell key={indexI} align={column.align} >
-                                                            {column.format && typeof value === 'number'
-                                                                ? column.format(value)
-                                                                : value}
-                                                            </TableCell>
-                                                        );
+                                                        {columnsI.map((column, indexI) => {
+                                                            const value = row[column.id];
+                                                            return (
+                                                                <TableCell key={indexI} align={column.align} >
+                                                                    {column.format && typeof value === 'number'
+                                                                        ? column.format(value)
+                                                                        : value}
+                                                                </TableCell>
+                                                            );
                                                         })}
-                                                        <TableCell align='center'><FontAwesomeIcon icon={faEdit} onClick={handleClickOpenI} className={styles.editIcon}/></TableCell>
+                                                        <TableCell align='center'><FontAwesomeIcon icon={faEdit} onClick={handleClickOpenI} className={styles.editIcon} /></TableCell>
                                                     </TableRow>
-                                                    );
-                                                })}
-                                            </TableBody>
-                                        </Table>
-                                </TableContainer>
-                                    <TablePagination
-                                        rowsPerPageOptions={[10, 25, 100]}
-                                        component="div"
-                                        count={rowsI.length}
-                                        rowsPerPage={rowsPerPageI}
-                                        page={pageI}
-                                        onPageChange={handleChangePageI}
-                                        onRowsPerPageChange={handleChangeRowsPerPageI}
-                                    />  
-                            </div>
+                                                );
+                                            })}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                            <TablePagination
+                                rowsPerPageOptions={[10, 25, 100]}
+                                component="div"
+                                count={rowsI.length}
+                                rowsPerPage={rowsPerPageI}
+                                page={pageI}
+                                onPageChange={handleChangePageI}
+                                onRowsPerPageChange={handleChangeRowsPerPageI}
+                            />
+                        </div>
                     </div>
                     {/* ------------------------------------------ */}
-                </div>         
+                </div>
             </div>
             <Dialog open={open} onClose={handleClose} className={styles.dialogWrapper} maxWidth='xl' fullWidth={true}>
                 <div className={styles.closeButtonWrapper} onClick={handleClose}>
                     <button className={styles.closeButton}><FontAwesomeIcon icon={faXmark} /></button>
                 </div>
-                <DialogTitle align='center' sx={{fontWeight: 600, fontSize: 30}}>
-                     Chỉnh sửa thông tin sản phẩm
+                <DialogTitle align='center' sx={{ fontWeight: 600, fontSize: 30 }}>
+                    Chỉnh sửa thông tin sản phẩm
                 </DialogTitle>
                 <div className={styles.goodEditContainer}>
                     <div className={styles.goodEditWrapper}>
@@ -449,15 +450,15 @@ function XuatNhap() {
                         </div>
                     </div>
                     <div className={styles.goodEditWrapper}>
-                        <h3 style={{marginBottom : '10px'}}>Ghi chú</h3>
+                        <h3 style={{ marginBottom: '10px' }}>Ghi chú</h3>
                         <CKEditor
-                            editor={ ClassicEditor }
+                            editor={ClassicEditor}
                             data=""
-                            onReady={ editor => {
+                            onReady={editor => {
                                 // You can store the "editor" and use when it is needed.
-                                console.log( 'Editor is ready to use!', editor );
-                            } }
-                            onChange={ ( event, editor ) => {
+                                console.log('Editor is ready to use!', editor);
+                            }}
+                            onChange={(event, editor) => {
                                 const data = editor.getData();
                                 setValueObj({...valueObj, GhiChu: data});
                             } }
@@ -478,8 +479,8 @@ function XuatNhap() {
                 <div className={styles.closeButtonWrapper} onClick={handleCloseI}>
                     <button className={styles.closeButton}><FontAwesomeIcon icon={faXmark} /></button>
                 </div>
-                <DialogTitle align='center' sx={{fontWeight: 600, fontSize: 30}}>
-                     Chỉnh sửa thông tin sản phẩm
+                <DialogTitle align='center' sx={{ fontWeight: 600, fontSize: 30 }}>
+                    Chỉnh sửa thông tin sản phẩm
                 </DialogTitle>
                 <div className={styles.goodEditContainer}>
                     <div className={styles.goodEditWrapper}>
@@ -508,16 +509,16 @@ function XuatNhap() {
                         </div>                           
                     </div>
                     <div className={styles.goodEditWrapper}>
-                        <h3 style={{marginBottom : '10px'}}>Ghi chú</h3>
+                        <h3 style={{ marginBottom: '10px' }}>Ghi chú</h3>
                         <CKEditor
-                            editor={ ClassicEditor }
+                            editor={ClassicEditor}
                             data=""
-                            onReady={ editor => {
+                            onReady={editor => {
                                 // You can store the "editor" and use when it is needed.
-                                console.log( 'Editor is ready to use!', editor );
-                            } }
-                            onChange={ ( event, editor ) => {
-                                const data = editor.getData();
+                                console.log('Editor is ready to use!', editor);
+                            }}
+                            onChange={(event, editor) => {
+                                const data = editor.getData()
                                 setValueObj1({...valueObj, GhiChu: data});
                             } }
                             onBlur={ ( event, editor ) => {
