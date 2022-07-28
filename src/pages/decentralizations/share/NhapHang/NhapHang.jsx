@@ -97,23 +97,17 @@ function NhapHang() {
                 'GhiChu': '',
                 'NhanVienId': ''
             });
-            toast.success('Cập nhật thông tin thành công!');
         }
     }
-
-    console.log(">>>> ceck list: ", listValue)
 
     // import data from database
     const addKhoHang = async (listdata) => {
-        console.log(">>>>>> check listdata: ", listdata)
         let response = await addDataKhoHang(listdata);
         if (response && response.EC === 0) {
             toast.success(response.EM);
-        }
-        toast.error(response.EM)
-    }
+        } else { toast.error(response.EM) }
 
-    console.log(">>>>>> check listvalue: ", listValue)
+    }
 
     // Keypress function
     const handlePressEnter = (event) => {
