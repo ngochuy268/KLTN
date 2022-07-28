@@ -17,7 +17,7 @@ function XuatNhap() {
     useEffect(() => {
         fetchDSXK();
         fetchDSNK();
-    })
+    }, [])
     // Table goods export data
     const fetchDSXK = async () => {
         let response = await fetchDataDSXuatKho();

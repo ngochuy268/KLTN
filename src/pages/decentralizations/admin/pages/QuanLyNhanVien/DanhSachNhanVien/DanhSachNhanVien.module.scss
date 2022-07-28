@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 $font: 'Roboto', sans-serif;
-$text-color: rgb(204,255,204);
+$text-color: rgb(204, 255, 204);
 $mgRightMenuName: 10px;
 $fontSize: 16px;
 $borderColor: 1px solid #ced4da;
@@ -9,8 +9,9 @@ $borderColor: 1px solid #ced4da;
 
 .wrapperTitle {
     background-color: #007bff;
-   border-radius: 8px;
+    border-radius: 8px;
     color: white;
+
     p {
         margin: 0;
         padding: 15px;
@@ -35,11 +36,11 @@ $borderColor: 1px solid #ced4da;
         border-radius: 7px;
         width: 24.8888%;
         border-top: 3px solid #28a745;
-        box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
+        box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.61);
 
 
         .backGround {
-            background-image: url(../../../../../../assets/layoutImg/opacitylogo.png) ;
+            background-image: url(../../../../../../assets/layoutImg/opacitylogo.png);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -47,7 +48,7 @@ $borderColor: 1px solid #ced4da;
             width: 100%;
             height: 100%;
         }
- 
+
         .employeeBasicInfo {
             display: flex;
             justify-content: space-around;
@@ -55,10 +56,12 @@ $borderColor: 1px solid #ced4da;
 
             .employeeImg {
                 border-radius: 50%;
-                width: 40%;
+                width: 115px;
+                height: 115px;
             }
 
         }
+
         .employeeInfoWrapper {
             .employeeInfoContent {
                 display: flex;
@@ -69,13 +72,15 @@ $borderColor: 1px solid #ced4da;
                     font-weight: 700;
                     margin-right: 8px;
                 }
+
                 p {
                     margin: 0;
                 }
             }
         }
+
         .employeeInfo {
-                 
+
             .employeeInfoContent {
                 display: flex;
                 align-items: center;
@@ -92,20 +97,23 @@ $borderColor: 1px solid #ced4da;
             }
         }
 
-        .employeeInfoFeedBack{
+        .employeeInfoFeedBack {
             span {
                 font-weight: 700;
             }
+
             ul {
                 margin: 9px 0;
             }
+
             li {
                 margin: 5px 0;
             }
+
             margin: 20px 0 8px 0;
         }
-        
-        .employeeStatusEditIcon{
+
+        .employeeStatusEditIcon {
             float: right;
             border: none;
             background-color: transparent;
@@ -115,26 +123,29 @@ $borderColor: 1px solid #ced4da;
                 color: #007bff;
             }
         }
-    
+
     }
+
     @media screen and (max-width: 1023px) {
         .employeeListItem {
             width: 100%;
             display: block;
         }
     }
-    @media screen and (min-width: 1024px) and (max-width: 1560px){
+
+    @media screen and (min-width: 1024px) and (max-width: 1560px) {
         .employeeListItem {
             width: 47.5%;
             display: block;
         }
     }
-    @media screen and (min-width: 1561px) and (max-width: 1839px) {
+
+    @media screen and (min-width: 1500px) and (max-width: 1839px) {
         .employeeListItem {
-            width: 31.2%;
+            width: 31.71%;
         }
     }
-    
+
 }
 
 
@@ -143,19 +154,18 @@ $borderColor: 1px solid #ced4da;
     justify-content: flex-end;
     padding: 8px;
 
-    .closeButton{
+    .closeButton {
         color: white;
         border: none;
         padding: 8px 12px;
         border-radius: 6px;
-        background: rgb(237,2,2);
-        background: linear-gradient(180deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+        background: rgb(237, 2, 2);
+        background: linear-gradient(180deg, rgba(237, 2, 2, 1) 0%, rgba(249, 45, 0, 0.9047355758709734) 79%);
 
         &:hover {
             cursor: pointer;
-            background: rgb(237,2,2);
-            background: linear-gradient(0deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+            background: rgb(237, 2, 2);
+            background: linear-gradient(0deg, rgba(237, 2, 2, 1) 0%, rgba(249, 45, 0, 0.9047355758709734) 79%);
         }
     }
 }
-
