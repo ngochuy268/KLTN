@@ -76,20 +76,25 @@ $borderColor: 1px solid #ced4da;
             height: fit-content;
             box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
 
+            .showIcon{
+                &:hover {
+                    cursor: pointer;
+                    color: #007bff;
+                }
+            }
         }
     }
 
     .goodsTableDetailWrapper {
         width: 100%;
         padding: 20px;
-
+        display: none;
+        
         .goodsTableDetails {
-            display: none;
             box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
-
-            &.active {
-                display: block;
-            }
+        }
+        &.active {
+            display: block;
         }
     }
 }

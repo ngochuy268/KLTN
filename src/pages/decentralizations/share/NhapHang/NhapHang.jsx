@@ -32,6 +32,37 @@ function NhapHang() {
             setShowGoodSelect(response.DT);
         }
     }
+    // const [showGoodNameSelect, setShowGoodNameSelect] = useState([]);
+    // const fetchShowGoodNameSelect = async(TenSanPham) => {
+    //     let response = await fetchDataSelectSP(TenSanPham);
+    //     if (response && response.EC === 0) {
+    //         setShowGoodNameSelect(response.DT);
+    //     }
+    // }
+
+
+    const [showGoodSelect1, setShowGoodSelect1] = useState([]);
+    const fetchShowSPSelect1 = async (MaLoai) => {
+        let response = await fetchDataSelectSP(MaLoai);
+        if (response && response.EC === 0) {
+            setShowGoodSelect(response.DT);
+        }
+    }
+    const [showGoodSelect2, setShowGoodSelect2] = useState([]);
+    const fetchShowSPSelect2 = async (MaLoai) => {
+        let response = await fetchDataSelectSP(MaLoai);
+        if (response && response.EC === 0) {
+            setShowGoodSelect(response.DT);
+        }
+    }
+    const [showGoodSelect3, setShowGoodSelect3] = useState([]);
+    const fetchShowSPSelect3 = async (MaLoai) => {
+        let response = await fetchDataSelectSP(MaLoai);
+        if (response && response.EC === 0) {
+            setShowGoodSelect(response.DT);
+        }
+    }
+
 
     // Append and delete
     useEffect(() => {
@@ -43,24 +74,22 @@ function NhapHang() {
             $(`.${styles.exportGoodsInputItems}`).append( 
                 ` <tr>
                     <td>
-                        <select class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='goodTypeId'>
-                            <option value=""></option>
+                        <select class=${styles.exportGoodsInput} name='goodTypeId'>
+                            <option value="">Chọn mã</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                         </select>
                     </td>
                     <td>
-                        <select class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='goodId'>
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
+                        <select class=${styles.exportGoodsInput} disabled name='goodId' >
+                            <option value="">Chọn mã sản phẩm</option>
                         </select>
                     </td>
-                    <td><input type="text" class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='goodname' /></td>
-                    <td><input type="text" class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='count' /></td>
-                    <td><input type="date" class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='productDate' /></td>
-                    <td><input type="text" class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='location' /></td>
-                    <td><input type="text" class=${styles.exportGoodsInput} onkeydown=${(event) => handlePressEnter(event)} onchange=${onChangeFunction} name='note' /></td>
+                    <td><input type="text" class=${styles.exportGoodsInput} name='goodname' /></td>
+                    <td><input type="text" class=${styles.exportGoodsInput} name='count' /></td>
+                    <td><input type="date" class=${styles.exportGoodsInput} name='productDate' /></td>
+                    <td><input type="text" class=${styles.exportGoodsInput} name='location' /></td>
+                    <td><input type="text" class=${styles.exportGoodsInput} onkeydown=${(event) => handlePressEnter(event)} name='note' /></td>
                     <td><button class=${styles.delButton}><i class="fas fa-trash"></i></button></td>
                 </tr>`)
                 
@@ -74,6 +103,33 @@ function NhapHang() {
     const [valueObj, setValueObj] = useState({
         'LoaiSanPhamId': '',
         'SanPhamId': '',
+        'SoLuong': '',
+        'NSX': '',
+        'ViTri': '',
+        'GhiChu': ''
+    });
+    
+    const [valueObj1, setValueObj1] = useState({
+        'LoaiSanPhamId': '',
+        'SanPhamId': '',
+        'TenSanPham': '',
+        'SoLuong': '',
+        'HSD': '',
+        'ViTri': '',
+        'GhiChu': ''
+    });
+    const [valueObj2, setValueObj2] = useState({
+        'LoaiSanPhamId': '',
+        'SanPhamId': '',
+        'TenSanPham': '',
+        'SoLuong': '',
+        'HSD': '',
+        'ViTri': '',
+        'GhiChu': ''
+    });
+    const [valueObj3, setValueObj3] = useState({
+        'LoaiSanPhamId': '',
+        'SanPhamId': '',
         'TenSanPham': '',
         'SoLuong': '',
         'HSD': '',
@@ -81,22 +137,6 @@ function NhapHang() {
         'GhiChu': ''
     });
 
-    const handleUpdate = () => {
-        if (valueObj.LoaiSanPhamId === "" || valueObj.SanPhamId === "" 
-            || valueObj.TenSanPham === "" || valueObj.SoLuong === "" 
-            || valueObj.HSD === "" ) {
-            toast.error("Vui lòng điền đầy đủ thông tin!");
-            return false;
-        } else {
-            const newArr=[]; 
-            newArr.push(valueObj); 
-            console.log(newArr);
-            /* 
-                Code update lên db
-            */
-            toast.success('Cập nhật thông tin thành công!');
-        }
-    }
 
     // Open and close
     const [open, setOpen] = useState(false);
@@ -106,6 +146,42 @@ function NhapHang() {
     const handleClose = () => {
         setOpen(false);
     };
+
+    // add value from arr
+    const [listValue, setListValue] = useState([]);
+    const addValue = ()=>{
+        if (valueObj.LoaiSanPhamId === "" || valueObj.SanPhamId === ""  || valueObj.SoLuong === "" 
+            || valueObj.NSX === "" ) {
+            toast.error("Vui lòng điền đầy đủ thông tin!");
+            return false;
+        } else {
+            listValue.push(valueObj);
+            setValueObj({
+                'LoaiSanPhamId': '',
+                'SanPhamId': '',
+                'SoLuong': '',
+                'NSX': '',
+                'ViTri': '',
+                'GhiChu': ''
+            });
+            toast.success('Cập nhật thông tin thành công!');
+        }
+    }
+
+    console.log(">>>> ceck list: ",listValue)
+
+    // Keypress function
+    const handlePressEnter = (event) => {
+        if (event.charCode === 13 && event.code === "Enter" ) {
+            addValue();
+        }
+    }
+
+    const handlePressTap = (event) => {
+        if (event.charCode === 0 && event.code === "Tab") {
+            addValue();
+        }
+    }
 
     return(
         <>
@@ -169,9 +245,25 @@ function NhapHang() {
                                             }
                                             
                                         </td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname'  onChange={e => {setValueObj({...valueObj, 'TenSanPham': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='count'  onChange={e => {setValueObj({...valueObj, 'SoLuong': e.target.value})}}/></td>
-                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj({...valueObj, 'HSD': e.target.value})}}/></td>
+                                        <td>
+                                            {showGoodSelect && showGoodSelect.length>0 && valueObj['SanPhamId'] != ''?
+                                            showGoodSelect.map((item,index)=>{
+                                                if(item.id === valueObj['SanPhamId']){
+                                                    return(<><input type="text" className={styles.exportGoodsInput} name='goodname' value={item.TenSanPham} readOnly/></>)
+                                                }
+                                            })
+                                            :
+                                                <input type="text" className={styles.exportGoodsInput} name='goodname' readOnly/>
+                                            }  
+                                        </td>
+                                        <td>
+                                            <input type="text" className={styles.exportGoodsInput} name='count'  
+                                            onChange={e => {setValueObj({...valueObj, 'SoLuong': e.target.value})}}
+                                            onKeyDown={(event) => handlePressTap(event)}
+                                            onKeyPress={(event) => handlePressEnter(event)}
+                                            />
+                                        </td>
+                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj({...valueObj, 'NSX': e.target.value})}}/></td>
                                         <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj({...valueObj, 'ViTri': e.target.value})}}/></td>
                                         <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj({...valueObj, 'GhiChu': e.target.value});}} /></td>
                                         <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
@@ -180,8 +272,8 @@ function NhapHang() {
                                         <td>
                                             <select className={styles.exportGoodsInput} name='goodTypeId'
                                                 onChange={(e) => {
-                                                    fetchShowSPSelect(e.target.value);
-                                                    setValueObj({...valueObj, 'LoaiSanPhamId':e.target.value})
+                                                    fetchShowSPSelect1(e.target.value);
+                                                    setValueObj1({...valueObj1, 'LoaiSanPhamId':e.target.value})
                                                 }}>
                                                 <option value=''>Chọn mã</option>
                                                 {showGoodTypeSelect.map((item,index) => (
@@ -190,14 +282,14 @@ function NhapHang() {
                                             </select>                                                    
                                         </td>
                                         <td>
-                                            {valueObj['LoaiSanPhamId'] === '' ?                                            
+                                            {valueObj1['LoaiSanPhamId'] === '' ?                                            
                                                 <select className={styles.exportGoodsInput} disabled name='goodId' >
                                                     <option value="">Chọn mã sản phẩm</option>
                                                 </select>
                                             :
                                                 <select className={styles.exportGoodsInput} name='goodId'
                                                     onChange={e => {
-                                                        setValueObj({...valueObj, 'SanPhamId': e.target.value})
+                                                        setValueObj({...valueObj1, 'SanPhamId': e.target.value})
                                                     }} 
                                                     >
                                                     <option value="">Chọn mã sản phẩm</option>
@@ -208,19 +300,19 @@ function NhapHang() {
                                             }
                                             
                                         </td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname'  onChange={e => {setValueObj({...valueObj, 'TenSanPham': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='count'  onChange={e => {setValueObj({...valueObj, 'SoLuong': e.target.value})}}/></td>
-                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj({...valueObj, 'HSD': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj({...valueObj, 'ViTri': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj({...valueObj, 'GhiChu': e.target.value});}} /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname' readOnly  onChange={e => {setValueObj1({...valueObj1, 'TenSanPham': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='count'  onChange={e => {setValueObj1({...valueObj1, 'SoLuong': e.target.value})}}/></td>
+                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj1({...valueObj1, 'HSD': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj1({...valueObj1, 'ViTri': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj1({...valueObj1, 'GhiChu': e.target.value});}} /></td>
                                         <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <select className={styles.exportGoodsInput} name='goodTypeId'
                                                 onChange={(e) => {
-                                                    fetchShowSPSelect(e.target.value);
-                                                    setValueObj({...valueObj, 'LoaiSanPhamId':e.target.value})
+                                                    fetchShowSPSelect2(e.target.value);
+                                                    setValueObj2({...valueObj2, 'LoaiSanPhamId':e.target.value})
                                                 }}>
                                                 <option value=''>Chọn mã</option>
                                                 {showGoodTypeSelect.map((item,index) => (
@@ -229,14 +321,14 @@ function NhapHang() {
                                             </select>                                                    
                                         </td>
                                         <td>
-                                            {valueObj['LoaiSanPhamId'] === '' ?                                            
+                                            {valueObj2['LoaiSanPhamId'] === '' ?                                            
                                                 <select className={styles.exportGoodsInput} disabled name='goodId' >
                                                     <option value="">Chọn mã sản phẩm</option>
                                                 </select>
                                             :
                                                 <select className={styles.exportGoodsInput} name='goodId'
                                                     onChange={e => {
-                                                        setValueObj({...valueObj, 'SanPhamId': e.target.value})
+                                                        setValueObj2({...valueObj2, 'SanPhamId': e.target.value})
                                                     }} 
                                                     >
                                                     <option value="">Chọn mã sản phẩm</option>
@@ -247,19 +339,19 @@ function NhapHang() {
                                             }
                                             
                                         </td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname'  onChange={e => {setValueObj({...valueObj, 'TenSanPham': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='count'  onChange={e => {setValueObj({...valueObj, 'SoLuong': e.target.value})}}/></td>
-                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj({...valueObj, 'HSD': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj({...valueObj, 'ViTri': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj({...valueObj, 'GhiChu': e.target.value});}} /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname' readOnly onChange={e => {setValueObj2({...valueObj2, 'TenSanPham': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='count'  onChange={e => {setValueObj2({...valueObj2, 'SoLuong': e.target.value})}}/></td>
+                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj2({...valueObj2, 'HSD': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj2({...valueObj2, 'ViTri': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj2({...valueObj2, 'GhiChu': e.target.value});}} /></td>
                                         <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <select className={styles.exportGoodsInput} name='goodTypeId'
                                                 onChange={(e) => {
-                                                    fetchShowSPSelect(e.target.value);
-                                                    setValueObj({...valueObj, 'LoaiSanPhamId':e.target.value})
+                                                    fetchShowSPSelect3(e.target.value);
+                                                    setValueObj3({...valueObj3, 'LoaiSanPhamId':e.target.value})
                                                 }}>
                                                 <option value=''>Chọn mã</option>
                                                 {showGoodTypeSelect.map((item,index) => (
@@ -268,14 +360,14 @@ function NhapHang() {
                                             </select>                                                    
                                         </td>
                                         <td>
-                                            {valueObj['LoaiSanPhamId'] === '' ?                                            
+                                            {valueObj3['LoaiSanPhamId'] === '' ?                                            
                                                 <select className={styles.exportGoodsInput} disabled name='goodId' >
                                                     <option value="">Chọn mã sản phẩm</option>
                                                 </select>
                                             :
                                                 <select className={styles.exportGoodsInput} name='goodId'
                                                     onChange={e => {
-                                                        setValueObj({...valueObj, 'SanPhamId': e.target.value})
+                                                        setValueObj3({...valueObj3, 'SanPhamId': e.target.value})
                                                     }} 
                                                     >
                                                     <option value="">Chọn mã sản phẩm</option>
@@ -286,11 +378,11 @@ function NhapHang() {
                                             }
                                             
                                         </td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname'  onChange={e => {setValueObj({...valueObj, 'TenSanPham': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='count'  onChange={e => {setValueObj({...valueObj, 'SoLuong': e.target.value})}}/></td>
-                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj({...valueObj, 'HSD': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj({...valueObj, 'ViTri': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj({...valueObj, 'GhiChu': e.target.value});}} /></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname' readOnly onChange={e => {setValueObj3({...valueObj3, 'TenSanPham': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='count'  onChange={e => {setValueObj3({...valueObj3, 'SoLuong': e.target.value})}}/></td>
+                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj3({...valueObj3, 'HSD': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj3({...valueObj3, 'ViTri': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj3({...valueObj3, 'GhiChu': e.target.value});}} /></td>
                                         <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
                                     </tr>
                                     
@@ -301,7 +393,7 @@ function NhapHang() {
                             <button className={styles.addButton}><FontAwesomeIcon icon={faPlus}/></button>
                         </div>
                         <div className={styles.saveButtonWrapper}>
-                            <button className={styles.saveButton} onClick={handleUpdate}>Cập nhật</button>
+                            <button className={styles.saveButton} >Cập nhật</button>
                         </div>
                     </div>
                 </div>         

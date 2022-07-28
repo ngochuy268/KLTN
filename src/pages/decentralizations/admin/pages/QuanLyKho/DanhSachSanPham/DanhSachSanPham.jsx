@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { Dialog, DialogTitle } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { fetchDataShowSP } from '../../../../../../services/khoHangServices';
+import { toast } from 'react-toastify';
 
 function DanhSachSanPham() {
 
@@ -31,8 +32,42 @@ function DanhSachSanPham() {
         if (response && response.EC === 0) {
             setShowgood(response.DT);
         }
-    }
+    }   
 
+    //   Get value from input
+    const [valueObj, setValueObj] = useState({
+        LoaiSanPhamId: '',
+        HSD: '',
+        MinDate:  '',
+        TrangThai: '',
+        TenSanPham: '',
+        GiaSanPham: '',
+        GiaBan: '',
+        Loc: '',
+        Thung:'',
+        Khay: '',
+        MaxTon:'',
+        MinTon:'',
+        MoTa: null
+    });
+    const handleUpdate = () => {
+        if (valueObj.LoaiSanPhamId === "" || valueObj.HSD === "" 
+            || valueObj.MinDate === "" || valueObj.TrangThai === "" 
+            || valueObj.TenSanPham === "" || valueObj.GiaSanPham === "" || valueObj.GiaBan === ""
+            || valueObj.Loc === "" || valueObj.Thung === ""
+            || valueObj.Khay === "" || valueObj.MaxTon === "" || valueObj.MinTon === "" ) {
+            toast.error("Vui lòng điền đầy đủ thông tin!");
+            return false;
+        } else {
+            const newArr=[]; 
+            newArr.push(valueObj); 
+            console.log(newArr);
+            /* 
+                Code update lên db
+            */
+            toast.success('Cập nhật thông tin thành công!');
+        }
+}
 
     return (
         <>
@@ -147,19 +182,19 @@ function DanhSachSanPham() {
                         <div className={styles.goodEditInputWrapper}>
                             <div className={styles.goodEditInputItem}>
                                 <p>Tên loại</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, LoaiSanPhamId: e.target.value})}/>         
                             </div>
                             <div className={styles.goodEditInputItem}>
                                 <p>Hạn sử dụng</p>
-                                <input type="date" className={styles.goodEditInput} />         
+                                <input type="date" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, HSD: e.target.value})}/>         
                             </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Báo trước khi hết hạn</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, MinDate: parseInt(e.target.value)})}/>         
                             </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Trạng thái</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, TrangThai: e.target.value})}/>         
                             </div>            
                         </div>                           
                     </div>
@@ -168,15 +203,15 @@ function DanhSachSanPham() {
                         <div className={styles.goodEditInputWrapper}>
                             <div className={styles.goodEditInputItem}>
                                 <p>Tên sản phẩm</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, TenSanPham: e.target.value})}/>         
                             </div>
                             <div className={styles.goodEditInputItem}>
                                 <p>Giá mua</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, GiaSanPham: parseInt(e.target.value)})} />         
                             </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Giá bán</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, GiaBan: parseInt(e.target.value)})}/>         
                             </div> 
                         </div>
                     </div>
@@ -185,32 +220,32 @@ function DanhSachSanPham() {
                         <div className={styles.goodEditInputWrapper}>
                             <div className={styles.goodEditInputItem}>
                                 <p>Quy cách lóc</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, Loc: parseInt(e.target.value)})}/>         
                             </div>
                             <div className={styles.goodEditInputItem}>
                                 <p>Quy cách thùng</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, Thung: parseInt(e.target.value)})}/>         
                             </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Quy cách khay</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, Khay: parseInt(e.target.value)})}/>         
                             </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Tồn tối đa</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, MaxTon: parseInt(e.target.value)})}/>         
                             </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Tồn tối thiểu</p>
-                                <input type="text" className={styles.goodEditInput} />         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, MinTon: parseInt(e.target.value)})}/>         
                             </div>           
                         </div>
                     </div>
                     <div className={styles.goodEditWrapper}>
                         <h3>Mô tả</h3>
-                        <textarea className={styles.goodEditDesc} />
+                        <textarea className={styles.goodEditDesc} onChange={e => setValueObj({...valueObj, MoTa: e.target.value})}/>
                     </div>
                     <div className={styles.saveButtonWrapper}>
-                        <button className={styles.saveButton}>Cập nhật</button>
+                        <button className={styles.saveButton} onClick={handleUpdate}>Cập nhật</button>
                     </div>
                 </div>
             </Dialog>

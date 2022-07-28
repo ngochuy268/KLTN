@@ -1,5 +1,5 @@
 import styles from './ThemSanPham.module.scss';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import $ from 'jquery';
 
 function ThemSanPham() {
@@ -8,11 +8,38 @@ function ThemSanPham() {
         const $ = document.querySelector.bind(document);
         $(`.${styles.addButton}`).onclick = function() {
             $(`.${styles.addGoodsA}`).classList.toggle(`${styles.active}`);
-        }
-
-        
+        }     
    })
    
+    //   Get value from input
+    const [valueObj, setValueObj] = useState({
+        HoTen: '',
+        NVGiaoHang: '',
+        BenNhan:  '',
+        SanPham: {
+            TenSanPham: ''
+        },
+        SoLuong: '',
+        HSD: '',
+        ThanhTien: '',
+        GhiChu: ''
+    });
+    const handleUpdate = () => {
+        if (valueObj.HoTen === "" || valueObj.NVGiaoHang === "" 
+            || valueObj.BenNhan === "" || valueObj.SanPham.TenSanPham === "" 
+            || valueObj.SoLuong === "" || valueObj.HSD === "" || valueObj.ThanhTien === "" ) {
+            toast.error("Vui lòng điền đầy đủ thông tin!");
+            return false;
+        } else {
+            const newArr=[]; 
+            newArr.push(valueObj); 
+            console.log(newArr);
+            /* 
+                Code update lên db
+            */
+            toast.success('Cập nhật thông tin thành công!');
+        }
+    }
         
     return (
         <>

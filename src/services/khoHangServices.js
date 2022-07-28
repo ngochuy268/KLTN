@@ -62,10 +62,14 @@ const congViecNhap = (id) => {
     return axios.post('/api/v1/xuatnhap/nhapkho/user', { id })
 }
 
+const fetchNotification = () => {
+    return axios.post('/api/v1/thongbao');
+}
+
 export {
     fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS,
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
     fetchDataPieChart, fetchDataPieChartTable, getLoaiSPTQ,
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
-    fetchDataSelectLoaiSP, congViecNhap
+    fetchDataSelectLoaiSP, congViecNhap,fetchNotification
 }
