@@ -74,24 +74,22 @@ function NhapHang() {
             $(`.${styles.exportGoodsInputItems}`).append( 
                 ` <tr>
                     <td>
-                        <select class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='goodTypeId'>
-                            <option value=""></option>
+                        <select class=${styles.exportGoodsInput} name='goodTypeId'>
+                            <option value="">Chọn mã</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                         </select>
                     </td>
                     <td>
-                        <select class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='goodId'>
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
+                        <select class=${styles.exportGoodsInput} disabled name='goodId' >
+                            <option value="">Chọn mã sản phẩm</option>
                         </select>
                     </td>
-                    <td><input type="text" class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='goodname' /></td>
-                    <td><input type="text" class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='count' /></td>
-                    <td><input type="date" class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='productDate' /></td>
-                    <td><input type="text" class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='location' /></td>
-                    <td><input type="text" class=${styles.exportGoodsInput} onkeydown=${(event) => handlePressEnter(event)} onchange=${onChangeFunction} name='note' /></td>
+                    <td><input type="text" class=${styles.exportGoodsInput} name='goodname' /></td>
+                    <td><input type="text" class=${styles.exportGoodsInput} name='count' /></td>
+                    <td><input type="date" class=${styles.exportGoodsInput} name='productDate' /></td>
+                    <td><input type="text" class=${styles.exportGoodsInput} name='location' /></td>
+                    <td><input type="text" class=${styles.exportGoodsInput} onkeydown=${(event) => handlePressEnter(event)} name='note' /></td>
                     <td><button class=${styles.delButton}><i class="fas fa-trash"></i></button></td>
                 </tr>`)
                 
@@ -105,13 +103,12 @@ function NhapHang() {
     const [valueObj, setValueObj] = useState({
         'LoaiSanPhamId': '',
         'SanPhamId': '',
-        'TenSanPham': '',
         'SoLuong': '',
-        'HSD': '',
+        'NSX': '',
         'ViTri': '',
         'GhiChu': ''
     });
-    console.log(valueObj)
+    
     const [valueObj1, setValueObj1] = useState({
         'LoaiSanPhamId': '',
         'SanPhamId': '',
@@ -140,71 +137,6 @@ function NhapHang() {
         'GhiChu': ''
     });
 
-    const handleUpdate = () => {
-        if (valueObj.LoaiSanPhamId === "" || valueObj.SanPhamId === "" 
-            || valueObj.TenSanPham === "" || valueObj.SoLuong === "" 
-            || valueObj.HSD === "" ) {
-            toast.error("Vui lòng điền đầy đủ thông tin!");
-            return false;
-        } else {
-            const newArr=[]; 
-            newArr.push(valueObj); 
-            console.log(newArr);
-            /* 
-                Code update lên db
-            */
-            toast.success('Cập nhật thông tin thành công!');
-        }
-    }
-    const handleUpdate1 = () => {
-        if (valueObj1.LoaiSanPhamId === "" || valueObj1.SanPhamId === "" 
-            || valueObj1.TenSanPham === "" || valueObj1.SoLuong === "" 
-            || valueObj1.HSD === "" ) {
-            toast.error("Vui lòng điền đầy đủ thông tin!");
-            return false;
-        } else {
-            const newArr=[]; 
-            newArr.push(valueObj1); 
-            console.log(newArr);
-            /* 
-                Code update lên db
-            */
-            toast.success('Cập nhật thông tin thành công!');
-        }
-    }
-    const handleUpdate2 = () => {
-        if (valueObj2.LoaiSanPhamId === "" || valueObj2.SanPhamId === "" 
-            || valueObj2.TenSanPham === "" || valueObj2.SoLuong === "" 
-            || valueObj2.HSD === "" ) {
-            toast.error("Vui lòng điền đầy đủ thông tin!");
-            return false;
-        } else {
-            const newArr=[]; 
-            newArr.push(valueObj2); 
-            console.log(newArr);
-            /* 
-                Code update lên db
-            */
-            toast.success('Cập nhật thông tin thành công!');
-        }
-    }
-    const handleUpdate3 = () => {
-        if (valueObj3.LoaiSanPhamId === "" || valueObj3.SanPhamId === "" 
-            || valueObj3.TenSanPham === "" || valueObj3.SoLuong === "" 
-            || valueObj3.HSD === "" ) {
-            toast.error("Vui lòng điền đầy đủ thông tin!");
-            return false;
-        } else {
-            const newArr=[]; 
-            newArr.push(valueObj3); 
-            console.log(newArr);
-            /* 
-                Code update lên db
-            */
-            toast.success('Cập nhật thông tin thành công!');
-
-        }
-    }
 
     // Open and close
     const [open, setOpen] = useState(false);
@@ -214,6 +146,42 @@ function NhapHang() {
     const handleClose = () => {
         setOpen(false);
     };
+
+    // add value from arr
+    const [listValue, setListValue] = useState([]);
+    const addValue = ()=>{
+        if (valueObj.LoaiSanPhamId === "" || valueObj.SanPhamId === ""  || valueObj.SoLuong === "" 
+            || valueObj.NSX === "" ) {
+            toast.error("Vui lòng điền đầy đủ thông tin!");
+            return false;
+        } else {
+            listValue.push(valueObj);
+            setValueObj({
+                'LoaiSanPhamId': '',
+                'SanPhamId': '',
+                'SoLuong': '',
+                'NSX': '',
+                'ViTri': '',
+                'GhiChu': ''
+            });
+            toast.success('Cập nhật thông tin thành công!');
+        }
+    }
+
+    console.log(">>>> ceck list: ",listValue)
+
+    // Keypress function
+    const handlePressEnter = (event) => {
+        if (event.charCode === 13 && event.code === "Enter" ) {
+            addValue();
+        }
+    }
+
+    const handlePressTap = (event) => {
+        if (event.charCode === 0 && event.code === "Tab") {
+            addValue();
+        }
+    }
 
     return(
         <>
@@ -277,9 +245,25 @@ function NhapHang() {
                                             }
                                             
                                         </td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname' readOnly/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='count'  onChange={e => {setValueObj({...valueObj, 'SoLuong': e.target.value})}}/></td>
-                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj({...valueObj, 'HSD': e.target.value})}}/></td>
+                                        <td>
+                                            {showGoodSelect && showGoodSelect.length>0 && valueObj['SanPhamId'] != ''?
+                                            showGoodSelect.map((item,index)=>{
+                                                if(item.id === valueObj['SanPhamId']){
+                                                    return(<><input type="text" className={styles.exportGoodsInput} name='goodname' value={item.TenSanPham} readOnly/></>)
+                                                }
+                                            })
+                                            :
+                                                <input type="text" className={styles.exportGoodsInput} name='goodname' readOnly/>
+                                            }  
+                                        </td>
+                                        <td>
+                                            <input type="text" className={styles.exportGoodsInput} name='count'  
+                                            onChange={e => {setValueObj({...valueObj, 'SoLuong': e.target.value})}}
+                                            onKeyDown={(event) => handlePressTap(event)}
+                                            onKeyPress={(event) => handlePressEnter(event)}
+                                            />
+                                        </td>
+                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj({...valueObj, 'NSX': e.target.value})}}/></td>
                                         <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj({...valueObj, 'ViTri': e.target.value})}}/></td>
                                         <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj({...valueObj, 'GhiChu': e.target.value});}} /></td>
                                         <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
@@ -409,7 +393,7 @@ function NhapHang() {
                             <button className={styles.addButton}><FontAwesomeIcon icon={faPlus}/></button>
                         </div>
                         <div className={styles.saveButtonWrapper}>
-                            <button className={styles.saveButton} onClick={handleUpdate}>Cập nhật</button>
+                            <button className={styles.saveButton} >Cập nhật</button>
                         </div>
                     </div>
                 </div>         

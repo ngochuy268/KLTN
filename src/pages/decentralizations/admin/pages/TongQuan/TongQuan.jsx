@@ -130,7 +130,7 @@ function TongQuan() {
         const $ = document.querySelector.bind(document);
         const $$ = document.querySelectorAll.bind(document);
 
-        $$('.goodName').forEach((item, index) => {
+        $$(`.${styles.goodName}`).forEach((item, index) => {
             item.onclick = function () {
                 $(`.${styles.lineChart}`).classList.toggle(`${styles.active}`)
             }
@@ -200,7 +200,7 @@ function TongQuan() {
                                                         <StyledTableCell >{item.LoaiSanPhamId}</StyledTableCell>
                                                         <StyledTableCell>{item.LoaiSanPham.TenLoai}</StyledTableCell>
                                                         <StyledTableCell>{item.SoLuong}</StyledTableCell>
-                                                        <StyledTableCell align='center'><FontAwesomeIcon icon={faEye} style={{color: '#343a40'}} className='goodName'/></StyledTableCell>
+                                                        <StyledTableCell align='center'><FontAwesomeIcon icon={faEye} className={styles.goodName}/></StyledTableCell>
                                                     </StyledTableRow>
                                                 ))}
                                             </>
