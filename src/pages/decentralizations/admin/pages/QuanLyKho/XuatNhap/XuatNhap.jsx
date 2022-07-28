@@ -348,7 +348,7 @@ function XuatNhap() {
                             <span>Danh sách nhập kho</span>
                         </div>
                         <div className={styles.listGoods}>
-                            <TableContainer sx={{ maxHeight: 440 }}>
+                            <TableContainer sx={{ maxHeight: 490 }}>
                                 <Table stickyHeader aria-label="sticky table">
                                     <TableHead>
                                         <TableRow>

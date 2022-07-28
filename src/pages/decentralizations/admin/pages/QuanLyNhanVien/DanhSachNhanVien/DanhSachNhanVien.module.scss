@@ -54,10 +54,14 @@ $borderColor: 1px solid #ced4da;
             justify-content: space-around;
             align-items: center;
 
-            .employeeImg {
-                border-radius: 50%;
-                width: 115px;
-                height: 115px;
+            .employeeImgWrapper {
+                text-align: center;
+
+                .employeeImg {
+                    border-radius: 50%;
+                    width: 115px;
+                    height: 115px;
+                }
             }
 
         }

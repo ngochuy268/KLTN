@@ -63,7 +63,7 @@ const congViecNhap = (id) => {
 }
 
 const fetchNotification = () => {
-    return axios.post('/api/v1/thongbao');
+    return axios.get('/api/v1/thongbao');
 }
 
 export {
@@ -71,5 +71,5 @@ export {
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
     fetchDataPieChart, fetchDataPieChartTable, getLoaiSPTQ,
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
-    fetchDataSelectLoaiSP, congViecNhap,fetchNotification
+    fetchDataSelectLoaiSP, congViecNhap, fetchNotification
 }

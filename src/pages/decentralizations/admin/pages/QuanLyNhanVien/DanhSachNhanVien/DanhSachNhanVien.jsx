@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { Dialog, DialogTitle } from '@mui/material';
 import ChinhSuaInfo from './ChinhSuaInfo';
 import { fetchDataShowNV } from '../../../../../../services/khoHangServices';
+import { style } from '../../../../../../components/chatbox/client/styles';
 
 
 
@@ -15,8 +16,8 @@ function DanhSachNhanVien() {
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
         setOpen(true);
-      };
-      const handleClose = () => {
+    };
+    const handleClose = () => {
         setOpen(false);
     };
 
@@ -24,8 +25,8 @@ function DanhSachNhanVien() {
 
     useEffect(() => {
         fetchShowEm();
-    },[]);
-    
+    }, []);
+
     const [showEm, setShowEm] = useState([]);
     const fetchShowEm = async () => {
         let response = await fetchDataShowNV();
@@ -35,25 +36,28 @@ function DanhSachNhanVien() {
     }
 
     console.log(Array.from("2017-12-15"))
-    return(
+    return (
         <>
             <div className={styles.container}>
                 <div className={styles.wrapper}>
                     <div className={styles.wrapperTitle}>
-                        <p>Danh sách nhân viên</p> 
+                        <p>Danh sách nhân viên</p>
                     </div>
 
-                  
+
                     <div className={styles.employeeListWrapper}>
-                      {/* -----------------BE--------------------- */}
+                        {/* -----------------BE--------------------- */}
                         {showEm.map(item => (
                             <div className={styles.employeeListItem} >
                                 <div className={styles.backGround}>
                                     <div className={styles.employeeContent}>
                                         <div className={styles.employeeBasicInfo}>
-                                            <img src={require(`../../../../../../assets/layoutImg/Avatar/${item.Avata}`).default} 
-                                                alt="employee-avatar" className={styles.employeeImg} />
-    
+                                            <div className={styles.employeeImgWrapper}>
+                                                <img src={require(`../../../../../../assets/layoutImg/Avatar/${item.Avata}`).default}
+                                                    alt="employee-avatar" className={styles.employeeImg} />
+                                                <b><p>{item.id}</p></b>
+                                            </div>
+
                                             <div className={styles.employeeInfoWrapper}>
                                                 <div className={styles.employeeInfoContent}>
                                                     <span className={styles.employeeInfoTitle}>Họ và tên: </span>
@@ -69,49 +73,53 @@ function DanhSachNhanVien() {
                                                 </div>
                                                 <div className={styles.employeeInfoContent}>
                                                     <span className={styles.employeeInfoTitle}>Số điện thoại: </span>
-                                                    <p>0{item.Tel}</p>
+                                                    <p>{item.Tel}</p>
                                                 </div>
                                                 <div className={styles.employeeInfoContent}>
-                                                    <span className={styles.employeeInfoTitle}>Ngày vào làm: </span>
-                                                    <p>{item.NgayVaoLam}</p>
+                                                    <span className={styles.employeeInfoTitle}>CCCD: </span>
+                                                    <p>{item.CCCD}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className={styles.employeeInfo}>
-                                            <div className={styles.employeeInfoContent} style={{marginTop: '18px'}}>
+                                            <div className={styles.employeeInfoContent} style={{ marginTop: '18px' }}>
+                                                <span className={styles.employeeInfoTitle}>Ngày vào làm: </span>
+                                                <p>{item.NgayVaoLam}</p>
+                                            </div>
+                                            <div className={styles.employeeInfoContent} >
                                                 <span className={styles.employeeInfoTitle} >Email: </span>
                                                 <p>{item.Email}</p>
                                             </div>
                                             <div className={styles.employeeInfoContent}>
                                                 <span className={styles.employeeInfoTitle}>Địa chỉ: </span>
-                                                <p>{item.Address}</p> 
+                                                <p>{item.Address}</p>
                                             </div>
                                         </div>
                                         <div className={styles.employeeInfoFeedBack}>
-                                                <span>Đánh giá:</span>
-                                                <ul>
-                                                    {<li>{item.DanhGia}</li>}
-                                                </ul>
+                                            <span>Đánh giá:</span>
+                                            <ul>
+                                                {<li>{item.DanhGia}</li>}
+                                            </ul>
                                         </div>
                                         <div className={styles.employeeStatusWrapper}>
                                             <button className={styles.employeeStatusEditIcon} onClick={handleClickOpen}>
-                                                <FontAwesomeIcon icon={faEdit} style={{fontSize: '18px'}} />
+                                                <FontAwesomeIcon icon={faEdit} style={{ fontSize: '18px' }} />
                                             </button>
                                         </div>
                                     </div>
                                 </div>
-                            
+
                             </div>
                         ))}
-                      {/* ---------------------------------------- */}
+                        {/* ---------------------------------------- */}
                     </div>
-                </div>         
+                </div>
             </div>
-            <Dialog  open={open} onClose={handleClose} maxWidth='xl' fullWidth={true}>
+            <Dialog open={open} onClose={handleClose} maxWidth='xl' fullWidth={true}>
                 <div className={styles.closeButtonWrapper}>
                     <button className={styles.closeButton}><FontAwesomeIcon icon={faXmark} /></button>
                 </div>
-                <DialogTitle id="alert-dialog-title" style={{textAlign: 'center', fontWeight: '700', fontSize: '30px'}}>
+                <DialogTitle id="alert-dialog-title" style={{ textAlign: 'center', fontWeight: '700', fontSize: '30px' }}>
                     {"Chỉnh sửa thông tin"}
                 </DialogTitle>
                 <ChinhSuaInfo />

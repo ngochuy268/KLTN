@@ -44,7 +44,7 @@ header {
     justify-content: flex-end;
     margin: 0;
     padding: 5px;
-    
+
     li {
         list-style-type: none;
         font-size: 25px;
@@ -74,7 +74,7 @@ header {
     .searchInput {
         font-size: 16px;
         outline: none;
-        margin-right:5px ;
+        margin-right: 5px;
         border: transparent;
     }
 
@@ -82,7 +82,7 @@ header {
         font-size: 18px;
     }
 
-    &::after{
+    &::after {
         content: '';
         position: absolute;
         height: 100%;
@@ -103,7 +103,7 @@ header {
         cursor: pointer;
     }
 
-    .headerNotification{
+    .headerNotification {
         position: absolute;
         top: 118%;
         right: 0;
@@ -119,9 +119,11 @@ header {
         border: 1px solid rgba(0, 0, 0, 0.1);
         z-index: 12;
         font-size: 16px;
-        box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
+        box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
+        height: 602px;
+        overflow-y: auto;
 
-       
+
         .headerNotificationItem {
             display: flex;
             align-items: center;
@@ -129,36 +131,52 @@ header {
             padding: 6px;
             cursor: pointer;
 
-            .headerNotificationHeader{
+            .headerNotificationHeader {
                 display: flex;
                 align-items: center;
-                font-size: 35px;
+                font-size: 25px;
                 justify-content: center;
                 border-radius: 50%;
                 background-color: #dc3545;
                 color: white;
                 align-items: center;
-                width: 60px;
-                height: 60px;             
+                width: 45px;
+                height: 40px;
             }
 
-            .headerNotificationContent{
+            .headerNotificationContent {
+                margin-left: 10px;
+                width: 100%;
+
+                .contentWrapper {
+                    display: flex;
+                    justify-content: space-between;
+
+                    p {
+                        font-size: 14px
+                    }
+                }
+
                 span {
                     font-weight: 600;
-                    padding: 15px;
+
+                }
+
+                p {
+                    font-weight: 100;
                 }
             }
 
             p {
                 margin: 6px;
             }
-            
+
             &:hover {
                 background-color: #9a9a9a;
                 border-radius: 5px;
             }
 
-            &.seen{
+            &.seen {
                 background-color: #9a9a9a;
                 border-radius: 5px;
 
@@ -169,11 +187,11 @@ header {
             opacity: 1;
             transform: scale(1);
         }
-       
+
     }
-    
-   
-    .headerNotification::after{
+
+
+    .headerNotification::after {
         content: '';
         position: absolute;
         left: 0;
@@ -184,7 +202,7 @@ header {
 
     }
 
-   
+
 }
 
 .headerStoreWrapper {
@@ -195,7 +213,7 @@ header {
         cursor: pointer;
     }
 
-    .headerStore{
+    .headerStore {
         position: absolute;
         padding: 30px;
         top: 118%;
@@ -213,21 +231,21 @@ header {
         border: 1px solid rgba(0, 0, 0, 0.1);
         z-index: 12;
         font-size: 16px;
-        box-shadow: -2px 5px 12px -1px rgba(0,0,0,0.23);
+        box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
 
         .storeImg {
-            width: 100%;        
+            width: 100%;
         }
-       
+
         &.active {
             opacity: 1;
             transform: scale(1);
         }
-       
+
     }
-    
-   
-    .headerNotification::after{
+
+
+    .headerNotification::after {
         content: '';
         position: absolute;
         left: 0;
@@ -238,7 +256,7 @@ header {
 
     }
 
-   
+
 }
 
 // Modal barcode
@@ -282,32 +300,32 @@ header {
     }
 
     .scanButton {
-        background: rgb(38,237,2);
-        background: linear-gradient(180deg, rgba(38,237,2,1) 0%, rgba(11,185,19,0.9047355758709734) 79%);
+        background: rgb(38, 237, 2);
+        background: linear-gradient(180deg, rgba(38, 237, 2, 1) 0%, rgba(11, 185, 19, 0.9047355758709734) 79%);
 
         &:hover {
-            background: rgb(59,199,11);
-            background: linear-gradient(180deg, rgba(59,199,11,1) 0%, rgba(26,228,14,1) 91%);
+            background: rgb(59, 199, 11);
+            background: linear-gradient(180deg, rgba(59, 199, 11, 1) 0%, rgba(26, 228, 14, 1) 91%);
         }
     }
 
     .clearButton {
-        background: rgb(255,132,0);
-        background: linear-gradient(180deg, rgba(255,132,0,1) 0%, rgba(240,146,38,0.9047355758709734) 77%);
+        background: rgb(255, 132, 0);
+        background: linear-gradient(180deg, rgba(255, 132, 0, 1) 0%, rgba(240, 146, 38, 0.9047355758709734) 77%);
 
         &:hover {
-            background: rgb(255,132,0);
-            background: linear-gradient(0deg, rgba(255,132,0,1) 0%, rgba(240,146,38,0.9047355758709734) 79%);
+            background: rgb(255, 132, 0);
+            background: linear-gradient(0deg, rgba(255, 132, 0, 1) 0%, rgba(240, 146, 38, 0.9047355758709734) 79%);
         }
     }
 
-    .cancelButton{
-        background: rgb(237,2,2);
-        background: linear-gradient(180deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+    .cancelButton {
+        background: rgb(237, 2, 2);
+        background: linear-gradient(180deg, rgba(237, 2, 2, 1) 0%, rgba(249, 45, 0, 0.9047355758709734) 79%);
 
         &:hover {
-            background: rgb(237,2,2);
-            background: linear-gradient(0deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+            background: rgb(237, 2, 2);
+            background: linear-gradient(0deg, rgba(237, 2, 2, 1) 0%, rgba(249, 45, 0, 0.9047355758709734) 79%);
         }
     }
 }
@@ -317,24 +335,24 @@ header {
     justify-content: flex-end;
     padding: 8px;
 
-    .closeButton{
+    .closeButton {
         color: white;
         border: none;
         padding: 8px 12px;
         border-radius: 6px;
-        background: rgb(237,2,2);
-        background: linear-gradient(180deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+        background: rgb(237, 2, 2);
+        background: linear-gradient(180deg, rgba(237, 2, 2, 1) 0%, rgba(249, 45, 0, 0.9047355758709734) 79%);
 
         &:hover {
             cursor: pointer;
-            background: rgb(237,2,2);
-            background: linear-gradient(0deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+            background: rgb(237, 2, 2);
+            background: linear-gradient(0deg, rgba(237, 2, 2, 1) 0%, rgba(249, 45, 0, 0.9047355758709734) 79%);
         }
     }
 }
 
 .scanScreenWrapper {
-    
+
     .scanScreen {
         margin: 15px auto;
         width: 500px;
@@ -342,20 +360,19 @@ header {
     }
 }
 
-.codeWrapper{
+.codeWrapper {
     font-size: 35px;
     font-weight: 700;
 }
+
 @keyframes modalFadeIn {
     from {
         opacity: 0;
         transform: translateY(-150px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0px);
     }
 }
-
-
-
