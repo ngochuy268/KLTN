@@ -17,11 +17,11 @@ const AppRoutes = (props) => {
             <Switch>
 
                 {/* <Route path="/" component={Login}></Route> */}
-                {/* <Route path="/login" component={Login}></Route> */}
-                <Route path='/forgotPasswordinfo' component={ForgotPasswordInFo} /> 
+                <Route path="/login" component={Login}></Route>
+                <Route path='/forgotPasswordinfo' component={ForgotPasswordInFo} />
                 <Route path='/changePassword' component={ChangePassword}></Route>
                 <LayoutAdmin />
-    {/* 
+                {/* 
                 {user && user.isAuthenticated === true && +user.account.level === 2 ?
                     <>
                         <LayoutAdmin />

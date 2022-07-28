@@ -58,7 +58,7 @@ const getLoaiSPTQ = () => {
 }
 
 const congViecNhap = (id) => {
-    console.log("chweck 1 . . . .")
+    // console.log("chweck 1 . . . .")
     return axios.post('/api/v1/xuatnhap/nhapkho/user', { id })
 }
 
@@ -74,11 +74,18 @@ const fetchPredictSL = () => {
     return axios.get('/api/v1/xuatnhap/tongquan/dudoansoluong');
 } 
 
+
+const addDataKhoHang = (listdata) => {
+    return axios.post('/api/v1/nhaphang', { listdata })
+}
+
+
 export {
     fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS,
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
     fetchDataPieChart, fetchDataPieChartTable, getLoaiSPTQ,
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
     fetchDataSelectLoaiSP, congViecNhap, fetchNotification,
-    fetchPredictSP,fetchPredictSL
+    fetchPredictSP,fetchPredictSL,
+    addDataKhoHang
 }

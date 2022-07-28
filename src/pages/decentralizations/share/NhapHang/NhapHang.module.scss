@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 $font: 'Roboto', sans-serif;
-$text-color: rgb(204,255,204);
+$text-color: rgb(204, 255, 204);
 $mgRightMenuName: 10px;
 $fontSize: 16px;
 $borderColor: 1px solid #ced4da;
-$innerShadow:  inset 0px 4px 12px -4px #ABABAB;
+$innerShadow: inset 0px 4px 12px -4px #ABABAB;
 
 .wrapper {
     &:nth-child(2) {
@@ -34,7 +34,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
             background-color: transparent;
             border: transparent;
             font-size: 25px;
-        
+
             &:hover {
                 color: #fff;
                 cursor: pointer;
@@ -45,16 +45,16 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
 
 .addGoodsWrapper:nth-child(1) {
 
-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.61);
 
 }
 
 .addGoodsWrapper {
-    margin-top: 24px;
+    margin-top: 1px;
     border: 1px groove;
     border-radius: 5px;
     position: relative;
-    
+
 
     .goodsTitle {
         position: relative;
@@ -83,14 +83,14 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
             width: 100%;
             left: 0;
             bottom: 0;
-        }   
+        }
     }
 
-    .addGoods{
+    .addGoods {
         display: flex;
-        flex-direction: column;  
-        align-items: center;  
-        padding: 30px;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px 0px 10px 20px;
         position: relative;
 
         .exportGoodsInputItems {
@@ -98,59 +98,63 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
             flex-grow: 4;
             margin-right: 20px;
             width: 100%;
-    
+
             .exportGoodsInput {
                 height: 40px;
                 width: 90%;
             }
-    
+
             .delButton {
                 background: transparent;
                 border: transparent;
                 cursor: pointer;
                 color: red;
                 font-size: 18px;
-    
+
                 &:hover {
-                  color: #F84B24;
+                    color: #F84B24;
                 }
             }
         }
+
         .exportGoodsInputItems1 {
             text-align: left;
             flex-grow: 4;
             margin-right: 20px;
             width: 100%;
-    
+
             .exportGoodsInput {
                 height: 40px;
                 width: 90%;
             }
-    
+
             .delButton {
                 background: transparent;
                 border: transparent;
                 cursor: pointer;
                 color: red;
                 font-size: 18px;
-    
+
                 &:hover {
-                  color: #F84B24;
+                    color: #F84B24;
                 }
             }
         }
-    
-        .exportGoodsInputItems, th, td {
+
+        .exportGoodsInputItems,
+        th,
+        td {
             height: 60px;
             font-size: 17px;
             border: transparent;
-    
+
             .exportGoodsInput {
                 border: $borderColor;
                 border-radius: 8px;
                 box-shadow: $innerShadow;
                 outline: none;
             }
+
             tr:nth-child(odd) {
                 background-color: #fff;
             }
@@ -181,8 +185,8 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
             cursor: pointer;
 
             &:hover {
-                background: rgb(4,66,135);
-                background: linear-gradient(180deg, rgba(4,66,135,1) 0%, rgba(12,29,180,1) 82%);
+                background: rgb(4, 66, 135);
+                background: linear-gradient(180deg, rgba(4, 66, 135, 1) 0%, rgba(12, 29, 180, 1) 82%);
             }
         }
     }
@@ -190,21 +194,20 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
     .addButtonWrapper {
         display: flex;
         justify-content: flex-end;
-        padding: 30px 30px 10px 30px;
 
         .addButton {
             padding: 10px 30px;
             border-radius: 5px;
-            background: rgb(37,135,4);
-            background: linear-gradient(180deg, rgba(37,135,4,1) 0%, rgba(21,180,12,1) 0%);
+            background: rgb(37, 135, 4);
+            background: linear-gradient(180deg, rgba(37, 135, 4, 1) 0%, rgba(21, 180, 12, 1) 0%);
             border: transparent;
             font-size: 18px;
             color: white;
             cursor: pointer;
 
             &:hover {
-                background: rgb(59,199,11);
-                background: linear-gradient(180deg, rgba(59,199,11,1) 0%, rgba(26,228,14,1) 91%);
+                background: rgb(59, 199, 11);
+                background: linear-gradient(180deg, rgba(59, 199, 11, 1) 0%, rgba(26, 228, 14, 1) 91%);
             }
         }
     }
@@ -222,15 +225,15 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
         border-radius: 5px;
         position: relative;
         width: 100%;
-        box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
+        box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.61);
 
         margin-left: 15px;
 
 
         .addGoodsNoteTitle {
             position: relative;
-            padding: 15px ;
-            
+            padding: 15px;
+
             p {
                 margin: 0;
             }
@@ -281,7 +284,7 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
                 outline: none;
                 margin: 15px 0;
             }
-            
+
             .addGoodsnoteTableItem {
                 width: 70%;
             }
@@ -294,18 +297,18 @@ box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.61);
     justify-content: flex-end;
     padding: 8px;
 
-    .closeButton{
+    .closeButton {
         color: white;
         border: none;
         padding: 8px 12px;
         border-radius: 6px;
-        background: rgb(237,2,2);
-        background: linear-gradient(180deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+        background: rgb(237, 2, 2);
+        background: linear-gradient(180deg, rgba(237, 2, 2, 1) 0%, rgba(249, 45, 0, 0.9047355758709734) 79%);
 
         &:hover {
             cursor: pointer;
-            background: rgb(237,2,2);
-            background: linear-gradient(0deg, rgba(237,2,2,1) 0%, rgba(249,45,0,0.9047355758709734) 79%);
+            background: rgb(237, 2, 2);
+            background: linear-gradient(0deg, rgba(237, 2, 2, 1) 0%, rgba(249, 45, 0, 0.9047355758709734) 79%);
         }
     }
 }
