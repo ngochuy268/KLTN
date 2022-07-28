@@ -45,7 +45,7 @@ function NhapHang() {
     const fetchShowSPSelect1 = async (MaLoai) => {
         let response = await fetchDataSelectSP(MaLoai);
         if (response && response.EC === 0) {
-            setShowGoodSelect(response.DT);
+            setShowGoodSelect1(response.DT);
         }
     }
     const [showGoodSelect2, setShowGoodSelect2] = useState([]);
@@ -109,35 +109,9 @@ function NhapHang() {
         'GhiChu': ''
     });
     
-    const [valueObj1, setValueObj1] = useState({
-        'LoaiSanPhamId': '',
-        'SanPhamId': '',
-        'TenSanPham': '',
-        'SoLuong': '',
-        'HSD': '',
-        'ViTri': '',
-        'GhiChu': ''
-    });
-    const [valueObj2, setValueObj2] = useState({
-        'LoaiSanPhamId': '',
-        'SanPhamId': '',
-        'TenSanPham': '',
-        'SoLuong': '',
-        'HSD': '',
-        'ViTri': '',
-        'GhiChu': ''
-    });
-    const [valueObj3, setValueObj3] = useState({
-        'LoaiSanPhamId': '',
-        'SanPhamId': '',
-        'TenSanPham': '',
-        'SoLuong': '',
-        'HSD': '',
-        'ViTri': '',
-        'GhiChu': ''
-    });
-
-
+    const flat = [];
+    console.log("check flat: ", flat)
+    console.log("check flat item: ", flat.map((item,index)=>{ return(item)}))
     // Open and close
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
@@ -227,34 +201,26 @@ function NhapHang() {
                                             </select>                                                    
                                         </td>
                                         <td>
-                                            {valueObj['LoaiSanPhamId'] === '' ?                                            
-                                                <select className={styles.exportGoodsInput} disabled name='goodId' >
-                                                    <option value="">Chọn mã sản phẩm</option>
-                                                </select>
-                                            :
-                                                <select className={styles.exportGoodsInput} name='goodId'
-                                                    onChange={e => {
-                                                        setValueObj({...valueObj, 'SanPhamId': e.target.value})
-                                                    }} 
-                                                    >
-                                                    <option value="">Chọn mã sản phẩm</option>
-                                                    {showGoodSelect.map((item,index) => (
-                                                        <option key={index} value={item.id}>{item.id}</option>
-                                                    ))}
-                                                </select>
-                                            }
+                                            <select className={styles.exportGoodsInput} name='goodId' 
+                                                onChange={e => { setValueObj({...valueObj, 'SanPhamId': e.target.value}) }} >
+                                                <option value="">Chọn mã sản phẩm</option>
+                                                {showGoodSelect.map((item,index) => (
+                                                    <option key={index} value={item.id}>{item.id}</option>
+                                                ))}
+                                            </select>
                                             
                                         </td>
                                         <td>
-                                            {showGoodSelect && showGoodSelect.length>0 && valueObj['SanPhamId'] != ''?
-                                            showGoodSelect.map((item,index)=>{
-                                                if(item.id === valueObj['SanPhamId']){
-                                                    return(<><input type="text" className={styles.exportGoodsInput} name='goodname' value={item.TenSanPham} readOnly/></>)
-                                                }
-                                            })
-                                            :
-                                                <input type="text" className={styles.exportGoodsInput} name='goodname' readOnly/>
-                                            }  
+                                            {/* {
+                                                showGoodSelect.map((item,index)=>{
+                                                    let a = 0;
+                                                    if(item.id === valueObj['SanPhamId']){
+                                                        flat.push(item.TenSanPham);
+                                                    }
+                                                })
+                                            } */}
+                                            <input type="text" className={styles.exportGoodsInput} name='goodname' value={flat.map((item,index)=>{if(index = 0)return item.index})} readOnly/>
+                                           
                                         </td>
                                         <td>
                                             <input type="text" className={styles.exportGoodsInput} name='count'  
@@ -268,12 +234,13 @@ function NhapHang() {
                                         <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj({...valueObj, 'GhiChu': e.target.value});}} /></td>
                                         <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
                                     </tr>
+
                                     <tr>
                                         <td>
                                             <select className={styles.exportGoodsInput} name='goodTypeId'
                                                 onChange={(e) => {
-                                                    fetchShowSPSelect1(e.target.value);
-                                                    setValueObj1({...valueObj1, 'LoaiSanPhamId':e.target.value})
+                                                    fetchShowSPSelect(e.target.value);
+                                                    setValueObj({...valueObj, 'LoaiSanPhamId':e.target.value})
                                                 }}>
                                                 <option value=''>Chọn mã</option>
                                                 {showGoodTypeSelect.map((item,index) => (
@@ -282,107 +249,37 @@ function NhapHang() {
                                             </select>                                                    
                                         </td>
                                         <td>
-                                            {valueObj1['LoaiSanPhamId'] === '' ?                                            
-                                                <select className={styles.exportGoodsInput} disabled name='goodId' >
-                                                    <option value="">Chọn mã sản phẩm</option>
-                                                </select>
-                                            :
-                                                <select className={styles.exportGoodsInput} name='goodId'
-                                                    onChange={e => {
-                                                        setValueObj({...valueObj1, 'SanPhamId': e.target.value})
-                                                    }} 
-                                                    >
-                                                    <option value="">Chọn mã sản phẩm</option>
-                                                    {showGoodSelect.map((item,index) => (
-                                                        <option key={index} value={item.id}>{item.id}</option>
-                                                    ))}
-                                                </select>
-                                            }
-                                            
-                                        </td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname' readOnly  onChange={e => {setValueObj1({...valueObj1, 'TenSanPham': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='count'  onChange={e => {setValueObj1({...valueObj1, 'SoLuong': e.target.value})}}/></td>
-                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj1({...valueObj1, 'HSD': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj1({...valueObj1, 'ViTri': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj1({...valueObj1, 'GhiChu': e.target.value});}} /></td>
-                                        <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <select className={styles.exportGoodsInput} name='goodTypeId'
-                                                onChange={(e) => {
-                                                    fetchShowSPSelect2(e.target.value);
-                                                    setValueObj2({...valueObj2, 'LoaiSanPhamId':e.target.value})
-                                                }}>
-                                                <option value=''>Chọn mã</option>
-                                                {showGoodTypeSelect.map((item,index) => (
+                                            <select className={styles.exportGoodsInput} 
+                                                onChange={e => { setValueObj({...valueObj, 'SanPhamId': e.target.value}) }} >
+                                                <option value="">Chọn mã sản phẩm</option>
+                                                {showGoodSelect.map((item,index) => (
                                                     <option key={index} value={item.id}>{item.id}</option>
                                                 ))}
-                                            </select>                                                    
-                                        </td>
-                                        <td>
-                                            {valueObj2['LoaiSanPhamId'] === '' ?                                            
-                                                <select className={styles.exportGoodsInput} disabled name='goodId' >
-                                                    <option value="">Chọn mã sản phẩm</option>
-                                                </select>
-                                            :
-                                                <select className={styles.exportGoodsInput} name='goodId'
-                                                    onChange={e => {
-                                                        setValueObj2({...valueObj2, 'SanPhamId': e.target.value})
-                                                    }} 
-                                                    >
-                                                    <option value="">Chọn mã sản phẩm</option>
-                                                    {showGoodSelect.map((item,index) => (
-                                                        <option key={index} value={item.id}>{item.id}</option>
-                                                    ))}
-                                                </select>
-                                            }
+                                            </select>
                                             
                                         </td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname' readOnly onChange={e => {setValueObj2({...valueObj2, 'TenSanPham': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='count'  onChange={e => {setValueObj2({...valueObj2, 'SoLuong': e.target.value})}}/></td>
-                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj2({...valueObj2, 'HSD': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj2({...valueObj2, 'ViTri': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj2({...valueObj2, 'GhiChu': e.target.value});}} /></td>
-                                        <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
-                                    </tr>
-                                    <tr>
                                         <td>
-                                            <select className={styles.exportGoodsInput} name='goodTypeId'
-                                                onChange={(e) => {
-                                                    fetchShowSPSelect3(e.target.value);
-                                                    setValueObj3({...valueObj3, 'LoaiSanPhamId':e.target.value})
-                                                }}>
-                                                <option value=''>Chọn mã</option>
-                                                {showGoodTypeSelect.map((item,index) => (
-                                                    <option key={index} value={item.id}>{item.id}</option>
-                                                ))}
-                                            </select>                                                    
-                                        </td>
-                                        <td>
-                                            {valueObj3['LoaiSanPhamId'] === '' ?                                            
-                                                <select className={styles.exportGoodsInput} disabled name='goodId' >
-                                                    <option value="">Chọn mã sản phẩm</option>
-                                                </select>
-                                            :
-                                                <select className={styles.exportGoodsInput} name='goodId'
-                                                    onChange={e => {
-                                                        setValueObj3({...valueObj3, 'SanPhamId': e.target.value})
-                                                    }} 
-                                                    >
-                                                    <option value="">Chọn mã sản phẩm</option>
-                                                    {showGoodSelect.map((item,index) => (
-                                                        <option key={index} value={item.id}>{item.id}</option>
-                                                    ))}
-                                                </select>
+                                            {
+                                                showGoodSelect.map((item,index)=>{
+                                                    let a = 0;
+                                                    if(item.id === valueObj['SanPhamId']){
+                                                        flat.push(item.TenSanPham);
+                                                    }
+                                                })
                                             }
-                                            
+                                            <input type="text" className={styles.exportGoodsInput} name='goodname' value={flat[1]} readOnly/>
+                                           
                                         </td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='goodname' readOnly onChange={e => {setValueObj3({...valueObj3, 'TenSanPham': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='count'  onChange={e => {setValueObj3({...valueObj3, 'SoLuong': e.target.value})}}/></td>
-                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj3({...valueObj3, 'HSD': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj3({...valueObj3, 'ViTri': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj3({...valueObj3, 'GhiChu': e.target.value});}} /></td>
+                                        <td>
+                                            <input type="text" className={styles.exportGoodsInput} name='count'  
+                                            onChange={e => {setValueObj({...valueObj, 'SoLuong': e.target.value})}}
+                                            onKeyDown={(event) => handlePressTap(event)}
+                                            onKeyPress={(event) => handlePressEnter(event)}
+                                            />
+                                        </td>
+                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj({...valueObj, 'NSX': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj({...valueObj, 'ViTri': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj({...valueObj, 'GhiChu': e.target.value});}} /></td>
                                         <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
                                     </tr>
                                     
