@@ -209,6 +209,10 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
                     }
                 }
             }
+
+            .listGoodsEditButton{
+                font-size: 18px;
+            }
         }
 
         @media screen and (max-width: 1024px) {
@@ -234,6 +238,7 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
 
         h3 {
             margin: 3px 0 0 0;
+
         }
 
         .goodEditInputWrapper {

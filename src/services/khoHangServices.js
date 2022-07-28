@@ -66,10 +66,19 @@ const fetchNotification = () => {
     return axios.get('/api/v1/thongbao');
 }
 
+const fetchPredictSP = () => {
+    return axios.get('/api/v1/xuatnhap/tongquan/dudoansanpham');
+}
+
+const fetchPredictSL = () => {
+    return axios.get('/api/v1/xuatnhap/tongquan/dudoansoluong');
+} 
+
 export {
     fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS,
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
     fetchDataPieChart, fetchDataPieChartTable, getLoaiSPTQ,
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
-    fetchDataSelectLoaiSP, congViecNhap, fetchNotification
+    fetchDataSelectLoaiSP, congViecNhap, fetchNotification,
+    fetchPredictSP,fetchPredictSL
 }
