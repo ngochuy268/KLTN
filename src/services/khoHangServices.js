@@ -50,20 +50,22 @@ const fetchDataSelectLoaiSP = () => {
 }
 
 const fetchDataSelectSP = (MaLoai) => {
-    return axios.post('/api/v1/select/sanpham',{MaLoai})
+    return axios.post('/api/v1/select/sanpham', { MaLoai })
 }
-
-
 
 const getLoaiSPTQ = () => {
     return axios.get('/api/v1/khohang/tongquan/loaisanpham')
 }
 
-
+const congViecNhap = (id) => {
+    console.log("chweck 1 . . . .")
+    return axios.post('/api/v1/xuatnhap/nhapkho/user', { id })
+}
 
 export {
     fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS,
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
     fetchDataPieChart, fetchDataPieChartTable, getLoaiSPTQ,
-    fetchDataShowSP,fetchDataShowNV,fetchDataSelectSP,fetchDataSelectLoaiSP
+    fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
+    fetchDataSelectLoaiSP, congViecNhap
 }

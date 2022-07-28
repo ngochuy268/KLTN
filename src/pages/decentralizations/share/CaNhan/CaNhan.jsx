@@ -20,7 +20,6 @@ function CaNhan() {
         fetchUserData(user.account.id);
     }, [])
 
-    // console.log(">>> checdk: ", userData.Group.Name)
 
     const fetchUserData = async (id) => {
         let response = await getUser(id);
