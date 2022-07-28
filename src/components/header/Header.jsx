@@ -103,7 +103,6 @@ function Header() {
 
                                 : <></>
                             }
-
                         </div>
                     </li>
                     <li className={styles.headerStoreWrapper} >

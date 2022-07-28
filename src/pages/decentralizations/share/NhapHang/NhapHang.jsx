@@ -85,11 +85,10 @@ function NhapHang() {
                             <option value="">Chọn mã sản phẩm</option>
                         </select>
                     </td>
-                    <td><input type="text" class=${styles.exportGoodsInput} name='goodname' /></td>
-                    <td><input type="text" class=${styles.exportGoodsInput} name='count' /></td>
                     <td><input type="date" class=${styles.exportGoodsInput} name='productDate' /></td>
                     <td><input type="text" class=${styles.exportGoodsInput} name='location' /></td>
                     <td><input type="text" class=${styles.exportGoodsInput} onkeydown=${(event) => handlePressEnter(event)} name='note' /></td>
+                    <td><input type="text" class=${styles.exportGoodsInput} name='count' /></td>
                     <td><button class=${styles.delButton}><i class="fas fa-trash"></i></button></td>
                 </tr>`)
                 
@@ -173,19 +172,61 @@ function NhapHang() {
                         <div className={styles.goodsTitle}>
                             <span>Danh sách sản phẩm</span>
                         </div>
+                        <div className={styles.addButtonWrapper}>
+                            <button className={styles.addButton}><FontAwesomeIcon icon={faPlus}/></button>
+                        </div>
                         <div className={styles.addGoods}>
-                        <table className={styles.exportGoodsInputItems}>
-                               <thead>
-                                    <tr>
-                                        <th style={{width: '5%'}} >Mã loại</th>
-                                        <th style={{width: '10%'}}>Mã sản phẩm</th>
-                                        <th style={{width: '20%'}}>Tên sản phẩm</th>
-                                        <th style={{width: '10%'}}>Số lượng</th>
-                                        <th style={{width: '10%'}}>Ngày sản xuất</th>
-                                        <th style={{width: '20%'}}>Vị trí</th>
-                                        <th style={{width: '25%'}}>Ghi chú</th>
-                                    </tr>
-                               </thead>
+                            <table className={styles.exportGoodsInputItems1}>
+                                <thead>
+                                        <tr>
+                                            <th style={{width: '10%'}} >Mã loại</th>
+                                            <th style={{width: '15%'}}>Mã sản phẩm</th>
+                                            <th style={{width: '15%'}}>Ngày sản xuất</th>
+                                            <th style={{width: '20%'}}>Vị trí</th>
+                                            <th style={{width: '25%'}}>Ghi chú</th>
+                                            <th style={{width: '15%'}}>Số lượng</th>
+
+                                        </tr>
+                                </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <select className={styles.exportGoodsInput} name='goodTypeId'
+                                                    onChange={(e) => {
+                                                        fetchShowSPSelect(e.target.value);
+                                                        setValueObj({...valueObj, 'LoaiSanPhamId':e.target.value})
+                                                    }}>
+                                                    <option value=''>Chọn mã</option>
+                                                    {showGoodTypeSelect.map((item,index) => (
+                                                        <option key={index} value={item.id}>{item.id}</option>
+                                                    ))}
+                                                </select>                                                    
+                                            </td>
+                                            <td>
+                                                <select className={styles.exportGoodsInput} name='goodId' 
+                                                    onChange={e => { setValueObj({...valueObj, 'SanPhamId': e.target.value}) }} >
+                                                    <option value="">Chọn mã sản phẩm</option>
+                                                    {showGoodSelect.map((item,index) => (
+                                                        <option key={index} value={item.id}>{item.id}</option>
+                                                    ))}
+                                                </select>
+                                                
+                                            </td>
+                                        
+                                            <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj({...valueObj, 'NSX': e.target.value})}}/></td>
+                                            <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj({...valueObj, 'ViTri': e.target.value})}}/></td>
+                                            <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj({...valueObj, 'GhiChu': e.target.value});}} /></td>
+                                            <td>
+                                                <input type="text" className={styles.exportGoodsInput} name='count'  
+                                                onChange={e => {setValueObj({...valueObj, 'SoLuong': e.target.value})}}
+                                                onKeyDown={(event) => handlePressTap(event)}
+                                                onKeyPress={(event) => handlePressEnter(event)}
+                                                />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                            </table> 
+                            <table className={styles.exportGoodsInputItems}>
                                 <tbody>
                                     <tr>
                                         <td>
@@ -210,18 +251,10 @@ function NhapHang() {
                                             </select>
                                             
                                         </td>
-                                        <td>
-                                            {/* {
-                                                showGoodSelect.map((item,index)=>{
-                                                    let a = 0;
-                                                    if(item.id === valueObj['SanPhamId']){
-                                                        flat.push(item.TenSanPham);
-                                                    }
-                                                })
-                                            } */}
-                                            <input type="text" className={styles.exportGoodsInput} name='goodname' value={flat.map((item,index)=>{if(index = 0)return item.index})} readOnly/>
-                                           
-                                        </td>
+                                    
+                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj({...valueObj, 'NSX': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj({...valueObj, 'ViTri': e.target.value})}}/></td>
+                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj({...valueObj, 'GhiChu': e.target.value});}} /></td>
                                         <td>
                                             <input type="text" className={styles.exportGoodsInput} name='count'  
                                             onChange={e => {setValueObj({...valueObj, 'SoLuong': e.target.value})}}
@@ -229,66 +262,13 @@ function NhapHang() {
                                             onKeyPress={(event) => handlePressEnter(event)}
                                             />
                                         </td>
-                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj({...valueObj, 'NSX': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj({...valueObj, 'ViTri': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj({...valueObj, 'GhiChu': e.target.value});}} /></td>
                                         <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
                                     </tr>
 
-                                    <tr>
-                                        <td>
-                                            <select className={styles.exportGoodsInput} name='goodTypeId'
-                                                onChange={(e) => {
-                                                    fetchShowSPSelect(e.target.value);
-                                                    setValueObj({...valueObj, 'LoaiSanPhamId':e.target.value})
-                                                }}>
-                                                <option value=''>Chọn mã</option>
-                                                {showGoodTypeSelect.map((item,index) => (
-                                                    <option key={index} value={item.id}>{item.id}</option>
-                                                ))}
-                                            </select>                                                    
-                                        </td>
-                                        <td>
-                                            <select className={styles.exportGoodsInput} 
-                                                onChange={e => { setValueObj({...valueObj, 'SanPhamId': e.target.value}) }} >
-                                                <option value="">Chọn mã sản phẩm</option>
-                                                {showGoodSelect.map((item,index) => (
-                                                    <option key={index} value={item.id}>{item.id}</option>
-                                                ))}
-                                            </select>
-                                            
-                                        </td>
-                                        <td>
-                                            {
-                                                showGoodSelect.map((item,index)=>{
-                                                    let a = 0;
-                                                    if(item.id === valueObj['SanPhamId']){
-                                                        flat.push(item.TenSanPham);
-                                                    }
-                                                })
-                                            }
-                                            <input type="text" className={styles.exportGoodsInput} name='goodname' value={flat[1]} readOnly/>
-                                           
-                                        </td>
-                                        <td>
-                                            <input type="text" className={styles.exportGoodsInput} name='count'  
-                                            onChange={e => {setValueObj({...valueObj, 'SoLuong': e.target.value})}}
-                                            onKeyDown={(event) => handlePressTap(event)}
-                                            onKeyPress={(event) => handlePressEnter(event)}
-                                            />
-                                        </td>
-                                        <td><input type="date" className={styles.exportGoodsInput} name='productDate'  onChange={e => {setValueObj({...valueObj, 'NSX': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='location'  onChange={e => {setValueObj({...valueObj, 'ViTri': e.target.value})}}/></td>
-                                        <td><input type="text" className={styles.exportGoodsInput} name='note' onChange={e => {setValueObj({...valueObj, 'GhiChu': e.target.value});}} /></td>
-                                        <td><button className={styles.delButton}><FontAwesomeIcon icon={faTrash} /></button></td>
-                                    </tr>
-                                    
                                 </tbody>
-                            </table> 
+                            </table>
                         </div>
-                        <div className={styles.addButtonWrapper}>
-                            <button className={styles.addButton}><FontAwesomeIcon icon={faPlus}/></button>
-                        </div>
+                        
                         <div className={styles.saveButtonWrapper}>
                             <button className={styles.saveButton} >Cập nhật</button>
                         </div>
