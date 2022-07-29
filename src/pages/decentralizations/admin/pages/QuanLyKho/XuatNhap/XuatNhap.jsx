@@ -227,7 +227,9 @@ function XuatNhap() {
 
     //   Get value from input
     const [valueObj, setValueObj] = useState({
-        HoTen: '',
+        NhanVien:{
+            HoTen: ''
+        },
         NVGiaoHang: '',
         BenNhan: '',
         SanPham: {
@@ -239,7 +241,7 @@ function XuatNhap() {
         GhiChu: ''
     });
     const handleUpdate = () => {
-        if (valueObj.HoTen === "" || valueObj.NVGiaoHang === ""
+        if (valueObj.NhanVien.HoTen === "" || valueObj.NVGiaoHang === ""
             || valueObj.BenNhan === "" || valueObj.SanPham.TenSanPham === ""
             || valueObj.SoLuong === "" || valueObj.HSD === "" || valueObj.ThanhTien === "") {
             toast.error("Vui lòng điền đầy đủ thông tin!");
@@ -256,7 +258,9 @@ function XuatNhap() {
     }
 
     const [valueObj1, setValueObj1] = useState({
-        HoTen: '',
+        NhanVien:{
+            HoTen: ''
+        },
         SanPham: {
             TenSanPham: ''
         },
@@ -266,7 +270,7 @@ function XuatNhap() {
         GhiChu: ''
     });
     const handleUpdate1 = () => {
-        if (valueObj1.HoTen === "" || valueObj1.SanPham.TenSanPham === ""
+        if (valueObj1.NhanVien.HoTen === "" || valueObj1.SanPham.TenSanPham === ""
             || valueObj1.SoLuong === "" || valueObj1.HSD === "" || valueObj1.ThanhTien === "") {
             toast.error("Vui lòng điền đầy đủ thông tin!");
             return false;
@@ -415,7 +419,8 @@ function XuatNhap() {
                         <div className={styles.goodEditInputWrapper}>
                             <div className={styles.goodEditInputItem}>
                                 <p>Tên nhân viên</p>
-                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({ ...valueObj, HoTen: e.target.value })} />
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({ ...valueObj, 
+                                    NhanVien: {HoTen: e.target.value }})} />
                             </div>
                             <div className={styles.goodEditInputItem}>
                                 <p>Nhân viên giao hàng</p>
@@ -487,7 +492,7 @@ function XuatNhap() {
                         <div className={styles.goodEditInputWrapper}>
                             <div className={styles.goodEditInputItem}>
                                 <p>Tên nhân viên</p>
-                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj1({ ...valueObj1, HoTen: e.target.value })} />
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj1({ ...valueObj1, NhanVien: {HoTen: e.target.value }})} />
                             </div>
                             <div className={styles.goodEditInputItem}>
                                 <p>Tên sản phẩm</p>
