@@ -187,17 +187,6 @@ function CongViec() {
     ];
 
     //  --------------------------------------
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
-
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
 
     // Open and close
     const [open, setOpen] = useState(false);
@@ -250,37 +239,12 @@ function CongViec() {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {rows
-                                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                            .map((row) => {
-                                                return (
-                                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code} className='goodName'>
-                                                        {columns.map((column) => {
-                                                            const value = row[column.id];
-                                                            return (
-                                                                <TableCell key={column.id} align={column.align} >
-                                                                    {column.format && typeof value === 'number'
-                                                                        ? column.format(value)
-                                                                        : value}
-                                                                </TableCell>
-                                                            );
-                                                        })}
-                                                        <TableCell align='center'><FontAwesomeIcon icon={faEdit} onClick={handleClickOpen} /></TableCell>
-                                                    </TableRow>
-                                                );
-                                            })}
+                                    <TableRow>
+                                            <TableCell></TableCell>
+                                        </TableRow>
                                     </TableBody>
                                 </Table>
                             </TableContainer>
-                            <TablePagination
-                                rowsPerPageOptions={[10, 25, 100]}
-                                component="div"
-                                count={rows.length}
-                                rowsPerPage={rowsPerPage}
-                                page={page}
-                                onPageChange={handleChangePage}
-                                onRowsPerPageChange={handleChangeRowsPerPage}
-                            />
                         </div>
                     </div>
                     <div className={styles.listGoodsInfoWrapper}>
@@ -306,37 +270,13 @@ function CongViec() {
 
                                     </TableHead>
                                     <TableBody>
-                                        {rowsI
-                                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                            .map((row) => {
-                                                return (
-                                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code} className='goodName'>
-                                                        {columnsI.map((column) => {
-                                                            const value = row[column.id];
-                                                            return (
-                                                                <TableCell key={column.id} align={column.align} >
-                                                                    {column.format && typeof value === 'number'
-                                                                        ? column.format(value)
-                                                                        : value}
-                                                                </TableCell>
-                                                            );
-                                                        })}
-                                                        <TableCell align='center'><FontAwesomeIcon icon={faEdit} onClick={handleClickOpenI} className={styles.editIcon} /></TableCell>
-                                                    </TableRow>
-                                                );
-                                            })}
+                                        <TableRow>
+                                            <TableCell></TableCell>
+                                        </TableRow>
                                     </TableBody>
                                 </Table>
                             </TableContainer>
-                            <TablePagination
-                                rowsPerPageOptions={[10, 25, 100]}
-                                component="div"
-                                count={rowsI.length}
-                                rowsPerPage={rowsPerPage}
-                                page={page}
-                                onPageChange={handleChangePage}
-                                onRowsPerPageChange={handleChangeRowsPerPage}
-                            />
+                           
                         </div>
                     </div>
                     {/* ------------------------------------------ */}

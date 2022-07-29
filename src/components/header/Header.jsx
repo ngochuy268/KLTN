@@ -33,9 +33,8 @@ function Header() {
         }
     }
 
+// Notification style
     useEffect(() => {
-
-        // Notification toggle appearance
         const $ = document.querySelector.bind(document);
         const $$ = document.querySelectorAll.bind(document);
         const headerNotification = $(`.${styles.headerNotification}`);
@@ -60,8 +59,8 @@ function Header() {
                 this.classList.add(`${styles.seen}`);
             }
         })
-        console.log($$(`.${styles.headerNotificationItem}`))
-    }, []);
+        console.log($(`.${styles.headerNotificationItem}`))
+    });
 
     return (
         <>
@@ -83,6 +82,7 @@ function Header() {
                         <FontAwesomeIcon icon={faBell} className={styles.notifyIcon} />
                         <div className={styles.headerNotification}>
                             {showNo.hetHan && showNo.hetHan.length > 0 ?
+                                 
                                 showNo.hetHan.map((item, index) => {
                                     return (
                                         <div className={styles.headerNotificationItem} key={index}>
@@ -100,9 +100,9 @@ function Header() {
                                         </div>
                                     )
                                 })
-
                                 : <></>
                             }
+                            
                         </div>
                     </li>
                     <li className={styles.headerStoreWrapper} >

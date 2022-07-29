@@ -7,6 +7,8 @@ import { Dialog, DialogTitle } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { fetchDataShowSP } from '../../../../../../services/khoHangServices';
 import { toast } from 'react-toastify';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function DanhSachSanPham() {
 
@@ -241,8 +243,25 @@ function DanhSachSanPham() {
                         </div>
                     </div>
                     <div className={styles.goodEditWrapper}>
-                        <h3>Mô tả</h3>
-                        <textarea className={styles.goodEditDesc} onChange={e => setValueObj({...valueObj, MoTa: e.target.value})}/>
+                        <h3 style={{marginBottom: '15px'}}>Mô tả</h3>
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data=""
+                            onReady={ editor => {
+                                // You can store the "editor" and use when it is needed.
+                                console.log( 'Editor is ready to use!', editor );
+                            } }
+                            onChange={ ( event, editor ) => {
+                                const data = editor.getData();
+                                setValueObj({...valueObj, MoTa: data})
+                            } }
+                            onBlur={ ( event, editor ) => {
+                                console.log( 'Blur.', editor );
+                            } }
+                            onFocus={ ( event, editor ) => {
+                                console.log( 'Focus.', editor );
+                            } }
+                        />
                     </div>
                     <div className={styles.saveButtonWrapper}>
                         <button className={styles.saveButton} onClick={handleUpdate}>Cập nhật</button>

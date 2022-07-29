@@ -4,7 +4,7 @@ import ApexChartExpand from './lineChartExpand';
 import clsx from 'clsx';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP } from '../../../../../services/khoHangServices';
+import { fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchPredictSL, fetchPredictSP } from '../../../../../services/khoHangServices';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Table, TableBody, TableContainer, TableHead, TablePagination, TableRow, TableCell, tableCellClasses, Paper } from '@mui/material';
@@ -16,13 +16,19 @@ function TongQuan() {
     const [listLoaiSP, setListLoaiSP] = useState([]);
     const [listSP, setListSP] = useState([]);
     const [dataTableLoaiSP, setDataTableLoaiSP] = useState([]);
+    const [selectTime, setSelectTime] = useState([]);
     let titlechart = 'Biểu đồ xuất kho trong 2 tuần gần đây';
 
     useEffect(() => {
         fetchLoaiSP();
         fetchSP();
-        tableDataLoaiSP()
+        tableDataLoaiSP();
+        fetchPreSP();
+        fetchPreSL();
     }, [])
+    // if (selectTime === 1) {
+
+    // }
 
     const fetchLoaiSP = async () => {
         let response = await fetchAllLoaiSP();
@@ -44,6 +50,17 @@ function TongQuan() {
             setListSP(response.DT);
         }
     }
+
+    // Predict SL Table get data
+    const [showPredictSL, setShowPredictSL] = useState([]);
+
+    const fetchPreSL = async () => {
+        let response = await fetchPredictSL();
+        if (response && response.EC === 0) {
+            setShowPredictSL(response.DT);
+        }
+    }
+
     const columnsI = [
         { id: 'countNumber', label: 'STT', minWidth: 100 },
         {
@@ -60,6 +77,41 @@ function TongQuan() {
             format: (value) => value.toLocaleString('en-US'),
         }
     ];
+
+    function createDataI(
+        countNumber, goodName, count
+    ){
+        return { countNumber, goodName, count};
+    }
+
+    const rowsI = showPredictSL.map((item,index) => (
+        createDataI(index+1,item.SanPham.TenSanPham, item.SoLuong)
+    ))
+    //  --------------------------------------
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
+
+    // Predict SP table get data
+    const [showPredictSP, setShowPredictSP] = useState([]);
+
+    const fetchPreSP = async () => {
+        let response = await fetchPredictSP();
+        if (response && response.EC === 0) {
+            setShowPredictSP(response.DT);
+        }
+    }
+
+  
+    // Toggle and table style
 
     const StyledTableCell = styled(TableCell)(() => ({
         [`&.${tableCellClasses.head}`]: {
@@ -81,50 +133,6 @@ function TongQuan() {
         },
     }));
 
-    function createDataI(
-        countNumber, goodName, count
-    ){
-        return { countNumber, goodName, count};
-    }
-
-    const rowsI = [
-        createDataI(1,'Bánh Flan 55g',5634),
-        createDataI(2,'Bánh Flan 75g',7883),
-        createDataI(3,'Bánh Flan 100g',9884),
-        createDataI(4,'Rau câu sơn thủy',9613),
-        createDataI(5,'Rau câu 3D',7680),
-        createDataI(6,'Rau câu dừa 85g',6507),
-        createDataI(7,'Sữa chua trâu châu ',7893),
-        createDataI(8,'Bánh Flan 35g',6224),
-        createDataI(9,'Bánh mì',9374),
-        createDataI(10,'Bánh gato',8099),
-        createDataI(11,'Rau câu chanh dây 85g',5917),
-        createDataI(12,'Rau câu cà phê 35g',7038),
-        createDataI(13,'Rau câu 3 lớp 65g',8339),
-    ];
-    //  --------------------------------------
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
-
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
-
-    // Open and close
-    const [open, setOpen] = useState(false);
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-
-    };
 
     useEffect(() => {
         const $ = document.querySelector.bind(document);
@@ -144,8 +152,8 @@ function TongQuan() {
                     <div className={styles.wrapperTitle}>
                         <p>Tổng quan</p>
                         <select className={styles.reportSelection}>
-                            <option value='trong 2 tuần'>Trong 2 tuần</option>
-                            <option value='trong 1 tháng'>Trong 1 tháng</option>
+                            <option value='2'>Trong 2 tuần</option>
+                            <option value='1'>Trong 1 tháng</option>
                         </select> 
                     </div>
 
@@ -220,7 +228,11 @@ function TongQuan() {
                                         </TableHead>
                                         <TableBody>
                                            <StyledTableRow>
-                                                <StyledTableCell>Rau câu sơn thủy, rau câu 3D</StyledTableCell>
+                                                <StyledTableCell style={{color: '#007bff'}}>
+                                                    {showPredictSP && showPredictSP.length > 0 ? 
+                                                        showPredictSP.map(item => item.SanPham.TenSanPham).join(' , ').toLowerCase()
+                                                    : ''}
+                                                </StyledTableCell>
                                            </StyledTableRow>
                                         </TableBody>
                                     </Table>

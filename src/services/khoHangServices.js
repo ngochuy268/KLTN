@@ -66,6 +66,15 @@ const fetchNotification = () => {
     return axios.get('/api/v1/thongbao');
 }
 
+const fetchPredictSP = () => {
+    return axios.get('/api/v1/xuatnhap/tongquan/dudoansanpham');
+}
+
+const fetchPredictSL = () => {
+    return axios.get('/api/v1/xuatnhap/tongquan/dudoansoluong');
+}
+
+
 const addDataKhoHang = (listdata) => {
     return axios.post('/api/v1/nhaphang', { listdata })
 }
@@ -74,11 +83,14 @@ const getDataXuatHang = (findValue) => {
     return axios.post('/api/v1/xuathang/getdata', { findValue })
 }
 
+
 export {
     fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS,
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
     fetchDataPieChart, fetchDataPieChartTable, getLoaiSPTQ,
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
     fetchDataSelectLoaiSP, congViecNhap, fetchNotification,
-    addDataKhoHang, getDataXuatHang
+    addDataKhoHang, getDataXuatHang, fetchPredictSP,
+    fetchPredictSL, addDataKhoHang
+
 }

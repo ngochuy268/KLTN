@@ -152,7 +152,7 @@ function NhapHang() {
                                         <th style={{ width: '20%' }}>Sản phẩm</th>
                                         <th style={{ width: '10%' }}>NSX</th>
                                         <th style={{ width: '20%' }}>Vị trí</th>
-                                        <th style={{ width: '20s%' }}>Ghi chú</th>
+                                        <th style={{ width: '20%' }}>Ghi chú</th>
                                         <th style={{ width: '10%' }}>Số lượng</th>
                                         <th style={{ width: '5%' }}></th>
                                     </tr>
