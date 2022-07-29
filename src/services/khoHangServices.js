@@ -91,6 +91,6 @@ export {
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
     fetchDataSelectLoaiSP, congViecNhap, fetchNotification,
     addDataKhoHang, getDataXuatHang, fetchPredictSP,
-    fetchPredictSL, addDataKhoHang
+    fetchPredictSL,
 
 }
