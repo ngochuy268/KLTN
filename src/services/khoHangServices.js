@@ -70,11 +70,15 @@ const addDataKhoHang = (listdata) => {
     return axios.post('/api/v1/nhaphang', { listdata })
 }
 
+const getDataXuatHang = (findValue) => {
+    return axios.post('/api/v1/xuathang/getdata', { findValue })
+}
+
 export {
     fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS,
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
     fetchDataPieChart, fetchDataPieChartTable, getLoaiSPTQ,
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
     fetchDataSelectLoaiSP, congViecNhap, fetchNotification,
-    addDataKhoHang
+    addDataKhoHang, getDataXuatHang
 }

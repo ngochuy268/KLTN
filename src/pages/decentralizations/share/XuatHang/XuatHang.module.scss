@@ -112,8 +112,7 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
     }
 
     .exportGoodsInputBillWrapper {
-
-        flex-grow: 2;
+        width: 550px;
         border: $borderColor;
         border-radius: 8px;
         padding: 12px;
@@ -221,7 +220,8 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
 }
 
 .billWrapper {
-    width: 55%;
+    width: fit-content;
+
 }
 
 .dialogWrapper {
