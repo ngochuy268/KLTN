@@ -220,14 +220,14 @@ function XuatHang() {
                     <div className={styles.exportGoodsAutoWrapper}>
                         <div className={styles.exportGoodsInputBillItemsWrapper}>
                             <div className={styles.addButtonWrapper}>
-                                <button className={styles.addButton}><FontAwesomeIcon icon={faPlus} onClick={(event) => clickfind(event)} /></button>
+                                <button className={styles.addButton}><FontAwesomeIcon icon={faPlus} onClick={clickfind} /></button>
                             </div>
                             <table className={styles.exportGoodsInputItems}>
                                 <tr>
-                                    <th>Loại sản phẩm</th>
-                                    <th>Tên sản phẩm</th>
-                                    <th>Ngày sản xuất</th>
-                                    <th>Số lượng</th>
+                                    <th style={{width: '20%'}}>Loại sản phẩm</th>
+                                    <th style={{width: '35%'}}>Tên sản phẩm</th>
+                                    <th style={{width: '30%'}}>Ngày sản xuất</th>
+                                    <th style={{width: '15%'}}>Số lượng</th>
                                 </tr>
 
                                 <tr>
@@ -288,6 +288,18 @@ function XuatHang() {
                                             </>
                                         }</td>
                                 </tr>
+                            </table>
+                            <table className={styles.exportGoodsInputItems1}>
+                                <thead>
+                                    <tr>
+                                        <th style={{height: '1px', width: '30%'}}></th>
+                                        <th style={{height: '1px', width: '20%'}}></th>
+                                        <th style={{height: '1px', width: '20%'}}></th>
+                                        <th style={{height: '1px', width: '30%'}}></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
                             </table>
                         </div>
 

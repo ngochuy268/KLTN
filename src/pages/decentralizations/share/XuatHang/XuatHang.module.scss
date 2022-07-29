@@ -71,8 +71,14 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
     .exportGoodsInputItems {
         text-align: left;
         flex-grow: 4;
-        margin-right: 20px;
         width: 100%;
+        td,th {
+            padding: 3px;
+        }
+        th {
+            font-size: 15px;
+            height: 40px;
+        }
 
         .exportGoodsInput {
             height: 40px;
@@ -95,7 +101,6 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
     .exportGoodsInputItems,
     th,
     td {
-        height: 60px;
         font-size: 17px;
         border: transparent;
 
@@ -108,6 +113,20 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
 
         tr:nth-child(odd) {
             background-color: #fff;
+        }
+    }
+
+    .exportGoodsInputItems1{
+        margin-top: 50px;
+        border-collapse: collapse;
+        width: 100%;
+
+        th {
+            border: transparent;
+        }
+        
+        td {
+            border-bottom: $borderColor;
         }
     }
 
