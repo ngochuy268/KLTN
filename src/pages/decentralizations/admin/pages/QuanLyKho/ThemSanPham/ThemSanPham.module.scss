@@ -26,6 +26,19 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
     border: 1px groove;
     border-radius: 5px;
 
+    .addGoodsItemsDesc{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        padding: 0 8px;
+        font-size: 18px;
+        font-family: $font;
+        font-weight: 700;
+        color: black;
+        padding: 30px;
+    }
+
     .goodsTitle {
         position: relative;
         font-family: $font;

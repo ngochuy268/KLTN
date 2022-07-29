@@ -83,39 +83,17 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
             .lineChartInfoTableFavourite {
                 margin-bottom: 40px;
                 width: 100%;
-
-                th {
-                    text-align: left;
-                }
-        
-                table {
-                    border-collapse: collapse;
-                    border-radius: 7px;
-                    overflow: hidden;
-                    -webkit-box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
-                    box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
-                }
-        
-                th,
-                td {
-                    border-collapse: collapse;
-                    border: $borderColor;
-                    padding: 1em;
-                    background: transparent;
-                }
-        
-                tr:nth-child(odd) {
-                    background-color: #D6EEEE;
-                }
             }
         }
-    }
-}
 
-.goodName {
-    color: '#343a40';
-    &:hover {
-        cursor: pointer;
-        color: #007bff;
+        
+    .goodName {
+        color: '#66645e';
+        
+        &:hover {
+            cursor: pointer;
+            color: #007bff;
+        }
+    }
     }
 }

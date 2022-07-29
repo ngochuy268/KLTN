@@ -60,6 +60,7 @@ function Header() {
         })
 
         const x = height.slice(0, -2);
+        console.log(x)
         if (x > 600) {
             headerNotification.style.height = 600 + 'px';
             headerNotification.style.overflowY = 'auto';

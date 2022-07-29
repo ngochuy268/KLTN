@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+$fontStlye:  'Paytone One', sans-serif;
 $font: 'Roboto', sans-serif;
 $text-color: #9dbecf;
 $border-color: #9a9a9a;
@@ -35,6 +37,10 @@ header {
     .logoIcon {
         width: 55px;
         margin-right: $mgRightMenuName;
+    }
+
+    .pageName {
+        font-family: $fontStlye;
     }
 }
 
@@ -93,7 +99,13 @@ header {
 
 
 
-
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #66645e;
+    border-radius: 8px;
+}
 
 .headerNotificationWrapper {
     position: relative;
@@ -120,7 +132,7 @@ header {
         z-index: 12;
         font-size: 16px;
         box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
-
+        
 
         .headerNotificationItem {
             display: flex;
