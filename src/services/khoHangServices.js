@@ -82,6 +82,10 @@ const getDataXuatHang = (findValue) => {
     return axios.post('/api/v1/xuathang/getdata', { findValue })
 }
 
+const xuatHang = (listXuatHang, ttXuatHang) =>{
+    return axios.post('/api/v1/xuathang', { listXuatHang, ttXuatHang })
+}
+
 
 export {
     fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS,
@@ -90,6 +94,6 @@ export {
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
     fetchDataSelectLoaiSP, congViecNhap, fetchNotification,
     addDataKhoHang, getDataXuatHang, fetchPredictSP,
-    fetchPredictSL,
+    fetchPredictSL, xuatHang
 
 }
