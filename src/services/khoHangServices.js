@@ -72,10 +72,14 @@ const fetchPredictSP = () => {
 
 const fetchPredictSL = () => {
     return axios.get('/api/v1/xuatnhap/tongquan/dudoansoluong');
-} 
+}
 
 const addDataKhoHang = (listdata) => {
     return axios.post('/api/v1/nhaphang', { listdata })
+}
+
+const getDataXuatHang = (findValue) => {
+    return axios.post('/api/v1/xuathang/getdata', { findValue })
 }
 
 
@@ -85,6 +89,7 @@ export {
     fetchDataPieChart, fetchDataPieChartTable, getLoaiSPTQ,
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
     fetchDataSelectLoaiSP, congViecNhap, fetchNotification,
-    fetchPredictSP,fetchPredictSL,
-    addDataKhoHang
+    addDataKhoHang, getDataXuatHang, fetchPredictSP,
+    fetchPredictSL,
+
 }
