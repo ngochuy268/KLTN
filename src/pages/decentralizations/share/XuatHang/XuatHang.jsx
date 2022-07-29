@@ -175,21 +175,6 @@ function XuatHang() {
         setValue(e.target.value)
     }
 
-    // Keypress function
-    // const handlePressEnter = (event) => {
-    //     if (event.charCode === 0 && event.code === 'Tab') {
-    //         $(`.${styles.exportGoodsInputBillTable}`).append(
-    //             `<tr>
-    //                 <td>F55</td> 
-    //                 <td>Bánh rau cau</td>
-    //                 <td>${value}</td>
-    //                 <td>23/5/2022</td>
-    //                 <td>23/7/2022</td>
-    //                 <td>wsasas</td>
-    //             </tr>`
-    //         )
-    //     }
-    // }
 
     // Remove and append
     // useEffect(() => {

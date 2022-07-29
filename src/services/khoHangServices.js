@@ -58,8 +58,10 @@ const getLoaiSPTQ = () => {
 }
 
 const congViecNhap = (id) => {
-    // console.log("chweck 1 . . . .")
     return axios.post('/api/v1/xuatnhap/nhapkho/user', { id })
+}
+const congViecXuat = (id) => {
+    return axios.post('/api/v1/xuatnhap/xuatkho/user', { id })
 }
 
 const fetchNotification = () => {
@@ -91,6 +93,6 @@ export {
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
     fetchDataSelectLoaiSP, congViecNhap, fetchNotification,
     addDataKhoHang, getDataXuatHang, fetchPredictSP,
-    fetchPredictSL,
+    fetchPredictSL, congViecXuat
 
 }

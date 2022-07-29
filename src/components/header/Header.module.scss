@@ -120,8 +120,6 @@ header {
         z-index: 12;
         font-size: 16px;
         box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
-        height: 602px;
-        overflow-y: auto;
 
 
         .headerNotificationItem {
@@ -131,7 +129,7 @@ header {
             padding: 6px;
             cursor: pointer;
 
-            .headerNotificationHeader {
+            .headerNotificationHeaderRedWarning {
                 display: flex;
                 align-items: center;
                 font-size: 25px;
@@ -142,6 +140,15 @@ header {
                 align-items: center;
                 width: 45px;
                 height: 40px;
+            }
+
+            .headerNotificationHeaderYellowWarning {
+                display: flex;
+                height: 112px;
+                align-items: center;
+                font-size: 42px;
+                justify-content: center;
+                color: #fad414;
             }
 
             .headerNotificationContent {

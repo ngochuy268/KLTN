@@ -1,7 +1,7 @@
 import styles from './Header.module.scss';
 import barcode from '../../assets/layoutImg/barcode.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBarcode, faSearch, faBell, faExclamation, faXmark, faBox } from '@fortawesome/free-solid-svg-icons';
+import { faBarcode, faTriangleExclamation, faBell, faExclamation, faXmark, faBox } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import BarcodeScanner from '../barcode/BarcodeScanner';
@@ -24,8 +24,7 @@ function Header() {
         fetchShowNo();
     }, []);
 
-    const [showNo, setShowNo] = useState({});
-    console.log(showNo)
+    const [showNo, setShowNo] = useState('');
     const fetchShowNo = async () => {
         let response = await fetchNotification();
         if (response && response.EC === 0) {
@@ -33,7 +32,7 @@ function Header() {
         }
     }
 
-// Notification style
+    // Notification style
     useEffect(() => {
         const $ = document.querySelector.bind(document);
         const $$ = document.querySelectorAll.bind(document);
@@ -59,7 +58,16 @@ function Header() {
                 this.classList.add(`${styles.seen}`);
             }
         })
-        console.log($(`.${styles.headerNotificationItem}`))
+
+        const x = height.slice(0, -2);
+        if (x > 600) {
+            headerNotification.style.height = 600 + 'px';
+            headerNotification.style.overflowY = 'auto';
+        }
+        else {
+            headerNotification.style.height = 'fit-content';
+            headerNotification.style.overflowY = 'initial';
+        }
     });
 
     return (
@@ -82,11 +90,10 @@ function Header() {
                         <FontAwesomeIcon icon={faBell} className={styles.notifyIcon} />
                         <div className={styles.headerNotification}>
                             {showNo.hetHan && showNo.hetHan.length > 0 ?
-                                 
                                 showNo.hetHan.map((item, index) => {
                                     return (
                                         <div className={styles.headerNotificationItem} key={index}>
-                                            <div className={styles.headerNotificationHeader}>
+                                            <div className={styles.headerNotificationHeaderRedWarning}>
                                                 <FontAwesomeIcon icon={faExclamation} />
                                             </div>
                                             <div className={styles.headerNotificationContent}>
@@ -102,7 +109,61 @@ function Header() {
                                 })
                                 : <></>
                             }
-                            
+                            {showNo.sapHet && showNo.sapHet.length > 0 ?
+                                showNo.sapHet.map((itemI, index) => (
+
+                                    <div className={styles.headerNotificationItem} key={index}>
+                                        <div className={styles.headerNotificationHeaderYellowWarning}>
+                                            <FontAwesomeIcon icon={faTriangleExclamation} />
+                                        </div>
+                                        <div className={styles.headerNotificationContent}>
+                                            <p ><span style={{ color: '#159af7', fontSize: '17px' }}>{itemI.SanPham.TenSanPham} <span style={{ color: '#1539f7' }}>sắp hết hạn</span></span></p>
+                                            <div className={styles.contentWrapper}>
+                                                <p>Số lượng: <span>{itemI.SoLuong}</span></p>
+                                                <p>HSD: <span>{itemI.HSD}</span></p>
+                                            </div>
+                                            <p>Vị trí:<span> {itemI.ViTri} </span></p>
+                                        </div>
+                                    </div>
+                                ))
+                                : <></>
+                            }
+                            {showNo.duTon && showNo.duTon.length > 0 ?
+                                showNo.duTon.map((itemI, index) => (
+
+                                    <div className={styles.headerNotificationItem} key={index}>
+                                        <div className={styles.headerNotificationHeaderYellowWarning}>
+                                            <FontAwesomeIcon icon={faTriangleExclamation} />
+                                        </div>
+                                        <div className={styles.headerNotificationContent}>
+                                            <p ><span style={{ color: '#159af7', fontSize: '17px' }}>{itemI.SanPham.TenSanPham} <span style={{ color: '#1539f7' }}>tồn vượt mức quy định</span></span></p>
+                                            <div className={styles.contentWrapper}>
+                                                <p>Số lượng: <span>{itemI.SoLuong}</span></p>
+                                            </div>
+                                            <p>Vị trí:<span> {itemI.ViTri} </span></p>
+                                        </div>
+                                    </div>
+                                ))
+                                : <></>
+                            }
+                            {showNo.thieuTon && showNo.thieuTon.length > 0 ?
+                                showNo.thieuTon.map((itemI, index) => (
+
+                                    <div className={styles.headerNotificationItem} key={index}>
+                                        <div className={styles.headerNotificationHeaderYellowWarning}>
+                                            <FontAwesomeIcon icon={faTriangleExclamation} />
+                                        </div>
+                                        <div className={styles.headerNotificationContent}>
+                                            <p ><span style={{ color: '#159af7', fontSize: '17px' }}>{itemI.SanPham.TenSanPham} <span style={{ color: '#1539f7' }}>còn dưới mức quy định</span></span></p>
+                                            <div className={styles.contentWrapper}>
+                                                <p>Số lượng: <span>{itemI.SoLuong}</span></p>
+                                            </div>
+                                            <p>Vị trí:<span> {itemI.ViTri} </span></p>
+                                        </div>
+                                    </div>
+                                ))
+                                : <></>
+                            }
                         </div>
                     </li>
                     <li className={styles.headerStoreWrapper} >

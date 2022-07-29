@@ -9,7 +9,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import React from "react";
 import { UserContext } from "../../../../context/userContext";
-import { congViecNhap } from "../../../../services/khoHangServices";
+import { congViecNhap, congViecXuat } from "../../../../services/khoHangServices";
 
 
 
@@ -18,13 +18,13 @@ function CongViec() {
     // get user data from database
     const { user } = React.useContext(UserContext);
     const [nhapHangData, setNhapHangData] = useState([]);
+    const [xuatHangData, setXuatHangData] = useState([]);
 
     useEffect(() => {
-        console.log(">>> check u. . . .")
         fetchNhapHang(user.account.id)
-    }, [])
-    console.log(">>> check id: ", user.account.id)
-    console.log(">> check data: ", nhapHangData)
+        fetchXuatHang(user.account.id)
+    })
+
     const fetchNhapHang = async (id) => {
         console.log(">>> check . . . .")
         let response = await congViecNhap(id);
@@ -32,6 +32,17 @@ function CongViec() {
             setNhapHangData(response.DT);
         }
     }
+
+    const fetchXuatHang = async (id) => {
+        console.log(">>> check . . . .")
+        let response = await congViecXuat(id);
+        if (response && response.EC === 0) {
+            setXuatHangData(response.DT);
+        }
+    }
+
+
+    console.log(nhapHangData)
 
 
     // Table goods data
@@ -141,52 +152,9 @@ function CongViec() {
         [`&.${tableCellClasses.body}`]: {
             fontSize: 14,
         },
-    }));
+    }))
 
-    function createData(
-        exportDate, deliverName, receiver, goodName, count, expiredDate, cost, note
-    ) {
-        return { exportDate, deliverName, receiver, goodName, count, expiredDate, cost, note };
-    }
 
-    function createDataI(
-        importDate, goodName, count, expiredDate, cost, note
-    ) {
-        return { importDate, goodName, count, expiredDate, cost, note };
-    }
-
-    //  ------------------BE------------------
-    const rows = [
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi'),
-        createData('19/7/2022', 'Nguyễn Văn Hùng', 'Hồ Tấn Đào', 'Bánh Flan 100g', 623, '12/9/2022', '267000 VND', 'ahihi')
-    ];
-
-    const rowsI = [
-        nhapHangData.map((item, index) => {
-            return (createDataI(item.createdAt, item.SanPham.TenSanPham, item.SoLuong, item.NSX - item.HSD, item.ThanhTien, item.GhiChu))
-        })
-    ];
-
-    //  --------------------------------------
 
     // Open and close
     const [open, setOpen] = useState(false);
@@ -239,9 +207,23 @@ function CongViec() {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                    <TableRow>
-                                            <TableCell></TableCell>
-                                        </TableRow>
+                                        {xuatHangData && xuatHangData.length > 0 ?
+                                            <>
+                                                {xuatHangData.map((item, index) => (
+                                                    <TableRow>
+                                                        <StyledTableCell >{item.createdAt}</StyledTableCell>
+                                                        <StyledTableCell >{item.NVGiaoHang}</StyledTableCell>
+                                                        <StyledTableCell >{item.BenNhan}</StyledTableCell>
+                                                        <StyledTableCell>{item.SanPham.TenSanPham}</StyledTableCell>
+                                                        <StyledTableCell>{item.SoLuong}</StyledTableCell>
+                                                        <StyledTableCell>{item.HSD}</StyledTableCell>
+                                                        <StyledTableCell>{item.ThanhTien}</StyledTableCell>
+                                                        <StyledTableCell>{item.GhiChu}</StyledTableCell>
+                                                        <StyledTableCell className={styles.editIcon}><FontAwesomeIcon icon={faEdit} /></StyledTableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </>
+                                            : <></>}
                                     </TableBody>
                                 </Table>
                             </TableContainer>
@@ -270,13 +252,27 @@ function CongViec() {
 
                                     </TableHead>
                                     <TableBody>
-                                        <TableRow>
-                                            <TableCell></TableCell>
-                                        </TableRow>
+                                        {nhapHangData && nhapHangData.length > 0 ?
+
+                                            <>
+                                                {nhapHangData.map((item, index) => (
+                                                    <TableRow key={index}>
+                                                        <StyledTableCell >{item.createdAt}</StyledTableCell>
+                                                        <StyledTableCell>{item.SanPham.TenSanPham}</StyledTableCell>
+                                                        <StyledTableCell>{item.SoLuong}</StyledTableCell>
+                                                        <StyledTableCell>{item.HSD}</StyledTableCell>
+                                                        <StyledTableCell>{item.ThanhTien}</StyledTableCell>
+                                                        <StyledTableCell>{item.GhiChu}</StyledTableCell>
+                                                        <StyledTableCell className={styles.editIcon}><FontAwesomeIcon icon={faEdit} /></StyledTableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </>
+
+                                            : <></>}
                                     </TableBody>
                                 </Table>
                             </TableContainer>
-                           
+
                         </div>
                     </div>
                     {/* ------------------------------------------ */}
