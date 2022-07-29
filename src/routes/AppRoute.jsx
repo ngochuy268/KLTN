@@ -21,7 +21,6 @@ const AppRoutes = (props) => {
                 <Route path='/forgotPasswordinfo' component={ForgotPasswordInFo} />
                 <Route path='/changePassword' component={ChangePassword}></Route>
                 {/* <LayoutAdmin /> */}
-
                 {user && user.isAuthenticated === true && +user.account.level === 2 ?
                     <>
                         <LayoutAdmin />

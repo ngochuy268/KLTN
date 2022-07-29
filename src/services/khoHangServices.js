@@ -76,13 +76,16 @@ const fetchPredictSL = () => {
     return axios.get('/api/v1/xuatnhap/tongquan/dudoansoluong');
 }
 
-
 const addDataKhoHang = (listdata) => {
     return axios.post('/api/v1/nhaphang', { listdata })
 }
 
 const getDataXuatHang = (findValue) => {
     return axios.post('/api/v1/xuathang/getdata', { findValue })
+}
+
+const xuatHang = (listXuatHang, ttXuatHang) => {
+    return axios.post('/api/v1/xuathang', { listXuatHang, ttXuatHang })
 }
 
 
@@ -93,6 +96,7 @@ export {
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
     fetchDataSelectLoaiSP, congViecNhap, fetchNotification,
     addDataKhoHang, getDataXuatHang, fetchPredictSP,
-    fetchPredictSL, congViecXuat
+    fetchPredictSL, congViecXuat, xuatHang
+
 
 }

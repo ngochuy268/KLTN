@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { useReactToPrint } from 'react-to-print';
 import BarcodeScanner from '../../../../components/barcode/BarcodeScanner';
-import { fetchDataSelectLoaiSP, fetchDataSelectSP, getDataXuatHang } from '../../../../services/khoHangServices';
+import { fetchDataSelectLoaiSP, fetchDataSelectSP, getDataXuatHang, xuatHang } from '../../../../services/khoHangServices';
 import { UserContext } from "../../../../context/userContext";
 import React from "react";
 import { toast } from 'react-toastify';
@@ -57,74 +57,110 @@ function XuatHang() {
         'NSX': '',
     });
 
-    const [xuatObj, setXuatObj] = useState({
-        'idKho': '',
-        'NhanVienId': '',
+    const [ttXuatHang, setttXuatHang] = useState({
+        'NhanVienId': user.account.id,
         'NVGiaoHang': '',
         'BenNhan': '',
+        'GhiChu': '',
+    });
+
+    const [xuatObj, setXuatObj] = useState({
+        'idKho': '',
         'LoaiSanPhamId': '',
         'SanPhanId': '',
         'SoLuong': '',
         'NSX': '',
         'HSD': '',
-        'GhiChu': '',
     })
 
-    const listXuatHang = [];
+    const [listXuatHang, setListValue] = useState([]);
+
+    const getvalue = () => {
+        if (valueObj.LoaiSanPhamId === "" || valueObj.SanPhamId === "" || valueObj.SoLuong === "") {
+            return false;
+        } else {
+            getDataXuat(valueObj);
+        }
+    }
+
     const addValue = () => {
         console.log(">>>>> check add value")
         if (valueObj.LoaiSanPhamId === "" || valueObj.SanPhamId === "" || valueObj.SoLuong === "") {
             toast.error("Loại sản phẩm - Tên sản phẩm - Số lượng không được để trống");
             return false;
         } else {
-            // valueObj.NhanVienId = user.account.id;
-
-            getDataXuat(valueObj);
-            console.log(">>> check getDataXuat: ", valueObj)
-            console.log(">>> check get data: ", dataXuatHang)
+            // getDataXuat(valueObj);
             if (dataXuatHang && dataXuatHang.length > 0) {
-                $(`.${styles.exportGoodsInputBillTable}`).append(
-                    dataXuatHang.map((item, index) => {
-                        xuatObj.idKho = item.id;
-                        // xuatObj.NhanVienId = user.account.id
-                        xuatObj.LoaiSanPhamId = item.LoaiSanPhamId;
-                        xuatObj.SanPhamId = item.SanPhamId;
-                        xuatObj.SoLuong = item.SoLuong;
-                        xuatObj.NSX = item.NSX;
-                        xuatObj.HSD = item.HSD;
-                        return (
-                            `<tr>
+                console.log(">>>>> check add value2", dataXuatHang)
+                dataXuatHang.map((item, index) => {
+                    console.log(">>> check item: ", item.id)
+                    xuatObj.idKho = item.id;
+                    xuatObj.LoaiSanPhamId = item.LoaiSanPhamId;
+                    xuatObj.SanPhanId = item.SanPhamId;
+                    xuatObj.SoLuong = item.SoLuong;
+                    xuatObj.NSX = item.NSX;
+                    xuatObj.HSD = item.HSD;
+
+                    listXuatHang.push(xuatObj);
+                    console.log(">>>>> check add value3", xuatObj)
+                    $(`.${styles.exportGoodsInputBillTable} tbody`).append(
+                        `<tr>
                             <td>${item.SanPham.TenSanPham}</td>
                             <td>${item.NSX} - ${item.HSD}</td>
                             <td>${item.SoLuong}</td>
-                        </tr>`
-                        )
-                    })
-                )
-                listXuatHang.push(xuatObj);
-                console.log(">>> check listXuatHang: ", listXuatHang)
-            }
+                        </tr>`)
 
-            setXuatObj({
-                'idKho': '',
-                'LoaiSanPhamId': '',
-                'SanPhanId': '',
-                'SoLuong': '',
-                'NSX': '',
-                'HSD': '',
-                'GhiChu': '',
-            });
+                    setXuatObj({
+                        'idKho': '',
+                        'LoaiSanPhamId': '',
+                        'SanPhanId': '',
+                        'SoLuong': '',
+                        'NSX': '',
+                        'HSD': '',
+                    })
+
+                });
+
+                setValueObj({
+                    'SanPhamId': '',
+                    'SoLuong': '',
+                    'NSX': '',
+                });
+            }
+        }
+    }
+    console.log(">>> check listXuatHang: ", listXuatHang)
+
+    const clickfind = (event) => {
+        // getvalue();
+        addValue();
+
+    }
+
+    // Keypress function
+    const handlePressEnter = (event) => {
+        if (event.charCode === 13 && event.code === "Enter") {
+            getvalue();
         }
     }
 
-    const clickfind = (event) => {
-        addValue();
+    const handlePressTap = (event) => {
+        if (event.charCode === 0 && event.code === "Tab") {
+            getvalue();
+        }
     }
 
+    const xuatKho = async (listXuatHang, ttXuatHang) => {
+        let response = await xuatHang(listXuatHang, ttXuatHang);
+        if (response && response.EC === 0) {
+            toast.success(response.EM);
+        } else { toast.error(response.EM) }
+
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     const [openBarcode, setOpenBarcode] = useState(false);
     const [open, setOpen] = useState(false);
     const [openPrint, setOpenPrint] = useState(false);
-    const [value, setValue] = useState('');
     let componentRef = useRef();
 
     // // Get current date
@@ -142,6 +178,7 @@ function XuatHang() {
 
     };
     const handleClickOpenPrint = () => {
+        xuatKho(listXuatHang, ttXuatHang);
         setOpenPrint(true);
     };
 
@@ -162,48 +199,12 @@ function XuatHang() {
 
     };
 
-
     // Print
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
         documentTitle: 'Biên lai xuất kho',
         onAfterPrint: () => closeAllDialog()
     })
-
-    // Get value from input
-    const onChangeFunction = (e) => {
-        setValue(e.target.value)
-    }
-
-
-    // Remove and append
-    // useEffect(() => {
-    //     $(`.${styles.delButton}`).on('click', function () {
-    //         $(this).parent().parent().remove();
-    //     })
-
-    //     $(`.${styles.addButton}`).on('click', function () {
-    //         $(`.${styles.exportGoodsInputItems}`).append(
-    //             `<tr>
-    //                 <td>   
-    //                     <select class=${styles.exportGoodsInput} onchange=${onChangeFunction} name='goodInput1'>
-    //                         <option value=""></option>
-    //                         <option value="1">1</option>
-    //                         <option value="2">2</option>
-    //                     </select>
-    //                 </td>
-    //                 <td><input type="text" class=${styles.exportGoodsInput} /></td>
-    //                 <td><input type="text" class=${styles.exportGoodsInput} onkeydown=${(event) => handlePressEnter(event)} onchange=${onChangeFunction} /></td>
-    //                 <td><button class=${styles.delButton}><i class="fas fa-trash"></i></button></td>
-    //             </tr>`)
-
-    //         $(`.${styles.delButton}`).on('click', function () {
-    //             $(this).parent().parent().remove();
-    //         })
-    //     })
-    // }, [])
-
-
 
     return (
         <>
@@ -275,12 +276,16 @@ function XuatHang() {
                                             <>
                                                 <input type="text" className={styles.exportGoodsInput} name='count' style={{ width: '100%' }} value=''
                                                     onChange={e => { setValueObj({ ...valueObj, 'SoLuong': e.target.value }) }}
+                                                    onKeyDown={(event) => handlePressTap(event)}
+                                                    onKeyPress={(event) => handlePressEnter(event)}
                                                 />
                                             </>
                                             :
                                             <>
                                                 <input type="text" className={styles.exportGoodsInput} name='count' style={{ width: '100%' }}
                                                     onChange={e => { setValueObj({ ...valueObj, 'SoLuong': e.target.value }) }}
+                                                    onKeyDown={(event) => handlePressTap(event)}
+                                                    onKeyPress={(event) => handlePressEnter(event)}
                                                 />
                                             </>
                                         }</td>
@@ -316,14 +321,7 @@ function XuatHang() {
                                         />
                                     </div>
                                 </div>
-                                {/* <div className={styles.exportGoodsInputBillItem}>
-                                    <p className={styles.exportGoodsInputBillItemTitle}>
-                                        Đơn hàng
-                                    </p>
-                                    <input type="text" className={styles.exportGoodsInputBillItemInput} name='order'
-                                        onChange={e => { xuatObj({ ...xuatObj, 'NVGiaoHang': e.target.value }) }}
-                                    />
-                                </div> */}
+
                                 <table className={styles.exportGoodsInputBillTable}>
                                     <thead>
                                         <tr>
