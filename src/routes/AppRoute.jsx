@@ -20,8 +20,8 @@ const AppRoutes = (props) => {
                 <Route path="/login" component={Login}></Route>
                 <Route path='/forgotPasswordinfo' component={ForgotPasswordInFo} />
                 <Route path='/changePassword' component={ChangePassword}></Route>
-                <LayoutAdmin />
-                {/* 
+                {/* <LayoutAdmin /> */}
+                
                 {user && user.isAuthenticated === true && +user.account.level === 2 ?
                     <>
                         <LayoutAdmin />
@@ -34,7 +34,7 @@ const AppRoutes = (props) => {
                         <></>
                     }
                     </>
-                } */}
+                }
 
                 <Route path="*"> 404 not found !</Route>
 

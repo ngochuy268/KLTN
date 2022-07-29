@@ -74,7 +74,6 @@ const fetchPredictSL = () => {
     return axios.get('/api/v1/xuatnhap/tongquan/dudoansoluong');
 } 
 
-
 const addDataKhoHang = (listdata) => {
     return axios.post('/api/v1/nhaphang', { listdata })
 }

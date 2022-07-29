@@ -36,15 +36,6 @@ function NhapHang() {
         }
     }
 
-    // Append and delete
-    useEffect(() => {
-        $(`.${styles.delButton}`).on('click', function () {
-            $(this).parent().parent().remove();
-        })
-
-        // $(`.${styles.addButton}`).on('click', addValue())
-    }, [])
-
     // Get data from input
     const [valueObj, setValueObj] = useState({
         'LoaiSanPhamId': '',
@@ -77,7 +68,7 @@ function NhapHang() {
             valueObj.NhanVienId = user.account.id;
             listValue.push(valueObj);
 
-            $(`.${styles.exportGoodsInputItems}`).append(
+            $(`.${styles.exportGoodsInputItems2} tbody`).append(
                 ` <tr>
                     <td>${valueObj.LoaiSanPhamId}</td>
                     <td>${valueObj.SanPhamId}</td>
@@ -85,7 +76,7 @@ function NhapHang() {
                     <td>${valueObj.ViTri}</td>
                     <td>${valueObj.GhiChu}</td>
                     <td>${valueObj.SoLuong}</td>
-                    <td></td>
+                    <td class=${styles.delButton}><i class="fas fa-trash"></i></td>
                 </tr>`)
 
             setValueObj({
@@ -98,6 +89,11 @@ function NhapHang() {
                 'NhanVienId': ''
             });
         }
+
+        $(`.${styles.delButton}`).on('click', function () {
+            $(this).parent().parent().remove();
+        })
+
     }
 
     // import data from database
@@ -175,7 +171,7 @@ function NhapHang() {
                                             <select className={styles.exportGoodsInput} name='goodId' style={{ width: '100%' }}
                                                 onChange={e => { setValueObj({ ...valueObj, 'SanPhamId': e.target.value }) }} >
                                                 <option value="">Chọn sản phẩm</option>
-                                                {valueObj.LoaiSanPhamId != '' ?
+                                                {valueObj.LoaiSanPhamId !== '' ?
                                                     showGoodSelect.map((item, index) => (
                                                         <option key={index} value={item.id}>{item.TenSanPham}</option>
                                                     ))
@@ -249,22 +245,22 @@ function NhapHang() {
                                         </td>
                                         <td>
                                             <div className={styles.addButtonWrapper}>
-                                                <button className={styles.addButton}><FontAwesomeIcon icon={faPlus} onClick={(event) => clickAdd(event)} /></button>
+                                                <button className={styles.addButton} onClick={(event) => clickAdd(event)} ><FontAwesomeIcon icon={faPlus} /></button>
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <table className={styles.exportGoodsInputItems}>
+                            <table className={styles.exportGoodsInputItems2} style={{height: '1px'}}>
                                 <thead>
                                     <tr>
-                                        <th style={{ width: '15%' }}></th>
-                                        <th style={{ width: '20%' }}></th>
-                                        <th style={{ width: '10%' }}></th>
-                                        <th style={{ width: '20%' }}></th>
-                                        <th style={{ width: '20s%' }}></th>
-                                        <th style={{ width: '10%' }}></th>
-                                        <th style={{ width: '5%' }}></th>
+                                        <th style={{height: '1px' ,width: '15%' }}></th>
+                                        <th style={{height: '1px' ,width: '20%' }}></th>
+                                        <th style={{height: '1px' ,width: '10%' }}></th>
+                                        <th style={{height: '1px' ,width: '20%' }}></th>
+                                        <th style={{height: '1px' ,width: '20%' }}></th>
+                                        <th style={{height: '1px' ,width: '10%' }}></th>
+                                        <th style={{height: '1px' ,width: '5%' }}></th>
                                     </tr>
                                 </thead>
                                 <tbody>

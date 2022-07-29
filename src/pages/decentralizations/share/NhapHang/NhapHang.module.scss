@@ -51,7 +51,6 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
 
 .addGoodsWrapper {
     margin-top: 1px;
-    border: 1px groove;
     border-radius: 5px;
     position: relative;
 
@@ -76,14 +75,7 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
             cursor: pointer;
         }
 
-        &::after {
-            content: '';
-            position: absolute;
-            border-bottom: 1px groove;
-            width: 100%;
-            left: 0;
-            bottom: 0;
-        }
+   
     }
 
     .addGoods {
@@ -122,43 +114,23 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
             flex-grow: 4;
             margin-right: 20px;
             width: 100%;
+            margin-top: 20px;
 
+            td,th {
+                padding: 3px;
+            }
             .exportGoodsInput {
                 height: 40px;
                 width: 90%;
-            }
 
-            .delButton {
-                background: transparent;
-                border: transparent;
-                cursor: pointer;
-                color: red;
-                font-size: 18px;
-
-                &:hover {
-                    color: #F84B24;
-                }
-            }
-        }
-
-        .exportGoodsInputItems,
-        th,
-        td {
-            height: 60px;
-            font-size: 17px;
-            border: transparent;
-
-            .exportGoodsInput {
                 border: $borderColor;
                 border-radius: 8px;
                 box-shadow: $innerShadow;
                 outline: none;
             }
-
-            tr:nth-child(odd) {
-                background-color: #fff;
-            }
         }
+
+     
     }
 
     &::after {
@@ -167,7 +139,7 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
         border-bottom: 3px groove;
         width: 100%;
         left: 0;
-        bottom: 140px;
+        bottom: 120px;
     }
 
     .saveButtonWrapper {
@@ -309,6 +281,33 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
             cursor: pointer;
             background: rgb(237, 2, 2);
             background: linear-gradient(0deg, rgba(237, 2, 2, 1) 0%, rgba(249, 45, 0, 0.9047355758709734) 79%);
+        }
+    }
+}
+
+.exportGoodsInputItems2 {
+    width: 100%;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-collapse: collapse;
+    
+
+    td {
+        padding: 10px;
+        border-bottom: $borderColor;
+    }
+
+    .delButton {
+        text-align: center;
+        background: transparent;
+        border: transparent;
+        cursor: pointer;
+        color: red;
+        font-size: 18px;
+        box-shadow: none;
+
+        &:hover {
+            color: #F84B24;
         }
     }
 }
