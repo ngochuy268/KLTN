@@ -178,6 +178,7 @@ function XuatHang() {
 
     };
     const handleClickOpenPrint = () => {
+        xuatKho(listXuatHang, ttXuatHang);
         setOpenPrint(true);
     };
 
