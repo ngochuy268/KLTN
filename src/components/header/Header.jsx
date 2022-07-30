@@ -169,8 +169,8 @@ function Header() {
                     </li>
                     <li className={styles.headerStoreWrapper} >
                         <FontAwesomeIcon icon={faBox} className={styles.storeIcon} />
-                        <div className={styles.headerStore} style={{ height: '700px' }}>
-                            <img src={require('../../assets/layoutImg/Kho.drawio.png').default} alt="" className={styles.storeImg} style={{ width: '80%' }} />
+                        <div className={styles.headerStore}>
+                            <img src={require('../../assets/layoutImg/Kho.drawio.png').default} alt="" className={styles.storeImg}/>
                         </div>
                     </li>
                 </ul>

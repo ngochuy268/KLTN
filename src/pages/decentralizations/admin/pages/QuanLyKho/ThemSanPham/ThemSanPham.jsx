@@ -26,7 +26,12 @@ function ThemSanPham() {
         },
         MoTa: '',
         MaxTon: '',
-        MinTon: ''
+        MinTon: '',
+        Loc: '',
+        Thung: '',
+        Khay: '',
+        GiaBan: '',
+        GiaSanPham: ''
 
     });
    
@@ -34,7 +39,10 @@ function ThemSanPham() {
        
         if ( $(`.${styles.addGoodsA}`).css('display') === 'none') {
             if (valueObj.SanPhamId === "" || valueObj.SanPham.TenSanPham === "" 
-                || valueObj.MaxTon === "" || valueObj.MinTon === "" ) {
+                || valueObj.MaxTon === "" || valueObj.MinTon === ""
+                || valueObj.Loc === "" || valueObj.Thung === ""
+                || valueObj.Thay === "" || valueObj.GiaBan === ""
+                || valueObj.GiaSanPham === "") {
                 toast.error("Vui lòng điền đầy đủ thông tin!");
                 return false;
             } else {
@@ -123,6 +131,33 @@ function ThemSanPham() {
                                 <span>Tồn kho ít nhất</span>
                                 <input type="text" className={styles.addGoodsInput} placeholder='Nhập số lượng'
                                         onChange={e => setValueObj({...valueObj, MinTon: e.target.value})}/>
+                            </div>
+                        </div>
+                        <div className={styles.addGoods}>
+                            <div className={styles.addGoodsItems}>
+                                <span>Lóc</span>
+                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập số lóc'
+                                        onChange={e => setValueObj({...valueObj, Loc: e.target.value})}/>
+                            </div>
+                            <div className={styles.addGoodsItems}>
+                                <span>Thùng</span>
+                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập số thùng'
+                                        onChange={e => setValueObj({...valueObj, Thung: e.target.value})}/>
+                            </div>                        
+                            <div className={styles.addGoodsItems}>
+                                <span>Khay</span>
+                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập số khay'
+                                        onChange={e => setValueObj({...valueObj, Khay: e.target.value})}/>
+                            </div>
+                            <div className={styles.addGoodsItems}>
+                                <span>Giá bán</span>
+                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập giá'
+                                        onChange={e => setValueObj({...valueObj, GiaBan: e.target.value})}/>
+                            </div>
+                            <div className={styles.addGoodsItems}>
+                                <span>Giá sản phẩm</span>
+                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập giá'
+                                        onChange={e => setValueObj({...valueObj, GiaSanPham: e.target.value})}/>
                             </div>
                         </div>
                         <div className={styles.addGoodsItemsDesc}>

@@ -2,6 +2,8 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import React, { useRef, useState } from "react";
 import styles from './BaoCaoNgay.module.scss';
 import { useReactToPrint } from 'react-to-print';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
 function BaoCaoNgay() {
@@ -170,6 +172,23 @@ function BaoCaoNgay() {
                     <p>.........Bổ sung đánh giá của quản lý (nếu có).............
 
                      </p>
+                     <CKEditor
+                            editor={ ClassicEditor }
+                            data=""
+                            onReady={ editor => {
+                                // You can store the "editor" and use when it is needed.
+                                console.log( 'Editor is ready to use!', editor );
+                            } }
+                            onChange={ ( event, editor ) => {
+                                const data = editor.getData();
+                            } }
+                            onBlur={ ( event, editor ) => {
+                                console.log( 'Blur.', editor );
+                            } }
+                            onFocus={ ( event, editor ) => {
+                                console.log( 'Focus.', editor );
+                            } }
+                        />
                 </div>
                 <div className={styles.signatureWrapper}>
                     <div className={styles.signature}>

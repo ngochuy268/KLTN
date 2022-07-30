@@ -224,9 +224,7 @@ function XuatHang() {
 
                     <div className={styles.exportGoodsAutoWrapper}>
                         <div className={styles.exportGoodsInputBillItemsWrapper}>
-                            <div className={styles.addButtonWrapper}>
-                                <button className={styles.addButton}><FontAwesomeIcon icon={faPlus} onClick={clickfind} /></button>
-                            </div>
+        
                             <table className={styles.exportGoodsInputItems}>
                                 <tr>
                                     <th style={{width: '20%'}}>Loại sản phẩm</th>
@@ -294,6 +292,9 @@ function XuatHang() {
                                         }</td>
                                 </tr>
                             </table>
+                            <div className={styles.addButtonWrapper}>
+                                <button className={styles.addButton}><FontAwesomeIcon icon={faPlus} onClick={clickfind} /></button>
+                            </div>
                             <table className={styles.exportGoodsInputItems1}>
                                 <thead>
                                     <tr>
@@ -306,12 +307,15 @@ function XuatHang() {
                                 <tbody>
                                 </tbody>
                             </table>
+
                         </div>
 
                         <div className={styles.billWrapper}>
                             <div className={styles.exportGoodsInputBillWrapper} ref={componentRef}>
                                 <p className={styles.exportGoodsInputBillTitle}>Biên lai xuất kho</p>
-                                <p className={styles.exportGoodsInputBillDate}>Thời gian: <span>{displayCurrentDate}</span> </p>
+                                <div className={styles.timeWrapper}>
+                                    <p className={styles.exportGoodsInputBillDate}>Thời gian: <span>{displayCurrentDate}</span> </p>
+                                </div>
                                 <div className={styles.exportGoodsInputBillItems}>
                                     <div className={styles.exportGoodsInputBillItem}>
                                         <p className={styles.exportGoodsInputBillItemTitle}>
@@ -355,6 +359,9 @@ function XuatHang() {
                                     </p>
                                     <CKEditor
                                         editor={ClassicEditor}
+                                        config={{
+                                            height: 500
+                                        }}
                                         data=""
                                         onReady={editor => {
                                             // You can store the "editor" and use when it is needed.
@@ -362,7 +369,8 @@ function XuatHang() {
                                         }}
                                         onChange={(event, editor) => {
                                             const data = editor.getData()
-                                            setValueObj1({ ...valueObj, GhiChu: data });
+                                            console.log(data)
+                                            // setValueObj1({ ...valueObj, GhiChu: data });
                                         }}
                                         onBlur={(event, editor) => {
                                             console.log('Blur.', editor);
