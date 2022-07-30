@@ -72,7 +72,7 @@ function ThemNhanVien() {
     });
 
     const pushData = async (userValue) => {
-        let response = await (createUser);
+        let response = await createUser(userValue);
         if (response && response.EC === 0) {
             toast.success(response.EM)
         }
@@ -110,7 +110,7 @@ function ThemNhanVien() {
                 <div className={styles.addEmployeesWrapper}>
                     <div className={styles.addEmployees}>
                         <div className={styles.addEmployeesItems}>
-                             <div className={styles.addEmployeesItem}>
+                            <div className={styles.addEmployeesItem}>
                                 <p>ID nhân viên</p>
                                 <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, ID: e.target.value })} />
                             </div>
