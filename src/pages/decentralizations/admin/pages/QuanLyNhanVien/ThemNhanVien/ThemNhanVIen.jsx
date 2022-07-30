@@ -18,17 +18,6 @@ function ThemNhanVien() {
     // Validate form
     const validateAll = () => {
 
-        // check email form
-        if (isEmpty(email)) {
-            toast.error('Vui lòng nhập thông tin!')
-            return false;
-        }
-        const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (!(email.match(emailRegex))) {
-            toast.error('Định dạng email sai!')
-            return false;
-        }
-
         // Check password empty
         if (isEmpty(password)) {
             toast.error('Mật khẩu không được để trống!')
@@ -62,8 +51,11 @@ function ThemNhanVien() {
         HoTen: '',
         GioiTinh: null,
         NgaySinh: '',
+        CCCD: '',
         Tel: '',
         Email: '',
+        FB: '',
+        Zalo: '',
         NgayVaoLam: '',
         DiaChi: '',
         GhiChu: '',
@@ -85,7 +77,8 @@ function ThemNhanVien() {
                 || valueObj.NgaySinh === "" || valueObj.Tel === ""
                 || valueObj.Email === "" || valueObj.NgayVaoLam === ""
                 || valueObj.DiaChi === "" || valueObj.Level === ""
-                || valueObj.Password === "") {
+                || valueObj.Password === "" || valueObj.CCCD === ""
+                || valueObj.ID === "") {
                 toast.error("Vui lòng điền đầy đủ thông tin!");
                 return false;
             }
@@ -111,15 +104,15 @@ function ThemNhanVien() {
                     <div className={styles.addEmployees}>
                         <div className={styles.addEmployeesItems}>
                              <div className={styles.addEmployeesItem}>
-                                <p>ID nhân viên</p>
+                                <p>ID nhân viên <span style={{color: 'red'}}>*</span></p>
                                 <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, ID: e.target.value })} />
                             </div>
                             <div className={styles.addEmployeesItem}>
-                                <p>Họ và tên</p>
+                                <p>Họ và tên <span style={{color: 'red'}}>*</span></p>
                                 <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, HoTen: e.target.value })} />
                             </div>
                             <div className={styles.addEmployeesItem}>
-                                <p>Giới tính</p>
+                                <p>Giới tính <span style={{color: 'red'}}>*</span></p>
                                 <div className={styles.addEmployeesInputRadioWrapper}>
                                     <div className={styles.addEmployeesInputRadio}>
                                         <input type="radio" value='1' name='sex' className={clsx(styles.addEmployeesInput, styles.radioButton)}
@@ -135,14 +128,18 @@ function ThemNhanVien() {
                                 </div>
                             </div>
                             <div className={styles.addEmployeesItem}>
-                                <p>Ngày sinh</p>
+                                <p>Ngày sinh <span style={{color: 'red'}}>*</span></p>
                                 <input type="date" className={styles.addEmployeesInput}
                                     onChange={e => setValueObj({ ...valueObj, NgaySinh: e.target.value })} />
+                            </div>
+                            <div className={styles.addEmployeesItem}>
+                                <p>Căn cước công dân <span style={{color: 'red'}}>*</span></p>
+                                <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, CCCD: e.target.value })} />
                             </div>
                         </div>
                         <div className={styles.addEmployeesItems}>
                             <div className={styles.addEmployeesItem}>
-                                <p>Số điện thoại</p>
+                                <p>Số điện thoại <span style={{color: 'red'}}>*</span></p>
                                 <input type="text" className={styles.addEmployeesInput}
                                     onChange={e => setValueObj({ ...valueObj, Tel: e.target.value })} />
                             </div>
@@ -152,14 +149,24 @@ function ThemNhanVien() {
                                     onChange={e => { setValueObj({ ...valueObj, Email: e.target.value }); setEmail(e.target.value) }} />
                             </div>
                             <div className={styles.addEmployeesItem}>
-                                <p>Ngày vào làm</p>
+                                <p>Facebook</p>
+                                <input type="text" className={styles.addEmployeesInput}
+                                    onChange={e => { setValueObj({ ...valueObj, FB: e.target.value })}} />
+                            </div>
+                            <div className={styles.addEmployeesItem}>
+                                <p>Zalo</p>
+                                <input type="text" className={styles.addEmployeesInput}
+                                    onChange={e => { setValueObj({ ...valueObj, Zalo: e.target.value })}} />
+                            </div>
+                            <div className={styles.addEmployeesItem}>
+                                <p>Ngày vào làm <span style={{color: 'red'}}>*</span></p>
                                 <input type="date" className={styles.addEmployeesInput}
                                     onChange={e => setValueObj({ ...valueObj, NgayVaoLam: e.target.value })} />
                             </div>
                         </div>
                         <div className={styles.addEmployeesItems}>
                             <div className={styles.addEmployeesItem}>
-                                <p>Địa chỉ</p>
+                                <p>Địa chỉ <span style={{color: 'red'}}>*</span></p>
                                 <input type="text" className={styles.addEmployeesInput}
                                     onChange={e => setValueObj({ ...valueObj, DiaChi: e.target.value })} />
                             </div>
@@ -189,7 +196,7 @@ function ThemNhanVien() {
                         </div>
                         <div className={styles.addEmployeesItems}>
                             <div className={styles.addEmployeesItem}>
-                                <p>Chức vụ</p>
+                                <p>Chức vụ <span style={{color: 'red'}}>*</span></p>
                                 <select className={styles.addEmployeesInput}
                                     onChange={e => setValueObj({ ...valueObj, Level: e.target.value })} >
                                     <option value="0">Chọn chức vụ</option>
@@ -198,14 +205,14 @@ function ThemNhanVien() {
                                 </select>
                             </div>
                             <div className={styles.addEmployeesItem}>
-                                <p>Mật khẩu</p>
+                                <p>Mật khẩu <span style={{color: 'red'}}>*</span></p>
                                 <input type="password"
                                     value={password}
                                     onChange={e => { setPassword(e.target.value); setValueObj({ ...valueObj, Password: e.target.value }) }}
                                     className={styles.addEmployeesInput} />
                             </div>
                             <div className={styles.addEmployeesItem}>
-                                <p>Nhập lại mật khẩu</p>
+                                <p>Nhập lại mật khẩu <span style={{color: 'red'}}>*</span></p>
                                 <input type="password"
                                     value={retypePassword}
                                     onChange={e => { setRetypePassword(e.target.value) }}
@@ -214,7 +221,7 @@ function ThemNhanVien() {
                         </div>
                         <div className={styles.addEmployeesItems}>
                             <div className={styles.addEmployeesItem}>
-                                <p>Ảnh chân dung</p>
+                                <p>Ảnh chân dung <span style={{color: 'red'}}>*</span></p>
                                 <input type="file" name='file' className={styles.addEmployeesInput} />
                             </div>
                         </div>
