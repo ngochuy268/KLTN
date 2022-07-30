@@ -4,6 +4,8 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { toast } from 'react-toastify';
 import $ from 'jquery';
+import { fetchDataSelectLoaiSP } from '../../../../../../services/khoHangServices';
+import { createSP } from '../../../../../../services/userServices';
 
 function ThemSanPham() {
 
@@ -11,69 +13,88 @@ function ThemSanPham() {
         const $ = document.querySelector.bind(document);
         $(`.${styles.addButton}`).onclick = function() {
             $(`.${styles.addGoodsA}`).classList.toggle(`${styles.active}`);
+
         }
    })
    
     //   Get value from input
     const [valueObj, setValueObj] = useState({
         LoaiSanPhamId: '',
-        TenLoai: '',
-        MinDate: '',
-        HSD: '',
-        SanPhamId: '',
-        SanPham: {
-            TenSanPham: ''
-        },
-        MoTa: '',
+        id: '',
+        TenSanPham: '',
+        MoTa: null,
         MaxTon: '',
         MinTon: '',
         Loc: '',
         Thung: '',
         Khay: '',
         GiaBan: '',
-        GiaSanPham: ''
-
+        GiaSanPham: '',
+        TrangThai: 1
+        
     });
+
+    const [valueObjLoaiSP, setValueObjLoaiSP] = useState({
+        LoaiSanPhamId: '',
+        TenLoai: '',
+        MinDate: '',
+        HSD: '',
+        TrangThai: 1
+    });
+
+    useEffect(() => {
+        fetchShowLoaiSPSelect();
+    }, []);
+
+    const [showGoodTypeSelect, setShowGoodTypeSelect] = useState([]);
+    const fetchShowLoaiSPSelect = async () => {
+        let response = await fetchDataSelectLoaiSP();
+        if (response && response.EC === 0) {
+            setShowGoodTypeSelect(response.DT);
+        }
+    }
+
+    const pushData = async (valueObj, valueObjLoaiSP ) => {
+        let response = await createSP(valueObj, valueObjLoaiSP);
+        if (response && response.EC === 0) {
+            toast.success(response.EM)
+        } else { toast.error(response.EM) }
+    }
+
    
     const handleUpdate = () => {
        
         if ( $(`.${styles.addGoodsA}`).css('display') === 'none') {
-            if (valueObj.SanPhamId === "" || valueObj.SanPham.TenSanPham === "" 
+            if (valueObj.id === "" || valueObj.TenSanPham === "" 
                 || valueObj.MaxTon === "" || valueObj.MinTon === ""
                 || valueObj.Loc === "" || valueObj.Thung === ""
-                || valueObj.Thay === "" || valueObj.GiaBan === ""
-                || valueObj.GiaSanPham === "") {
+                || valueObj.Khay === "" || valueObj.GiaBan === ""
+                || valueObj.GiaSanPham === "" ||valueObj.LoaiSanPhamId === "") {
                 toast.error("Vui lòng điền đầy đủ thông tin!");
                 return false;
             } else {
-                const newArr=[]; 
-                newArr.push(valueObj); 
-                console.log(newArr);
-                /* 
-                    Code update lên db
-                */
-                toast.success('Cập nhật thông tin thành công!');
+                pushData(valueObj);              
             }
         }
         else {
-            if (valueObj.SanPhamId === "" || valueObj.SanPham.TenSanPham === "" 
-                || valueObj.MaxTon === "" || valueObj.MinTon === "" 
-                || valueObj.LoaiSanPhamId === "" || valueObj.TenLoai === ""
-                || valueObj.MinDate === "" || valueObj.HSD === "") {
+            if (valueObj.id === "" || valueObj.TenSanPham === "" 
+                || valueObj.MaxTon === "" || valueObj.MinTon === ""
+                || valueObj.Loc === "" || valueObj.Thung === ""
+                || valueObj.Khay === "" || valueObj.GiaBan === ""
+                || valueObj.GiaSanPham === "" ||valueObj.LoaiSanPhamId === ""
+                || valueObj.TenLoai === "" || valueObj.MinDate === ""
+                || valueObj.HSD === "") {
                 toast.error("Vui lòng điền đầy đủ thông tin!");
                 return false;
             } else {
-                const newArr=[]; 
-                newArr.push(valueObj); 
-                console.log(newArr);
-                /* 
-                    Code update lên db
-                */
-                toast.success('Cập nhật thông tin thành công!');
+                pushData(valueObj, valueObjLoaiSP);
             }
         }
-    }
+      
         
+    }
+    const [img, setImg] = useState('');
+    console.log(img)
     return (
         <>
             <div className={styles.container}>
@@ -92,35 +113,59 @@ function ThemSanPham() {
                             <div className={styles.addGoodsItems}>
                                 <span>Mã loại mới</span>
                                 <input type="text" className={styles.addGoodsInput} placeholder='Nhập mã loại' 
-                                        onChange={e => setValueObj({...valueObj, LoaiSanPhamId: e.target.value})}/>
+                                        onChange={e => setValueObjLoaiSP({...valueObjLoaiSP, LoaiSanPhamId: e.target.value})}/>
                             </div>
                             <div className={styles.addGoodsItems}>
                                 <span>Tên loại mới</span>
                                 <input type="text" className={styles.addGoodsInput} placeholder='Nhập tên mới'
-                                        onChange={e => setValueObj({...valueObj, TenLoai: e.target.value})}/>
+                                        onChange={e => setValueObjLoaiSP({...valueObjLoaiSP, TenLoai: e.target.value})}/>
                             </div>
                             <div className={styles.addGoodsItems}>
                                 <span>Min Date</span>
                                 <input type="text" className={styles.addGoodsInput} placeholder='Số ngày có thể bảo quản'
-                                        onChange={e => setValueObj({...valueObj, MinDate: e.target.value})}/>
+                                        onChange={e => setValueObjLoaiSP({...valueObjLoaiSP, MinDate: e.target.value})}/>
                             </div>
                             <div className={styles.addGoodsItems}>
                                 <span>Hạn sử dụng</span>
                                 <input type="text" className={styles.addGoodsInput} placeholder='Số ngày có thể bảo quản'
-                                        onChange={e => setValueObj({...valueObj, HSD: e.target.value})}/>
+                                        onChange={e => setValueObjLoaiSP({...valueObjLoaiSP, HSD: e.target.value})}/>
                             </div>
                        </div>
 
                         <div className={styles.addGoods}>
                             <div className={styles.addGoodsItems}>
+                                <span>Mã loại</span>
+                                {valueObjLoaiSP.LoaiSanPhamId ? 
+
+                                <>
+                                    <select className={styles.addGoodsInput} disabled>
+                                        <option value="">Chọn mã loại</option>
+                                    </select>   
+                                </> 
+
+                                :<>
+                                     <select className={styles.addGoodsInput} onChange={e => setValueObj({...valueObj, LoaiSanPhamId: e.target.value})}>
+                                    <option value="">Chọn mã loại</option>
+                                    {showGoodTypeSelect && showGoodTypeSelect.length > 0 ? 
+                                        <>
+                                            {showGoodTypeSelect.map((item,index) => (
+                                                <option value={item.id} key={index}>{item.TenLoai}</option>
+                                            ))}
+                                        </>
+                                    : <></>}
+                                    </select>   
+                                </>}
+                               
+                            </div>
+                            <div className={styles.addGoodsItems}>
                                 <span>Mã sản phẩm</span>
                                 <input type="text" className={styles.addGoodsInput} placeholder='Nhập mã mới'
-                                        onChange={e => setValueObj({...valueObj, SanPhamId: e.target.value})}/>
+                                        onChange={e => setValueObj({...valueObj, id: e.target.value})}/>
                             </div>
                             <div className={styles.addGoodsItems}>
                                 <span>Tên sản phẩm</span>
                                 <input type="text" className={styles.addGoodsInput} placeholder='Nhập tên mới'
-                                        onChange={e => setValueObj({...valueObj, SanPham: {TenSanPham: e.target.value}})}/>
+                                        onChange={e => setValueObj({...valueObj, TenSanPham: e.target.value})}/>
                             </div>                        
                             <div className={styles.addGoodsItems}>
                                 <span>Tồn kho nhiều nhất</span>
@@ -183,10 +228,10 @@ function ThemSanPham() {
                         </div>
                         <div className={styles.addGoodsImgWrapper}>
                             <span>Ảnh sản phẩm</span>
-                            <input type="file" name="upload" className={styles.addGoodsInput} />
+                            <input type="file" name="upload" className={styles.addGoodsInput} onChange={e => setImg(e.target.files)} />
                         </div>
                         <div className={styles.saveButtonWrapper}>
-                            <button className={styles.saveButton} onClick={handleUpdate}>Cập nhật</button>
+                            <button className={styles.saveButton} onClick={handleUpdate}>Thêm mới</button>
                         </div>
                     </div>  
                 </div>         

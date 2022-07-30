@@ -98,6 +98,7 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
                 border: $borderColor;
                 padding: 12px;
                 box-shadow: $innerShadow;
+                outline: none;
             }
         }
     }

@@ -69,7 +69,7 @@ function DanhSachSanPham() {
             */
             toast.success('Cập nhật thông tin thành công!');
         }
-}
+    }
 
     return (
         <>
@@ -104,7 +104,7 @@ function DanhSachSanPham() {
                                         </div>
                                         <div className={styles.listGoodsBody}>
                                             <div className={styles.listGoodInfoWrapper}>
-                                                <img src={require(`../../../../../../assets/layoutImg/sanpham/${itemI.Hinh}`).default} alt="banh Flan" className={styles.listGoodsImg} />
+                                                <img src={itemI.Hinh ? require(`../../../../../../assets/layoutImg/sanpham/${itemI.Hinh}`).default : img} alt="banh Flan" className={styles.listGoodsImg} />
                                                 <div className={styles.listGoodInfoItem}>
                                                     <div className={styles.listGoodInfo}>
                                                         <span>Mã sản phẩm: </span> <p>{itemI.id}</p>

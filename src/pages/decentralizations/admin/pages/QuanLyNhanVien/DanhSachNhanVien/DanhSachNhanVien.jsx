@@ -53,7 +53,7 @@ function DanhSachNhanVien() {
                                     <div className={styles.employeeContent}>
                                         <div className={styles.employeeBasicInfo}>
                                             <div className={styles.employeeImgWrapper}>
-                                                <img src={require(`../../../../../../assets/layoutImg/Avatar/${item.Avata}`).default}
+                                                <img src={item.Avata ? require(`../../../../../../assets/layoutImg/Avatar/${item.Avata}`).default : avatar}
                                                     alt="employee-avatar" className={styles.employeeImg} />
                                                 <b><p>{item.id}</p></b>
                                             </div>

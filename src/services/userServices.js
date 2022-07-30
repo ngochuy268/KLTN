@@ -12,4 +12,9 @@ const getUser = (id) => {
 const createUser = (userValue) => {
     return axios.post('/api/v1/user/create', { userValue })
 }
-export { loginUser, getUser, createUser };
+
+const createSP = (valueObj, valueObjLoaiSP) => {
+    return axios.post('/api/v1//sanpham/create', {valueObj, valueObjLoaiSP})
+}
+
+export { loginUser, getUser, createUser, createSP};
