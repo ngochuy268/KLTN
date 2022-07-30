@@ -9,5 +9,7 @@ const loginUser = (idNhanVien, password) => {
 const getUser = (id) => {
     return axios.post('/api/v1/user/shows', { id })
 }
-
-export { loginUser, getUser };
+const createUser = (userValue) => {
+    return axios.post('/api/v1/user/create', { userValue })
+}
+export { loginUser, getUser, createUser };

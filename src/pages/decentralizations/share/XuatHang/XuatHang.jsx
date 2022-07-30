@@ -67,6 +67,15 @@ function XuatHang() {
         'GhiChu': '',
     });
 
+    const getvalue = () => {
+        if (valueObj.LoaiSanPhamId === "" || valueObj.SanPhamId === "" || valueObj.SoLuong === "") {
+            return false;
+        } else {
+            getDataXuat(valueObj);
+            console.log("> ", listXuatHang)
+        }
+
+    }
     const [xuatObj, setXuatObj] = useState({
         'idKho': '',
         'LoaiSanPhamId': '',
@@ -78,64 +87,51 @@ function XuatHang() {
 
     const [listXuatHang, setListValue] = useState([]);
 
-    const getvalue = () => {
-        if (valueObj.LoaiSanPhamId === "" || valueObj.SanPhamId === "" || valueObj.SoLuong === "") {
-            return false;
-        } else {
-            getDataXuat(valueObj);
-        }
-    }
+    const addValue = async () => {
+        if (dataXuatHang && dataXuatHang.length > 0) {
 
-    const addValue = () => {
-        console.log(">>>>> check add value")
-        if (valueObj.LoaiSanPhamId === "" || valueObj.SanPhamId === "" || valueObj.SoLuong === "") {
-            toast.error("Loại sản phẩm - Tên sản phẩm - Số lượng không được để trống");
-            return false;
-        } else {
-            // getDataXuat(valueObj);
-            if (dataXuatHang && dataXuatHang.length > 0) {
-                console.log(">>>>> check add value2", dataXuatHang)
-                dataXuatHang.map((item, index) => {
-                    console.log(">>> check item: ", item.id)
-                    xuatObj.idKho = item.id;
-                    xuatObj.LoaiSanPhamId = item.LoaiSanPhamId;
-                    xuatObj.SanPhanId = item.SanPhamId;
-                    xuatObj.SoLuong = item.SoLuong;
-                    xuatObj.NSX = item.NSX;
-                    xuatObj.HSD = item.HSD;
-
-                    listXuatHang.push(xuatObj);
-                    console.log(">>>>> check add value3", xuatObj)
-                    $(`.${styles.exportGoodsInputBillTable} tbody`).append(
-                        `<tr>
+            dataXuatHang.map((item, index) => {
+                setXuatObj({
+                    'idKho': '',
+                    'LoaiSanPhamId': '',
+                    'SanPhanId': '',
+                    'SoLuong': '',
+                    'NSX': '',
+                    'HSD': '',
+                });
+                console.log(">>>>>>>>>>>> ", xuatObj)
+                console.log(">>>>>>>>>>>> ", item.id)
+                console.log(">>>>>>>>>>>> ", listXuatHang)
+                xuatObj.idKho = item.id;
+                xuatObj.LoaiSanPhamId = item.LoaiSanPhamId;
+                xuatObj.SanPhanId = item.SanPhamId;
+                xuatObj.SoLuong = item.SoLuong;
+                xuatObj.NSX = item.NSX;
+                xuatObj.HSD = item.HSD;
+                console.log(">>>>>..>>>>", xuatObj)
+                listXuatHang.push(xuatObj);
+                console.log(">>>>>.......", listXuatHang)
+                $(`.${styles.exportGoodsInputBillTable} tbody`).append(
+                    `<tr>
                             <td>${item.SanPham.TenSanPham}</td>
                             <td>${item.NSX} - ${item.HSD}</td>
                             <td>${item.SoLuong}</td>
                         </tr>`)
 
-                    setXuatObj({
-                        'idKho': '',
-                        'LoaiSanPhamId': '',
-                        'SanPhanId': '',
-                        'SoLuong': '',
-                        'NSX': '',
-                        'HSD': '',
-                    })
 
-                });
-
-                setValueObj({
-                    'SanPhamId': '',
-                    'SoLuong': '',
-                    'NSX': '',
-                });
-            }
+            });
+            console.log("check. . . .. : ", listXuatHang)
+            setValueObj({
+                'SanPhamId': '',
+                'SoLuong': '',
+                'NSX': '',
+            });
         }
+
     }
-    console.log(">>> check listXuatHang: ", listXuatHang)
+
 
     const clickfind = (event) => {
-        // getvalue();
         addValue();
 
     }
@@ -182,6 +178,8 @@ function XuatHang() {
     };
     const handleClickOpenPrint = () => {
         xuatKho(listXuatHang, ttXuatHang);
+        setListValue([]);
+        console.log(">>><<<<<>>>>><<<<>>>> ", listXuatHang)
         setOpenPrint(true);
     };
 
@@ -227,10 +225,10 @@ function XuatHang() {
         
                             <table className={styles.exportGoodsInputItems}>
                                 <tr>
-                                    <th style={{width: '20%'}}>Loại sản phẩm</th>
-                                    <th style={{width: '35%'}}>Tên sản phẩm</th>
-                                    <th style={{width: '30%'}}>Ngày sản xuất</th>
-                                    <th style={{width: '15%'}}>Số lượng</th>
+                                    <th style={{ width: '20%' }}>Loại sản phẩm</th>
+                                    <th style={{ width: '35%' }}>Tên sản phẩm</th>
+                                    <th style={{ width: '30%' }}>Ngày sản xuất</th>
+                                    <th style={{ width: '15%' }}>Số lượng</th>
                                 </tr>
 
                                 <tr>
@@ -298,10 +296,10 @@ function XuatHang() {
                             <table className={styles.exportGoodsInputItems1}>
                                 <thead>
                                     <tr>
-                                        <th style={{height: '1px', width: '30%'}}></th>
-                                        <th style={{height: '1px', width: '20%'}}></th>
-                                        <th style={{height: '1px', width: '20%'}}></th>
-                                        <th style={{height: '1px', width: '30%'}}></th>
+                                        <th style={{ height: '1px', width: '30%' }}></th>
+                                        <th style={{ height: '1px', width: '20%' }}></th>
+                                        <th style={{ height: '1px', width: '20%' }}></th>
+                                        <th style={{ height: '1px', width: '30%' }}></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -321,14 +319,14 @@ function XuatHang() {
                                         <p className={styles.exportGoodsInputBillItemTitle}>
                                             Nhân viên
                                         </p>
-                                        <input type="text" className={styles.exportGoodsInputBillItemInput} name='employee' />
+                                        <input type="text" className={styles.exportGoodsInputBillItemInput} name='employee' value={user.account.username} />
                                     </div>
                                     <div className={styles.exportGoodsInputBillItem}>
                                         <p className={styles.exportGoodsInputBillItemTitle}>
                                             Giao hàng
                                         </p>
                                         <input type="text" className={styles.exportGoodsInputBillItemInput} name='deliver'
-                                            onChange={e => { setXuatObj({ ...xuatObj, 'NVGiaoHang': e.target.value }) }}
+                                            onChange={e => { setttXuatHang({ ...ttXuatHang, 'NVGiaoHang': e.target.value }) }}
                                         />
                                     </div>
                                     <div className={styles.exportGoodsInputBillItem}>
@@ -336,7 +334,7 @@ function XuatHang() {
                                             Bên nhận
                                         </p>
                                         <input type="text" className={styles.exportGoodsInputBillItemInput} name='receiver'
-                                            onChange={e => { setXuatObj({ ...xuatObj, 'BenNhan': e.target.value }) }}
+                                            onChange={e => { setttXuatHang({ ...ttXuatHang, 'BenNhan': e.target.value }) }}
                                         />
                                     </div>
                                 </div>
@@ -357,6 +355,7 @@ function XuatHang() {
                                     <p className={styles.exportGoodsInputBillItemTitle}>
                                         Ghi chú
                                     </p>
+
                                     <CKEditor
                                         editor={ClassicEditor}
                                         config={{
@@ -378,6 +377,7 @@ function XuatHang() {
                                         onFocus={(event, editor) => {
                                             console.log('Focus.', editor);
                                         }}
+
                                     />
                                 </div>
                                 <div className={styles.signatureWrapper}>
