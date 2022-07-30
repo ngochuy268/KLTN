@@ -1,5 +1,8 @@
 import styles from './ThemSanPham.module.scss';
 import { useEffect, useState } from 'react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { toast } from 'react-toastify';
 import $ from 'jquery';
 
 function ThemSanPham() {
@@ -8,36 +11,58 @@ function ThemSanPham() {
         const $ = document.querySelector.bind(document);
         $(`.${styles.addButton}`).onclick = function() {
             $(`.${styles.addGoodsA}`).classList.toggle(`${styles.active}`);
-        }     
+        }
    })
    
     //   Get value from input
     const [valueObj, setValueObj] = useState({
-        HoTen: '',
-        NVGiaoHang: '',
-        BenNhan:  '',
+        LoaiSanPhamId: '',
+        TenLoai: '',
+        MinDate: '',
+        HSD: '',
+        SanPhamId: '',
         SanPham: {
             TenSanPham: ''
         },
-        SoLuong: '',
-        HSD: '',
-        ThanhTien: '',
-        GhiChu: ''
+        MoTa: '',
+        MaxTon: '',
+        MinTon: ''
+
     });
+   
     const handleUpdate = () => {
-        if (valueObj.HoTen === "" || valueObj.NVGiaoHang === "" 
-            || valueObj.BenNhan === "" || valueObj.SanPham.TenSanPham === "" 
-            || valueObj.SoLuong === "" || valueObj.HSD === "" || valueObj.ThanhTien === "" ) {
-            toast.error("Vui lòng điền đầy đủ thông tin!");
-            return false;
-        } else {
-            const newArr=[]; 
-            newArr.push(valueObj); 
-            console.log(newArr);
-            /* 
-                Code update lên db
-            */
-            toast.success('Cập nhật thông tin thành công!');
+       
+        if ( $(`.${styles.addGoodsA}`).css('display') === 'none') {
+            if (valueObj.SanPhamId === "" || valueObj.SanPham.TenSanPham === "" 
+                || valueObj.MaxTon === "" || valueObj.MinTon === "" ) {
+                toast.error("Vui lòng điền đầy đủ thông tin!");
+                return false;
+            } else {
+                const newArr=[]; 
+                newArr.push(valueObj); 
+                console.log(newArr);
+                /* 
+                    Code update lên db
+                */
+                toast.success('Cập nhật thông tin thành công!');
+            }
+        }
+        else {
+            if (valueObj.SanPhamId === "" || valueObj.SanPham.TenSanPham === "" 
+                || valueObj.MaxTon === "" || valueObj.MinTon === "" 
+                || valueObj.LoaiSanPhamId === "" || valueObj.TenLoai === ""
+                || valueObj.MinDate === "" || valueObj.HSD === "") {
+                toast.error("Vui lòng điền đầy đủ thông tin!");
+                return false;
+            } else {
+                const newArr=[]; 
+                newArr.push(valueObj); 
+                console.log(newArr);
+                /* 
+                    Code update lên db
+                */
+                toast.success('Cập nhật thông tin thành công!');
+            }
         }
     }
         
@@ -58,50 +83,75 @@ function ThemSanPham() {
                        <div className={styles.addGoodsA}>
                             <div className={styles.addGoodsItems}>
                                 <span>Mã loại mới</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập mã loại' />
+                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập mã loại' 
+                                        onChange={e => setValueObj({...valueObj, LoaiSanPhamId: e.target.value})}/>
                             </div>
                             <div className={styles.addGoodsItems}>
                                 <span>Tên loại mới</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập tên mới'/>
+                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập tên mới'
+                                        onChange={e => setValueObj({...valueObj, TenLoai: e.target.value})}/>
                             </div>
                             <div className={styles.addGoodsItems}>
                                 <span>Min Date</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Số ngày có thể bảo quản'/>
+                                <input type="text" className={styles.addGoodsInput} placeholder='Số ngày có thể bảo quản'
+                                        onChange={e => setValueObj({...valueObj, MinDate: e.target.value})}/>
                             </div>
                             <div className={styles.addGoodsItems}>
                                 <span>Hạn sử dụng</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Số ngày có thể bảo quản'/>
+                                <input type="text" className={styles.addGoodsInput} placeholder='Số ngày có thể bảo quản'
+                                        onChange={e => setValueObj({...valueObj, HSD: e.target.value})}/>
                             </div>
                        </div>
 
                         <div className={styles.addGoods}>
                             <div className={styles.addGoodsItems}>
                                 <span>Mã sản phẩm</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập mã mới'/>
+                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập mã mới'
+                                        onChange={e => setValueObj({...valueObj, SanPhamId: e.target.value})}/>
                             </div>
                             <div className={styles.addGoodsItems}>
                                 <span>Tên sản phẩm</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập tên mới'/>
-                            </div>
-                            <div className={styles.addGoodsItems}>
-                                <span>Mô tả </span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập mô tả'/>
-                            </div>
+                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập tên mới'
+                                        onChange={e => setValueObj({...valueObj, SanPham: {TenSanPham: e.target.value}})}/>
+                            </div>                        
                             <div className={styles.addGoodsItems}>
                                 <span>Tồn kho nhiều nhất</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập số lượng'/>
+                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập số lượng'
+                                        onChange={e => setValueObj({...valueObj, MaxTon: e.target.value})}/>
                             </div>
                             <div className={styles.addGoodsItems}>
                                 <span>Tồn kho ít nhất</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập số lượng'/>
+                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập số lượng'
+                                        onChange={e => setValueObj({...valueObj, MinTon: e.target.value})}/>
                             </div>
+                        </div>
+                        <div className={styles.addGoodsItemsDesc}>
+                            <span style={{marginBottom: '15px'}}>Mô tả </span>
+                            <CKEditor
+                                editor={ ClassicEditor }
+                                data=""
+                                onReady={ editor => {
+                                    // You can store the "editor" and use when it is needed.
+                                    console.log( 'Editor is ready to use!', editor );
+                                } }
+                                onChange={ ( event, editor ) => {
+                                    const data = editor.getData();
+                                    setValueObj({...valueObj, MoTa: data})
+                                } }
+                                onBlur={ ( event, editor ) => {
+                                    console.log( 'Blur.', editor );
+                                } }
+                                onFocus={ ( event, editor ) => {
+                                    console.log( 'Focus.', editor );
+                                } }
+                            />
                         </div>
                         <div className={styles.addGoodsImgWrapper}>
                             <span>Ảnh sản phẩm</span>
                             <input type="file" name="upload" className={styles.addGoodsInput} />
                         </div>
                         <div className={styles.saveButtonWrapper}>
-                                <button className={styles.saveButton}>Cập nhật</button>
+                            <button className={styles.saveButton} onClick={handleUpdate}>Cập nhật</button>
                         </div>
                     </div>  
                 </div>         

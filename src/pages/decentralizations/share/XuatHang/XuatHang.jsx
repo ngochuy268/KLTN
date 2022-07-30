@@ -10,6 +10,9 @@ import { fetchDataSelectLoaiSP, fetchDataSelectSP, getDataXuatHang, xuatHang } f
 import { UserContext } from "../../../../context/userContext";
 import React from "react";
 import { toast } from 'react-toastify';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 
 function XuatHang() {
@@ -224,10 +227,10 @@ function XuatHang() {
                             </div>
                             <table className={styles.exportGoodsInputItems}>
                                 <tr>
-                                    <th style={{width: '20%'}}>Loại sản phẩm</th>
-                                    <th style={{width: '35%'}}>Tên sản phẩm</th>
-                                    <th style={{width: '30%'}}>Ngày sản xuất</th>
-                                    <th style={{width: '15%'}}>Số lượng</th>
+                                    <th style={{ width: '20%' }}>Loại sản phẩm</th>
+                                    <th style={{ width: '35%' }}>Tên sản phẩm</th>
+                                    <th style={{ width: '30%' }}>Ngày sản xuất</th>
+                                    <th style={{ width: '15%' }}>Số lượng</th>
                                 </tr>
 
                                 <tr>
@@ -292,10 +295,10 @@ function XuatHang() {
                             <table className={styles.exportGoodsInputItems1}>
                                 <thead>
                                     <tr>
-                                        <th style={{height: '1px', width: '30%'}}></th>
-                                        <th style={{height: '1px', width: '20%'}}></th>
-                                        <th style={{height: '1px', width: '20%'}}></th>
-                                        <th style={{height: '1px', width: '30%'}}></th>
+                                        <th style={{ height: '1px', width: '30%' }}></th>
+                                        <th style={{ height: '1px', width: '20%' }}></th>
+                                        <th style={{ height: '1px', width: '20%' }}></th>
+                                        <th style={{ height: '1px', width: '30%' }}></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -348,8 +351,25 @@ function XuatHang() {
                                     <p className={styles.exportGoodsInputBillItemTitle}>
                                         Ghi chú
                                     </p>
-                                    <textarea rows={4} style={{ height: 'auto' }} className={styles.exportGoodsInputBillItemInput} name='note'
-                                        onChange={e => { setttXuatHang({ ...ttXuatHang, 'GhiChu': e.target.value }) }}
+
+                                    <CKEditor
+                                        editor={ClassicEditor}
+                                        data=""
+                                        onReady={editor => {
+                                            // You can store the "editor" and use when it is needed.
+                                            console.log('Editor is ready to use!', editor);
+                                        }}
+                                        onChange={(event, editor) => {
+                                            const data = editor.getData()
+                                            setValueObj1({ ...valueObj, GhiChu: data });
+                                        }}
+                                        onBlur={(event, editor) => {
+                                            console.log('Blur.', editor);
+                                        }}
+                                        onFocus={(event, editor) => {
+                                            console.log('Focus.', editor);
+                                        }}
+
                                     />
                                 </div>
                                 <div className={styles.signatureWrapper}>

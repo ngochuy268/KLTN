@@ -208,7 +208,7 @@ function TongQuan() {
                                                         <StyledTableCell >{item.LoaiSanPhamId}</StyledTableCell>
                                                         <StyledTableCell>{item.LoaiSanPham.TenLoai}</StyledTableCell>
                                                         <StyledTableCell>{item.SoLuong}</StyledTableCell>
-                                                        <StyledTableCell align='center'><FontAwesomeIcon icon={faEye} className={styles.goodName}/></StyledTableCell>
+                                                        <StyledTableCell align='center'><FontAwesomeIcon icon={faEye} className={styles.goodName} /></StyledTableCell>
                                                     </StyledTableRow>
                                                 ))}
                                             </>

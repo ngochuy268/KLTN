@@ -19,9 +19,9 @@ function BaoCaoThang() {
         console.log('......................................................')
     }, [])
 
-    const fetchLoaiSP = async () => {
+    const fetchLoaiSP = async () =>  {
         let response = await fetchAllLoaiSPS();
-        if (response && responseEC === 0) {
+        if (response && response.EC === 0) {
             setListLoaiSP(response.DT);
         }
     }
@@ -29,7 +29,7 @@ function BaoCaoThang() {
 
     const fetchSP = async () => {
         let response = await fetchAllSPS();
-        if (response && responseEC === 0) {
+        if (response && response.EC === 0) {
             setListSP(response.DT);
         }
     }
