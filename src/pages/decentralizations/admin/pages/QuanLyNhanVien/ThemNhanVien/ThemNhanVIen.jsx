@@ -58,6 +58,7 @@ function ThemNhanVien() {
 
     //   Get value from input
     const [valueObj, setValueObj] = useState({
+        ID: '',
         HoTen: '',
         GioiTinh: null,
         NgaySinh: '',
@@ -109,6 +110,10 @@ function ThemNhanVien() {
                 <div className={styles.addEmployeesWrapper}>
                     <div className={styles.addEmployees}>
                         <div className={styles.addEmployeesItems}>
+                             <div className={styles.addEmployeesItem}>
+                                <p>ID nhân viên</p>
+                                <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, ID: e.target.value })} />
+                            </div>
                             <div className={styles.addEmployeesItem}>
                                 <p>Họ và tên</p>
                                 <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, HoTen: e.target.value })} />
