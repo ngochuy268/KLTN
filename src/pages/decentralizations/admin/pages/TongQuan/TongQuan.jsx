@@ -15,6 +15,7 @@ import { StackedLineChartSharp } from '@mui/icons-material';
 function TongQuan() {
 
     const [selectTime, setSelectTime] = useState(14);
+    const [flat, setFlat] = useState(0);
     const [listLoaiSP, setListLoaiSP] = useState([]);
     const [listSP, setListSP] = useState([]);
     const [dataTableLoaiSP, setDataTableLoaiSP] = useState([]);
@@ -25,7 +26,10 @@ function TongQuan() {
         tableDataLoaiSP();
         fetchPreSP();
         fetchPreSL();
-    }, [selectTime])
+    }, [selectTime, flat])
+
+    console.log("Flat: ", flat)
+    console.log("selectTime: ", selectTime)
     // if (selectTime === 1) {
 
     // }
@@ -35,10 +39,8 @@ function TongQuan() {
         let response;
         if (+selectTime.days === 14) {
             response = await fetchAllLoaiSP(selectTime);
-            console.log(">>>>> day 14")
         } else {
             response = await fetchAllLoaiSPs(selectTime);
-            console.log('>>> day 35', selectTime)
         }
         if (response && response.EC === 0) {
             setListLoaiSP(response.DT);
@@ -46,7 +48,6 @@ function TongQuan() {
     }
 
     const tableDataLoaiSP = async () => {
-        console.log(">>>> check tongquan")
         let response = await fetchDataLoaiSP(selectTime);
         if (response && response.EC === 0) {
             setDataTableLoaiSP(response.DT);
@@ -54,6 +55,7 @@ function TongQuan() {
     }
 
     const lineChartSP = async (MaLoai, days) => {
+        console.log(">>> check")
         let response;
         if (days == 14) {
             response = await fetchLineSPData(MaLoai, days);
@@ -63,7 +65,7 @@ function TongQuan() {
         if (response && response.EC === 0) {
             setListSP(response.DT);
         }
-        $(`.${styles.lineChart}`).classList.toggle(`${styles.active}`)
+
     }
 
     // const fetchSP = async () => {
@@ -180,25 +182,44 @@ function TongQuan() {
                     </div>
 
                     <div className={styles.lineChartWrapper}>
-                        <div className={styles.lineChartExpa}>
-                            {listLoaiSP && listLoaiSP.length > 0 ?
-                                <>
-                                    {ApexChart(listLoaiSP, titlechart)}
-                                </>
-                                :
-                                <><span>Not found data</span></>
-                            }
+                        {flat === 0 ?
+                            <><div className={styles.lineChartExpa}>
+                                {/* {alert("aaaaaaaaaaaa")} */}
+                                {listLoaiSP && listLoaiSP.length > 0 ?
+                                    <>
+                                        {ApexChart(listLoaiSP, titlechart)}
+                                    </>
+                                    :
+                                    <><span>Not found data</span></>
+                                }
 
-                        </div>
-                        <div className={styles.lineChart}>
-                            {listSP && listSP.length > 0 ?
-                                <>
-                                    {ApexChartExpand(listSP, titlechart)}
-                                </>
-                                :
-                                <><span>Not found data</span></>
-                            }
-                        </div>
+                            </div>
+                            </>
+                            :
+                            <>
+                                <div className={styles.lineChartExpa}>
+                                    {listLoaiSP && listLoaiSP.length > 0 ?
+                                        <>
+                                            {ApexChart(listLoaiSP, titlechart)}
+                                        </>
+                                        :
+                                        <><span>Not found data</span></>
+                                    }
+
+                                </div>
+                                <div className={styles.lineChart}>
+                                    {listSP && listSP.length > 0 ?
+                                        <>
+                                            {ApexChartExpand(listSP, titlechart)}
+                                        </>
+                                        :
+                                        <><span>Not found data</span></>
+                                    }
+                                </div>
+                            </>
+                        }
+
+
                     </div>
 
 
@@ -230,7 +251,7 @@ function TongQuan() {
                                                         <StyledTableCell >{item.LoaiSanPhamId}</StyledTableCell>
                                                         <StyledTableCell>{item.LoaiSanPham.TenLoai}</StyledTableCell>
                                                         <StyledTableCell>{item.SoLuong}</StyledTableCell>
-                                                        <StyledTableCell align='center'><FontAwesomeIcon icon={faEye} className={styles.goodName} /></StyledTableCell>
+                                                        <StyledTableCell align='center'><FontAwesomeIcon icon={faEye} className={styles.goodName} onClick={() => { lineChartSP(item.LoaiSanPhamId, selectTime), setFlat(1) }} /></StyledTableCell>
                                                     </StyledTableRow>
                                                 ))}
                                             </>

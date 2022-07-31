@@ -10,7 +10,7 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
 .wrapper {
     font-family: $font;
 
-    
+
 
 }
 
@@ -47,12 +47,12 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
         width: 200%;
         border: $borderColor;
         border-radius: 8px;
-        display: none;
+        display: block;
         margin-left: 15px;
 
-        &.active {
-            display: block;
-        }
+        // &.active {
+        //     display: block;
+        // }
     }
 
     .lineChartExpa {
@@ -75,7 +75,7 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
         display: flex;
         justify-content: space-between;
         height: fit-content;
-       
+
         .lineChartInfoTableAddAndFavourite {
             width: 100%;
             margin-left: 25px;
@@ -86,14 +86,14 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
             }
         }
 
-        
-    .goodName {
-        color: '#66645e';
-        
-        &:hover {
-            cursor: pointer;
-            color: #007bff;
+
+        .goodName {
+            color: '#66645e';
+
+            &:hover {
+                cursor: pointer;
+                color: #007bff;
+            }
         }
-    }
     }
 }
