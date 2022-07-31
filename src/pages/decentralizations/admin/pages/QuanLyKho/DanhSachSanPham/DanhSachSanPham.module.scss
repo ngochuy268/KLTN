@@ -244,9 +244,11 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
         .goodEditInputWrapper {
             display: flex;
             justify-content: space-between;
+            margin-bottom: 20px;
 
             .goodEditInputItem {
-                width: 70%;
+                width: 100%;
+                text-align: center;
 
                 p {
                     margin: 7px 0 3px 0;
@@ -276,6 +278,8 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
         }
 
     }
+
+  
 
     .saveButtonWrapper {
         display: flex;

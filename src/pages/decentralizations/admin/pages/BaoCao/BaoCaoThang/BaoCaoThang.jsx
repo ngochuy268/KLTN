@@ -4,7 +4,7 @@ import styles from './BaoCaoThang.module.scss';
 import { useReactToPrint } from 'react-to-print';
 import ApexChart from "../../TongQuan/lineChart";
 import ApexChartExpand from "../../TongQuan/lineChartExpand";
-import { fetchAllSPS, fetchAllLoaiSPS } from '../../../../../../services/khoHangServices';
+import { fetchAllLoaiSPs, fetchAllLoaiSPS } from '../../../../../../services/khoHangServices';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -30,7 +30,7 @@ function BaoCaoThang() {
 
 
     const fetchSP = async () => {
-        let response = await fetchAllSPS();
+        let response = await fetchAllLoaiSPs();
         if (response && response.EC === 0) {
             setListSP(response.DT);
         }

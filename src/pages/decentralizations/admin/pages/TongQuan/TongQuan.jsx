@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Table, TableBody, TableContainer, TableHead, TablePagination, TableRow, TableCell, tableCellClasses, Paper } from '@mui/material';
 import styled from '@emotion/styled';
-import { StackedLineChartSharp } from '@mui/icons-material';
 
 
 function TongQuan() {
@@ -84,17 +83,19 @@ function TongQuan() {
     }
 
     const columnsI = [
-        { id: 'countNumber', label: 'STT', minWidth: 100 },
+        { id: 'countNumber', label: 'STT', minWidth: 100,height: 40 },
         {
             id: 'goodName',
             label: 'Tên sản phẩm',
             minWidth: 100,
+            height: 40,
             align: 'left'
         },
         {
             id: 'count',
             label: 'Số lượng',
             minWidth: 80,
+            height: 40,
             align: 'left',
             format: (value) => value.toLocaleString('en-US'),
         }
@@ -259,13 +260,13 @@ function TongQuan() {
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
-                                <TableContainer sx={{ maxHeight: 440, border: '1px solid #ced4da' }}>
+                                <TableContainer sx={{ maxHeight: 300, border: '1px solid #ced4da' }}>
                                     <Table stickyHeader aria-label="sticky table">
                                         <TableHead>
                                             <TableRow>
-                                                <TableCell colSpan={8} style={{ textAlign: 'center', fontSize: '20px', border: '1px solid #4bb954' }}><b>Dự báo mặt hàng cần nhập</b></TableCell>
+                                                <TableCell colSpan={3} style={{ textAlign: 'center', fontSize: '20px', border: '1px solid #4bb954' }}><b>Dự báo mặt hàng cần nhập</b></TableCell>
                                             </TableRow>
-                                            <TableRow>
+                                            <TableRow style={{height: 10}}>
                                                 {columnsI.map((column) => (
                                                     <StyledTableCell
                                                         key={column.id}

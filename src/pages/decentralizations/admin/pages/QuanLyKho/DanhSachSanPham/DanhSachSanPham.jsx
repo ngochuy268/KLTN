@@ -39,9 +39,9 @@ function DanhSachSanPham() {
     //   Get value from input
     const [valueObj, setValueObj] = useState({
         LoaiSanPhamId: '',
+        TenLoai: '',
         HSD: '',
         MinDate:  '',
-        TrangThai: '',
         TenSanPham: '',
         GiaSanPham: '',
         GiaBan: '',
@@ -53,7 +53,7 @@ function DanhSachSanPham() {
         MoTa: null
     });
     const handleUpdate = () => {
-        if (valueObj.LoaiSanPhamId === "" || valueObj.HSD === "" 
+        if (valueObj.LoaiSanPhamId === "" || valueObj.HSD === "" || valueObj.TenLoai === ""
             || valueObj.MinDate === "" || valueObj.TrangThai === "" 
             || valueObj.TenSanPham === "" || valueObj.GiaSanPham === "" || valueObj.GiaBan === ""
             || valueObj.Loc === "" || valueObj.Thung === ""
@@ -183,23 +183,25 @@ function DanhSachSanPham() {
                         <h3>Loại sản phẩm</h3>
                         <div className={styles.goodEditInputWrapper}>
                             <div className={styles.goodEditInputItem}>
-                                <p>Tên loại</p>
+                                <p>Mã loại</p>
                                 <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, LoaiSanPhamId: e.target.value})}/>         
                             </div>
+                            <div className={styles.goodEditInputItem}>   
+                                <p>Tên loại</p>
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, TenLoai: e.target.value})}/>  
+                            </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Hạn sử dụng</p>
-                                <input type="date" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, HSD: e.target.value})}/>         
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, HSD: e.target.value})}/>         
                             </div> 
                             <div className={styles.goodEditInputItem}>
                                 <p>Báo trước khi hết hạn</p>
                                 <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, MinDate: parseInt(e.target.value)})}/>         
                             </div> 
-                            <div className={styles.goodEditInputItem}>
-                                <p>Trạng thái</p>
-                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, TrangThai: e.target.value})}/>         
-                            </div>            
-                        </div>                           
+                                                   
+                    </div>                              
                     </div>
+                   
                     <div className={styles.goodEditWrapper}>
                         <h3>Sản phẩm</h3>
                         <div className={styles.goodEditInputWrapper}>
@@ -232,11 +234,14 @@ function DanhSachSanPham() {
                                 <p>Quy cách khay</p>
                                 <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, Khay: parseInt(e.target.value)})}/>         
                             </div> 
-                            <div className={styles.goodEditInputItem}>
+                                 
+                        </div>
+                        <div className={styles.goodEditInputWrapper}>
+                            <div className={styles.goodEditInputItem} style={{width: '33.5%'}}>
                                 <p>Tồn tối đa</p>
                                 <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, MaxTon: parseInt(e.target.value)})}/>         
                             </div> 
-                            <div className={styles.goodEditInputItem}>
+                            <div className={styles.goodEditInputItem} style={{width: '33.5%'}}>
                                 <p>Tồn tối thiểu</p>
                                 <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({...valueObj, MinTon: parseInt(e.target.value)})}/>         
                             </div>           

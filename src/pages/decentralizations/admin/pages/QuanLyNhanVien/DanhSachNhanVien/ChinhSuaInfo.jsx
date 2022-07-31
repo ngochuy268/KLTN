@@ -11,51 +11,29 @@ import {Image} from 'cloudinary-react';
 
 function  ChinhSuaInfo() {
 
-    const onSubmit = async () => {
 
-        const isValid = validateAll();
-        if (isValid) {
-           toast.success('Thêm thành công!')
-        }
+    //   Get value from input
+    const [valueObj, setValueObj] = useState({
+        ID: '',
+        HoTen: '',
+        GioiTinh: null,
+        NgaySinh: '',
+        CCCD: '',
+        Tel: '',
+        Email: '',
+        Facebook: '',
+        Zalo: '',
+        NgayVaoLam: '',
+        DiaChi: '',
+        GhiChu: '',
+        Level: '',
+        Avata: ''
+    });
+
+    const onSubmit = () => {
+
     }
 
-    // ----------------------------
-
-    const [fileInput, setFileInput] = useState('');
-    const [selectedFile, setSelectedFile] = useState('');
-    const [previewSource, setPreviewSource] = useState('');
-
-    const handleFileChange = e => {
-        const file = e.target.files[0];
-        previewFile(file)
-    }
-
-    const previewFile = file => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setPreviewSource(reader.result)
-        }
-    }
-
-    const handleSubmitFile = e => {
-        e.preventDefault();
-        if(!previewSource) return;
-        uploadImg(previewSource);
-    }   
-
-    const uploadImg = async (base64EncodeImg) => {
-        console.log(base64EncodeImg);
-        try {
-           await fetch('/api/upload', {
-                method: 'POST',
-                body: JSON.stringify({ data: base64EncodeImg }),
-                headers: { 'Content-Type': 'application/json' },
-            });
-        } catch (err) {
-            console.error(err);
-        }
-    }
 
     return(
         <>
@@ -64,48 +42,77 @@ function  ChinhSuaInfo() {
                     <div className={styles.addEmployeesWrapper}>
                         <div className={styles.addEmployees}>
                             <div className={styles.addEmployeesItems}>
+                                <div className={styles.addEmployeesItem} style={{width: '65%'}}>
+                                    <p>ID nhân viên</p>
+                                    <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, ID: e.target.value })}/>
+                                </div>
                                 <div className={styles.addEmployeesItem}>
                                     <p>Họ và tên</p>
-                                    <input type="text" className={styles.addEmployeesInput} />
+                                    <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, HoTen: e.target.value })}/>
                                 </div>
                                 <div className={styles.addEmployeesItem}>
                                     <p>Giới tính</p>
                                     <div className={styles.addEmployeesInputRadioWrapper}>
                                        <div className={styles.addEmployeesInputRadio}>
-                                            <input type="radio" value='Nam' name='sex' className={styles.addEmployeesInput} />
+                                            <input type="radio" value='1' className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, GioiTinh: e.target.value })}/>
                                             <label htmlFor="">Nam</label>
                                        </div>
                                        <div className={styles.addEmployeesInputRadio}>
-                                            <input type="radio" value='Nữ' name='sex' className={styles.addEmployeesInput} />
+                                            <input type="radio" value='0' className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, GioiTinh: e.target.value })}/>
                                             <label htmlFor="">Nữ</label>
                                        </div>
                                     </div>
                                 </div>
                                 <div className={styles.addEmployeesItem}>
                                     <p>Ngày sinh</p>
-                                    <input type="date" className={styles.addEmployeesInput} />
+                                    <input type="date" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, NgaySinh: e.target.value })}/>
+                                </div>
+                                <div className={styles.addEmployeesItem}>
+                                    <p>Căn cước công dân</p>
+                                    <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, CCCD: e.target.value })}/>
+                                </div>
+                               
+                            </div>
+                            <div className={styles.addEmployeesItems}>
+                                <div className={styles.addEmployeesItem} style={{width: '65%'}}>
+                                    <p>Số điện thoại</p>
+                                    <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, Tel: e.target.value })}/>
+                                </div>
+                                <div className={styles.addEmployeesItem}>
+                                    <p>Zalo</p>
+                                    <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, Zalo: e.target.value })}/>
+                                </div>
+                                <div className={styles.addEmployeesItem}>
+                                    <p>Email</p>
+                                    <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, Email: e.target.value })}/>
+                                </div>
+                                <div className={styles.addEmployeesItem}>
+                                    <p>Ngày vào làm</p>
+                                    <input type="date" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, NgayVaoLam: e.target.value })}/>
+                                </div>
+                                <div className={styles.addEmployeesItem}>
+                                <p> Chức vụ </p>
+                                <select className={styles.addEmployeesInput}
+                                    onChange={e => setValueObj({ ...valueObj, Level: e.target.value })} >
+                                    <option value="0">Chọn chức vụ</option>
+                                    <option value="1">Nhân viên</option>
+                                    <option value="2">Quản lý</option>
+                                </select>
                                 </div>
                             </div>
                             <div className={styles.addEmployeesItems}>
                                 <div className={styles.addEmployeesItem}>
-                                    <p>Số điện thoại</p>
-                                    <input type="text" className={styles.addEmployeesInput} />
-                                </div>
-                                <div className={styles.addEmployeesItem}>
-                                    <p>Email</p>
-                                    <input type="text" className={styles.addEmployeesInput} />
-                                </div>
-                                <div className={styles.addEmployeesItem}>
-                                    <p>Ngày vào làm</p>
-                                    <input type="date" className={styles.addEmployeesInput} />
+                                    <p>Facebook</p>
+                                    <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, Facebook: e.target.value })}/>
                                 </div>
                             </div>
                             <div className={styles.addEmployeesItems}>
                                 <div className={styles.addEmployeesItem}>
                                     <p>Địa chỉ</p>
-                                    <input type="text" className={styles.addEmployeesInput} />
+                                    <input type="text" className={styles.addEmployeesInput} onChange={e => setValueObj({ ...valueObj, DiaChi: e.target.value })}/>
                                 </div>
-                            </div>
+                            </div>                         
+                           
                             <div className={styles.addEmployeesItems}>
                                 <div className={styles.addEmployeesItem}>
                                     <p>Ghi chú</p>
@@ -118,7 +125,7 @@ function  ChinhSuaInfo() {
                                         } }
                                         onChange={ ( event, editor ) => {
                                             const data = editor.getData();
-                                            console.log( { event, editor, data } );
+                                            setValueObj({ ...valueObj, GhiChu: data });
                                         } }
                                         onBlur={ ( event, editor ) => {
                                             console.log( 'Blur.', editor );
@@ -131,20 +138,8 @@ function  ChinhSuaInfo() {
                             </div>
                             <div className={styles.addEmployeesItems}>
                                 <div className={styles.addEmployeesItem}>
-                                    <p>Chức vụ</p>
-                                    <input type="text" className={styles.addEmployeesInput}  />
-                                </div>
-                            </div>
-                            <div className={styles.addEmployeesItems}>
-                                <div className={styles.addEmployeesItem}>
                                     <p>Ảnh chân dung</p>
-                                   <form>
-                                        <input type="file" className={styles.addEmployeesInput} onChange={handleFileChange} value={fileInput}/>
-                                        {previewSource && (
-                                            <img src={previewSource} style={{width:'50%'}}/>
-                                        )}
-                                   </form>
-                                    <button onClick={handleSubmitFile}>Upload img</button>
+                                    <input type="file" className={styles.addEmployeesInput}/>
                                 </div>
                             </div>
                         </div>

@@ -117,7 +117,7 @@ function DanhSachNhanVien() {
             </div>
             <Dialog open={open} onClose={handleClose} maxWidth='xl' fullWidth={true}>
                 <div className={styles.closeButtonWrapper}>
-                    <button className={styles.closeButton}><FontAwesomeIcon icon={faXmark} /></button>
+                    <button className={styles.closeButton} onClick={handleClose}><FontAwesomeIcon icon={faXmark} /></button>
                 </div>
                 <DialogTitle id="alert-dialog-title" style={{ textAlign: 'center', fontWeight: '700', fontSize: '30px' }}>
                     {"Chỉnh sửa thông tin"}
