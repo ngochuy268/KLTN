@@ -1,15 +1,17 @@
 import styles from './Header.module.scss';
 import barcode from '../../assets/layoutImg/barcode.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBarcode, faTriangleExclamation, faBell, faExclamation, faXmark, faBox } from '@fortawesome/free-solid-svg-icons';
+import { faBarcode, faTriangleExclamation, faBell, faExclamation, faXmark, faBox, faSearch } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import BarcodeScanner from '../barcode/BarcodeScanner';
 import { Dialog, DialogTitle } from '@mui/material';
 import logo from '../../assets/layoutImg/logo.png';
 import { fetchNotification } from '../../services/khoHangServices';
+import Search from '../search/Search';
 
 function Header() {
+    // Open and close
 
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
@@ -17,6 +19,14 @@ function Header() {
     };
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const [ openSearch, setOpenSearch ] = useState(false);
+    const handleClickSearchOpen = () => {
+        setOpenSearch(true);
+    };
+    const handleSearchClose = () => {
+        setOpenSearch(false);
     };
 
     // Data notification show
@@ -84,6 +94,9 @@ function Header() {
                     </div>
                 </div>
                 <ul className={styles.headerComponent}>
+                    <li className={styles.headerItem}>
+                        <button className={styles.searchButton}><FontAwesomeIcon icon={faSearch} onClick={handleClickSearchOpen} /></button>
+                    </li>
                     <li className={styles.headerItem}>
                         <button className={styles.barcodeButton} onClick={handleClickOpen}><FontAwesomeIcon icon={faBarcode} /></button>
                     </li>
@@ -185,6 +198,14 @@ function Header() {
                     {"Đưa mã vạch vào khung hình"}
                 </DialogTitle>
                 <BarcodeScanner />
+            </Dialog>
+
+            {/* Search */}
+            <Dialog open={openSearch} onClose={handleSearchClose} maxWidth='lg' fullWidth={true}>
+                <div className={styles.closeButtonWrapper} onClick={handleSearchClose}>
+                    <button className={styles.closeButton}><FontAwesomeIcon icon={faXmark} /></button>
+                </div>
+                <Search />
             </Dialog>
         </>
     );
