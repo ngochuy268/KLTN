@@ -1,20 +1,24 @@
 import axios from "../setup/axios";
 
-const fetchAllLoaiSP = () => {
-    return axios.get('/api/v1/xuatnhap/xuatkho/tongquan/loaisanphamlinechart')
+const fetchAllLoaiSP = (days) => {
+    return axios.post('/api/v1/xuatnhap/xuatkho/tongquan/loaisanphamlinechart', { days })
 }
 
-const fetchAllSP = () => {
-    return axios.get('/api/v1/xuatnhap/xuatkho/tongquan/sanphamlinechart')
+const fetchAllLoaiSPs = (days) => {
+    return axios.post('/api/v1/xuatnhap/xuatkho/tongquan/loaisanphamlinecharts', { days })
 }
 
-const fetchDataLoaiSP = () => {
-    return axios.get('/api/v1/xuatnhap/xuatkho/tongquan/listloaisanpham')
+const fetchLineSPData = (MaLoai, days) => {
+    return axios.post('/api/v1/xuatnhap/xuatkho/tongquan/sanphamlinechart', { MaLoai, days })
+}
+const fetchLineSPDatas = (MaLoai, days) => {
+    return axios.post('/api/v1/xuatnhap/xuatkho/tongquan/sanphamlinecharts', { MaLoai, days })
 }
 
-const fetchAllSPS = () => {
-    return axios.get('/api/v1/xuatnhap/xuatkho/tongquan/sanphamlinecharts')
+const fetchDataLoaiSP = (days) => {
+    return axios.post('/api/v1/xuatnhap/xuatkho/tongquan/listloaisanpham', { days })
 }
+
 
 const fetchAllLoaiSPS = () => {
     return axios.get('/api/v1/xuatnhap/xuatkho/tongquan/loaisanphamlinechart')
@@ -90,13 +94,14 @@ const xuatHang = (listXuatHang, ttXuatHang) => {
 
 
 export {
-    fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchAllSPS,
+    fetchAllLoaiSP, fetchDataLoaiSP,
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
     fetchDataPieChart, fetchDataPieChartTable, getLoaiSPTQ,
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,
     fetchDataSelectLoaiSP, congViecNhap, fetchNotification,
     addDataKhoHang, getDataXuatHang, fetchPredictSP,
-    fetchPredictSL, congViecXuat, xuatHang
+    fetchPredictSL, congViecXuat, xuatHang, fetchAllLoaiSPs,
+    fetchLineSPData, fetchLineSPDatas
 
 
 }
