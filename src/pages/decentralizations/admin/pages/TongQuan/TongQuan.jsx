@@ -4,52 +4,74 @@ import ApexChartExpand from './lineChartExpand';
 import clsx from 'clsx';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { fetchAllLoaiSP, fetchAllSP, fetchDataLoaiSP, fetchPredictSL, fetchPredictSP } from '../../../../../services/khoHangServices';
+import { fetchAllLoaiSP, fetchDataLoaiSP, fetchPredictSL, fetchPredictSP, fetchAllLoaiSPs, fetchLineSPData, fetchLineSPDatas } from '../../../../../services/khoHangServices';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Table, TableBody, TableContainer, TableHead, TablePagination, TableRow, TableCell, tableCellClasses, Paper } from '@mui/material';
 import styled from '@emotion/styled';
+import { StackedLineChartSharp } from '@mui/icons-material';
 
 
 function TongQuan() {
 
+    const [selectTime, setSelectTime] = useState(14);
     const [listLoaiSP, setListLoaiSP] = useState([]);
     const [listSP, setListSP] = useState([]);
     const [dataTableLoaiSP, setDataTableLoaiSP] = useState([]);
-    const [selectTime, setSelectTime] = useState([]);
     let titlechart = 'Biểu đồ xuất kho trong 2 tuần gần đây';
 
     useEffect(() => {
         fetchLoaiSP();
-        fetchSP();
         tableDataLoaiSP();
         fetchPreSP();
         fetchPreSL();
-    }, [])
+    }, [selectTime])
     // if (selectTime === 1) {
 
     // }
 
+
     const fetchLoaiSP = async () => {
-        let response = await fetchAllLoaiSP();
+        let response;
+        if (+selectTime.days === 14) {
+            response = await fetchAllLoaiSP(selectTime);
+            console.log(">>>>> day 14")
+        } else {
+            response = await fetchAllLoaiSPs(selectTime);
+            console.log('>>> day 35', selectTime)
+        }
         if (response && response.EC === 0) {
             setListLoaiSP(response.DT);
         }
     }
 
     const tableDataLoaiSP = async () => {
-        let response = await fetchDataLoaiSP();
+        console.log(">>>> check tongquan")
+        let response = await fetchDataLoaiSP(selectTime);
         if (response && response.EC === 0) {
             setDataTableLoaiSP(response.DT);
         }
     }
 
-    const fetchSP = async () => {
-        let response = await fetchAllSP();
+    const lineChartSP = async (MaLoai, days) => {
+        let response;
+        if (days == 14) {
+            response = await fetchLineSPData(MaLoai, days);
+        } else {
+            response = await fetchLineSPDatas(MaLoai, days);
+        }
         if (response && response.EC === 0) {
             setListSP(response.DT);
         }
+        $(`.${styles.lineChart}`).classList.toggle(`${styles.active}`)
     }
+
+    // const fetchSP = async () => {
+    //     let response = await fetchAllSP();
+    //     if (response && response.EC === 0) {
+    //         setListSP(response.DT);
+    //     }
+    // }
 
     // Predict SL Table get data
     const [showPredictSL, setShowPredictSL] = useState([]);
@@ -67,7 +89,7 @@ function TongQuan() {
             id: 'goodName',
             label: 'Tên sản phẩm',
             minWidth: 100,
-            align: 'left'        
+            align: 'left'
         },
         {
             id: 'count',
@@ -80,12 +102,12 @@ function TongQuan() {
 
     function createDataI(
         countNumber, goodName, count
-    ){
-        return { countNumber, goodName, count};
+    ) {
+        return { countNumber, goodName, count };
     }
 
-    const rowsI = showPredictSL.map((item,index) => (
-        createDataI(index+1,item.SanPham.TenSanPham, item.SoLuong)
+    const rowsI = showPredictSL.map((item, index) => (
+        createDataI(index + 1, item.SanPham.TenSanPham, item.SoLuong)
     ))
     //  --------------------------------------
     const [page, setPage] = useState(0);
@@ -110,18 +132,18 @@ function TongQuan() {
         }
     }
 
-  
+
     // Toggle and table style
 
     const StyledTableCell = styled(TableCell)(() => ({
         [`&.${tableCellClasses.head}`]: {
-          backgroundColor: '#007bff' ,
-          color: 'white',
+            backgroundColor: '#007bff',
+            color: 'white',
         },
         [`&.${tableCellClasses.body}`]: {
-          fontSize: 14,
+            fontSize: 14,
         },
-      }));
+    }));
 
     const StyledTableRow = styled(TableRow)(({ }) => ({
         '&:nth-of-type(even)': {
@@ -134,16 +156,16 @@ function TongQuan() {
     }));
 
 
-    useEffect(() => {
-        const $ = document.querySelector.bind(document);
-        const $$ = document.querySelectorAll.bind(document);
+    // useEffect(() => {
+    //     const $ = document.querySelector.bind(document);
+    //     const $$ = document.querySelectorAll.bind(document);
 
-        $$(`.${styles.goodName}`).forEach((item, index) => {
-            item.onclick = function () {
-                $(`.${styles.lineChart}`).classList.toggle(`${styles.active}`)
-            }
-        })
-    })
+    //     $$(`.${styles.goodName}`).forEach((item, index) => {
+    //         item.onclick = function () {
+    //             $(`.${styles.lineChart}`).classList.toggle(`${styles.active}`)
+    //         }
+    //     })
+    // }, [])
 
     return (
         <>
@@ -151,10 +173,10 @@ function TongQuan() {
                 <div className={styles.wrapper}>
                     <div className={styles.wrapperTitle}>
                         <p>Tổng quan</p>
-                        <select className={styles.reportSelection}>
-                            <option value='2'>Trong 2 tuần</option>
-                            <option value='1'>Trong 1 tháng</option>
-                        </select> 
+                        <select className={styles.reportSelection} onChange={e => setSelectTime(e.target.value)} >
+                            <option value='14'>Trong 2 tuần</option>
+                            <option value='35'>Trong 1 tháng</option>
+                        </select>
                     </div>
 
                     <div className={styles.lineChartWrapper}>
@@ -183,22 +205,22 @@ function TongQuan() {
                     {/* --------------------BE------------------- */}
                     <div className={styles.lineChartInfoWrapper}>
                         <div className={styles.lineChartInfoTablewrapper}>
-                            <TableContainer component={Paper} sx={{displayPrint: 'block', height: 'fit-content'}} >
-                                <Table sx={{ minWidth: 400}} aria-label="simple table" >
+                            <TableContainer component={Paper} sx={{ displayPrint: 'block', height: 'fit-content' }} >
+                                <Table sx={{ minWidth: 400 }} aria-label="simple table" >
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell colSpan={5} style={{textAlign: 'center', fontSize: '20px', border: '1px solid #4bb954'}}><b>{titlechart}</b></TableCell> 
+                                            <TableCell colSpan={5} style={{ textAlign: 'center', fontSize: '20px', border: '1px solid #4bb954' }}><b>{titlechart}</b></TableCell>
                                         </TableRow>
-                                        <TableRow> 
-                                            <StyledTableCell width= '5%'><b>STT</b></StyledTableCell>
-                                            <StyledTableCell width= '20%'><b>Mã loại</b></StyledTableCell>
-                                            <StyledTableCell width= '40%'><b>Tên loại</b></StyledTableCell>
-                                            <StyledTableCell width= '25%'><b>Số lượng</b></StyledTableCell>
-                                            <StyledTableCell width= '10%'></StyledTableCell>
+                                        <TableRow>
+                                            <StyledTableCell width='5%'><b>STT</b></StyledTableCell>
+                                            <StyledTableCell width='20%'><b>Mã loại</b></StyledTableCell>
+                                            <StyledTableCell width='40%'><b>Tên loại</b></StyledTableCell>
+                                            <StyledTableCell width='25%'><b>Số lượng</b></StyledTableCell>
+                                            <StyledTableCell width='10%'></StyledTableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {dataTableLoaiSP && dataTableLoaiSP.length > 0 ? 
+                                        {dataTableLoaiSP && dataTableLoaiSP.length > 0 ?
                                             <>
                                                 {dataTableLoaiSP.map((item, index) => (
                                                     <StyledTableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -212,81 +234,81 @@ function TongQuan() {
                                                     </StyledTableRow>
                                                 ))}
                                             </>
-                                            : 
+                                            :
                                             <><span>Not Found data!</span></>
-                                        } 
+                                        }
                                     </TableBody>
                                 </Table>
                             </TableContainer>
                             <div className={styles.lineChartInfoTableAddAndFavourite}>
-                                <TableContainer component={Paper} sx={{displayPrint: 'block', height: 'fit-content', marginBottom: '20px'}} >
-                                    <Table sx={{ minWidth: 400}} aria-label="simple table" >
+                                <TableContainer component={Paper} sx={{ displayPrint: 'block', height: 'fit-content', marginBottom: '20px' }} >
+                                    <Table sx={{ minWidth: 400 }} aria-label="simple table" >
                                         <TableHead>
                                             <TableRow>
-                                                <TableCell style={{textAlign: 'center', fontSize: '20px', border: '1px solid #4bb954'}}><b>Dự báo sản phẩm ưa chuộng trong tương lai</b></TableCell> 
+                                                <TableCell style={{ textAlign: 'center', fontSize: '20px', border: '1px solid #4bb954' }}><b>Dự báo sản phẩm ưa chuộng trong tương lai</b></TableCell>
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                           <StyledTableRow>
-                                                <StyledTableCell style={{color: '#007bff'}}>
-                                                    {showPredictSP && showPredictSP.length > 0 ? 
+                                            <StyledTableRow>
+                                                <StyledTableCell style={{ color: '#007bff' }}>
+                                                    {showPredictSP && showPredictSP.length > 0 ?
                                                         showPredictSP.map(item => item.SanPham.TenSanPham).join(' , ').toLowerCase()
-                                                    : ''}
+                                                        : ''}
                                                 </StyledTableCell>
-                                           </StyledTableRow>
+                                            </StyledTableRow>
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
                                 <TableContainer sx={{ maxHeight: 440, border: '1px solid #ced4da' }}>
-                                        <Table stickyHeader aria-label="sticky table">
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell colSpan={8} style={{textAlign: 'center', fontSize: '20px', border: '1px solid #4bb954'}}><b>Dự báo mặt hàng cần nhập</b></TableCell> 
-                                                </TableRow>
-                                                <TableRow>
+                                    <Table stickyHeader aria-label="sticky table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell colSpan={8} style={{ textAlign: 'center', fontSize: '20px', border: '1px solid #4bb954' }}><b>Dự báo mặt hàng cần nhập</b></TableCell>
+                                            </TableRow>
+                                            <TableRow>
                                                 {columnsI.map((column) => (
-                                                    <StyledTableCell 
+                                                    <StyledTableCell
                                                         key={column.id}
                                                         align={column.align}
                                                         style={{ minWidth: column.minWidth }}
-                                                        >
+                                                    >
                                                         <b>{column.label}</b>
                                                     </StyledTableCell>
-                                                ))}  
-                                                </TableRow>
-                                                
-                                            </TableHead>
-                                            <TableBody>
-                                                {rowsI
+                                                ))}
+                                            </TableRow>
+
+                                        </TableHead>
+                                        <TableBody>
+                                            {rowsI
                                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                                 .map((row) => {
                                                     return (
-                                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code} className='goodName'>
-                                                        {columnsI.map((column) => {
-                                                        const value = row[column.id];
-                                                        return (
-                                                            <TableCell key={column.id} align={column.align} >
-                                                            {column.format && typeof value === 'number'
-                                                                ? column.format(value)
-                                                                : value}
-                                                            </TableCell>
-                                                        );
-                                                        })}
-                                                    </TableRow>
+                                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.code} className='goodName'>
+                                                            {columnsI.map((column) => {
+                                                                const value = row[column.id];
+                                                                return (
+                                                                    <TableCell key={column.id} align={column.align} >
+                                                                        {column.format && typeof value === 'number'
+                                                                            ? column.format(value)
+                                                                            : value}
+                                                                    </TableCell>
+                                                                );
+                                                            })}
+                                                        </TableRow>
                                                     );
                                                 })}
-                                            </TableBody>
-                                        </Table>
+                                        </TableBody>
+                                    </Table>
                                 </TableContainer>
-                                    <TablePagination
-                                        rowsPerPageOptions={[10, 25, 100]}
-                                        component="div"
-                                        count={rowsI.length}
-                                        rowsPerPage={rowsPerPage}
-                                        page={page}
-                                        onPageChange={handleChangePage}
-                                        onRowsPerPageChange={handleChangeRowsPerPage}
-                                    />     
+                                <TablePagination
+                                    rowsPerPageOptions={[10, 25, 100]}
+                                    component="div"
+                                    count={rowsI.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    onPageChange={handleChangePage}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                />
                             </div>
                         </div>
                     </div>
