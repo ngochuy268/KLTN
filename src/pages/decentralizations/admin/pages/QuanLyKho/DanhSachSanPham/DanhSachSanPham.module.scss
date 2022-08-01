@@ -328,3 +328,18 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
 .listGoodsImg {
     border-radius: 50%;
 }
+
+@media screen and (max-width: 746px) {
+    .goodEditContainer {
+        .goodEditWrapper {
+            .goodEditInputWrapper {
+                display: block;
+
+                .goodEditInputItem {
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+  
+}
