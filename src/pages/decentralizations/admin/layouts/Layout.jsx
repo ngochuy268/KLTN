@@ -25,6 +25,12 @@ import { getUser } from "../../../../services/userServices";
 
 function LayoutAdmin() {
 
+    // Open sidebar menu
+    const [openSideBarMenu, setOpenSideBarMenu] = useState(true);
+    const handleOpenSideBarMenu = () => {
+        setOpenSideBarMenu(!openSideBarMenu);
+    }
+
     // get user data from database
     const { user } = React.useContext(UserContext);
     const [userData, setUserData] = useState({});
@@ -68,85 +74,87 @@ function LayoutAdmin() {
     return (
         <>
             <div className={styles.container}>
-                <div className={styles.gridColumn2}>
-                    <div className="pageHeadWrapper">
-                        {userData ?
-                            <>
-                                <div className={styles.userAdmin}>
-                                    <div style={{ width: '80px' }} align="center">
-                                        <img src={userData.Avata ? require(`../../../../assets/layoutImg/Avatar/${userData.Avata}`).default : require(`../../../../assets/layoutImg/avatar.png`).default}
-                                            alt="user-logo" style={{ width: "50px", borderRadius: '50%' }} />
+                {openSideBarMenu && 
+                    <div className={styles.gridColumn2}>
+                        <div className="pageHeadWrapper">
+                            {userData ?
+                                <>
+                                    <div className={styles.userAdmin}>
+                                        <div style={{ width: '80px' }} align="center">
+                                            <img src={userData.Avata ? require(`../../../../assets/layoutImg/Avatar/${userData.Avata}`).default : require(`../../../../assets/layoutImg/avatar.png`).default}
+                                                alt="user-logo" style={{ width: "50px", borderRadius: '50%' }} />
+                                        </div>
+                                        <div className={styles.pageNameWrapper}>
+                                            <Link to='/canhan' className={styles.pageNameUser}>{userData.HoTen}</Link>
+                                        </div>
                                     </div>
-                                    <div className={styles.pageNameWrapper}>
-                                        <Link to='/canhan' className={styles.pageNameUser}>{userData.HoTen}</Link>
-                                    </div>
-                                </div>
-                            </>
-                            :
-                            <><span>Not found data</span></>
-                        }
-                    </div>
+                                </>
+                                :
+                                <><span>Not found data</span></>
+                            }
+                        </div>
 
-                    {/* Sidebar */}
-                    <TreeView
-                        aria-label="file system navigator"
-                        defaultCollapseIcon={<ArrowDropdownIcon />}
-                        defaultExpandIcon={<ArrowRightIcon />}
-                        className={styles.treeViewComponent}
-                        sx={{ flexGrow: 1, maxWidth: 400, overflowY: 'auto', textAlign: 'left', padding: '30px 20px', color: 'white' }}
-                    >
-                        <TreeItem nodeId='1'
-                            label={<Link to='/tongquan' className={styles.pageMenuItems}>
-                                <div className={styles.pageMenuItemsName}>
-                                    <FontAwesomeIcon icon={faChartColumn} />
-                                    <p>Tổng quan</p>
-                                </div>
-                            </Link>}
-                        />
-                        {SidebarData.map((item, index) => (
-                            <TreeItem
-                                key={index}
-                                nodeId={item.id}
-                                label={<div className={styles.pageMenuItems}>
-                                    {item.icon}
-                                    <p>{item.title}</p>
-                                </div>}
-                            >
-                                {item.subNav.map((item, index) => (
-                                    <TreeItem
-                                        key={index}
-                                        nodeId={item.id}
-                                        label={<Link to={item.path} className={styles.pageMenuItems}>
-                                            <div onClick={topFunction} className={styles.pageMenuItemsName}>
-                                                {item.icon}
-                                                <p>{item.title}</p>
-                                            </div>
-                                        </Link>}
-                                    />
-                                ))}
-                            </TreeItem>
-                        ))}
-                        <TreeItem nodeId='13'
-                            label={<Link to='/baocao' className={styles.pageMenuItems}>
-                                <div className={styles.pageMenuItemsName}>
-                                    <FontAwesomeIcon icon={faNewspaper} />
-                                    <p>Báo cáo</p>
-                                </div>
-                            </Link>}
-                        />
-                        <TreeItem nodeId='14'
-                            label={<Link to='/congviec' className={styles.pageMenuItems}>
-                                <div className={styles.pageMenuItemsName}>
-                                    <FontAwesomeIcon icon={faHistory} />
-                                    <p>Công việc</p>
-                                </div>
-                            </Link>}
-                        />
-                    </TreeView>
-                </div>
+                        {/* Sidebar */}
+                        <TreeView
+                            aria-label="file system navigator"
+                            defaultCollapseIcon={<ArrowDropdownIcon />}
+                            defaultExpandIcon={<ArrowRightIcon />}
+                            className={styles.treeViewComponent}
+                            sx={{ flexGrow: 1, maxWidth: 400, overflowY: 'auto', textAlign: 'left', padding: '30px 20px', color: 'white' }}
+                        >
+                            <TreeItem nodeId='1'
+                                label={<Link to='/tongquan' className={styles.pageMenuItems}>
+                                    <div className={styles.pageMenuItemsName}>
+                                        <FontAwesomeIcon icon={faChartColumn} />
+                                        <p>Tổng quan</p>
+                                    </div>
+                                </Link>}
+                            />
+                            {SidebarData.map((item, index) => (
+                                <TreeItem
+                                    key={index}
+                                    nodeId={item.id}
+                                    label={<div className={styles.pageMenuItems}>
+                                        {item.icon}
+                                        <p>{item.title}</p>
+                                    </div>}
+                                >
+                                    {item.subNav.map((item, index) => (
+                                        <TreeItem
+                                            key={index}
+                                            nodeId={item.id}
+                                            label={<Link to={item.path} className={styles.pageMenuItems}>
+                                                <div onClick={topFunction} className={styles.pageMenuItemsName}>
+                                                    {item.icon}
+                                                    <p>{item.title}</p>
+                                                </div>
+                                            </Link>}
+                                        />
+                                    ))}
+                                </TreeItem>
+                            ))}
+                            <TreeItem nodeId='13'
+                                label={<Link to='/baocao' className={styles.pageMenuItems}>
+                                    <div className={styles.pageMenuItemsName}>
+                                        <FontAwesomeIcon icon={faNewspaper} />
+                                        <p>Báo cáo</p>
+                                    </div>
+                                </Link>}
+                            />
+                            <TreeItem nodeId='14'
+                                label={<Link to='/congviec' className={styles.pageMenuItems}>
+                                    <div className={styles.pageMenuItemsName}>
+                                        <FontAwesomeIcon icon={faHistory} />
+                                        <p>Công việc</p>
+                                    </div>
+                                </Link>}
+                            />
+                        </TreeView>
+                    </div>
+                }
 
                 <div className={styles.gridColumn10}>
-                    <Header />
+                    <Header handleOpenSideBarMenu={handleOpenSideBarMenu}/>
                     <ContentAdmin />
                 </div>
             </div>

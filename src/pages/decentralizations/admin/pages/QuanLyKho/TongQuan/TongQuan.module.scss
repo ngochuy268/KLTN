@@ -98,3 +98,28 @@ $borderColor: 1px solid #ced4da;
         }
     }
 }
+
+@media screen and (max-width: 1110px) {
+    .listAndChartGoodsWrapper {
+        .listAndChartGoods {
+            display: block;
+
+            .pieChart{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                padding: 0;
+
+                #chart{
+                    width: 100%;
+                }
+            }
+
+            .listGoods{
+                width: 100%;
+                margin-top: 40px;
+            }
+        }
+
+    }
+}

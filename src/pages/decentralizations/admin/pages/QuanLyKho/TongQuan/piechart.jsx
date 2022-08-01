@@ -15,10 +15,24 @@ function PieChart(tensp, soluong) {
         breakpoint: 480,
         options: {
           chart: {
-            width: 200
+            width: 350
           },
           legend: {
             position: 'bottom'
+          },
+          dataLabels:{
+            style: {
+              fontSize: '10px'
+            }
+          }
+            
+        }
+      }],
+      responsive:[{
+        breakpoint: 376,
+        options: {
+          chart: {
+            width: 350
           }
         }
       }]

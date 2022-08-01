@@ -1,7 +1,7 @@
 import styles from './Header.module.scss';
 import barcode from '../../assets/layoutImg/barcode.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBarcode, faTriangleExclamation, faBell, faExclamation, faXmark, faBox, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBarcode, faTriangleExclamation, faBell, faExclamation, faXmark, faBox, faSearch, faBars} from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import BarcodeScanner from '../barcode/BarcodeScanner';
@@ -10,10 +10,13 @@ import logo from '../../assets/layoutImg/logo.png';
 import { fetchNotification } from '../../services/khoHangServices';
 import Search from '../search/Search';
 
-function Header() {
-    // Open and close
+function Header({handleOpenSideBarMenu}) {
 
     const [open, setOpen] = useState(false);
+    const [ openSearch, setOpenSearch ] = useState(false);
+    const [showNo, setShowNo] = useState('');
+
+    // Open and close
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -21,7 +24,6 @@ function Header() {
         setOpen(false);
     };
 
-    const [ openSearch, setOpenSearch ] = useState(false);
     const handleClickSearchOpen = () => {
         setOpenSearch(true);
     };
@@ -29,12 +31,13 @@ function Header() {
         setOpenSearch(false);
     };
 
+
+
     // Data notification show
     useEffect(() => {
         fetchShowNo();
     }, []);
 
-    const [showNo, setShowNo] = useState('');
     const fetchShowNo = async () => {
         let response = await fetchNotification();
         if (response && response.EC === 0) {
@@ -94,6 +97,9 @@ function Header() {
                     </div>
                 </div>
                 <ul className={styles.headerComponent}>
+                    <li className={styles.headerItem}>
+                        <button className={styles.sideBarMenuButton} onClick={handleOpenSideBarMenu}><FontAwesomeIcon icon={faBars}/></button>
+                    </li>
                     <li className={styles.headerItem}>
                         <button className={styles.searchButton}><FontAwesomeIcon icon={faSearch} onClick={handleClickSearchOpen} /></button>
                     </li>
