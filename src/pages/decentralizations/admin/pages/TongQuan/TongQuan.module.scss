@@ -111,3 +111,14 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
     }
     
 }
+
+@media screen and (max-width: 1024px) {
+    .lineChartWrapper{
+        display: block;
+
+        .lineChart{
+            margin: 30px 0 0 0;
+            width: 100%;
+        }
+    }
+}

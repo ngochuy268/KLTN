@@ -101,7 +101,10 @@ function Header({handleOpenSideBarMenu}) {
                         <button className={styles.sideBarMenuButton} onClick={handleOpenSideBarMenu}><FontAwesomeIcon icon={faBars}/></button>
                     </li>
                     <li className={styles.headerItem}>
-                        <button className={styles.searchButton}><FontAwesomeIcon icon={faSearch} onClick={handleClickSearchOpen} /></button>
+                       <div className={styles.searchBarWrapper}>
+                            <input type="text" className={styles.searchInput}/>
+                            <button className={styles.searchButton}><FontAwesomeIcon icon={faSearch} onClick={handleClickSearchOpen} /></button>
+                       </div>
                     </li>
                     <li className={styles.headerItem}>
                         <button className={styles.barcodeButton} onClick={handleClickOpen}><FontAwesomeIcon icon={faBarcode} /></button>

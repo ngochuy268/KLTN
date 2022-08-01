@@ -132,77 +132,79 @@ function ThemSanPham() {
                             </div>
                        </div>
 
-                        <div className={styles.addGoods}>
-                            <div className={styles.addGoodsItems}>
-                                <span>Mã loại</span>
-                                {valueObjLoaiSP.LoaiSanPhamId ? 
+                        <div className={styles.responsiveAddGoods}>
+                            <div className={styles.addGoods}>
+                                <div className={styles.addGoodsItems}>
+                                    <span>Mã loại</span>
+                                    {valueObjLoaiSP.LoaiSanPhamId ? 
 
-                                <>
-                                    <select className={styles.addGoodsInput} disabled>
+                                    <>
+                                        <select className={styles.addGoodsInput} disabled>
+                                            <option value="">Chọn mã loại</option>
+                                        </select>   
+                                    </> 
+
+                                    :<>
+                                        <select className={styles.addGoodsInput} onChange={e => setValueObj({...valueObj, LoaiSanPhamId: e.target.value})}>
                                         <option value="">Chọn mã loại</option>
-                                    </select>   
-                                </> 
-
-                                :<>
-                                     <select className={styles.addGoodsInput} onChange={e => setValueObj({...valueObj, LoaiSanPhamId: e.target.value})}>
-                                    <option value="">Chọn mã loại</option>
-                                    {showGoodTypeSelect && showGoodTypeSelect.length > 0 ? 
-                                        <>
-                                            {showGoodTypeSelect.map((item,index) => (
-                                                <option value={item.id} key={index}>{item.TenLoai}</option>
-                                            ))}
-                                        </>
-                                    : <></>}
-                                    </select>   
-                                </>}
-                               
+                                        {showGoodTypeSelect && showGoodTypeSelect.length > 0 ? 
+                                            <>
+                                                {showGoodTypeSelect.map((item,index) => (
+                                                    <option value={item.id} key={index}>{item.TenLoai}</option>
+                                                ))}
+                                            </>
+                                        : <></>}
+                                        </select>   
+                                    </>}
+                                
+                                </div>
+                                <div className={styles.addGoodsItems}>
+                                    <span>Mã sản phẩm</span>
+                                    <input type="text" className={styles.addGoodsInput} placeholder='Nhập mã mới'
+                                            onChange={e => setValueObj({...valueObj, id: e.target.value})}/>
+                                </div>
+                                <div className={styles.addGoodsItems}>
+                                    <span>Tên sản phẩm</span>
+                                    <input type="text" className={styles.addGoodsInput} placeholder='Nhập tên mới'
+                                            onChange={e => setValueObj({...valueObj, TenSanPham: e.target.value})}/>
+                                </div>                        
+                                <div className={styles.addGoodsItems}>
+                                    <span>Tồn kho nhiều nhất</span>
+                                    <input type="text" className={styles.addGoodsInput} placeholder='Nhập số lượng'
+                                            onChange={e => setValueObj({...valueObj, MaxTon: e.target.value})}/>
+                                </div>
+                                <div className={styles.addGoodsItems}>
+                                    <span>Tồn kho ít nhất</span>
+                                    <input type="text" className={styles.addGoodsInput} placeholder='Nhập số lượng'
+                                            onChange={e => setValueObj({...valueObj, MinTon: e.target.value})}/>
+                                </div>
                             </div>
-                            <div className={styles.addGoodsItems}>
-                                <span>Mã sản phẩm</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập mã mới'
-                                        onChange={e => setValueObj({...valueObj, id: e.target.value})}/>
-                            </div>
-                            <div className={styles.addGoodsItems}>
-                                <span>Tên sản phẩm</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập tên mới'
-                                        onChange={e => setValueObj({...valueObj, TenSanPham: e.target.value})}/>
-                            </div>                        
-                            <div className={styles.addGoodsItems}>
-                                <span>Tồn kho nhiều nhất</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập số lượng'
-                                        onChange={e => setValueObj({...valueObj, MaxTon: e.target.value})}/>
-                            </div>
-                            <div className={styles.addGoodsItems}>
-                                <span>Tồn kho ít nhất</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập số lượng'
-                                        onChange={e => setValueObj({...valueObj, MinTon: e.target.value})}/>
-                            </div>
-                        </div>
-                        <div className={styles.addGoods}>
-                            <div className={styles.addGoodsItems}>
-                                <span>Lóc</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập số lóc'
-                                        onChange={e => setValueObj({...valueObj, Loc: e.target.value})}/>
-                            </div>
-                            <div className={styles.addGoodsItems}>
-                                <span>Thùng</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập số thùng'
-                                        onChange={e => setValueObj({...valueObj, Thung: e.target.value})}/>
-                            </div>                        
-                            <div className={styles.addGoodsItems}>
-                                <span>Khay</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập số khay'
-                                        onChange={e => setValueObj({...valueObj, Khay: e.target.value})}/>
-                            </div>
-                            <div className={styles.addGoodsItems}>
-                                <span>Giá bán</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập giá'
-                                        onChange={e => setValueObj({...valueObj, GiaBan: e.target.value})}/>
-                            </div>
-                            <div className={styles.addGoodsItems}>
-                                <span>Giá sản phẩm</span>
-                                <input type="text" className={styles.addGoodsInput} placeholder='Nhập giá'
-                                        onChange={e => setValueObj({...valueObj, GiaSanPham: e.target.value})}/>
+                            <div className={styles.addGoods}>
+                                <div className={styles.addGoodsItems}>
+                                    <span>Lóc</span>
+                                    <input type="text" className={styles.addGoodsInput} placeholder='Nhập số lóc'
+                                            onChange={e => setValueObj({...valueObj, Loc: e.target.value})}/>
+                                </div>
+                                <div className={styles.addGoodsItems}>
+                                    <span>Thùng</span>
+                                    <input type="text" className={styles.addGoodsInput} placeholder='Nhập số thùng'
+                                            onChange={e => setValueObj({...valueObj, Thung: e.target.value})}/>
+                                </div>                        
+                                <div className={styles.addGoodsItems}>
+                                    <span>Khay</span>
+                                    <input type="text" className={styles.addGoodsInput} placeholder='Nhập số khay'
+                                            onChange={e => setValueObj({...valueObj, Khay: e.target.value})}/>
+                                </div>
+                                <div className={styles.addGoodsItems}>
+                                    <span>Giá bán</span>
+                                    <input type="text" className={styles.addGoodsInput} placeholder='Nhập giá'
+                                            onChange={e => setValueObj({...valueObj, GiaBan: e.target.value})}/>
+                                </div>
+                                <div className={styles.addGoodsItems}>
+                                    <span>Giá sản phẩm</span>
+                                    <input type="text" className={styles.addGoodsInput} placeholder='Nhập giá'
+                                            onChange={e => setValueObj({...valueObj, GiaSanPham: e.target.value})}/>
+                                </div>
                             </div>
                         </div>
                         <div className={styles.addGoodsItemsDesc}>

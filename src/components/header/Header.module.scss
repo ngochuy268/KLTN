@@ -57,7 +57,7 @@ header {
         margin: 0 15px;
     }
 
-    .barcodeButton, .searchButton,.sideBarMenuButton{
+    .barcodeButton,.sideBarMenuButton{
         background-color: transparent;
         border: transparent;
         font-size: 25px;
@@ -72,28 +72,26 @@ header {
 .searchBarWrapper {
     position: relative;
     padding: 5px;
+    width: 100%;
     border: 1px solid $border-color;
     border-radius: 5px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    background: #fff;
 
     .searchInput {
+        width: 100%;
         font-size: 16px;
         outline: none;
         margin-right: 5px;
         border: transparent;
     }
 
-    .searchIcon {
-        font-size: 18px;
-    }
-
-    &::after {
-        content: '';
-        position: absolute;
-        height: 100%;
-        border: 1px solid $border-color;
-        right: 30px;
+    .searchButton {
+        border: none;
+        background-color: transparent;
+        font-size: 15px;
     }
 }
 
@@ -415,5 +413,13 @@ header {
     }
     header {
         justify-content: flex-end !important;
+    }
+
+    .searchBarWrapper {
+        width: 70%;
+    
+        .searchInput {
+            width: 70%;
+        }
     }
 }

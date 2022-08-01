@@ -9,6 +9,7 @@ import { fetchDataSelectLoaiSP, fetchDataSelectSP, addDataKhoHang } from '../../
 import { toast } from 'react-toastify';
 import { UserContext } from "../../../../context/userContext";
 import React from "react";
+import { style } from '../../../../components/chatbox/client/styles';
 
 
 function NhapHang() {
@@ -68,16 +69,18 @@ function NhapHang() {
             valueObj.NhanVienId = user.account.id;
             listValue.push(valueObj);
 
-            $(`.${styles.exportGoodsInputItems2} tbody`).append(
-                ` <tr>
-                    <td>${valueObj.LoaiSanPhamId}</td>
-                    <td>${valueObj.SanPhamId}</td>
-                    <td>${valueObj.NSX}</td>
-                    <td>${valueObj.ViTri}</td>
-                    <td>${valueObj.GhiChu}</td>
-                    <td>${valueObj.SoLuong}</td>
-                    <td class=${styles.delButton}><i class="fas fa-trash"></i></td>
-                </tr>`)
+            $(`.${styles.exportGoodsInputItems2}`).append(
+                ` 
+                <div class=${styles.exportGoodsInputItems2Wrapper}>
+                    <div style='width: 15%'>${valueObj.LoaiSanPhamId}</div>
+                    <div style='width: 20%'>${valueObj.SanPhamId}</div>
+                    <div style='width: 10%'>${valueObj.NSX}</div>
+                    <div style='width: 20%'>${valueObj.ViTri}</div>
+                    <div style='width: 20%'>${valueObj.GhiChu}</div>
+                    <div style='width: 10%'>${valueObj.SoLuong}</div>
+                    <div style='width: 5%' class=${styles.delButton}><i class="fas fa-trash"></i></div>
+                </div>               
+                `)
 
             setValueObj({
                 'LoaiSanPhamId': '',
@@ -91,7 +94,7 @@ function NhapHang() {
         }
 
         $(`.${styles.delButton}`).on('click', function () {
-            $(this).parent().parent().remove();
+            $(this).parent().remove();
         })
 
     }
@@ -139,134 +142,105 @@ function NhapHang() {
                     </div>
 
                     <div className={styles.addGoodsWrapper}>
-
+                        <div className={styles.addButtonWrapperWrapper}>
+                            <div className={styles.addButtonWrapper}>
+                                <button className={styles.addButton} onClick={(event) => clickAdd(event)} ><FontAwesomeIcon icon={faPlus} /></button>
+                            </div>       
+                        </div>   
                         <div className={styles.addGoods}>
-                            <table className={styles.exportGoodsInputItems1}>
-                                <thead>
-                                    <tr>
-                                        <th style={{ width: '15%' }}>Loại sản phẩm</th>
-                                        <th style={{ width: '20%' }}>Sản phẩm</th>
-                                        <th style={{ width: '10%' }}>NSX</th>
-                                        <th style={{ width: '20%' }}>Vị trí</th>
-                                        <th style={{ width: '20%' }}>Ghi chú</th>
-                                        <th style={{ width: '10%' }}>Số lượng</th>
-                                        <th style={{ width: '5%' }}></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <select className={styles.exportGoodsInput} name='goodTypeId' style={{ width: '100%' }}
-                                                onChange={(e) => {
-                                                    fetchShowSPSelect(e.target.value);
-                                                    setValueObj({ ...valueObj, 'LoaiSanPhamId': e.target.value })
-                                                }}>
-                                                <option value=''>Chọn loại sản phẩm</option>
-                                                {showGoodTypeSelect.map((item, index) => (
-                                                    <option key={index} value={item.id}>{item.TenLoai}</option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select className={styles.exportGoodsInput} name='goodId' style={{ width: '100%' }}
-                                                onChange={e => { setValueObj({ ...valueObj, 'SanPhamId': e.target.value }) }} >
-                                                <option value="">Chọn sản phẩm</option>
-                                                {valueObj.LoaiSanPhamId !== '' ?
-                                                    showGoodSelect.map((item, index) => (
-                                                        <option key={index} value={item.id}>{item.TenSanPham}</option>
-                                                    ))
-                                                    :
-                                                    <></>
-                                                }
-                                            </select>
-
-                                        </td>
-
-                                        <td>
-                                            {valueObj.LoaiSanPhamId === '' ?
-                                                <>
-                                                    <input type="date" className={styles.exportGoodsInput} name='productDate' style={{ width: '100%' }} value=''
-                                                        onChange={e => { setValueObj({ ...valueObj, 'NSX': e.target.value }) }} />
-                                                </>
-                                                :
-                                                <>
-                                                    <input type="date" className={styles.exportGoodsInput} name='productDate' style={{ width: '100%' }}
-                                                        onChange={e => { setValueObj({ ...valueObj, 'NSX': e.target.value }) }} />
-                                                </>
-                                            }
-                                        </td>
-                                        <td>
-                                            {valueObj.LoaiSanPhamId === '' ?
-                                                <>
-                                                    <input type="text" className={styles.exportGoodsInput} name='location' style={{ width: '100%' }} value=''
-                                                        onChange={e => { setValueObj({ ...valueObj, 'ViTri': e.target.value }) }} />
-                                                </>
-                                                :
-                                                <>
-                                                    <input type="text" className={styles.exportGoodsInput} name='location' style={{ width: '100%' }}
-                                                        onChange={e => { setValueObj({ ...valueObj, 'ViTri': e.target.value }) }} />
-                                                </>
-                                            }
-
-                                        </td>
-                                        <td>
-                                            {valueObj.LoaiSanPhamId === '' ?
-                                                <>
-                                                    <input type="text" className={styles.exportGoodsInput} name='note' style={{ width: '100%' }} value=''
-                                                        onChange={e => { setValueObj({ ...valueObj, 'GhiChu': e.target.value }); }} />
-                                                </>
-                                                :
-                                                <>
-                                                    <input type="text" className={styles.exportGoodsInput} name='note' style={{ width: '100%' }}
-                                                        onChange={e => { setValueObj({ ...valueObj, 'GhiChu': e.target.value }); }} />
-                                                </>
-                                            }
-
-                                        </td>
-                                        <td>
-                                            {valueObj.LoaiSanPhamId === '' ?
-                                                <>
-                                                    <input type="text" className={styles.exportGoodsInput} name='count' style={{ width: '100%' }} value=''
-                                                        onChange={e => { setValueObj({ ...valueObj, 'SoLuong': e.target.value }) }}
-                                                        onKeyDown={(event) => handlePressTap(event)}
-                                                        onKeyPress={(event) => handlePressEnter(event)}
-                                                    />
-                                                </>
-                                                :
-                                                <>
-                                                    <input type="text" className={styles.exportGoodsInput} name='count' style={{ width: '100%' }}
-                                                        onChange={e => { setValueObj({ ...valueObj, 'SoLuong': e.target.value }) }}
-                                                        onKeyDown={(event) => handlePressTap(event)}
-                                                        onKeyPress={(event) => handlePressEnter(event)}
-                                                    />
-                                                </>
-                                            }
-
-                                        </td>
-                                        <td>
-                                            <div className={styles.addButtonWrapper}>
-                                                <button className={styles.addButton} onClick={(event) => clickAdd(event)} ><FontAwesomeIcon icon={faPlus} /></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table className={styles.exportGoodsInputItems2} style={{height: '1px'}}>
-                                <thead>
-                                    <tr>
-                                        <th style={{height: '1px' ,width: '15%' }}></th>
-                                        <th style={{height: '1px' ,width: '20%' }}></th>
-                                        <th style={{height: '1px' ,width: '10%' }}></th>
-                                        <th style={{height: '1px' ,width: '20%' }}></th>
-                                        <th style={{height: '1px' ,width: '20%' }}></th>
-                                        <th style={{height: '1px' ,width: '10%' }}></th>
-                                        <th style={{height: '1px' ,width: '5%' }}></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
+                            <div className={styles.exportGoodsInputItems1}>
+                                <div className={styles.exportGoodsInputItem} style={{width: '15%'}}>
+                                    <span>Tên loại</span>
+                                    <select className={styles.exportGoodsInput} name='goodTypeId' style={{ width: '100%' }}
+                                        onChange={(e) => {
+                                            fetchShowSPSelect(e.target.value);
+                                            setValueObj({ ...valueObj, 'LoaiSanPhamId': e.target.value })
+                                        }}>
+                                        <option value=''>Chọn loại sản phẩm</option>
+                                        {showGoodTypeSelect.map((item, index) => (
+                                            <option key={index} value={item.id}>{item.TenLoai}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className={styles.exportGoodsInputItem} style={{width: '20%'}}>
+                                    <span>Tên sản phẩm</span>
+                                    <select className={styles.exportGoodsInput} name='goodId' style={{ width: '100%' }}
+                                        onChange={e => { setValueObj({ ...valueObj, 'SanPhamId': e.target.value }) }} >
+                                        <option value="">Chọn sản phẩm</option>
+                                        {valueObj.LoaiSanPhamId !== '' ?
+                                            showGoodSelect.map((item, index) => (
+                                                <option key={index} value={item.id}>{item.TenSanPham}</option>
+                                            ))
+                                            :
+                                            <></>
+                                        }
+                                    </select>
+                                </div>
+                                <div className={styles.exportGoodsInputItem} style={{width: '10%'}}>
+                                    <span>Ngày sản xuất</span>
+                                    {valueObj.LoaiSanPhamId === '' ?
+                                        <>
+                                            <input type="date" className={styles.exportGoodsInput} name='productDate' style={{ width: '100%' }} value=''
+                                                onChange={e => { setValueObj({ ...valueObj, 'NSX': e.target.value }) }} />
+                                        </>
+                                        :
+                                        <>
+                                            <input type="date" className={styles.exportGoodsInput} name='productDate' style={{ width: '100%' }}
+                                                onChange={e => { setValueObj({ ...valueObj, 'NSX': e.target.value }) }} />
+                                        </>
+                                    }                                           
+                                </div>       
+                                <div className={styles.exportGoodsInputItem} style={{width: '20%'}}>
+                                    <span>Vị trí</span>
+                                    {valueObj.LoaiSanPhamId === '' ?
+                                        <>
+                                            <input type="text" className={styles.exportGoodsInput} name='location' style={{ width: '100%' }} value=''
+                                                onChange={e => { setValueObj({ ...valueObj, 'ViTri': e.target.value }) }} />
+                                        </>
+                                        :
+                                        <>
+                                            <input type="text" className={styles.exportGoodsInput} name='location' style={{ width: '100%' }}
+                                                onChange={e => { setValueObj({ ...valueObj, 'ViTri': e.target.value }) }} />
+                                        </>
+                                    }
+                                </div>          
+                                <div className={styles.exportGoodsInputItem} style={{width: '20%'}}>
+                                    <span>Ghi chú</span>
+                                    {valueObj.LoaiSanPhamId === '' ?
+                                        <>
+                                            <input type="text" className={styles.exportGoodsInput} name='note' style={{ width: '100%' }} value=''
+                                                onChange={e => { setValueObj({ ...valueObj, 'GhiChu': e.target.value }); }} />
+                                        </>
+                                        :
+                                        <>
+                                            <input type="text" className={styles.exportGoodsInput} name='note' style={{ width: '100%' }}
+                                                onChange={e => { setValueObj({ ...valueObj, 'GhiChu': e.target.value }); }} />
+                                        </>
+                                    }
+                                </div>        
+                                <div className={styles.exportGoodsInputItem} style={{width: '10%'}}>
+                                    <span>Số lượng</span>
+                                    {valueObj.LoaiSanPhamId === '' ?
+                                        <>
+                                            <input type="text" className={styles.exportGoodsInput} name='count' style={{ width: '100%' }} value=''
+                                                onChange={e => { setValueObj({ ...valueObj, 'SoLuong': e.target.value }) }}
+                                                onKeyDown={(event) => handlePressTap(event)}
+                                                onKeyPress={(event) => handlePressEnter(event)}
+                                            />
+                                        </>
+                                        :
+                                        <>
+                                            <input type="text" className={styles.exportGoodsInput} name='count' style={{ width: '100%' }}
+                                                onChange={e => { setValueObj({ ...valueObj, 'SoLuong': e.target.value }) }}
+                                                onKeyDown={(event) => handlePressTap(event)}
+                                                onKeyPress={(event) => handlePressEnter(event)}
+                                            />
+                                        </>
+                                    }
+                                </div>                              
+                            </div>
+                            <div className={styles.exportGoodsInputItems2}>
+                            </div>
                         </div>
 
                         <div className={styles.saveButtonWrapper}>

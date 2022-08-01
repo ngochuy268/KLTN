@@ -179,4 +179,53 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
 
 }
 
+@media screen and (max-width: 768px) {
+    .addGoodsWrapper {
+        .responsiveAddGoods{
+            .addGoods{
+                display: block;
 
+                .addGoodsItems {
+                    margin-top: 20px;
+
+                    .addGoodsInput {
+                        margin-top: 5px;
+                    }
+                }
+            }  
+        }
+
+        .addGoodsA {
+            .addGoodsItems {
+                margin-top: 20px;
+
+                .addGoodsInput {
+                    margin-top: 5px;
+                }
+            }
+        }
+        .addGoodsA.active {
+            display: block;
+        }
+    }
+}
+
+@media screen and (max-width: 940px) and (min-width: 769px) {
+    .addGoodsWrapper {
+       .responsiveAddGoods{
+            display: flex;
+            justify-content: space-between;
+            .addGoods{
+                display: inline-block;
+
+                .addGoodsItems {
+                    margin-top: 15px;
+
+                    input {
+                        margin-top: 5px;
+                    }
+                }
+            }
+       }
+    }
+}

@@ -111,4 +111,10 @@ $innerShadow:  inset 0px 4px 12px -4px #ABABAB;
     }
 }
 
-
+@media screen and (max-width: '1024px') {
+    .addEmployeesWrapper {
+        .addEmployeesItems {
+            flex-wrap: wrap;
+        }
+    }
+}

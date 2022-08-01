@@ -51,6 +51,7 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
         // width: 100%;
         padding: 10px;
         display: flex;
+        justify-content: space-between;
         flex-wrap: wrap;
 
         .listGoodsWrapper {
@@ -222,9 +223,9 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
             }
         }
 
-        @media screen and (min-width: 1024px) and (max-width: 1817px) {
+        @media screen and (min-width: 1024px) {
             .listGoodsWrapper {
-                width: 31.5%;
+                width: 31%;
             }
         }
     }

@@ -149,3 +149,19 @@ $font: 'Roboto', sans-serif;
         cursor: pointer;
     }
 }
+
+@media screen and (max-width: 900px) {
+    .loginForm {
+        width: 80%;
+    }
+    .form {
+        padding: 0 30px;
+    }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1200px) {
+    .loginForm {
+        width: 60%;
+    }
+  
+}

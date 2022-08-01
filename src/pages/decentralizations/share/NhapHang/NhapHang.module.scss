@@ -85,43 +85,24 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
         padding: 5px 0px 10px 20px;
         position: relative;
 
-        .exportGoodsInputItems {
-            text-align: left;
-            flex-grow: 4;
-            margin-right: 20px;
-            width: 100%;
-
-            .exportGoodsInput {
-                height: 40px;
-                width: 90%;
-            }
-
-            .delButton {
-                background: transparent;
-                border: transparent;
-                cursor: pointer;
-                color: red;
-                font-size: 18px;
-
-                &:hover {
-                    color: #F84B24;
-                }
-            }
-        }
-
         .exportGoodsInputItems1 {
+            display: flex;
             text-align: left;
             flex-grow: 4;
-            margin-right: 20px;
             width: 100%;
             margin-top: 20px;
 
-            td,th {
-                padding: 3px;
-            }
+           .exportGoodsInputItem {
+                margin-right: 15px;
+
+                span {
+                    font-weight: 700;
+                }
+           }
             .exportGoodsInput {
                 height: 40px;
-                width: 90%;
+                margin-top: 10px;
+                margin-right: 5px;
 
                 border: $borderColor;
                 border-radius: 8px;
@@ -163,26 +144,7 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
         }
     }
 
-    .addButtonWrapper {
-        display: flex;
-        justify-content: flex-end;
-
-        .addButton {
-            padding: 10px 30px;
-            border-radius: 5px;
-            background: rgb(37, 135, 4);
-            background: linear-gradient(180deg, rgba(37, 135, 4, 1) 0%, rgba(21, 180, 12, 1) 0%);
-            border: transparent;
-            font-size: 18px;
-            color: white;
-            cursor: pointer;
-
-            &:hover {
-                background: rgb(59, 199, 11);
-                background: linear-gradient(180deg, rgba(59, 199, 11, 1) 0%, rgba(26, 228, 14, 1) 91%);
-            }
-        }
-    }
+   
 }
 
 
@@ -290,24 +252,68 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
     margin-top: 20px;
     margin-right: 20px;
     border-collapse: collapse;
-    
 
-    td {
-        padding: 10px;
+    .exportGoodsInputItems2Wrapper {
+        display: flex;
+        margin-top: 25px;
         border-bottom: $borderColor;
-    }
 
-    .delButton {
-        text-align: center;
-        background: transparent;
-        border: transparent;
-        cursor: pointer;
-        color: red;
-        font-size: 18px;
-        box-shadow: none;
-
-        &:hover {
-            color: #F84B24;
+        .delButton {
+            text-align: center;
+            background: transparent;
+            border: transparent;
+            cursor: pointer;
+            color: red;
+            font-size: 18px;
+            box-shadow: none;
+    
+            &:hover {
+                color: #F84B24;
+            }
         }
     }
+}
+
+.addButtonWrapperWrapper{
+    display: flex;
+    justify-content: flex-end;
+    margin: 25px 25px 0 0;
+
+    .addButton {
+        padding: 10px 30px;
+        border-radius: 5px;
+        background: rgb(37, 135, 4);
+        background: linear-gradient(180deg, rgba(37, 135, 4, 1) 0%, rgba(21, 180, 12, 1) 0%);
+        border: transparent;
+        font-size: 18px;
+        color: white;
+        cursor: pointer;
+
+        &:hover {
+            background: rgb(59, 199, 11);
+            background: linear-gradient(180deg, rgba(59, 199, 11, 1) 0%, rgba(26, 228, 14, 1) 91%);
+        }
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+  .addGoodsWrapper {
+     .addGoods {
+        display: flex;
+        .exportGoodsInputItems1 {
+            display: block;
+            width: 80%;
+            
+            .exportGoodsInputItem {
+                width: 100% !important;
+                margin-top: 20px;
+            }
+        }
+
+        .exportGoodsInputItems2{
+
+        }
+     }
+  } 
 }

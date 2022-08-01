@@ -407,3 +407,28 @@ $innerShadow: inset 0px 4px 12px -4px #ABABAB;
         }
     }
 }
+
+@media screen and (max-width: 1110px) {
+    .exportGoodsAutoWrapper {
+        display: block;
+
+        .exportGoodsInputBillWrapper{
+            width: 100%;
+            background-size: contain;
+
+            .exportGoodsInputBillItems {
+                display: block;
+            }
+        }
+       
+    }
+
+    .billWrapper {
+        width: 100%;
+    }
+
+    .exportGoodsInputBillItemsWrapper {
+        margin: 0;
+        width: 100%;
+    }
+}
