@@ -100,6 +100,10 @@ const searchSP = (value) => {
     return axios.post('/api/v1/khohang/search', { value })
 }
 
+const fetchReportData = () => {
+    return axios.get('/api/v1/baocao')
+}
+
 export {
     fetchAllLoaiSP, fetchDataLoaiSP, getCTSP, searchSP,
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
@@ -108,7 +112,5 @@ export {
     fetchDataSelectLoaiSP, congViecNhap, fetchNotification,
     addDataKhoHang, getDataXuatHang, fetchPredictSP,
     fetchPredictSL, congViecXuat, xuatHang, fetchAllLoaiSPs,
-    fetchLineSPData, fetchLineSPDatas
-
-
+    fetchLineSPData, fetchLineSPDatas,fetchReportData
 }
