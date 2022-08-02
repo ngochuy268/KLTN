@@ -28,7 +28,7 @@ function DanhSachNhanVien() {
 
     useEffect(() => {
         fetchShowEm();
-    }, [flat]);
+    }, [background]);
 
     const [showEm, setShowEm] = useState([]);
     const fetchShowEm = async () => {
@@ -46,6 +46,9 @@ function DanhSachNhanVien() {
             setUser(response.DT);
         }
     }
+
+    const [background, setBackGround] = useState(true);
+
 
     const [flat, setflat] = useState(false);
     const setVang = async (id) => {
@@ -79,8 +82,12 @@ function DanhSachNhanVien() {
                                                 <b><p>{item.id}</p></b>
                                                 <p><button
                                                     style={
-                                                        item.Vang == 0 ? { backgroundColor: 'red', border: 'none', color: 'white', padding: '5px 10px' }
-                                                            : { backgroundColor: 'green', border: 'none', color: 'white', padding: '5px 10px' }} onClick={() => setVang(item.id)}>Vắng</button></p>
+                                                        item.Vang == 0 && !background ?
+                                                            { backgroundColor: 'red', border: 'none', color: 'white', padding: '5px 10px' }
+                                                            : { backgroundColor: 'green', border: 'none', color: 'white', padding: '5px 10px' }}
+                                                    onClick={() => { setBackGround(!background), setVang(item.id) }}>
+                                                    {item.Vang == 0 && !background ? 'Vắng' : 'Đang làm'}
+                                                </button></p>
                                             </div>
 
                                             <div className={styles.employeeInfoWrapper}>

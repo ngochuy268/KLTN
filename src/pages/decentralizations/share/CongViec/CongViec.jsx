@@ -23,7 +23,7 @@ function CongViec() {
     useEffect(() => {
         fetchNhapHang(user.account.id)
         fetchXuatHang(user.account.id)
-    })
+    }, [])
 
     const fetchNhapHang = async (id) => {
         console.log(">>> check . . . .")
@@ -34,15 +34,16 @@ function CongViec() {
     }
 
     const fetchXuatHang = async (id) => {
-        console.log(">>> check . . . .")
+
         let response = await congViecXuat(id);
         if (response && response.EC === 0) {
+            console.log(">>> check . . . .", response.DT)
             setXuatHangData(response.DT);
         }
     }
 
 
-    console.log(nhapHangData)
+    console.log(">>> check xuat hang: ", xuatHangData)
 
 
     // Table goods data
@@ -123,14 +124,14 @@ function CongViec() {
         },
         {
             id: 'expiredDate',
-            label: 'Hạn sử dụng',
+            label: 'Ngày sản xuất',
             minWidth: 90,
             align: 'left',
             format: (value) => value.toLocaleString('en-US'),
         },
         {
             id: 'cost',
-            label: 'Giá tiền',
+            label: 'Hạn sử dụng',
             minWidth: 90,
             align: 'left',
             format: (value) => value.toLocaleString('en-US'),
@@ -211,7 +212,7 @@ function CongViec() {
                                             <>
                                                 {xuatHangData.map((item, index) => (
                                                     <TableRow>
-                                                        <StyledTableCell >{item.createdAt}</StyledTableCell>
+                                                        <StyledTableCell >{item.NgayXuat}</StyledTableCell>
                                                         <StyledTableCell >{item.NVGiaoHang}</StyledTableCell>
                                                         <StyledTableCell >{item.BenNhan}</StyledTableCell>
                                                         <StyledTableCell>{item.SanPham.TenSanPham}</StyledTableCell>
@@ -253,19 +254,21 @@ function CongViec() {
                                     </TableHead>
                                     <TableBody>
                                         {nhapHangData && nhapHangData.length > 0 ?
-
                                             <>
-                                                {nhapHangData.map((item, index) => (
-                                                    <TableRow key={index}>
-                                                        <StyledTableCell >{item.createdAt}</StyledTableCell>
-                                                        <StyledTableCell>{item.SanPham.TenSanPham}</StyledTableCell>
-                                                        <StyledTableCell>{item.SoLuong}</StyledTableCell>
-                                                        <StyledTableCell>{item.HSD}</StyledTableCell>
-                                                        <StyledTableCell>{item.ThanhTien}</StyledTableCell>
-                                                        <StyledTableCell>{item.GhiChu}</StyledTableCell>
-                                                        <StyledTableCell className={styles.editIcon}><FontAwesomeIcon icon={faEdit} /></StyledTableCell>
-                                                    </TableRow>
-                                                ))}
+                                                {nhapHangData.map((item, index) => {
+                                                    return (
+                                                        <>
+                                                            <TableRow key={index}>
+                                                                <StyledTableCell >{item.NgayNhap}</StyledTableCell>
+                                                                <StyledTableCell>{item.SanPham.TenSanPham}</StyledTableCell>
+                                                                <StyledTableCell>{item.SoLuong}</StyledTableCell>
+                                                                <StyledTableCell>{item.NSX}</StyledTableCell>
+                                                                <StyledTableCell>{item.HSD}</StyledTableCell>
+                                                                <StyledTableCell>{item.GhiChu}</StyledTableCell>
+                                                                <StyledTableCell className={styles.editIcon}><FontAwesomeIcon icon={faEdit} /></StyledTableCell>
+                                                            </TableRow></>
+                                                    )
+                                                })}
                                             </>
 
                                             : <></>}

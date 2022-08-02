@@ -65,6 +65,7 @@ const congViecNhap = (id) => {
     return axios.post('/api/v1/xuatnhap/nhapkho/user', { id })
 }
 const congViecXuat = (id) => {
+    console.log(">>> check services: ", id)
     return axios.post('/api/v1/xuatnhap/xuatkho/user', { id })
 }
 
@@ -112,5 +113,5 @@ export {
     fetchDataSelectLoaiSP, congViecNhap, fetchNotification,
     addDataKhoHang, getDataXuatHang, fetchPredictSP,
     fetchPredictSL, congViecXuat, xuatHang, fetchAllLoaiSPs,
-    fetchLineSPData, fetchLineSPDatas,fetchReportData
+    fetchLineSPData, fetchLineSPDatas, fetchReportData
 }
