@@ -2,10 +2,10 @@ import { Paper, Table, TableBody, TableCell, tableCellClasses, TableContainer, T
 import styled from '@emotion/styled';
 import styles from './Search.module.scss';
 
-function Search() {
+function Search(dataSearch) {
 
-     // Table detail data
-     const StyledTableCell = styled(TableCell)(() => ({
+    // Table detail data
+    const StyledTableCell = styled(TableCell)(() => ({
         [`&.${tableCellClasses.head}`]: {
             backgroundColor: '#007bff',
             color: 'white',
@@ -25,14 +25,14 @@ function Search() {
     }));
 
     function createData(
-        id, name, productDate, count, position
+        id, name, date, productDate, count, position
     ) {
-        return { id, name, productDate, count, position};
+        return { id, name, date, productDate, count, position };
     }
 
-    const rows = [
-        createData('F55', 'Bánh Flan 55g', '12/03/2022',233, 'Kho A - Khu A')
-    ];
+    const rows = dataSearch.map((item, index) => (
+        createData(item.SanPhamId, item.SanPham.TenSanPham, item.NSX, item.HSD, item.SoLuong, item.ViTri)
+    ));
 
 
     return (
@@ -42,23 +42,25 @@ function Search() {
                     <Table sx={{ minWidth: 700 }} aria-label="customized table" className={styles.searchTable} >
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell align="center"><b>STT</b></StyledTableCell>
-                                <StyledTableCell ><b>Mã sản phẩm</b></StyledTableCell>
-                                <StyledTableCell ><b>Tên sản phẩm</b></StyledTableCell>
-                                <StyledTableCell ><b>Ngày sản xuất</b></StyledTableCell>
-                                <StyledTableCell ><b>Số lượng</b></StyledTableCell>
-                                <StyledTableCell ><b>Vị trí</b></StyledTableCell>
+                                <StyledTableCell width='5%' align="center"><b>STT</b></StyledTableCell>
+                                <StyledTableCell width='10%' align="center" ><b>Mã sản phẩm</b></StyledTableCell>
+                                <StyledTableCell width='20%' ><b>Tên sản phẩm</b></StyledTableCell>
+                                <StyledTableCell width='10%' ><b>Ngày Sản xuất</b></StyledTableCell>
+                                <StyledTableCell width='10%' ><b>Hạn sử dụng</b></StyledTableCell>
+                                <StyledTableCell width='10%' align="center" ><b>Số lượng</b></StyledTableCell>
+                                <StyledTableCell width='25%' align="center" ><b>Vị trí</b></StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row,index) => (
+                            {rows.map((row, index) => (
                                 <StyledTableRow key={index}>
-                                    <StyledTableCell component="th" scope="row" align="center">{index + 1}</StyledTableCell>
-                                    <StyledTableCell >{row.id}</StyledTableCell>
-                                    <StyledTableCell >{row.name}</StyledTableCell>
-                                    <StyledTableCell >{row.productDate}</StyledTableCell>
-                                    <StyledTableCell >{row.count}</StyledTableCell>
-                                    <StyledTableCell >{row.position}</StyledTableCell>
+                                    <StyledTableCell width='5%' component="th" scope="row" align="center">{index + 1}</StyledTableCell>
+                                    <StyledTableCell width='10%' align="center" >{row.id}</StyledTableCell>
+                                    <StyledTableCell width='20%' >{row.name}</StyledTableCell>
+                                    <StyledTableCell width='10%' >{row.date}</StyledTableCell>
+                                    <StyledTableCell width='10%' >{row.productDate}</StyledTableCell>
+                                    <StyledTableCell width='10%' align="right" >{row.count}</StyledTableCell>
+                                    <StyledTableCell width='25%' >{row.position}</StyledTableCell>
                                 </StyledTableRow>
                             ))}
                         </TableBody>

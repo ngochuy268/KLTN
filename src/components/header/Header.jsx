@@ -1,19 +1,20 @@
 import styles from './Header.module.scss';
 import barcode from '../../assets/layoutImg/barcode.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBarcode, faTriangleExclamation, faBell, faExclamation, faXmark, faBox, faSearch, faBars} from '@fortawesome/free-solid-svg-icons';
+import { faBarcode, faTriangleExclamation, faBell, faExclamation, faXmark, faBox, faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import BarcodeScanner from '../barcode/BarcodeScanner';
 import { Dialog, DialogTitle } from '@mui/material';
 import logo from '../../assets/layoutImg/logo.png';
-import { fetchNotification } from '../../services/khoHangServices';
+import { fetchNotification, searchSP } from '../../services/khoHangServices';
 import Search from '../search/Search';
 
-function Header({handleOpenSideBarMenu}) {
+function Header({ handleOpenSideBarMenu }) {
 
+    const [search, setSearch] = useState();
     const [open, setOpen] = useState(false);
-    const [ openSearch, setOpenSearch ] = useState(false);
+    const [openSearch, setOpenSearch] = useState(false);
     const [showNo, setShowNo] = useState('');
 
     // Open and close
@@ -24,14 +25,29 @@ function Header({handleOpenSideBarMenu}) {
         setOpen(false);
     };
 
+    // start search function
+    const [dataSearch, setDataSearch] = useState([]);
     const handleClickSearchOpen = () => {
+        searchData(search);
         setOpenSearch(true);
     };
+
+    const handlePressEnter = (event) => {
+        if (event.charCode === 13 && event.code === "Enter") {
+            handleClickSearchOpen();
+        }
+    }
+
+    const searchData = async (value) => {
+        let response = await searchSP(value);
+        if (response && response.EC === 0) {
+            setDataSearch(response.DT);
+        }
+    }
+
     const handleSearchClose = () => {
         setOpenSearch(false);
     };
-
-
 
     // Data notification show
     useEffect(() => {
@@ -98,17 +114,26 @@ function Header({handleOpenSideBarMenu}) {
                 </div>
                 <ul className={styles.headerComponent}>
                     <li className={styles.headerItem}>
-                        <button className={styles.sideBarMenuButton} onClick={handleOpenSideBarMenu}><FontAwesomeIcon icon={faBars}/></button>
+                        <button className={styles.sideBarMenuButton} onClick={handleOpenSideBarMenu}><FontAwesomeIcon icon={faBars} /></button>
                     </li>
+
                     <li className={styles.headerItem}>
-                       <div className={styles.searchBarWrapper}>
-                            <input type="text" className={styles.searchInput}/>
-                            <button className={styles.searchButton}><FontAwesomeIcon icon={faSearch} onClick={handleClickSearchOpen} /></button>
-                       </div>
+                        <div className={styles.searchBarWrapper}>
+                            <input type="text" className={styles.searchInput}
+                                onKeyPress={(event) => handlePressEnter(event)}
+                                onChange={e => setSearch(e.target.value)} />
+                            <button className={styles.searchButton}>
+                                <FontAwesomeIcon icon={faSearch} onClick={handleClickSearchOpen} />
+                            </button>
+                        </div>
                     </li>
+
                     <li className={styles.headerItem}>
-                        <button className={styles.barcodeButton} onClick={handleClickOpen}><FontAwesomeIcon icon={faBarcode} /></button>
+                        <button className={styles.barcodeButton} onClick={handleClickOpen}>
+                            <FontAwesomeIcon icon={faBarcode} />
+                        </button>
                     </li>
+
                     <li className={clsx(styles.headerItem, styles.headerNotificationWrapper)}>
                         <FontAwesomeIcon icon={faBell} className={styles.notifyIcon} />
                         <div className={styles.headerNotification}>
@@ -189,10 +214,11 @@ function Header({handleOpenSideBarMenu}) {
                             }
                         </div>
                     </li>
+
                     <li className={styles.headerStoreWrapper} >
                         <FontAwesomeIcon icon={faBox} className={styles.storeIcon} />
                         <div className={styles.headerStore}>
-                            <img src={require('../../assets/layoutImg/Kho.drawio.png').default} alt="" className={styles.storeImg}/>
+                            <img src={require('../../assets/layoutImg/Kho.drawio.png').default} alt="" className={styles.storeImg} />
                         </div>
                     </li>
                 </ul>
@@ -214,7 +240,7 @@ function Header({handleOpenSideBarMenu}) {
                 <div className={styles.closeButtonWrapper} onClick={handleSearchClose}>
                     <button className={styles.closeButton}><FontAwesomeIcon icon={faXmark} /></button>
                 </div>
-                <Search />
+                {Search(dataSearch)}
             </Dialog>
         </>
     );

@@ -92,9 +92,16 @@ const xuatHang = (listXuatHang, ttXuatHang) => {
     return axios.post('/api/v1/xuathang', { listXuatHang, ttXuatHang })
 }
 
+const getCTSP = (SanPhamId) => {
+    return axios.post('/api/v1/khohang/tongquan/chitiet', { SanPhamId })
+}
+
+const searchSP = (value) => {
+    return axios.post('/api/v1/khohang/search', { value })
+}
 
 export {
-    fetchAllLoaiSP, fetchDataLoaiSP,
+    fetchAllLoaiSP, fetchDataLoaiSP, getCTSP, searchSP,
     fetchAllLoaiSPS, fetchDataDSXuatKho, fetchDataDSNhapKho,
     fetchDataPieChart, fetchDataPieChartTable, getLoaiSPTQ,
     fetchDataShowSP, fetchDataShowNV, fetchDataSelectSP,

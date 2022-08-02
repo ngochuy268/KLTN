@@ -7,6 +7,7 @@ const loginUser = (idNhanVien, password) => {
 }
 
 const getUser = (id) => {
+    console.log(">>> check services")
     return axios.post('/api/v1/user/shows', { id })
 }
 const createUser = (userValue) => {
@@ -14,7 +15,12 @@ const createUser = (userValue) => {
 }
 
 const createSP = (valueObj, valueObjLoaiSP) => {
-    return axios.post('/api/v1//sanpham/create', {valueObj, valueObjLoaiSP})
+    return axios.post('/api/v1//sanpham/create', { valueObj, valueObjLoaiSP })
 }
 
-export { loginUser, getUser, createUser, createSP};
+const updateUser = (userData) => {
+    console.log("check UI services: ", userData)
+    return axios.put('/api/v1/user/update', { userData })
+}
+
+export { loginUser, getUser, createUser, createSP, updateUser };

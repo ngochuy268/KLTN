@@ -14,7 +14,7 @@ import styled from '@emotion/styled';
 function TongQuan() {
 
     const [selectTime, setSelectTime] = useState(14);
-    const [flat, setFlat] = useState(0);
+    const [flat, setFlat] = useState(true);
     const [listLoaiSP, setListLoaiSP] = useState([]);
     const [listSP, setListSP] = useState([]);
     const [dataTableLoaiSP, setDataTableLoaiSP] = useState([]);
@@ -26,13 +26,6 @@ function TongQuan() {
         fetchPreSP();
         fetchPreSL();
     }, [selectTime, flat])
-
-    console.log("Flat: ", flat)
-    console.log("selectTime: ", selectTime)
-    // if (selectTime === 1) {
-
-    // }
-
 
     const fetchLoaiSP = async () => {
         let response;
@@ -85,7 +78,7 @@ function TongQuan() {
     }
 
     const columnsI = [
-        { id: 'countNumber', label: 'STT', minWidth: 100,height: 40 },
+        { id: 'countNumber', label: 'STT', minWidth: 100, height: 40 },
         {
             id: 'goodName',
             label: 'Tên sản phẩm',
@@ -183,42 +176,31 @@ function TongQuan() {
                     </div>
 
                     <div className={styles.lineChartWrapper}>
-                        {flat === 0 ?
-                            <><div className={styles.lineChartExpa}>
-                                {/* {alert("aaaaaaaaaaaa")} */}
-                                {listLoaiSP && listLoaiSP.length > 0 ?
+
+                        <div className={styles.lineChartExpa}>
+                            {/* {alert("aaaaaaaaaaaa")} */}
+                            {listLoaiSP && listLoaiSP.length > 0 ?
+                                <>
+                                    {ApexChart(listLoaiSP, titlechart)}
+                                </>
+                                :
+                                <><span>Not found data</span></>
+                            }
+
+                        </div>
+                        {flat &&
+                            <div className={styles.lineChart}>
+                                {listSP && listSP.length > 0 ?
                                     <>
-                                        {ApexChart(listLoaiSP, titlechart)}
+                                        {ApexChartExpand(listSP, titlechart)}
                                     </>
                                     :
                                     <><span>Not found data</span></>
                                 }
-
                             </div>
-                            </>
-                            :
-                            <>
-                                <div className={styles.lineChartExpa}>
-                                    {listLoaiSP && listLoaiSP.length > 0 ?
-                                        <>
-                                            {ApexChart(listLoaiSP, titlechart)}
-                                        </>
-                                        :
-                                        <><span>Not found data</span></>
-                                    }
-
-                                </div>
-                                <div className={styles.lineChart}>
-                                    {listSP && listSP.length > 0 ?
-                                        <>
-                                            {ApexChartExpand(listSP, titlechart)}
-                                        </>
-                                        :
-                                        <><span>Not found data</span></>
-                                    }
-                                </div>
-                            </>
                         }
+
+
 
 
                     </div>
@@ -252,7 +234,7 @@ function TongQuan() {
                                                         <StyledTableCell >{item.LoaiSanPhamId}</StyledTableCell>
                                                         <StyledTableCell>{item.LoaiSanPham.TenLoai}</StyledTableCell>
                                                         <StyledTableCell>{item.SoLuong}</StyledTableCell>
-                                                        <StyledTableCell align='center'><FontAwesomeIcon icon={faEye} className={styles.goodName} onClick={() => { lineChartSP(item.LoaiSanPhamId, selectTime), setFlat(1) }} /></StyledTableCell>
+                                                        <StyledTableCell align='center'><FontAwesomeIcon icon={faEye} className={styles.goodName} onClick={() => { lineChartSP(item.LoaiSanPhamId, selectTime), setFlat(!flat) }} /></StyledTableCell>
                                                     </StyledTableRow>
                                                 ))}
                                             </>
@@ -287,7 +269,7 @@ function TongQuan() {
                                             <TableRow>
                                                 <TableCell colSpan={3} style={{ textAlign: 'center', fontSize: '20px', border: '1px solid #4bb954' }}><b>Dự báo mặt hàng cần nhập</b></TableCell>
                                             </TableRow>
-                                            <TableRow style={{height: 10}}>
+                                            <TableRow style={{ height: 10 }}>
                                                 {columnsI.map((column) => (
                                                     <StyledTableCell
                                                         key={column.id}

@@ -8,13 +8,16 @@ import { Dialog, DialogTitle } from '@mui/material';
 import ChinhSuaInfo from './ChinhSuaInfo';
 import { fetchDataShowNV } from '../../../../../../services/khoHangServices';
 import { style } from '../../../../../../components/chatbox/client/styles';
+import { getUser } from "../../../../../../services/userServices";
 
 
 
 function DanhSachNhanVien() {
 
     const [open, setOpen] = useState(false);
-    const handleClickOpen = () => {
+    const handleClickOpen = async (id) => {
+        await fetchUserData(id)
+        console.log(">>> check user: ", id)
         setOpen(true);
     };
     const handleClose = () => {
@@ -35,7 +38,17 @@ function DanhSachNhanVien() {
         }
     }
 
-    console.log(Array.from("2017-12-15"))
+    const [user, setUser] = useState([]);
+    const fetchUserData = async (id) => {
+        console.log(">>> check fetch: ", id)
+        let response = await getUser(id);
+        if (response && response.EC === 0) {
+            setUser(response.DT);
+        }
+    }
+    console.log(">>> check user: ", user)
+
+    // console.log(Array.from("2017-12-15"))
     return (
         <>
             <div className={styles.container}>
@@ -102,7 +115,7 @@ function DanhSachNhanVien() {
                                             </ul>
                                         </div>
                                         <div className={styles.employeeStatusWrapper}>
-                                            <button className={styles.employeeStatusEditIcon} onClick={handleClickOpen}>
+                                            <button className={styles.employeeStatusEditIcon} onClick={() => handleClickOpen(item.id)}>
                                                 <FontAwesomeIcon icon={faEdit} style={{ fontSize: '18px' }} />
                                             </button>
                                         </div>
@@ -122,7 +135,7 @@ function DanhSachNhanVien() {
                 <DialogTitle id="alert-dialog-title" style={{ textAlign: 'center', fontWeight: '700', fontSize: '30px' }}>
                     {"Chỉnh sửa thông tin"}
                 </DialogTitle>
-                <ChinhSuaInfo />
+                {ChinhSuaInfo(user)}
             </Dialog>
 
         </>

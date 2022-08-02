@@ -76,7 +76,7 @@ $borderColor: 1px solid #ced4da;
             height: fit-content;
             box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
 
-            .showIcon{
+            .showIcon {
                 &:hover {
                     cursor: pointer;
                     color: #007bff;
@@ -87,12 +87,13 @@ $borderColor: 1px solid #ced4da;
 
     .goodsTableDetailWrapper {
         width: 100%;
-        padding: 20px;
-        display: none;
-        
+        padding: 5px;
+        display: block;
+
         .goodsTableDetails {
             box-shadow: -2px 5px 12px -1px rgba(0, 0, 0, 0.23);
         }
+
         &.active {
             display: block;
         }
@@ -104,18 +105,18 @@ $borderColor: 1px solid #ced4da;
         .listAndChartGoods {
             display: block;
 
-            .pieChart{
+            .pieChart {
                 width: 100%;
                 display: flex;
                 justify-content: center;
                 padding: 0;
 
-                #chart{
+                #chart {
                     width: 100%;
                 }
             }
 
-            .listGoods{
+            .listGoods {
                 width: 100%;
                 margin-top: 40px;
             }
