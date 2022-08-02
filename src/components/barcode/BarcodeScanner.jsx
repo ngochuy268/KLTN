@@ -7,7 +7,7 @@ export default function BarcodeScanner(props) {
   const [scan, setScan] = useState(true);
   const [logs, setLog] = useState([]);
 
-  
+
   const barcodeScannerComponentHandleUpdate = (error, result) => {
     if (result) {
       setLog([...logs, result.text]);
@@ -18,18 +18,18 @@ export default function BarcodeScanner(props) {
 
   return (
     <div className={styles.barcodeWrapper}>
-        <div className={styles.buttonScannerWrapper}>
-            <button className={styles.scanButton} onClick={() => setScan(true)}>Quét</button>
-            <button className={styles.cancelButton} onClick={() => setScan(false)}>Dừng quét</button>
-            <button className={styles.clearButton} onClick={() => setLog([])}>Bỏ mã</button>
-        </div>
-        {scan && (
-          <div className={styles.scanScreenWrapper}>
-              <div className={styles.scanScreen}>
-                <BarcodeScannerComponent
-                  onUpdate={barcodeScannerComponentHandleUpdate}
-                />
-            </div>
+      <div className={styles.buttonScannerWrapper}>
+        <button className={styles.scanButton} onClick={() => setScan(true)}>Quét</button>
+        <button className={styles.cancelButton} onClick={() => setScan(false)}>Dừng quét</button>
+        <button className={styles.clearButton} onClick={() => setLog([])}>Bỏ mã</button>
+      </div>
+      {scan && (
+        <div className={styles.scanScreenWrapper}>
+          <div className={styles.scanScreen}>
+            <BarcodeScannerComponent
+              onUpdate={barcodeScannerComponentHandleUpdate}
+            />
+          </div>
         </div>
       )}
       {logs.map((log) => (

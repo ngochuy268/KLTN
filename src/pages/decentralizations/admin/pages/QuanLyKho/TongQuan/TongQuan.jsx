@@ -103,7 +103,6 @@ function TongQuan1() {
 
                 {pieChartData && pieChartData.length > 0 ?
                     pieChartData.map((item, index) => {
-                        let not = true;
                         return (
                             <>
                                 <div className={styles.listAndChartGoodsWrapper}>
@@ -150,6 +149,40 @@ function TongQuan1() {
                                     </div>
                                     {/* hidden table */}
                                     <div className={styles.goodsTableDetailWrapper}>
+                                        {!flat &&
+                                            <>
+                                                <TableContainer component={Paper} >
+                                                    <Table sx={{ minWidth: 700 }} aria-label="customized table" className={styles.goodsTableDetails} >
+                                                        <TableHead>
+                                                            <TableRow padding='10px' >
+                                                                <StyledTableCell width='10%' align="center"><b>Mã sản phẩm</b></StyledTableCell>
+                                                                <StyledTableCell width='22%' ><b>Tên sản phẩm</b></StyledTableCell>
+                                                                <StyledTableCell width='15%' ><b>Ngày sản xuất</b></StyledTableCell>
+                                                                <StyledTableCell width='15%' ><b>Hạn sử dụng</b></StyledTableCell>
+                                                                <StyledTableCell width='10%' align="center"><b>Số lượng</b></StyledTableCell>
+                                                                <StyledTableCell width='23%' align="center"><b>Vị trí</b></StyledTableCell>
+                                                                <StyledTableCell width='5%' ></StyledTableCell>
+                                                            </TableRow>
+                                                        </TableHead>
+                                                        <TableBody>
+                                                            {rowsII.map((row, index) => (
+                                                                console.log(">>> check row: ", row),
+                                                                <StyledTableRow key={index}>
+                                                                    <StyledTableCell align="center" component="th" scope="row">{row.id}</StyledTableCell>
+                                                                    <StyledTableCell >{row.name}</StyledTableCell>
+                                                                    <StyledTableCell >{row.date}</StyledTableCell>
+                                                                    <StyledTableCell >{row.expiredDate}</StyledTableCell>
+                                                                    <StyledTableCell align="right">{row.count}</StyledTableCell>
+                                                                    <StyledTableCell >{row.address}</StyledTableCell>
+                                                                    <StyledTableCell ><FontAwesomeIcon icon={faEdit} style={{ fontSize: '18px' }} /></StyledTableCell>
+                                                                </StyledTableRow>
+                                                            ))}
+                                                        </TableBody>
+                                                    </Table>
+                                                </TableContainer>
+                                            </>
+
+                                        }
 
                                     </div>
                                 </div>
@@ -158,40 +191,6 @@ function TongQuan1() {
                     })
                     :
                     <><span>Not found data</span></>
-                }
-
-                {flat &&
-                    <>
-                        <TableContainer component={Paper} >
-                            <Table sx={{ minWidth: 700 }} aria-label="customized table" className={styles.goodsTableDetails} >
-                                <TableHead>
-                                    <TableRow padding='10px' >
-                                        <StyledTableCell width='10%' align="center"><b>Mã sản phẩm</b></StyledTableCell>
-                                        <StyledTableCell width='22%' ><b>Tên sản phẩm</b></StyledTableCell>
-                                        <StyledTableCell width='15%' ><b>Ngày sản xuất</b></StyledTableCell>
-                                        <StyledTableCell width='15%' ><b>Hạn sử dụng</b></StyledTableCell>
-                                        <StyledTableCell width='10%' align="center"><b>Số lượng</b></StyledTableCell>
-                                        <StyledTableCell width='23%' align="center"><b>Vị trí</b></StyledTableCell>
-                                        <StyledTableCell width='5%' ></StyledTableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {rowsII.map((row, index) => (
-                                        console.log(">>> check row: ", row),
-                                        <StyledTableRow key={index}>
-                                            <StyledTableCell align="center" component="th" scope="row">{row.id}</StyledTableCell>
-                                            <StyledTableCell >{row.name}</StyledTableCell>
-                                            <StyledTableCell >{row.date}</StyledTableCell>
-                                            <StyledTableCell >{row.expiredDate}</StyledTableCell>
-                                            <StyledTableCell align="right">{row.count}</StyledTableCell>
-                                            <StyledTableCell >{row.address}</StyledTableCell>
-                                            <StyledTableCell ><FontAwesomeIcon icon={faEdit} style={{ fontSize: '18px' }} /></StyledTableCell>
-                                        </StyledTableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </>
                 }
 
 

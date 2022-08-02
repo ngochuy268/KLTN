@@ -29,9 +29,9 @@ function XuatNhap() {
     }
 
     function createData(
-        exportDate, employeeName, deliverName, receiver, goodName, count, expiredDate, cost, note
+        exportDate, employeeName, deliverName, receiver, goodName, count, expiredDate, note
     ) {
-        return { exportDate, employeeName, deliverName, receiver, goodName, count, expiredDate, cost, note };
+        return { exportDate, employeeName, deliverName, receiver, goodName, count, expiredDate, note };
     }
 
     const rows =
@@ -43,7 +43,6 @@ function XuatNhap() {
                 item.SanPham.TenSanPham,
                 item.SoLuong,
                 item.HSD,
-                item.ThanhTien,
                 item.GhiChu)
         ));
     const columns = [
@@ -80,13 +79,6 @@ function XuatNhap() {
         {
             id: 'expiredDate',
             label: 'Hạn sử dụng',
-            minWidth: 60,
-            align: 'left',
-            format: (value) => value.toLocaleString('en-US'),
-        },
-        {
-            id: 'cost',
-            label: 'Giá tiền',
             minWidth: 60,
             align: 'left',
             format: (value) => value.toLocaleString('en-US'),
@@ -227,7 +219,7 @@ function XuatNhap() {
 
     //   Get value from input
     const [valueObj, setValueObj] = useState({
-        NhanVien:{
+        NhanVien: {
             HoTen: ''
         },
         NVGiaoHang: '',
@@ -258,7 +250,7 @@ function XuatNhap() {
     }
 
     const [valueObj1, setValueObj1] = useState({
-        NhanVien:{
+        NhanVien: {
             HoTen: ''
         },
         SanPham: {
@@ -419,8 +411,10 @@ function XuatNhap() {
                         <div className={styles.goodEditInputWrapper}>
                             <div className={styles.goodEditInputItem}>
                                 <p>Tên nhân viên</p>
-                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({ ...valueObj, 
-                                    NhanVien: {HoTen: e.target.value }})} />
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj({
+                                    ...valueObj,
+                                    NhanVien: { HoTen: e.target.value }
+                                })} />
                             </div>
                             <div className={styles.goodEditInputItem}>
                                 <p>Nhân viên giao hàng</p>
@@ -492,7 +486,7 @@ function XuatNhap() {
                         <div className={styles.goodEditInputWrapper}>
                             <div className={styles.goodEditInputItem}>
                                 <p>Tên nhân viên</p>
-                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj1({ ...valueObj1, NhanVien: {HoTen: e.target.value }})} />
+                                <input type="text" className={styles.goodEditInput} onChange={e => setValueObj1({ ...valueObj1, NhanVien: { HoTen: e.target.value } })} />
                             </div>
                             <div className={styles.goodEditInputItem}>
                                 <p>Tên sản phẩm</p>

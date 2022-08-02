@@ -14,7 +14,7 @@ import styled from '@emotion/styled';
 function TongQuan() {
 
     const [selectTime, setSelectTime] = useState(14);
-    const [flat, setFlat] = useState(true);
+    const [flat, setFlat] = useState(false);
     const [listLoaiSP, setListLoaiSP] = useState([]);
     const [listSP, setListSP] = useState([]);
     const [dataTableLoaiSP, setDataTableLoaiSP] = useState([]);

@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
-const CreateBarCode = (codeValue) => {
+function CreateBarCode(codeValue) {
+
+    console.log(">>> check barcode: .....")
     const Wrapper = styled.div`
                     position: fixed;
                     top: 0;

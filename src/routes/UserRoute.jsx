@@ -16,7 +16,6 @@ function ContentEmployee() {
             <PrivateRoute path='/nhaphang' component={NhapHang} />
             <PrivateRoute path='/xuathang' component={XuatHang} />
             <PrivateRoute path='/congviec' component={CongViec} />
-            {/* <Route path="*"> 404 not found !</Route> */}
 
         </div>
     );
