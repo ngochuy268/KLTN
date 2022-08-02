@@ -102,7 +102,7 @@ function ThemSanPham() {
             <div className={styles.container}>
                 <div className={styles.wrapper}>
                     <div className={styles.wrapperTitle}>
-                        <p>Thêm sản phẩm</p>
+                        <p>Quản lý kho - Thêm sản phẩm</p>
                     </div>
 
                     <div className={styles.addGoodsWrapper}>

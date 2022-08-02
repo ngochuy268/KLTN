@@ -8,7 +8,7 @@ import { Dialog, DialogTitle } from '@mui/material';
 import ChinhSuaInfo from './ChinhSuaInfo';
 import { fetchDataShowNV } from '../../../../../../services/khoHangServices';
 import { style } from '../../../../../../components/chatbox/client/styles';
-import { getUser } from "../../../../../../services/userServices";
+import { getUser, updateVang } from "../../../../../../services/userServices";
 
 
 
@@ -28,7 +28,7 @@ function DanhSachNhanVien() {
 
     useEffect(() => {
         fetchShowEm();
-    }, []);
+    }, [flat]);
 
     const [showEm, setShowEm] = useState([]);
     const fetchShowEm = async () => {
@@ -46,7 +46,15 @@ function DanhSachNhanVien() {
             setUser(response.DT);
         }
     }
-    console.log(">>> check user: ", user)
+
+    const [flat, setflat] = useState(false);
+    const setVang = async (id) => {
+        console.log(">>> check")
+        let response = await updateVang(id);
+        if (response && response.EC === 0) {
+            setflat(true);
+        }
+    }
 
     // console.log(Array.from("2017-12-15"))
     return (
@@ -54,7 +62,7 @@ function DanhSachNhanVien() {
             <div className={styles.container}>
                 <div className={styles.wrapper}>
                     <div className={styles.wrapperTitle}>
-                        <p>Danh sách nhân viên</p>
+                        <p>Quản lý nhân viên - Danh sách nhân viên</p>
                     </div>
 
 
@@ -69,6 +77,10 @@ function DanhSachNhanVien() {
                                                 <img src={item.Avata ? require(`../../../../../../assets/layoutImg/Avatar/${item.Avata}`).default : avatar}
                                                     alt="employee-avatar" className={styles.employeeImg} />
                                                 <b><p>{item.id}</p></b>
+                                                <p><button
+                                                    style={
+                                                        item.Vang == 0 ? { backgroundColor: 'red', border: 'none', color: 'white', padding: '5px 10px' }
+                                                            : { backgroundColor: 'green', border: 'none', color: 'white', padding: '5px 10px' }} onClick={() => setVang(item.id)}>Vắng</button></p>
                                             </div>
 
                                             <div className={styles.employeeInfoWrapper}>

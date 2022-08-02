@@ -14,12 +14,17 @@ import styled from '@emotion/styled';
 function TongQuan() {
 
     const [selectTime, setSelectTime] = useState(14);
-    const [flat, setFlat] = useState(false);
+    const [flat, setFlat] = useState(true);
     const [listLoaiSP, setListLoaiSP] = useState([]);
     const [listSP, setListSP] = useState([]);
     const [dataTableLoaiSP, setDataTableLoaiSP] = useState([]);
-    let titlechart = 'Biểu đồ xuất kho trong 2 tuần gần đây';
+    let titlechart = '';
 
+    if (selectTime == 14) {
+        titlechart = 'Biểu đồ xuất kho trong 2 tuần gần đây';
+    } else {
+        titlechart = "Biểu đồ xuất kho trong 1 tháng gần đây";
+    }
     useEffect(() => {
         fetchLoaiSP();
         tableDataLoaiSP();
@@ -59,13 +64,6 @@ function TongQuan() {
         }
 
     }
-
-    // const fetchSP = async () => {
-    //     let response = await fetchAllSP();
-    //     if (response && response.EC === 0) {
-    //         setListSP(response.DT);
-    //     }
-    // }
 
     // Predict SL Table get data
     const [showPredictSL, setShowPredictSL] = useState([]);
@@ -151,18 +149,6 @@ function TongQuan() {
         },
     }));
 
-
-    // useEffect(() => {
-    //     const $ = document.querySelector.bind(document);
-    //     const $$ = document.querySelectorAll.bind(document);
-
-    //     $$(`.${styles.goodName}`).forEach((item, index) => {
-    //         item.onclick = function () {
-    //             $(`.${styles.lineChart}`).classList.toggle(`${styles.active}`)
-    //         }
-    //     })
-    // }, [])
-
     return (
         <>
             <div className={styles.container}>
@@ -178,7 +164,6 @@ function TongQuan() {
                     <div className={styles.lineChartWrapper}>
 
                         <div className={styles.lineChartExpa}>
-                            {/* {alert("aaaaaaaaaaaa")} */}
                             {listLoaiSP && listLoaiSP.length > 0 ?
                                 <>
                                     {ApexChart(listLoaiSP, titlechart)}
@@ -188,7 +173,7 @@ function TongQuan() {
                             }
 
                         </div>
-                        {flat &&
+                        {!flat &&
                             <div className={styles.lineChart}>
                                 {listSP && listSP.length > 0 ?
                                     <>
@@ -213,7 +198,7 @@ function TongQuan() {
                                 <Table sx={{ minWidth: 400 }} aria-label="simple table" >
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell colSpan={5} style={{ textAlign: 'center', fontSize: '20px', border: '1px solid #4bb954' }}><b>{titlechart}</b></TableCell>
+                                            <TableCell colSpan={5} style={{ textAlign: 'center', fontSize: '20px', border: '1px solid #4bb954' }}><b>{"Thống kê số lượng hàng hóa xuất kho"}</b></TableCell>
                                         </TableRow>
                                         <TableRow>
                                             <StyledTableCell width='5%'><b>STT</b></StyledTableCell>

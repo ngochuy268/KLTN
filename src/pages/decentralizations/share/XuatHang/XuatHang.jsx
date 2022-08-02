@@ -212,7 +212,7 @@ function XuatHang() {
             <div className={styles.container}>
                 <div className={styles.wrapper}>
                     <div className={styles.wrapperTitle}>
-                        <p>Xuất kho</p>
+                        <p>Xuất hàng</p>
                         <div className={styles.scanWrapper}>
                             <p>Quét mã sản phẩm</p>
                             <button className={styles.scanButton}><FontAwesomeIcon icon={faBarcode} onClick={handleClickOpenBarCode} /></button>
@@ -222,7 +222,7 @@ function XuatHang() {
 
                     <div className={styles.exportGoodsAutoWrapper}>
                         <div className={styles.exportGoodsInputBillItemsWrapper}>
-        
+
                             <table className={styles.exportGoodsInputItems}>
                                 <tr>
                                     <th style={{ width: '20%' }}>Loại sản phẩm</th>

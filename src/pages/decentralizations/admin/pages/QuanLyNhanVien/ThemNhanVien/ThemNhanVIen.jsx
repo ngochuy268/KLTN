@@ -96,7 +96,7 @@ function ThemNhanVien() {
         <>
             <div className={styles.wrapper}>
                 <div className={styles.wrapperTitle}>
-                    <p>Thêm nhân viên mới</p>
+                    <p>Quản lý nhân viên - Thêm nhân viên mới</p>
                 </div>
 
                 {/* -----------------BE------------------------------- */}

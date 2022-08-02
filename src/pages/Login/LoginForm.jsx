@@ -93,9 +93,9 @@ function Login() {
                     history.push('/canhan');
 
                 }
-
+                toast.success("Chúc bạn có một ngày làm việc vui vẻ !");
             }
-            toast.success("Chúc bạn có một ngày làm việc vui vẻ !");
+            else { toast.error(response.EM) }
         }
     }
 

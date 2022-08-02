@@ -281,7 +281,7 @@ function XuatNhap() {
             <div className={styles.container}>
                 <div className={styles.wrapper}>
                     <div className={styles.wrapperTitle}>
-                        <p>Danh sách xuất nhập kho</p>
+                        <p>Quản lý kho - Quản lý xuất nhập</p>
                     </div>
 
                     <div className={styles.listGoodsInfoWrapper}>

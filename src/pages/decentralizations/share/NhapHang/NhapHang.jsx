@@ -134,7 +134,7 @@ function NhapHang() {
             <div className={styles.container}>
                 <div className={styles.wrapper}>
                     <div className={styles.wrapperTitle}>
-                        <p>Nhập hàng vào kho</p>
+                        <p>Nhập hàng </p>
                         <div className={styles.scanWrapper}>
                             <p>Quét mã sản phẩm</p>
                             <button className={styles.scanButton}><FontAwesomeIcon icon={faBarcode} onClick={handleClickOpen} /></button>
@@ -145,11 +145,11 @@ function NhapHang() {
                         <div className={styles.addButtonWrapperWrapper}>
                             <div className={styles.addButtonWrapper}>
                                 <button className={styles.addButton} onClick={(event) => clickAdd(event)} ><FontAwesomeIcon icon={faPlus} /></button>
-                            </div>       
-                        </div>   
+                            </div>
+                        </div>
                         <div className={styles.addGoods}>
                             <div className={styles.exportGoodsInputItems1}>
-                                <div className={styles.exportGoodsInputItem} style={{width: '15%'}}>
+                                <div className={styles.exportGoodsInputItem} style={{ width: '15%' }}>
                                     <span>Tên loại</span>
                                     <select className={styles.exportGoodsInput} name='goodTypeId' style={{ width: '100%' }}
                                         onChange={(e) => {
@@ -162,7 +162,7 @@ function NhapHang() {
                                         ))}
                                     </select>
                                 </div>
-                                <div className={styles.exportGoodsInputItem} style={{width: '20%'}}>
+                                <div className={styles.exportGoodsInputItem} style={{ width: '20%' }}>
                                     <span>Tên sản phẩm</span>
                                     <select className={styles.exportGoodsInput} name='goodId' style={{ width: '100%' }}
                                         onChange={e => { setValueObj({ ...valueObj, 'SanPhamId': e.target.value }) }} >
@@ -176,7 +176,7 @@ function NhapHang() {
                                         }
                                     </select>
                                 </div>
-                                <div className={styles.exportGoodsInputItem} style={{width: '10%'}}>
+                                <div className={styles.exportGoodsInputItem} style={{ width: '10%' }}>
                                     <span>Ngày sản xuất</span>
                                     {valueObj.LoaiSanPhamId === '' ?
                                         <>
@@ -188,9 +188,9 @@ function NhapHang() {
                                             <input type="date" className={styles.exportGoodsInput} name='productDate' style={{ width: '100%' }}
                                                 onChange={e => { setValueObj({ ...valueObj, 'NSX': e.target.value }) }} />
                                         </>
-                                    }                                           
-                                </div>       
-                                <div className={styles.exportGoodsInputItem} style={{width: '20%'}}>
+                                    }
+                                </div>
+                                <div className={styles.exportGoodsInputItem} style={{ width: '20%' }}>
                                     <span>Vị trí</span>
                                     {valueObj.LoaiSanPhamId === '' ?
                                         <>
@@ -203,8 +203,8 @@ function NhapHang() {
                                                 onChange={e => { setValueObj({ ...valueObj, 'ViTri': e.target.value }) }} />
                                         </>
                                     }
-                                </div>          
-                                <div className={styles.exportGoodsInputItem} style={{width: '20%'}}>
+                                </div>
+                                <div className={styles.exportGoodsInputItem} style={{ width: '20%' }}>
                                     <span>Ghi chú</span>
                                     {valueObj.LoaiSanPhamId === '' ?
                                         <>
@@ -217,8 +217,8 @@ function NhapHang() {
                                                 onChange={e => { setValueObj({ ...valueObj, 'GhiChu': e.target.value }); }} />
                                         </>
                                     }
-                                </div>        
-                                <div className={styles.exportGoodsInputItem} style={{width: '10%'}}>
+                                </div>
+                                <div className={styles.exportGoodsInputItem} style={{ width: '10%' }}>
                                     <span>Số lượng</span>
                                     {valueObj.LoaiSanPhamId === '' ?
                                         <>
@@ -237,7 +237,7 @@ function NhapHang() {
                                             />
                                         </>
                                     }
-                                </div>                              
+                                </div>
                             </div>
                             <div className={styles.exportGoodsInputItems2}>
                             </div>

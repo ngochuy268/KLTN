@@ -19,8 +19,11 @@ const createSP = (valueObj, valueObjLoaiSP) => {
 }
 
 const updateUser = (userData) => {
-    console.log("check UI services: ", userData)
     return axios.put('/api/v1/user/update', { userData })
 }
 
-export { loginUser, getUser, createUser, createSP, updateUser };
+const updateVang = (id) => {
+    return axios.put('/api/v1/user/setvang', { id })
+}
+
+export { loginUser, getUser, createUser, createSP, updateUser, updateVang };

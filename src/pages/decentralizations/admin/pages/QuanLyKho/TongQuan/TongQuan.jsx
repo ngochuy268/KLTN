@@ -98,7 +98,7 @@ function TongQuan1() {
         <div className={styles.container}>
             <div className={styles.wrapper}>
                 <div className={styles.wrapperTitle}>
-                    <p>Tổng quan</p>
+                    <p>Quản lý kho - Tổng quan</p>
                 </div>
 
                 {pieChartData && pieChartData.length > 0 ?
